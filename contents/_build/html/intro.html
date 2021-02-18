@@ -541,7 +541,9 @@ Rebuilding user command cache... done
 </div>
 </div>
 </div>
-<p>We pronounce this as “quad-eye-oh gets zero”. The left-arrow, “gets”, is the symbol for assignment. The green text following the <code class="docutils literal notranslate"><span class="pre">⍝</span></code> symbol is a comment. APL’s comment symbol is called “lamp” – it’s supposed to be a lightbulb if you squint a bit, and a bit of an <em>aide-memoire</em> – comments illuminate the code. On my keyboard, it lives on the comma-key, and is a useful first APL key sequence to memorize.</p>
+<p>We pronounce this as “quad-eye-oh gets zero”. The left-arrow, “gets”, is the symbol for assignment. The green text following the <code class="docutils literal notranslate"><span class="pre">⍝</span></code> symbol is a comment. APL’s comment symbol is called “lamp” – and a bit of an <em>aide-memoire</em> – comments illuminate the code. On my keyboard, it lives on the comma-key, and is a useful first APL key sequence to memorize. Does it look like a lamp?</p>
+<p><img alt="lamps" src="_images/threelamps.png" /></p>
+<p>Maybe an LED? Or a kerosene lamp, depending on how long you’ve been doing APL for. Anyway - a comment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ This line does nothing!</span>
@@ -676,7 +678,8 @@ Rebuilding user command cache... done
 <div class="section" id="valence">
 <h2>Valence<a class="headerlink" href="#valence" title="Permalink to this headline">¶</a></h2>
 <p><em>Valence</em> (sometimes called <em>arity</em>, too) refers to the way that functions expect arguments. In APL, we talk about <em>monadic</em> and <em>dyadic</em> functions and operators (and occasionally <em>niladic</em>, too).</p>
-<p>There is a central tenet when writing about programming that for every mention of the word <a class="reference external" href="https://stackoverflow.com/questions/44965/what-is-a-monad">monad</a> you lose half your readership. We can blame Team <a class="reference external" href="http://learnyouahaskell.com">Haskell</a> for that. Fear not – we’re staying right out of category theory. Whilst APL has monadic functions and operators, the term predates Haskell by some margin, and really refers to something different altogether. APL functions can take arguments on either side, just like you’re perfectly used to with arithmetic operators in many other languages (not Lisps):</p>
+<p>There is a central tenet when writing about programming that for every mention of the word <a class="reference external" href="https://stackoverflow.com/questions/44965/what-is-a-monad">monad</a> you lose half your readership. We can blame Team <a class="reference external" href="http://learnyouahaskell.com">Haskell</a> for that. Fear not – we’re staying right out of category theory. Whilst APL has monadic functions and operators, the term predates Haskell by some margin, and really refers to something different altogether.</p>
+<p>APL functions can take arguments on either side, just like you’re perfectly used to with arithmetic operators in many other languages (not Lisps):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="c1">⍝ Infix function application, dyadic +</span>

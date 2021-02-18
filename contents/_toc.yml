@@ -1,6 +1,6 @@
 # Table of content
 # Learn more at https://jupyterbook.org/customize/toc.html
-# jupyter-book build APLCookBook/
+# jupyter-book build contents/
 # - file: intro
 
 - file: intro
