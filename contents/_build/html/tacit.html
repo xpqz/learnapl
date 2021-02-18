@@ -1,0 +1,1444 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainspotting &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Finding things" href="find.html" />
+    <link rel="prev" title="Products" href="products.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/tacit.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftacit.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tacit-rules-atop">
+   The tacit rules: atop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tacit-rules-fork">
+   The tacit rules: fork
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-forks-and-atops">
+   Summary: forks and atops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forks-atop-forks">
+   Forks atop forks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complicating-factors">
+   Complicating factors
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="trainspotting">
+<h1>Trainspotting<a class="headerlink" href="#trainspotting" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Simplicity and elegance are unpopular because they require hard work and discipline to achieve and education to be appreciated. – <em>Edsger Dijkstra</em></p>
+</div></blockquote>
+<p><em>Tacit</em> is the <em>third</em> way to write code in Dyalog APL, after dfns, and <em>traditional</em> (which we’re not covering). The tacit style, also sometimes called <em>point-free</em>, was taken from the J language, which originated the concept. Tacit code can be made super-terse, and is best reserved for short snippets only. APL <em>idioms</em> – short, efficient, and ultra-optimised bits of code, are often expressed in tacit. You’ll find that pretty much everything on <a class="reference external" href="https://aplcart.info/?w">APLCart</a> is written in tacit, and as you start working on improving your <a class="reference external" href="https://codegolf.stackexchange.com">Code Golf</a> handicap, tacit is an essential skill.</p>
+<p>We can look at tacit programming in APL as a little embedded DSL for functional composition, complete with its own grammar. The rules of this grammar are actually quite simple, but learning how to read and write tacit functions takes a lot of practice, even for those well-versed in the rest of APL.</p>
+<p>References for tacit programming:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">APL Wiki</a></p></li>
+<li><p><a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-23-transcribing-to-and-reading-trains">Cultivation</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=Enlh5qwwDuY%3Ft%3D440">Dyalog webinar</a></p></li>
+<li><p><a class="reference external" href="http://dfns.dyalog.com/n_tacit.htm">dfns</a> page on dfn to tacit translation</p></li>
+</ul>
+<p>The word <em>tacit</em> means implicit, and refers to a function where there is no explicit mention of its arguments. In a tacit function, then, you’ll see no <code class="docutils literal notranslate"><span class="pre">⍺</span></code> and <code class="docutils literal notranslate"><span class="pre">⍵</span></code> as you would in a dfn. Instead a set of rules decide how the components of a tacit function interact with the arguments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="kt">{}</span><span class="nf">⎕SE</span><span class="na">.</span><span class="nv">UCMD</span><span class="s1">&#39;box on -s=min -t=tree -f=on&#39;</span>
+<span class="kt">{}</span><span class="nf">⎕SE</span><span class="na">.</span><span class="nv">UCMD</span><span class="s1">&#39;rows on&#39;</span>
+<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Rebuilding user command cache... done
+
+Rebuilding user command cache... done
+</span></div></div>
+</div>
+<div class="section" id="the-tacit-rules-atop">
+<h2>The tacit rules: atop<a class="headerlink" href="#the-tacit-rules-atop" title="Permalink to this headline">¶</a></h2>
+<p>A tacit function is wrapped in parentheses, <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">...</span> <span class="pre">)</span></code>, and is governed by a set of rules. Let’s begin with the easiest one, the <em>monadic atop</em>. An <em>atop</em>, also known as a <em>2-train</em>, is a combination of two functions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(f g)Y → f g Y
+</pre></div>
+</div>
+<p>This states that the tacit function <code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">g)</span></code>, comprising the monadic functions <code class="docutils literal notranslate"><span class="pre">f</span></code> and <code class="docutils literal notranslate"><span class="pre">g</span></code>, simply corresponds to the sequence <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">g</span></code> applied to an argument array <code class="docutils literal notranslate"><span class="pre">Y</span></code>. Well, that seems… obvious? We can try it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">Y</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span>
+<span class="p">(</span><span class="o">-⍉</span><span class="p">)</span><span class="nv">Y</span> <span class="c1">⍝ Tacit</span>
+<span class="o">-⍉</span><span class="nv">Y</span>   <span class="c1">⍝ Explicit &quot;beside&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 2
+3 4 5
+6 7 8
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> 0 ¯3 ¯6
+¯1 ¯4 ¯7
+¯2 ¯5 ¯8
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> 0 ¯3 ¯6
+¯1 ¯4 ¯7
+¯2 ¯5 ¯8
+</span></div></div>
+</div>
+<p>Yes, it’s understandable if you’re scratching your head, wondering “what’s the point of that then?”. It pays to think of it as a means of creating a derived function. Doing</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">-⍉</span><span class="nv">Y</span>
+</pre></div>
+</div>
+<p>is <em>two</em> operations, whereas</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-⍉</span><span class="p">)</span><span class="nv">Y</span>
+</pre></div>
+</div>
+<p>is the application of a single, derived function.</p>
+<p>But the main purpose of the monadic atop rule is to serve as a building block in more complex tacit functions, as we shall discover shortly.</p>
+<p>Let’s move on to the dyadic version of atop instead:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X (f g) Y → f X g Y
+</pre></div>
+</div>
+<p>Here, the dyadic tacit function <code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">g)</span></code> combines the <em>monadic</em> function <code class="docutils literal notranslate"><span class="pre">f</span></code> and the dyadic function <code class="docutils literal notranslate"><span class="pre">g</span></code>. Let’s say we want to tally the elements that are left if you remove all elements from array A from those in B:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span> <span class="kd">←</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span>
+<span class="nv">A</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">2</span> <span class="m">6</span>
+<span class="o">≢</span> <span class="nv">B</span> <span class="o">~</span> <span class="nv">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4
+</span></div></div>
+</div>
+<p>There we can see the <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">X</span> <span class="pre">g</span> <span class="pre">Y</span></code> pattern. Let’s try the tacit version, a dyadic <em>atop</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span> <span class="p">(</span><span class="o">≢~</span><span class="p">)</span> <span class="nv">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4
+</span></div></div>
+</div>
+<p>There’s also a monadic version of the atop rule:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(f g)Y → f g Y
+</pre></div>
+</div>
+<p>Again, hard to see the utility yet, perhaps.</p>
+</div>
+<div class="section" id="the-tacit-rules-fork">
+<h2>The tacit rules: fork<a class="headerlink" href="#the-tacit-rules-fork" title="Permalink to this headline">¶</a></h2>
+<p>Let’s keep going! Here’s our first <em>fork</em> (also known as a 3-train) – a tacit combination of three functions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X (f g h) Y → (X f Y) g (X h Y)
+</pre></div>
+</div>
+<p>This is perhaps the simplest tacit rule that one can see applications for. Consider the three-way compare (sometimes called “spaceship”) operator, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=&gt;</span> <span class="pre">b</span></code> that some languages (like Perl or Python) offer. It returns a negative value if a &lt; b, 0 if a == b and a positive value if a &gt; b. APL has no such thing, but we can cook up a tacit function using the fork rule:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmp</span> <span class="kd">←</span> <span class="o">&gt;-&lt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="nv">cmp</span> <span class="m">2</span>
+<span class="m">1</span> <span class="nv">cmp</span> <span class="m">1</span>
+<span class="m">2</span> <span class="nv">cmp</span> <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div></div>
+</div>
+<p>Let’s look at the rule application to see why it works:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(a &gt; b) - (a &lt; b) ⍝ using fork rule: (X f Y) g (X h Y)
+</pre></div>
+</div>
+<p>Once you learn to see this pattern, it really crops up frequently. Why is it called a “fork”? Well, let’s ask the interpreter to show us its parse of the function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼─┐
+&gt; - &lt;
+</span></div></div>
+</div>
+<p>Very much a fork, or trident. Let’s look at a few more examples.</p>
+<p>A common problem is to split a string into substrings, dividing on some separator character. Here’s one way you can achieve that, using a dfn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Split</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span> <span class="nv">Split</span> <span class="s1">&#39;A common problem is to split a string into substrings&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────┬───────┬──┬──┬─────┬─┬──────┬────┬──────────┐
+│A│common│problem│is│to│split│a│string│into│substrings│
+└─┴──────┴───────┴──┴──┴─────┴─┴──────┴────┴──────────┘
+</span></div></div>
+</div>
+<p>Let’s rework that into a tacit formulation instead, taking it step by step. First, let’s flip that selfie and put in some parentheses for emphasis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Split</span> <span class="kd">←</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span> <span class="o">⊆</span> <span class="p">(</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So that <em>almost</em> matches the fork pattern <code class="docutils literal notranslate"><span class="pre">(X</span> <span class="pre">f</span> <span class="pre">Y)</span> <span class="pre">g</span> <span class="pre">(X</span> <span class="pre">h</span> <span class="pre">Y)</span></code>, but not quite. The last part makes no reference to <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Let’s address that with a tack-trick:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Split</span> <span class="kd">←</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span> <span class="o">⊆</span> <span class="p">(</span><span class="bp">⍺</span><span class="o">⊢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To recap, the tacks (<code class="docutils literal notranslate"><span class="pre">⊣⊢</span></code>) are functions that just return the value they’re “pointing” to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">⊢</span><span class="m">3</span>
+<span class="o">⊢</span><span class="m">5</span>
+<span class="m">2</span><span class="o">⊣</span><span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">2
+</span></div></div>
+</div>
+<p>They are very useful when writing tacit functions, as we’ve just seen. We now have a dfn body that matches the fork rule, and we can write it tacitly as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Split</span> <span class="kd">←</span> <span class="o">≠⊆⊢</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span> <span class="nv">Split</span> <span class="s1">&#39;It should still work the same way&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬──────┬─────┬────┬───┬────┬───┐
+│It│should│still│work│the│same│way│
+└──┴──────┴─────┴────┴───┴────┴───┘
+</span></div></div>
+</div>
+<p>Ok, let’s try another one, this time going the other way. Here’s a fork that normalises a vector of numbers (that is making its components sum to 1):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Norm</span> <span class="kd">←</span> <span class="o">⊢÷+</span><span class="na">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Norm</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.047619 0.0952381 0.142857 0.190476 0.238095 0.285714
+</span></div></div>
+</div>
+<p>What is the corresponding explicit dfn?</p>
+<p>The complication here is that we now have an operator involved: a reduction. Recall that operators take one (or two) function(s) and return a <em>derived function</em> that can then be applied to arguments in turn. So let’s think of the sum-reduction as a single function. Using spaces to make this clearer we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Norm</span> <span class="kd">←</span> <span class="o">⊢</span> <span class="o">÷</span> <span class="o">+</span><span class="na">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We know already that the fork itself is monadic, meaning that the <code class="docutils literal notranslate"><span class="pre">f</span></code> and the <code class="docutils literal notranslate"><span class="pre">h</span></code> functions must both be monadic, and the <code class="docutils literal notranslate"><span class="pre">g</span></code> function dyadic. The tack becomes just <code class="docutils literal notranslate"><span class="pre">⍵</span></code> and the sum-reduction we just need to give an argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Norm</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍵</span><span class="o">÷+</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Norm</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.047619 0.0952381 0.142857 0.190476 0.238095 0.285714
+</span></div></div>
+</div>
+<p>That last example – a monadic fork – can be formalised as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(f g h)Y → (f Y) g (h Y)
+</pre></div>
+</div>
+<p>There are, in fact, two more fork-varieties, beyond the two we’ve already seen. They differ in how the consitutent functions are applied (monadically or dyadically):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X(Z g h)Y → Z g X h Y ⍝ h dyad, g dyad, derived dyad
+(X g h)Y  → X g h Y   ⍝ h modad, g dyad, derived monad
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary-forks-and-atops">
+<h2>Summary: forks and atops<a class="headerlink" href="#summary-forks-and-atops" title="Permalink to this headline">¶</a></h2>
+<p>For completeness, then – here are all the rules of the tacit grammar in one place:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Tacit</p></th>
+<th class="text-align:left head"><p>Type</p></th>
+<th class="text-align:left head"><p>Explicit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">X(Z</span> <span class="pre">g</span> <span class="pre">h)Y</span></code></p></td>
+<td class="text-align:left"><p>Fork</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">g</span> <span class="pre">X</span> <span class="pre">h</span> <span class="pre">Y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">X(f</span> <span class="pre">g</span> <span class="pre">h)Y</span></code></p></td>
+<td class="text-align:left"><p>Fork</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">(X</span> <span class="pre">f</span> <span class="pre">Y)</span> <span class="pre">g</span> <span class="pre">(X</span> <span class="pre">h</span> <span class="pre">Y)</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">(X</span> <span class="pre">g</span> <span class="pre">h)Y</span></code></p></td>
+<td class="text-align:left"><p>Fork</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">g</span> <span class="pre">h</span> <span class="pre">Y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">g</span> <span class="pre">h)Y</span></code></p></td>
+<td class="text-align:left"><p>Fork</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">Y)</span> <span class="pre">g</span> <span class="pre">(h</span> <span class="pre">Y)</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">X(f</span> <span class="pre">g)Y</span></code></p></td>
+<td class="text-align:left"><p>Atop</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">X</span> <span class="pre">g</span> <span class="pre">Y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">g)Y</span></code></p></td>
+<td class="text-align:left"><p>Atop</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">g</span> <span class="pre">Y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="forks-atop-forks">
+<h2>Forks atop forks<a class="headerlink" href="#forks-atop-forks" title="Permalink to this headline">¶</a></h2>
+<p>This is where the real fun begins. We can string together longer tacit functions by combining forks and atops. Some consideration should be given to comprehensibility here. Long stretches of tacit code requires more effort to understand than the corresponding explicit formulation.</p>
+<p>As our tacit rules indicate, barring the presence of parantheses, a combination of three functions is a fork, and two functions is an atop. If we have <em>more</em> than three functions, we start reading from the right, making groups of threes and twos, and combine <em>those</em> using the fork and atop rules.</p>
+<p>From Dyalog’s <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Introduction/Trains.htm">docs</a>:</p>
+<blockquote>
+<div><p>…in the absence of parentheses, a sequence of an odd number of functions resolves to a 3-train (fork) and an even-numbered sequence resolves to a 2-train (atop)</p>
+</div></blockquote>
+<p>So how long is too long a train? It depends on the “carriages”. The example given in Dyalog’s docs above is a good point:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="p">(</span><span class="o">⌽+,-,×,÷</span><span class="p">)</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+<p>That’s 8 constituent functions. We’ll prise it apart in a bit, but looking at it, it’s pretty clear what the intention is: find the sum, difference, product and ratio of two numbers, and reverse the list.</p>
+<p>As always, let’s look at the parse:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽+,-,×,÷</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐          
+⌽ ┌─┼───┐      
+  + , ┌─┼───┐  
+      - , ┌─┼─┐
+          × , ÷
+</span></div></div>
+</div>
+<p>So reading right to left, down to up, we have three forks and an atop. Let’s resolve them from the right:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">f1</span> <span class="kd">←</span> <span class="o">×,÷</span> <span class="c1">⍝ ...fork, (6×2),(6÷2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="m">6</span><span class="p">(</span><span class="o">⌽+,-,</span><span class="nv">f1</span><span class="p">)</span><span class="m">2</span> <span class="c1">⍝ does it still work?</span>
+<span class="nv">assert</span> <span class="nv">r</span><span class="o">≡</span><span class="m">6</span><span class="p">(</span><span class="o">⌽+,-,×,÷</span><span class="p">)</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+<p>The next fork is now</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">f2</span> <span class="kd">←</span> <span class="o">-,</span><span class="nv">f1</span> <span class="c1">⍝ ...fork: (6-2),f1 → (6-2),(6×2),(6÷2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="p">(</span><span class="o">⌽+,</span><span class="nv">f2</span><span class="p">)</span><span class="m">2</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+<p>and the final fork is more of the same:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">f3</span> <span class="kd">←</span> <span class="o">+,</span><span class="nv">f2</span> <span class="c1">⍝ (6+2),(6-2),(6×2),(6÷2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="p">(</span><span class="o">⌽</span><span class="nv">f3</span><span class="p">)</span><span class="m">2</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+<p>And finally, the atop, which moves the left argument to between the functions and removes the brackets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽</span> <span class="m">6</span> <span class="nv">f3</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+<p>or, fully explicit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span> <span class="kt">{</span><span class="o">⌽</span><span class="p">(</span><span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="bp">⍺</span><span class="o">-</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="bp">⍺</span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
+</span></div></div>
+</div>
+</div>
+<div class="section" id="complicating-factors">
+<h2>Complicating factors<a class="headerlink" href="#complicating-factors" title="Permalink to this headline">¶</a></h2>
+<p>Using the method outlined above, you can usually untangle reasonably-sized trains that others have composed:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">]box</span> <span class="pre">on</span> <span class="pre">-style=mid</span> <span class="pre">-trains=tree</span> <span class="pre">-fns=on</span></code> to visualise the parse tree for the train</p></li>
+<li><p>Follow the pattern indicated by the tree, and resolve forks and atops (R→L) using The Rules</p></li>
+</ul>
+<p>However, certain factors make this more complicated:</p>
+<ul class="simple">
+<li><p>Mid-train parantheses to alter order of precedence</p></li>
+<li><p>Binding strengths – operators bind tighter than functions</p></li>
+<li><p>Jots &amp; tacks, if overused.</p></li>
+</ul>
+<p>A handy tacit function is finding the min and max of an array, which we can use to demonstrate the operator binding:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">minmax</span> <span class="kd">←</span> <span class="o">⌊</span><span class="na">/</span><span class="o">,⌈</span><span class="na">/</span>
+<span class="nv">minmax</span> <span class="m">7</span> <span class="m">2</span> <span class="m">3</span> <span class="m">8</span> <span class="m">0</span> <span class="m">9</span> <span class="m">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 12
+</span></div></div>
+</div>
+<p>This is a single fork:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">minmax</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  ┌─┼─┐
+  / , /
+┌─┘ ┌─┘
+⌊   ⌈  
+</span></div></div>
+</div>
+<p>So we can see that we need to start by letting the reduces bind first to form the derived functions that make up the fork. Ok, that wasn’t too bad. What about this one?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">ones</span> <span class="kd">←</span> <span class="o">⊢∧</span><span class="p">(</span><span class="o">∧</span><span class="na">⍀</span><span class="o">∨</span><span class="na">⍀</span><span class="o">=⊢</span><span class="p">)</span> <span class="c1">⍝ Hat tip to Adám Brudzewski for the suggestion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐        
+⊢ ┌─┼───┐    
+  ⊢ ∧ ┌─┴─┐  
+      ⍀ ┌─┼─┐
+    ┌─┘ ⍀ = ⊢
+    ∧ ┌─┘    
+      ∨      
+</span></div></div>
+</div>
+<p>Top marks if you can say what that even does. Before we get into that, we can see that the parenthesis have affected the “groups of three from the right” parse. We’re now looking at a fork-atop-fork, two operators and two tacks. All Christmases came at once.</p>
+<p>This function preserves the first uninterrupted sequence of 1s in a vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ones</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>Let’s untangle the parse tree, bottom-up, right-left. The first fork is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">f1</span> <span class="kd">←</span> <span class="o">∨</span><span class="na">⍀</span> <span class="o">=</span> <span class="o">⊢</span> <span class="c1">⍝ ...monadic fork, giving a dfn equivalent: {(∨⍀⍵)=⍵}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐  
+⊢ ┌─┼─┐
+  ⍀ = ⊢
+┌─┘    
+∨      
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="p">(</span><span class="o">⊢∧</span><span class="p">(</span><span class="o">∧</span><span class="na">⍀</span><span class="nv">f1</span><span class="p">))</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+<span class="nv">assert</span> <span class="nv">r</span><span class="o">≡</span><span class="nv">ones</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="c1">⍝ still works!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>Now let’s tackle the atop, which is just applying the and-scan to the fork:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">a1</span> <span class="kd">←</span> <span class="o">∧</span><span class="na">⍀</span><span class="nv">f1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐    
+⊢ ┌─┴─┐  
+  ⍀ ┌─┼─┐
+┌─┘ ⍀ = ⊢
+∧ ┌─┘    
+  ∨      
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⊢∧</span><span class="nv">a1</span><span class="p">)</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>and there we have a monadic fork:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">∧</span><span class="nv">a1</span> <span class="bp">⍵</span><span class="kt">}</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>We can now fully untangle it if we want:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">∧∧</span><span class="na">⍀</span><span class="p">(</span><span class="o">∨</span><span class="na">⍀</span><span class="bp">⍵</span><span class="p">)</span><span class="o">=</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>So now we can compare the tacit and explicit forms of the same function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">tacit</span> <span class="kd">←</span> <span class="o">⊢∧</span><span class="p">(</span><span class="o">∧</span><span class="na">⍀</span><span class="o">∨</span><span class="na">⍀</span><span class="o">=⊢</span><span class="p">)</span>
+<span class="nv">expl</span>  <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍵</span><span class="o">∧∧</span><span class="na">⍀</span><span class="p">(</span><span class="o">∨</span><span class="na">⍀</span><span class="bp">⍵</span><span class="p">)</span><span class="o">=</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which one is “better”? Any efficiency saving offered by the tacit formulation is probably diminished by the the use of scan-first. Yes, it’s shorter by three glyphs. <em>Readability</em> is a slippery concept which depends on the skill and experience of the reader, but at least to <em>this</em> reader, without going through the above deconstruction exercise, I could not have told you how the tacit function worked. In the explicit formulation – to <em>my</em> eyes at least – the algorithm is more visible.</p>
+<p>Let’s work through a couple more, back and forth. If you haven’t already, do check out Richard Park’s most excellent <a class="reference external" href="https://dyalog.tv/Webinar/?v=Enlh5qwwDuY">webinar</a> on the topic, too.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Working through examples this way, whilst somewhat tedious, is the only way to learn. Eventually it clicks. If this all feels a bit dry, skip to the next chapter and keep coming back here in small doses.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Start with the training wheels (<code class="docutils literal notranslate"><span class="pre">]box</span> <span class="pre">on</span> <span class="pre">-s=max</span> <span class="pre">-t=tree</span> <span class="pre">-f=on</span></code>), and once you can do it that way, try without.</p>
+</div>
+<p>Here’s a tacit phrase which groups pairs of elements based on the first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">group</span> <span class="kd">←</span> <span class="o">↓⊃</span><span class="na">¨</span><span class="o">,</span><span class="na">∘</span><span class="o">⊂</span><span class="na">⌸</span><span class="o">⊢</span><span class="na">/¨</span> <span class="c1">⍝ Group pairs based on first element</span>
+<span class="nv">group</span> <span class="vg">⎕</span><span class="kd">←</span><span class="p">(</span><span class="m">5</span> <span class="m">3</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">5</span><span class="p">)(</span><span class="m">4</span> <span class="m">7</span><span class="p">)(</span><span class="m">1</span> <span class="m">8</span><span class="p">)(</span><span class="m">2</span> <span class="m">4</span><span class="p">)(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┐
+│5 3│5 6│7 5│4 7│1 8│2 4│1 2│
+└───┴───┴───┴───┴───┴───┴───┘
+┌───────┬─────┬─────┬───────┬─────┐
+│┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
+││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
+│└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
+└───────┴─────┴─────┴───────┴─────┘
+</span></div></div>
+</div>
+<p>Let’s look at the parse tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">group</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐    
+↓ ┌───┼───┐
+  ¨   ⌸   ¨
+┌─┘ ┌─┘ ┌─┘
+⊃   ∘   ⊢/ 
+   ┌┴┐     
+   , ⊂     
+</span></div></div>
+</div>
+<p>Yikes… but actually, it looks worse than it is – it’s a single fork, with an atop. The sprinkling of operators make it look more complicated than it is. So, bit by bit as indicated by the tree, starting with the key, <code class="docutils literal notranslate"><span class="pre">⌸</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">key</span> <span class="kd">←</span> <span class="vg">⎕</span><span class="kd">←</span><span class="o">,</span><span class="na">∘</span><span class="o">⊂</span><span class="na">⌸</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">   ⌸
+ ┌─┘
+ ∘  
+┌┴┐ 
+, ⊂ 
+</span></div></div>
+</div>
+<p>Looks correct. If we substitute into the original definition, we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓⊃</span><span class="na">¨</span><span class="nv">key</span><span class="o">⊢</span><span class="na">/¨</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐    
+↓ ┌───┼───┐
+  ¨   ⌸   ¨
+┌─┘ ┌─┘ ┌─┘
+⊃   ∘   ⊢/ 
+   ┌┴┐     
+   , ⊂     
+</span></div></div>
+</div>
+<p>Yep. Still the same. Now for the left and right tines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">discloseAll</span> <span class="kd">←</span> <span class="o">⊃</span><span class="na">¨</span>
+<span class="nv">mergeLasts</span> <span class="kd">←</span> <span class="o">⊢</span><span class="na">/¨</span>
+<span class="o">↓</span><span class="nv">discloseAll</span> <span class="nv">key</span> <span class="nv">mergeLasts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐    
+↓ ┌───┼───┐
+  ¨   ⌸   ¨
+┌─┘ ┌─┘ ┌─┘
+⊃   ∘   ⊢/ 
+   ┌┴┐     
+   , ⊂     
+</span></div></div>
+</div>
+<p>We can now translate to a dfn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">↓</span><span class="p">(</span><span class="nv">discloseAll</span> <span class="bp">⍵</span><span class="p">)</span> <span class="nv">key</span> <span class="p">(</span><span class="nv">mergeLasts</span> <span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span>  <span class="p">(</span><span class="m">5</span> <span class="m">3</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">5</span><span class="p">)(</span><span class="m">4</span> <span class="m">7</span><span class="p">)(</span><span class="m">1</span> <span class="m">8</span><span class="p">)(</span><span class="m">2</span> <span class="m">4</span><span class="p">)(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+│┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
+││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
+│└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
+└───────┴─────┴─────┴───────┴─────┘
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">↓</span><span class="p">(</span><span class="o">⊃</span><span class="na">¨</span><span class="bp">⍵</span><span class="p">)</span> <span class="o">,</span><span class="na">∘</span><span class="o">⊂</span><span class="na">⌸</span> <span class="o">⊢</span><span class="na">/¨</span><span class="bp">⍵</span><span class="kt">}</span> <span class="p">(</span><span class="m">5</span> <span class="m">3</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">5</span><span class="p">)(</span><span class="m">4</span> <span class="m">7</span><span class="p">)(</span><span class="m">1</span> <span class="m">8</span><span class="p">)(</span><span class="m">2</span> <span class="m">4</span><span class="p">)(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+│┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
+││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
+│└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
+└───────┴─────┴─────┴───────┴─────┘
+</span></div></div>
+</div>
+<p>The operator to key is a derived function. We could expand that, too, if we want to be purist:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">↓</span><span class="p">(</span><span class="o">⊃</span><span class="na">¨</span><span class="bp">⍵</span><span class="p">)</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="o">⊢</span><span class="na">/¨</span><span class="bp">⍵</span><span class="kt">}</span> <span class="p">(</span><span class="m">5</span> <span class="m">3</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">5</span><span class="p">)(</span><span class="m">4</span> <span class="m">7</span><span class="p">)(</span><span class="m">1</span> <span class="m">8</span><span class="p">)(</span><span class="m">2</span> <span class="m">4</span><span class="p">)(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+│┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
+││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
+│└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
+└───────┴─────┴─────┴───────┴─────┘
+</span></div></div>
+</div>
+<p>Here’s another one. What does this even do?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="p">(</span><span class="o">|</span><span class="na">∘</span><span class="o">⍳</span><span class="na">∘</span><span class="o">≢⊢</span><span class="na">∘</span><span class="o">⊂</span><span class="na">⌸</span><span class="o">⊢</span><span class="p">)</span> <span class="s1">&#39;dyaloge&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬───┐
+│daoe│ylg│
+└────┴───┘
+</span></div></div>
+</div>
+<p>Another thing we can do that may or may not be useful is to ask the interpreter to give us a parethesised expression instead of the parse tree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">mid</span> <span class="o">-</span><span class="nv">t</span><span class="o">=</span><span class="nv">parens</span> <span class="o">-</span><span class="nv">f</span><span class="o">=</span><span class="nv">on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min -trains=tree -fns=on
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="na">∘</span><span class="o">⍳</span><span class="na">∘</span><span class="o">≢⊢</span><span class="na">∘</span><span class="o">⊂</span><span class="na">⌸</span><span class="o">⊢</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">((|∘⍳)∘≢)((⊢∘⊂)⌸)⊢
+</span></div></div>
+</div>
+<p>Some say that’s an easier start than the tree. Take your pick. Following the steps above you should land on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍺</span><span class="o">|⍳≢</span><span class="bp">⍵</span><span class="p">)</span> <span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;dyaloge&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───┬───┐
+│daoe│ylg│
+└───→┴──→┘
+</span></div></div>
+</div>
+<p>Let’s try a couple of harder ones. This one removes leading, trailling and repeated stretches of <code class="docutils literal notranslate"><span class="pre">⍺</span></code> from <code class="docutils literal notranslate"><span class="pre">⍵</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trim</span> <span class="kd">←</span> <span class="m">1</span><span class="o">↓,⊢</span><span class="na">⍤/⍨</span><span class="m">1</span><span class="p">(</span><span class="o">⊢∨⌽</span><span class="p">)</span><span class="m">0</span><span class="o">,≠</span>
+<span class="s1">&#39; &#39;</span> <span class="nv">trim</span> <span class="s1">&#39;        hello     world     &#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">mid</span> <span class="o">-</span><span class="nv">t</span><span class="o">=</span><span class="nv">tree</span> <span class="o">-</span><span class="nv">f</span><span class="o">=</span><span class="nv">on</span> <span class="c1">⍝ I&#39;m a tree guy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=mid -trains=parens -fns=on
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐              
+1 ↓ ┌─┼─────┐        
+    , ⍨ ┌───┼─────┐  
+    ┌─┘ 1 ┌─┼─┐ ┌─┼─┐
+    ⍤     ⊢ ∨ ⌽ 0 , ≠
+   ┌┴┐               
+   ⊢ /               
+</span></div></div>
+</div>
+<p>No fewer than <em>five</em> forks! The other thing to note is the use of <code class="docutils literal notranslate"><span class="pre">⍤</span></code> here which in fact is <em>not</em> rank. When <code class="docutils literal notranslate"><span class="pre">⍤</span></code> is used with a right <em>function</em> operand, it becomes <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Atop.htm">atop</a>, not rank (which takes a right <em>array</em> operand).</p>
+<p>The tacit phrase <code class="docutils literal notranslate"><span class="pre">⊢⍤f</span></code> is a trick to force <code class="docutils literal notranslate"><span class="pre">f</span></code> to be parsed as a function, rather than as an operator for glyphs that can be either. In our case, <code class="docutils literal notranslate"><span class="pre">⊢⍤/⍨</span></code> is just <code class="docutils literal notranslate"><span class="pre">{⍵/⍺}</span></code>. With that we may be able to skip a few intermediate steps:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">f</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">∨</span><span class="bp">⍺</span><span class="o">⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="bp">⍺</span><span class="kt">{</span><span class="m">0</span><span class="o">,</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">g</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span>     
+<span class="nv">trimdfn</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">↓</span><span class="p">(</span><span class="bp">⍺</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="nv">g</span><span class="bp">⍺</span><span class="nv">f</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span> <span class="nv">trimdfn</span> <span class="s1">&#39;        hello     world     &#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
+</span></div></div>
+</div>
+<p>Expanding that out we can make a few simplifications, arriving at the resaonably compact</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trim</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">↓</span><span class="p">(</span><span class="nv">x</span><span class="o">∨</span><span class="m">1</span><span class="o">⌽</span><span class="nv">x</span><span class="kd">←</span><span class="m">0</span><span class="o">,</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍺</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span> <span class="nv">trim</span> <span class="s1">&#39;        hello     world     &#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
+</span></div></div>
+</div>
+<p>How about going the other way? We’ve done some already. A pretty comprehensive guide to the mechanical process of translating a dfn to its tacit equivalent can be found in the <a class="reference external" href="http://dfns.dyalog.com/n_tacit.htm">docs</a> for the dfns workspace, mentioned at the top of this chapter.</p>
+<p>Here’s a noddy dfn that takes a string consisting of a leading letter and some digits, and returns a 2-element vector with the letter and the number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">↑</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,⍎</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;X1234&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
+</span></div></div>
+</div>
+<p>There’s clearly a fork in there, but also an atop. This should pose little difficulty, right? Change the braces for parantheses, and omegas for right-tack, but we need to delineate the eval call:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="m">1</span><span class="o">↑⊢</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="o">⍎</span><span class="p">(</span><span class="m">1</span><span class="o">↓⊢</span><span class="p">)))</span><span class="s1">&#39;X1234&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
+</span></div></div>
+</div>
+<p>We can do more here. Both left and right tines of the fork share a 1. We can make that a left argument, so in our case a <em>left</em> tack:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="p">((</span><span class="o">⊣↑⊢</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="o">⍎</span><span class="p">(</span><span class="o">⊣↓⊢</span><span class="p">)))</span><span class="s1">&#39;X1234&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
+</span></div></div>
+</div>
+<p>but the pattern <code class="docutils literal notranslate"><span class="pre">⊣f⊢</span></code> is just <code class="docutils literal notranslate"><span class="pre">f</span></code>, which also lets us remove some parentheses:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="p">(</span><span class="o">↑,</span><span class="p">(</span><span class="o">⍎↓</span><span class="p">))</span><span class="s1">&#39;X1234&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
+</span></div></div>
+</div>
+<p>We can actually remove the inner parantheses, too, by a bit of sleight of hand:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="p">(</span><span class="o">↑,</span><span class="na">∘</span><span class="o">⍎↓</span><span class="p">)</span><span class="s1">&#39;X1234&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
+</span></div></div>
+</div>
+<p>but these two trains – whilst doing the same thing – parse differently:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑,</span><span class="p">(</span><span class="o">⍎↓</span><span class="p">)</span>
+<span class="o">↑,</span><span class="na">∘</span><span class="o">⍎↓</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼──┐ 
+↑ , ┌┴┐
+    ⍎ ↓
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼─┐
+↑ ∘ ↓
+ ┌┴┐ 
+ , ⍎ 
+</span></div></div>
+</div>
+<p>In other words, we made a derived function with jot: <code class="docutils literal notranslate"><span class="pre">,∘⍎</span></code>. That turned out well: the tacit version is shorter than the explicit, and no less readable.</p>
+<p>A few more?</p>
+<p>This dfn takes a rational to the right and tries to compute a vector representing the corresponding fraction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">∧</span><span class="bp">⍵</span><span class="p">)</span><span class="o">÷</span><span class="m">1</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">0.75</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
+</span></div></div>
+</div>
+<p>A fork, with both tines also being forks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">f1</span> <span class="kd">←</span> <span class="kt">{</span><span class="m">1</span><span class="o">∧</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">f2</span> <span class="kd">←</span> <span class="kt">{</span><span class="m">1</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="kt">{</span><span class="p">(</span><span class="nv">f1</span> <span class="bp">⍵</span><span class="p">)</span> <span class="o">÷</span> <span class="nv">f2</span> <span class="bp">⍵</span><span class="kt">}</span> <span class="m">0.75</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
+</span></div></div>
+</div>
+<p>We can convert the tine forks directly by swapping <code class="docutils literal notranslate"><span class="pre">⍵</span></code> for <code class="docutils literal notranslate"><span class="pre">⊢</span></code> and <code class="docutils literal notranslate"><span class="pre">{}</span></code> for <code class="docutils literal notranslate"><span class="pre">()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="m">1</span><span class="o">∧⊢</span><span class="p">)</span><span class="o">÷</span><span class="m">1</span><span class="o">,⊢</span><span class="p">)</span> <span class="m">0.75</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
+</span></div></div>
+</div>
+<p>This one shifts a vector of numbers the specified number of steps to the left, padding with zeros on the right:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">↓</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍺</span><span class="o">↑</span><span class="m">0</span><span class="kt">}</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4 5 6 7 8 9 0 0 0
+</span></div></div>
+</div>
+<p>Looks easy, right? Tempting to to jump to the conclusion that this is a fork on catenate, <code class="docutils literal notranslate"><span class="pre">f,g</span></code> – it’s not.</p>
+<p>The complication is the take at the end, which has an array right argument which isn’t allowed in a train: we need to selfie that one. So starting from the right, we have a dyadic function as <code class="docutils literal notranslate"><span class="pre">⍺↑0</span></code>, preceded by <code class="docutils literal notranslate"><span class="pre">⍵,</span></code>. So that’s our first fork of the form <code class="docutils literal notranslate"><span class="pre">⊢,f</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢,</span><span class="m">0</span><span class="o">↑</span><span class="na">⍨</span><span class="o">⊣</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐  
+⊢ , ┌─┼─┐
+    0 ⍨ ⊣
+    ┌─┘  
+    ↑    
+</span></div></div>
+</div>
+<p>Before that we have <code class="docutils literal notranslate"><span class="pre">⍺↑</span></code> which together with what we already did also makes a fork, this time <code class="docutils literal notranslate"><span class="pre">⊣↑g</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">shift</span> <span class="kd">←</span> <span class="o">⊣↓⊢,</span><span class="m">0</span><span class="o">↑</span><span class="na">⍨</span><span class="o">⊣</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐          
+⊢ ┌─┼───┐      
+  ⊣ ↓ ┌─┼───┐  
+      ⊢ , ┌─┼─┐
+          0 ⍨ ⊣
+          ┌─┘  
+          ↑    
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="nv">shift</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4 5 6 7 8 9 0 0 0
+</span></div></div>
+</div>
+<p>Note that again it’s tempting to say that <code class="docutils literal notranslate"><span class="pre">⊣f⊢</span></code> is just <code class="docutils literal notranslate"><span class="pre">f</span></code> like we did earlier, but that makes the same slip as we started with – they don’t belong to one fork:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓,</span><span class="m">0</span><span class="o">↑</span><span class="na">⍨</span><span class="o">⊣</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐  
+↓ , ┌─┼─┐
+    0 ⍨ ⊣
+    ┌─┘  
+    ↑    
+</span></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="products.html" title="previous page">Products</a>
+    <a class='right-next' id="next-link" href="find.html" title="next page">Finding things</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

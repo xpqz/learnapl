@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Direct functions and operators &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Iteration" href="iteration.html" />
+    <link rel="prev" title="Glyphiary" href="manip.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/functions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffunctions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#left-and-right-arguments">
+   Left and right arguments:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍺
+    </span>
+   </code>
+   ,
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍵
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-left-argument">
+   Default left argument
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternation">
+   Alternation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modified-assignment">
+   Modified Assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-operators">
+   Direct operators
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="direct-functions-and-operators">
+<h1>Direct functions and operators<a class="headerlink" href="#direct-functions-and-operators" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>I made up the term “object-oriented,” and I can tell you I did not have C++ in mind.
+–<em>Alan Kay</em></p>
+</div></blockquote>
+<p>Until now, we’ve mainly used APL as a toolkit for array manipulation using its built-in primitives. Sure, it goes a long way, but to fully take advantage of it, we also need to be able to create our own functions and operators. Fortunately, the syntax – if we can even call it that – for user-defined functions, is super-simple. As someone said on the APL Orchard chat room, all you need to do is “slap curly braces around your code, and you’re done”. It’s not <em>quite</em> that simple, but not far from it.</p>
+<p>The definition of a <em>dfn</em> (direct function) is enclosed in a pair of curly braces. It’s what’s known as an anonymous function, or a lambda, in other languages, meaning that there is no syntactic sugar for naming a function beyond ordinary assignment using <em>gets</em>, <code class="docutils literal notranslate"><span class="pre">←</span></code>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span> <span class="kd">←</span> <span class="kt">{</span> 
+   <span class="c1">⍝ expressions</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+<p>First a bit of unavoidable yak shaving: if a dfn fits entirely on a single line, you can type it out directly in the RIDE IDE. So far, so expected. If your dfn extends across multiple lines, you can’t (at the time of writing) just type it in. Dyalog is working on enhancing this.</p>
+<p>Instead, in order to enter such a function, you need to enter:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>)ed name
+</pre></div>
+</div>
+<p>if you want to create a function called <code class="docutils literal notranslate"><span class="pre">name</span></code>. RIDE will open its function editor and let you enter your code there. Once you want to test your function, you first need to save it, which in APL-speak is called “to fix your function”. The default way (and you’re unlikely to ever discover this by yourself) to fix (save) your function is to hit “escape”. Fortunately – and I recommend you do so right now – RIDE allows you to re-bind keystrokes by clicking on the little keyboard symbol in the top-right corner.</p>
+<p>Locate the row that says “Fix the current function” and map that to the key combo that is save on your platform. And whilst you’re there, make a note of the keys binding to “Forward” and “Backward” – they default to ctrl-shift-enter and ctrl-shift-backspace. In the REPL, these mean forward/back in the history of executed lines, like the arrow keys in the shell. The arrow keys instead moves up and down spatially, in the <em>output</em>. You might also want to rebind “Strong interrupt” to ctrl-c while you’re at it.</p>
+<p>The other thing to note is that in RIDE there is no visual cue that an editor window contains unsaved changes. This is sure to bite you sooner or later.</p>
+<p>In a Jupyter notebook, like here, the will likely feel a bit more familiar. The only quirk is that in order to enter a multi-line dfn, you need to start the cell with <code class="docutils literal notranslate"><span class="pre">]dinput</span></code>, which shouldn’t be used in RIDE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="kt">{}</span><span class="nf">⎕SE</span><span class="na">.</span><span class="nv">UCMD</span><span class="s1">&#39;box on -s=min -t=tree -f=on&#39;</span>
+<span class="kt">{}</span><span class="nf">⎕SE</span><span class="na">.</span><span class="nv">UCMD</span><span class="s1">&#39;rows on&#39;</span>
+<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">
+Rebuilding user command cache... done
+</span></div></div>
+</div>
+<div class="section" id="left-and-right-arguments">
+<h2>Left and right arguments: <code class="docutils literal notranslate"><span class="pre">⍺</span></code>, <code class="docutils literal notranslate"><span class="pre">⍵</span></code><a class="headerlink" href="#left-and-right-arguments" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">MyFirstFunction</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="c1">⍝ Add left and right</span>
+    <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">32</span> <span class="nv">MyFirstFunction</span> <span class="m">98</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">130
+</span></div></div>
+</div>
+<p>The first thing to note is the glyphs <code class="docutils literal notranslate"><span class="pre">⍺</span></code> and <code class="docutils literal notranslate"><span class="pre">⍵</span></code>; the Greek letters alpha and omega. Alpha, the first letter of the Greek alphabet, is bound to the function’s left argument, and omega, the last letter of the Greek alphabet, is bound to the function’s right argument.</p>
+<p>The second thing to learn is that APL expressions are separated by newline (or the diamond glyph, <code class="docutils literal notranslate"><span class="pre">⋄</span></code> which we’ll get to later). We could rewrite the above function to use an intermediate variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Sum</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="c1">⍝ Add left and right</span>
+    <span class="nv">total</span> <span class="kd">←</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span>
+    <span class="nv">total</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">32</span> <span class="nv">Sum</span> <span class="m">98</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">130
+</span></div></div>
+</div>
+<p>The third thing is that there is no “return” statement. The function returns the first non-assigned value. It’s worth letting this sink in: a function returns at the first point you do anything that isn’t an assignment. In the function above, the return point is us just stating the variable <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</div>
+<div class="section" id="default-left-argument">
+<h2>Default left argument<a class="headerlink" href="#default-left-argument" title="Permalink to this headline">¶</a></h2>
+<p>A useful feature is that you can set a default value for the left argument, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Compare:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+<span class="m">57</span> <span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">156
+</span></div></div>
+</div>
+<p>This way a function can behave in different ways depending on if it is called monadically or dyadically. If you give a value to <code class="docutils literal notranslate"><span class="pre">⍺</span></code> with <code class="docutils literal notranslate"><span class="pre">←</span></code>, then <code class="docutils literal notranslate"><span class="pre">⍺</span></code> will have this value if you didn’t pass a left argument to the function. On the other hand, if you <em>do</em> pass a left argument, the “alpha gets” line has no effect. When defaulting the left argument this way, note that this only works for the <em>first</em> time you give a value to alpha, which is perhaps obvious when you think of it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="kd">←</span><span class="m">¯999999</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div></div>
+</div>
+<p>Setting a default value for the left argument is a useful tool if you write recursive dfns, which typically accumulate their result on the left argument. This way you can call the function monadically to start, but subsequent iterations can use the left argument to build up the result. We’ll talk more about recursion later in the chapter on iteration techniques, but here’s a taster to demonstrate the default left argument technique. The glyph <code class="docutils literal notranslate"><span class="pre">∇</span></code> is a reference to the innermost function (a.k.a “self”):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">sum</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">0</span>       <span class="c1">⍝ Initialise the accumulator</span>
+    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>      <span class="c1">⍝ If right arg empty vector, return accumulator, see below!</span>
+    <span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>  <span class="c1">⍝ Add head to accumulator, recurse over tail</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">sum</span> <span class="o">⍳</span><span class="m">10</span>
+<span class="m">100</span> <span class="nv">sum</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">145
+</span></div></div>
+</div>
+</div>
+<div class="section" id="alternation">
+<h2>Alternation<a class="headerlink" href="#alternation" title="Permalink to this headline">¶</a></h2>
+<p>What about alternation? We got a brief view of a conditional return in the example just above – a <em>guard statement</em>. Recall that there is no if-statement for us. A <em>guard</em>, defined with a colon, says, if the expression to the left of the colon is true, return from the function with the value to the right of the colon. A contrived example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Palinish</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">rev</span> <span class="kd">←</span> <span class="o">⊖</span><span class="bp">⍵</span> <span class="c1">⍝ Reverse the right arg</span>
+    <span class="nv">rev</span><span class="o">≡</span><span class="bp">⍵:</span> <span class="m">1</span> <span class="c1">⍝ If right arg matches its own reverse, return 1</span>
+    <span class="m">0</span>        <span class="c1">⍝ Else, return 0</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Palinish</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span>
+<span class="nv">Palinish</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<span class="nv">Palinish</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div></div>
+</div>
+<p>For the avoidance of doubt, we could of course have written that as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">≡⊖</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span> <span class="c1">⍝ Anonymous (unnamed) version</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div></div>
+</div>
+<p>Note that execution flow does <em>not</em> carry on after a guard expression, even if that was an assignment. This requires some thought when writing code that needs to conditionally “do something” and then carry on, as illustrated in the following meaningless Python-like snippet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="n">fum</span> <span class="o">=</span> <span class="mi">57</span>
+    <span class="n">fee</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">if</span> <span class="n">flerp</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">47</span><span class="p">:</span>
+        <span class="n">fee</span> <span class="o">=</span> <span class="mi">92</span>
+        <span class="n">fum</span> <span class="o">=</span> <span class="n">flumm</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fee</span> <span class="o">+</span> <span class="n">fum</span>
+</pre></div>
+</div>
+<p>Actually, we can turn that into APL trivially, using only what we already know:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span><span class="m">47</span><span class="o">&gt;</span><span class="nv">flerp</span> <span class="bp">⍵:</span> <span class="m">92</span><span class="o">+</span><span class="nv">flumm</span> <span class="bp">⍵</span> <span class="p">⋄</span> <span class="m">57</span><span class="o">+</span><span class="m">8</span><span class="kt">}</span> <span class="c1">⍝ Note: diamond separator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s investigate some possible patterns for achieving a flow where execution carries on following an “if-then-else” branch. On way is to use an anonymous function, in essence like Python’s</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">42</span> <span class="k">if</span> <span class="n">answer</span> <span class="k">else</span> <span class="o">-</span><span class="mi">99</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">answer</span> <span class="kd">←</span> <span class="bp">⍵</span>
+    <span class="nv">a</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍵:</span><span class="m">42</span> <span class="p">⋄</span> <span class="m">¯99</span><span class="kt">}</span> <span class="nv">answer</span>
+    <span class="c1">⍝ ...execution follows here</span>
+    <span class="c1">⍝ do something with a</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, as <code class="docutils literal notranslate"><span class="pre">answer</span></code> is a boolean, we could have avoided the inner function entirely by simply picking the values from a 2-element vector (note: need ⎕IO←0 for this to work):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="nv">answer</span> <span class="kd">←</span> <span class="bp">⍵</span>
+    <span class="nv">a</span> <span class="kd">←</span> <span class="nv">answer</span><span class="o">⊃</span><span class="m">¯99</span> <span class="m">42</span>
+    <span class="c1">⍝ ...execution follows here</span>
+    <span class="c1">⍝ do something with a</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the first technique (the anonymous function) we have scope to extend the work done in each branch by making the function more complex, but ultimately it still returns a value. What if we need to modify multiple values? We could of course return an array of things, that’s a perfectly valid approach.</p>
+<p>Name scoping rules in Dyalog are a mixture between dynamic and lexical scope. Here’s what Dyalog’s <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Static%20Name%20Scope.htm">docs</a> say about it:</p>
+<blockquote>
+<div><p>When an inner (nested) dfn refers to a name, the interpreter searches for it by looking outwards through enclosing dfns, rather than searching back along the state indicator.</p>
+</div></blockquote>
+<p>Lexical scope is almost certainly “what you expect”. However, as Dyalog has no dedicated syntax for declaring a variable beyond giving it a value, if you need to modify a variable not introduced in the innermost dfn, we need a way to indicate this.</p>
+<p>Consider the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span>]dinput
+foo←{
+    a←45
+    _←{a←¯99⋄⍬}⍬
+    a
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">foo</span> <span class="no">⍬</span> <span class="c1">⍝ Note: 45, not ¯99</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>The innermost function creates a <em>new</em> variable with lexical scope, with the name <em>a</em>. So how <em>do</em> you modify state defined outside a function? This is where <em>modified assignment</em> comes in.</p>
+</div>
+<div class="section" id="modified-assignment">
+<h2>Modified Assignment<a class="headerlink" href="#modified-assignment" title="Permalink to this headline">¶</a></h2>
+<p><em>Modified assignment</em> should feel familiar to any C or Python programmers amongst you:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modified assignment, Python-style</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="mi">45</span> <span class="c1"># a is now 90</span>
+</pre></div>
+</div>
+<p>In APL, we can also modify an existing variable’s value via a function, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span>]dinput
+foo ← {
+    a ← 45
+    _ ← {a +← 45 ⋄ ⍬}⍬
+    a
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
+<span class="nv">assert</span> <span class="nv">r</span><span class="o">=</span><span class="m">90</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">90
+</span></div></div>
+</div>
+<p>The supremely useful, but perhaps non-intuitive kicker: you can use modified assignment with right-tack to <em>set</em> values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span>]dinput
+foo ← {
+    a ← 45
+    _ ← {a ⊢← ¯99 ⋄ ⍬}⍬
+    a
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
+<span class="nv">assert</span> <span class="nv">r</span><span class="o">=</span><span class="m">¯99</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯99
+</span></div></div>
+</div>
+<p>We’ve already met a bunch of <a class="reference external" href="http://help.dyalog.com/18.0/Content/Language/Primitive%20Functions/Assignment%20Selective.htm#SelectiveAssignment">selectable assignment</a> expressions when we talked about indexing. We can use all of those here. For example, we can mutate cells in a matrix using bracket indexing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span>]dinput
+foo ← {
+    a ← 3 3⍴1 ⍝ 3×3 matrix of all 1
+    _ ← {a[1;1] ← 0 ⋄ ⍬}⍬
+    a
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
+<span class="nv">assert</span> <span class="nv">r</span><span class="o">≡</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1
+1 0 1
+1 1 1
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ https://aplwiki.com/wiki/Function_composition</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="direct-operators">
+<h2>Direct operators<a class="headerlink" href="#direct-operators" title="Permalink to this headline">¶</a></h2>
+<p>We’ve met some of APL’s built-in operators already, like reduce and selfie. Operators is perhaps the closest APL gets to the functional programming paradigm. An operator is a function that returns a derived function. An operator can take other functions as its <em>operands</em>, as we call the arguments to an operator.</p>
+<p>Consider reduce, <code class="docutils literal notranslate"><span class="pre">/</span></code>. It’s a <em>monadic</em> operator that returns a derived function that can be called both monadically and dyadically:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="p">)</span> <span class="o">⍳</span><span class="m">10</span> <span class="c1">⍝ Parentheses not required, added for illustrative purposes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 5 7 9 11 13 15 17
+</span></div></div>
+</div>
+<p>Here we see the monadic reduction operator, its sole operand being the plus function. The derived function it returns, plus-reduce, is called dyadically, with 2 to its left and <code class="docutils literal notranslate"><span class="pre">⍳10</span></code> to its right. In this case, a windowed reduction. We could have said:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">sumred</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span>
+<span class="m">2</span> <span class="nv">sumred</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 5 7 9 11 13 15 17
+</span></div></div>
+</div>
+<p>to emphasize the fact that the operator really returns a function.</p>
+<p>Dyalog lets us write our own operators, too, in a very similar way to how we write dfns. We call our own operators <em>direct operators</em>, henceforth just <em>dops</em>. Operators can be powerful, but the need for them actually rarely arises in practice. The reason for this is that the built-in operators already let you apply your own functions in various ways.</p>
+<p>A few things to note with operators:</p>
+<ul class="simple">
+<li><p>In a <em>dop</em>, <code class="docutils literal notranslate"><span class="pre">⍺⍺</span></code> represents the left operand, and <code class="docutils literal notranslate"><span class="pre">⍵⍵</span></code> is the right operand.</p></li>
+<li><p>Unlike a monadic <em>dfn</em>, which takes a <em>right</em> argument, a monadic <em>dop</em> takes a <em>left</em> argument, like we just saw in the case of reduce.</p></li>
+<li><p>The operator can refer to itself for recursion using <code class="docutils literal notranslate"><span class="pre">∇∇</span></code>, analogously to the dfn’s <code class="docutils literal notranslate"><span class="pre">∇</span></code>.</p></li>
+</ul>
+<p>Here’s an example monadic dop from the <a class="reference external" href="http://dfns.dyalog.com/n_foldl.htm">dfns</a> workspace, a left-to-right version of reduce:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">foldl</span><span class="kd">←</span><span class="kt">{</span>                 <span class="c1">⍝ Fold (reduce) from the left.</span>
+    <span class="bp">⍺</span><span class="kd">←</span><span class="o">⊃</span><span class="m">0</span><span class="o">⍴</span><span class="bp">⍵</span>              <span class="c1">⍝ Default initial value for accumulator</span>
+    <span class="o">↑</span><span class="bp">⍺⍺</span><span class="na">⍨/</span><span class="p">(</span><span class="o">⌽</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,⊂</span><span class="bp">⍺</span>        
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This implements <code class="docutils literal notranslate"><span class="pre">foldl</span></code> in terms of the standard <code class="docutils literal notranslate"><span class="pre">foldr</span></code> by reversing the list and appending an accumulator element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="nv">foldl</span> <span class="o">⍳</span><span class="m">10</span>
+<span class="o">+</span><span class="na">/</span><span class="o">⍳</span><span class="m">10</span>
+<span class="o">-</span><span class="nv">foldl</span> <span class="o">⍳</span><span class="m">10</span>
+<span class="o">-</span><span class="na">/</span><span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">¯45
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">¯5
+</span></div></div>
+</div>
+<p>This version takes an optional left argument that can be used to initialise the accumulator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">99</span> <span class="o">+</span><span class="nv">foldl</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">144
+</span></div></div>
+</div>
+<p>Whilst there isn’t anything overly complex about writing your own operators as such, we probably won’t need to use any for the rest of this book, but at least now you have seen them.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="manip.html" title="previous page">Glyphiary</a>
+    <a class='right-next' id="next-link" href="iteration.html" title="next page">Iteration</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

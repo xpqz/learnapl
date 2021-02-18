@@ -1,0 +1,28 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+# jupyter-book build APLCookBook/
+# - file: intro
+
+- file: intro
+- file: array
+- file: indexing
+- file: manip
+- file: functions
+- file: iteration
+- file: key
+- file: at
+- file: rank
+- file: stencil
+- file: over
+- file: dyadictrn
+- file: decode
+- file: products
+- file: tacit
+- file: find
+- file: cookbook1
+- file: namespaces
+- file: io
+- file: aplway
+- file: workflow
+- file: next
+- file: tldr

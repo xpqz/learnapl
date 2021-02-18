@@ -1,0 +1,14 @@
+/* Reduce excessive line height in code outputs */
+.output.text_html {
+    font-family: 'APL385';
+    line-height: 0.95em;
+}
+
+/* Reduce excessive whitespace in tables */
+.table td, .table th {
+    padding: 0.4rem;
+}
+
+.table td p, .table th p {
+    margin: 0;
+}
