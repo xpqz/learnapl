@@ -20,9 +20,11 @@
 - file: tacit
 - file: find
 - file: cookbook1
+- file: errors
 - file: namespaces
 - file: io
 - file: aplway
+- file: dfnsws
 - file: workflow
 - file: next
 - file: tldr
