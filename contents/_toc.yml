@@ -23,6 +23,7 @@
 - file: errors
 - file: namespaces
 - file: io
+- file: http
 - file: aplway
 - file: dfnsws
 - file: workflow
