@@ -21,11 +21,12 @@
 - file: find
 - file: cookbook1
 - file: errors
+- file: aplway
 - file: namespaces
 - file: io
 - file: http
-- file: aplway
 - file: dfnsws
+- file: testing
 - file: workflow
 - file: next
 - file: tldr
