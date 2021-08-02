@@ -1,3 +1,0 @@
-# learnapl
-
-Learning APL jupyterbook
