@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The dfns workspace &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="HttpCommand" href="http.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/dfnsws.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fdfnsws.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iotag">
+   iotag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#segs">
+   segs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmat-and-pmat">
+   cmat and pmat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-stpath-and-scc">
+   span, stpath and scc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#strongly-connected-components">
+     Strongly Connected Components
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-dfns-workspace">
+<h1>The dfns workspace<a class="headerlink" href="#the-dfns-workspace" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Computers are like Old Testament gods; lots of rules and no mercy.  –<em>Joseph Campbell</em></p>
+</div></blockquote>
+<p>Dyalog ships with a workspace called <a class="reference external" href="http://dfns.dyalog.com/sindx.htm">dfns</a>. It’s perhaps best viewed as a set of diverse examples of … stuff. Hard to explain – maybe think of it as <a class="reference external" href="https://en.wikipedia.org/wiki/John_M._Scholes">John Scholes’</a> scrap book, interesting snippets of APL code that may (or may not) be useful to other APLers. No other language I’m aware of has something like this – a folklore snapshot. The oral tradition of the language, written down.</p>
+<p>As a “standard library” it’s hopelessly badly organized - so let’s not call it that, and it’s not the intention anyway. Yet it contains some real gems, and it’s outstandingly well documented, most entries accompanied by substantial essays. It contains interpreters for several languages, including <a class="reference external" href="http://dfns.dyalog.com/n_lisp.htm">Lisp</a>, tons of utility routines, a pretty comprehensive set of functions for manipulating graphs, various non-trivial data structures (<a class="reference external" href="http://dfns.dyalog.com/n_avl.htm">avl</a>, <a class="reference external" href="http://dfns.dyalog.com/n_splay.htm">splay</a>, <a class="reference external" href="http://dfns.dyalog.com/n_redblack.htm">redblack</a>) etc etc.</p>
+<p>For the learner, perhaps the most productive use of the dfns ws is as inspiration: browsing through it, learning from its examples and well-documented implementations. I thought I’d highlight some of the things I’ve discovered in there and found useful.</p>
+<div class="section" id="iotag">
+<h2>iotag<a class="headerlink" href="#iotag" title="Permalink to this headline">¶</a></h2>
+<p>A very useful little function is <a class="reference external" href="http://dfns.dyalog.com/n_iotag.htm">iotag</a>, for <code class="docutils literal notranslate"><span class="pre">iota-generalized</span></code>, although I can’t help but read it <code class="docutils literal notranslate"><span class="pre">io-tag</span></code>. It fleshes out the built-in <code class="docutils literal notranslate"><span class="pre">iota</span></code>, <code class="docutils literal notranslate"><span class="pre">⍳</span></code>, both in its monadic and dyadic forms. Let’s look at a few examples:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;iotag&#39;</span> <span class="nf">⎕CY</span> <span class="s1">&#39;dfns&#39;</span> <span class="c1">⍝ Load the iotag function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inclusive range <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">end</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span> <span class="nv">iotag</span> <span class="m">20</span> <span class="c1">⍝ ⍺ to ⍵ inclusive range</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 11 12 13 14 15 16 17 18 19 20
+</span></div></div>
+</div>
+<p>…and which can also count down:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">20</span> <span class="nv">iotag</span> <span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">20 19 18 17 16 15 14 13 12 11 10
+</span></div></div>
+</div>
+<p>and is fine with negative numbers, too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯10</span> <span class="nv">iotag</span> <span class="m">¯20</span>
+<span class="m">¯20</span> <span class="nv">iotag</span> <span class="m">¯10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯10 ¯11 ¯12 ¯13 ¯14 ¯15 ¯16 ¯17 ¯18 ¯19 ¯20
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">¯20 ¯19 ¯18 ¯17 ¯16 ¯15 ¯14 ¯13 ¯12 ¯11 ¯10
+</span></div></div>
+</div>
+<p>We can also specify a step-size:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span> <span class="nv">iotag</span> <span class="m">21</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 12 14 16 18 20
+</span></div></div>
+</div>
+<p>which doesn’t even have to be integer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span> <span class="nv">iotag</span> <span class="m">21</span> <span class="m">0.53</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 10.53 11.06 11.59 12.12 12.65 13.18 13.71 14.24 14.77 15.3 15.83 16.36 16.89 17.42 17.95 18.48 19.01 19.54 20.07 20.6
+</span></div></div>
+</div>
+<p>It also understands letters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Q&#39;</span> <span class="nv">iotag</span> <span class="s1">&#39;H&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">QPONMLKJIH
+</span></div></div>
+</div>
+<p>It can do many, many more things, also generalizing the <code class="docutils literal notranslate"><span class="pre">index-of</span></code> aspect of <em>iota</em>.</p>
+</div>
+<div class="section" id="segs">
+<h2>segs<a class="headerlink" href="#segs" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://dfns.dyalog.com/n_segs.htm">segs</a> function splits a character vector on a set of separator chars. Whilst the implementation is simple enough to memorize – and easy enough to derive – it’s a handy tool to have access to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;segs&#39;</span> <span class="nf">⎕CY</span> <span class="s1">&#39;dfns&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;,;: &#39;</span> <span class="nv">segs</span> <span class="s1">&#39;one,two;three four,;:five,six,&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬─────┬────┬────┬───┐
+│one│two│three│four│five│six│
+└───┴───┴─────┴────┴────┴───┘
+</span></div></div>
+</div>
+<p>There isn’t much to this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;,;: &#39;</span> <span class="kt">{</span><span class="p">(</span><span class="o">~</span><span class="bp">⍵</span><span class="o">∊</span><span class="bp">⍺</span><span class="p">)</span><span class="o">⊆</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;one,two;three four,;:five,six,&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬─────┬────┬────┬───┐
+│one│two│three│four│five│six│
+└───┴───┴─────┴────┴────┴───┘
+</span></div></div>
+</div>
+</div>
+<div class="section" id="cmat-and-pmat">
+<h2>cmat and pmat<a class="headerlink" href="#cmat-and-pmat" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://dfns.dyalog.com/n_cmat.htm">cmat</a> and <a class="reference external" href="http://dfns.dyalog.com/n_pmat.htm">pmat</a> generates combinations and permutations respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmat&#39;</span> <span class="s1">&#39;pmat&#39;</span> <span class="nf">⎕CY</span> <span class="s1">&#39;dfns&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Starting with <code class="docutils literal notranslate"><span class="pre">cmat</span></code>, what unique ways can we combine three numbers out of 1, 2, 3, 4 and 5?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="nv">cmat</span> <span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 3
+1 2 4
+1 2 5
+1 3 4
+1 3 5
+1 4 5
+2 3 4
+2 3 5
+2 4 5
+3 4 5
+</span></div></div>
+</div>
+<p>Or 3 out of 5 letters?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓</span><span class="m">3</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="bp">⍺</span> <span class="nv">cmat</span><span class="o">⍴</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="s1">&#39;abcde&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│abc│abd│abe│acd│ace│ade│bcd│bce│bde│cde│
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+</span></div></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">cmat</span></code> produces results that are lexicographically ordered.</p>
+<p>Moving on to <code class="docutils literal notranslate"><span class="pre">pmat</span></code> we generate <em>permutations</em> instead – given an integer right argument, produce all the different ways that many items can be ordered.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">pmat</span> <span class="m">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 3 4
+1 2 4 3
+1 3 2 4
+1 3 4 2
+1 4 2 3
+1 4 3 2
+2 1 3 4
+2 1 4 3
+2 3 1 4
+2 3 4 1
+2 4 1 3
+2 4 3 1
+3 1 2 4
+3 1 4 2
+3 2 1 4
+3 2 4 1
+3 4 1 2
+3 4 2 1
+4 1 2 3
+4 1 3 2
+4 2 1 3
+4 2 3 1
+4 3 1 2
+4 3 2 1
+</span></div></div>
+</div>
+</div>
+<div class="section" id="span-stpath-and-scc">
+<h2>span, stpath and scc<a class="headerlink" href="#span-stpath-and-scc" title="Permalink to this headline">¶</a></h2>
+<p>There is also an excellent set of routines for graph manipulation, path finding and searching. Whilst a full intro to those is beyond the scope I had in mind for this, we can show some simple examples that perhaps can serve as a jump-off point. The documentation is comprehensive and excellent.</p>
+<p>When we deal with graphs, we want to separate the graph <em>structure</em> from the content. The graph routines in the dfns ws only deal with graph structure, so it’s up to you to relate that back to content. We’ll look at how this is done.</p>
+<p>So a graph consists of a set of vertices, connected by edges that have a direction. We represent the connectivity as a vector of vectors, where the position is the “vertex id” and the content a list of other vertices reachable from here. So, for example, the graph <code class="docutils literal notranslate"><span class="pre">g</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+<span class="nv">g</span> <span class="kd">←</span> <span class="vg">⎕</span> <span class="kd">←</span> <span class="p">(</span><span class="m">1</span> <span class="m">2</span><span class="p">)(</span><span class="o">,</span><span class="m">2</span><span class="p">)(</span><span class="m">1</span> <span class="m">3</span><span class="p">)(</span><span class="m">0</span> <span class="m">4</span><span class="p">)(</span><span class="o">,</span><span class="no">⍬</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬─┬───┬───┬┐
+│1 2│2│1 3│0 4││
+└───┴─┴───┴───┴┘
+</span></div></div>
+</div>
+<p>could be visualized like so:</p>
+<p><img alt="graph1" src="_images/graph1.png" /></p>
+<p>We can easily create a separate vector that holds each vertex’s contents if we wanted to, say</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">vertices</span> <span class="kd">←</span> <span class="s1">&#39;adam&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;charlotte&#39;</span> <span class="s1">&#39;damian&#39;</span> <span class="s1">&#39;erica&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s load up a few of the graph functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;span&#39;</span> <span class="s1">&#39;stpath&#39;</span> <span class="s1">&#39;scc&#39;</span><span class="nf">⎕CY</span> <span class="s1">&#39;dfns&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>…and a little helper function to show graph structure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">show</span><span class="kd">←</span><span class="kt">{</span><span class="o">↑⍕</span><span class="na">¨</span><span class="p">(</span><span class="o">⍳⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="na">¨</span><span class="s1">&#39;→&#39;</span><span class="o">,</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">show</span> <span class="nv">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 → 1 2
+1 → 2  
+2 → 1 3
+3 → 0 4
+4 →    
+</span></div></div>
+</div>
+<p>The function <a class="reference external" href="http://dfns.dyalog.com/n_span.htm">span</a> finds the <a class="reference external" href="https://en.wikipedia.org/wiki/Spanning_tree">spanning tree</a> of a graph, which is basically removing any cycles whilst not making any previously reachable vertices unreachable. So let’s find the (actually, one of potentially several) spanning tree for our graph <code class="docutils literal notranslate"><span class="pre">g</span></code>, rooted at vertex 0, using the function called <code class="docutils literal notranslate"><span class="pre">span</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">st</span> <span class="kd">←</span> <span class="nv">g</span> <span class="nv">span</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have a spanning tree, we can find shortest paths in the graph. For example, what’s the shortest path from <code class="docutils literal notranslate"><span class="pre">adam</span></code> (vertex 0) to <code class="docutils literal notranslate"><span class="pre">erica</span></code> (vertex 4)? For this we apply the function <a class="reference external" href="http://dfns.dyalog.com/n_stpath.htm">stpath</a>, <em>spanning tree path</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">vertices</span><span class="sr">[</span><span class="nv">st</span> <span class="nv">stpath</span> <span class="m">4</span><span class="sr">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬─────────┬──────┬─────┐
+│adam│charlotte│damian│erica│
+└────┴─────────┴──────┴─────┘
+</span></div></div>
+</div>
+<p>By pre-calculating the spanning tree, we can do quick path finding to any other node in the graph. Note though that this approach will only find one shortest path, even if several of equal length might exist.</p>
+<p>The implementations for <code class="docutils literal notranslate"><span class="pre">span</span></code> and <code class="docutils literal notranslate"><span class="pre">stpath</span></code> are worth studying. Note, however, that for many path-finding applications in graphs, as the graph gets bigger there are other algorithms worth considering, like <a class="reference external" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra’s shortest path</a>, or its heuristic cousin, <a class="reference external" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A*</a>, that would cut the search space.</p>
+<div class="section" id="strongly-connected-components">
+<h3>Strongly Connected Components<a class="headerlink" href="#strongly-connected-components" title="Permalink to this headline">¶</a></h3>
+<p>The function <a class="reference external" href="http://dfns.dyalog.com/n_scc.htm">scc</a> implements <a class="reference external" href="https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm">Tarjan’s algorithm</a> for finding the strongly connected components of a graph. The strongly connected components are groups of interconnected vertices, so for example a graph defined by the following adjacency index vector</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">1</span>
+<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">graph</span> <span class="kd">←</span> <span class="p">(</span><span class="o">,</span><span class="m">2</span><span class="p">)</span> <span class="p">(</span><span class="m">1</span> <span class="m">8</span><span class="p">)</span> <span class="no">⍬</span> <span class="p">(</span><span class="o">,</span><span class="m">10</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="m">9</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="m">10</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="m">9</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="m">2</span><span class="p">)</span> <span class="p">(</span><span class="m">5</span> <span class="m">7</span><span class="p">)</span> <span class="p">(</span><span class="m">4</span> <span class="m">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬───┬┬──┬─┬──┬─┬─┬───┬───┐
+│2│1 8││10│9│10│9│2│5 7│4 6│
+└─┴───┴┴──┴─┴──┴─┴─┴───┴───┘
+</span></div></div>
+</div>
+<p>has the following strongly connected components (graph has vertices labeled ⍳10):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 2  8
+3
+4 6 10
+5 7  9
+</pre></div>
+</div>
+<p>Note how vertex 3 is not connected to any other vertices and so forms its own connected component. We can use <code class="docutils literal notranslate"><span class="pre">scc</span></code> directly on the graph adjacency index vector to label each vertex with a connected component index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">display</span> <span class="o">↑</span><span class="p">(</span><span class="o">⍳</span><span class="m">10</span><span class="p">)</span> <span class="p">(</span><span class="nv">scc</span> <span class="nv">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───────────────────┐
+↓1 2 3 4 5 6 7 8 9 10│
+│1 1 2 3 4 3 4 1 4  3│
+└~───────────────────┘
+</span></div></div>
+</div>
+<p>In the dfns ws there are also graph algorithms operating on <a class="reference external" href="http://dfns.dyalog.com/n_wGraphs.htm">weighted graphs</a> – where each edge has a cost that can differ from 1.</p>
+<p>If you’re interested in using APL for graphs, there is a complete example provided for route planning in various <a class="reference external" href="http://dfns.dyalog.com/tube_n_index.htm">tube systems of world cities</a> for you to study.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="http.html" title="previous page">HttpCommand</a>
+    <a class='right-next' id="next-link" href="testing.html" title="next page">Testing</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1088 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What now? &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Too long; didn’t read" href="tldr.html" />
+    <link rel="prev" title="A Dyalog workflow. Or two." href="workflow.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/next.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fnext.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toboggan-trajectory">
+   20/3 Toboggan Trajectory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signals-and-noise">
+   16/6 Signals and Noise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-stars-align">
+   18/10 The Stars Align
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-halting-problem">
+   17/25 The Halting Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statsify-all-the-words">
+   Statsify All The Words!
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="what-now">
+<h1>What now?<a class="headerlink" href="#what-now" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Beware of Methodologies. They are a great way to bring everyone up to a dismal, but passable, level of performance, but at the same time, they are aggravating to more talented people who chafe at the restrictions that are placed on them. –<em>Joel Spolsky</em></p>
+</div></blockquote>
+<p>If you stayed with it to here, well done – you’re going to Top Gun.</p>
+<p><img alt="tg" src="https://media.giphy.com/media/wrzf9P70YWLJK/giphy.gif" /></p>
+<p>You should have enough skills to make a considerable dent in a problem collection such as <a class="reference external" href="https://adventofcode.com/">Advent of Code</a>, <a class="reference external" href="https://projecteuler.net/">Project Euler</a>, <a class="reference external" href="https://perlweeklychallenge.org/challenges/">Perl Weekly Challenge</a> or <a class="reference external" href="http://rosalind.info/problems/locations/">Project Rosalind</a>. What you need now is practice.</p>
+<p><img alt="owl" src="_images/owl.png" /></p>
+<p>A good place to start is the <a class="reference external" href="https://www.dyalog.com/student-competition.htm">Dyalog Problem Solving Competition</a>, an annual event that’s been running for a while. All the old problems are available and they are typically constructed to flatter APL’s capabilities.</p>
+<p>Advent of Code is <em>great</em> – a nice ramp-up of difficulty and a Grand Tour of Computer Science 101. It’s my benchmark – I find that starting on Day01 knowing near nothing, by the time I get to Day25 I am reasonably proficient in a new language. So I thought we’d solve a couple of Advent of Code problems here. Obviously, if you don’t want to spoil it for yourself, come back here once you’ve had a go yourself.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="nf">⎕PP</span> <span class="kd">←</span> <span class="m">34</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
+<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
+</span></div></div>
+</div>
+<div class="section" id="toboggan-trajectory">
+<h2>20/3 Toboggan Trajectory<a class="headerlink" href="#toboggan-trajectory" title="Permalink to this headline">¶</a></h2>
+<p>This one is <a class="reference external" href="https://adventofcode.com/2020/day/3">day 3</a> from 2020. Note that my data will be different from yours - a feature of Advent of Code.</p>
+<p>We have a 2D array of dots and hashes. The pattern is repeated indefinitely to the right. The example given is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">data</span> <span class="kd">←</span> <span class="m">11</span> <span class="m">11</span><span class="o">⍴</span><span class="s1">&#39;..##.......#...#...#...#....#..#...#.#...#.#.#...##..#...#.##......#.#.#....#.#........##.##...#...#...##....#.#..#...#.#&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">..##.......
+#...#...#..
+.#....#..#.
+..#.#...#.#
+.#...##..#.
+..#.##.....
+.#.#.#....#
+.#........#
+#.##...#...
+#...##....#
+.#..#...#.#
+</span></div></div>
+</div>
+<p>which is then assumed to repeat to the right indefinitely, the first few like so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="o">,</span><span class="na">⍣</span><span class="m">3</span><span class="o">⊢</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">..##.........##.........##.........##.......
+#...#...#..#...#...#..#...#...#..#...#...#..
+.#....#..#..#....#..#..#....#..#..#....#..#.
+..#.#...#.#..#.#...#.#..#.#...#.#..#.#...#.#
+.#...##..#..#...##..#..#...##..#..#...##..#.
+..#.##.......#.##.......#.##.......#.##.....
+.#.#.#....#.#.#.#....#.#.#.#....#.#.#.#....#
+.#........#.#........#.#........#.#........#
+#.##...#...#.##...#...#.##...#...#.##...#...
+#...##....##...##....##...##....##...##....#
+.#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#
+</span></div></div>
+</div>
+<p>The task is to calculate how many <code class="docutils literal notranslate"><span class="pre">#</span></code> we’d encounter if, starting from the top-left corner, we follow a path which for each iteration moves three steps to the right, and one step down. In this test case, we’d encounter 7, here indicated by quads, <code class="docutils literal notranslate"><span class="pre">⎕</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">11</span> <span class="m">44</span><span class="o">⍴</span><span class="s1">&#39;0.##.........##.........##.........##.......#..0#...#..#...#...#..#...#...#..#...#...#...#....⎕..#..#....#..#..#....#..#..#....#..#...#.#...#0#..#.#...#.#..#.#...#.#..#.#...#.#.#...##..#..⎕...##..#..#...##..#..#...##..#...#.##.......#.⎕#.......#.##.......#.##......#.#.#....#.#.#.#.0..#.#.#.#....#.#.#.#....#.#........#.#........⎕.#........#.#........##.##...#...#.##...#...#.⎕#...#...#.##...#...#...##....##...##....##...#⎕....##...##....#.#..#...#.#.#..#...#.#.#..#...⎕.#.#..#...#.#&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.##.........##.........##.........##.......
+#..0#...#..#...#...#..#...#...#..#...#...#..
+.#....⎕..#..#....#..#..#....#..#..#....#..#.
+..#.#...#0#..#.#...#.#..#.#...#.#..#.#...#.#
+.#...##..#..⎕...##..#..#...##..#..#...##..#.
+..#.##.......#.⎕#.......#.##.......#.##.....
+.#.#.#....#.#.#.#.0..#.#.#.#....#.#.#.#....#
+.#........#.#........⎕.#........#.#........#
+#.##...#...#.##...#...#.⎕#...#...#.##...#...
+#...##....##...##....##...#⎕....##...##....#
+.#..#...#.#.#..#...#.#.#..#...⎕.#.#..#...#.#
+</span></div></div>
+</div>
+<p>We can generate the coordinates for the path directly. The y-coordinate just increases by 1. The x-coordinate increases by 3 until we “fall off” the end of the pattern, after which it resets back to zero. Let’s look at this specific case.</p>
+<p>If we ignore the wrap-around in x, we can get our coordinates as (assuming the pattern is shape 11 11):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓⍉↑</span><span class="m">1</span> <span class="m">3</span><span class="o">×⊂⍳</span><span class="m">11</span> <span class="c1">⍝ Remix to create y x pairs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬────┬────┬────┬────┬────┬────┬─────┐
+│0 0│1 3│2 6│3 9│4 12│5 15│6 18│7 21│8 24│9 27│10 30│
+└───┴───┴───┴───┴────┴────┴────┴────┴────┴────┴─────┘
+</span></div></div>
+</div>
+<p>The wrap-around is just a mod by the shape of the pattern, in our case 11 11:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓⍉↑</span><span class="m">11</span> <span class="m">11</span><span class="o">|</span><span class="m">1</span> <span class="m">3</span><span class="o">×⊂⍳</span><span class="m">11</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┬────┬───┬───┬────┐
+│0 0│1 3│2 6│3 9│4 1│5 4│6 7│7 10│8 2│9 5│10 8│
+└───┴───┴───┴───┴───┴───┴───┴────┴───┴───┴────┘
+</span></div></div>
+</div>
+<p>So we pick out the chars along this vector, look for <code class="docutils literal notranslate"><span class="pre">#</span></code> and sum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="s1">&#39;#&#39;</span><span class="o">=</span><span class="nv">data</span><span class="sr">[</span><span class="o">↓⍉↑</span><span class="m">11</span> <span class="m">11</span><span class="o">|</span><span class="m">1</span> <span class="m">3</span><span class="o">×⊂⍳</span><span class="m">11</span><span class="sr">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">7
+</span></div></div>
+</div>
+<p>So that works on the test data at least; good. Let’s make that generic in the pattern shape and the path offset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kt">{</span><span class="o">+</span><span class="na">⌿</span><span class="s1">&#39;#&#39;</span><span class="o">=</span><span class="bp">⍺</span><span class="sr">[</span><span class="o">↓⍉↑</span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍺</span><span class="p">)</span><span class="o">|</span><span class="bp">⍵</span><span class="o">×⊂⍳⌈</span><span class="p">(</span><span class="o">≢</span><span class="bp">⍺</span><span class="p">)</span><span class="o">÷⊃</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span> <span class="m">1</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">7
+</span></div></div>
+</div>
+<p>At this point we’re ready to try it on the real pattern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">↑⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;../../AoCDyalog/data/2020/day03.txt&#39;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The real pattern is considerably larger, but as we’ve made our solution independent of pattern shape and path offset, this should not present a problem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">323 31
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">part1</span> <span class="kd">←</span> <span class="nv">data</span> <span class="kt">{</span><span class="o">+</span><span class="na">⌿</span><span class="s1">&#39;#&#39;</span><span class="o">=</span><span class="bp">⍺</span><span class="sr">[</span><span class="o">↓⍉↑</span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍺</span><span class="p">)</span><span class="o">|</span><span class="bp">⍵</span><span class="o">×⊂⍳⌈</span><span class="p">(</span><span class="o">≢</span><span class="bp">⍺</span><span class="p">)</span><span class="o">÷⊃</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span> <span class="m">1</span> <span class="m">3</span>
+<span class="nv">assert</span> <span class="m">203</span><span class="o">=</span><span class="nv">part1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">203
+</span></div></div>
+</div>
+<p>That was the correct answer for part 1 (for me – you will get a different number).</p>
+<p>For part 2, we’re given five slopes, and we need to multiply all results together. Not much left to do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">part2</span> <span class="kd">←</span> <span class="o">×</span><span class="na">⌿</span><span class="nv">data</span><span class="na">∘</span><span class="kt">{</span><span class="o">+</span><span class="na">⌿</span><span class="s1">&#39;#&#39;</span><span class="o">=</span><span class="bp">⍺</span><span class="sr">[</span><span class="o">↓⍉↑</span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍺</span><span class="p">)</span><span class="o">|</span><span class="bp">⍵</span><span class="o">×⊂⍳⌈</span><span class="p">(</span><span class="o">≢</span><span class="bp">⍺</span><span class="p">)</span><span class="o">÷⊃</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">¨</span><span class="p">(</span><span class="m">1</span> <span class="m">1</span><span class="p">)(</span><span class="m">1</span> <span class="m">3</span><span class="p">)(</span><span class="m">1</span> <span class="m">5</span><span class="p">)(</span><span class="m">1</span> <span class="m">7</span><span class="p">)(</span><span class="m">2</span> <span class="m">1</span><span class="p">)</span>
+<span class="nv">assert</span> <span class="m">3316272960</span><span class="o">=</span><span class="nv">part2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3316272960
+</span></div></div>
+</div>
+<p>So that was kind of APL home-court advantage - a nice, array-oriented solution.</p>
+</div>
+<div class="section" id="signals-and-noise">
+<h2>16/6 Signals and Noise<a class="headerlink" href="#signals-and-noise" title="Permalink to this headline">¶</a></h2>
+<p>This one is <a class="reference external" href="https://adventofcode.com/2016/day/6">day 6</a> from 2016.</p>
+<p>Given a bunch of random-looking strings of letters of equal lengths, we’re to find the most commonly occurring letter in each position. We’re given the following test set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="s1">&#39;eedadn&#39;</span> <span class="s1">&#39;drvtee&#39;</span> <span class="s1">&#39;eandsr&#39;</span> <span class="s1">&#39;raavrd&#39;</span> <span class="s1">&#39;atevrs&#39;</span> <span class="s1">&#39;tsrnev&#39;</span> <span class="s1">&#39;sdttsa&#39;</span> <span class="s1">&#39;rasrtv&#39;</span> <span class="s1">&#39;nssdts&#39;</span> <span class="s1">&#39;ntnada&#39;</span> <span class="s1">&#39;svetve&#39;</span> <span class="s1">&#39;tesnvt&#39;</span> <span class="s1">&#39;vntsnd&#39;</span> <span class="s1">&#39;vrdear&#39;</span> <span class="s1">&#39;dvrsen&#39;</span> <span class="s1">&#39;enarar&#39;</span>
+<span class="o">↑</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">eedadn
+drvtee
+eandsr
+raavrd
+atevrs
+tsrnev
+sdttsa
+rasrtv
+nssdts
+ntnada
+svetve
+tesnvt
+vntsnd
+vrdear
+dvrsen
+enarar
+</span></div></div>
+</div>
+<p>Picking out the most commonly occurring letter in each column spells <code class="docutils literal notranslate"><span class="pre">easter</span></code>. “Most commonly occurring” should have us reach for <em>Key</em>, <code class="docutils literal notranslate"><span class="pre">⌸</span></code>. We remix the input data so that we get a vector of the columns, which we then <em>Key</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸¨</span><span class="o">↓⍉↑</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┐
+│e 3│e 2│d 2│a 2│d 2│n 2│
+│d 2│r 2│v 1│t 3│e 3│e 2│
+│r 2│a 3│n 2│d 2│s 2│r 3│
+│a 1│t 2│a 2│v 2│r 2│d 2│
+│t 2│s 2│e 2│n 2│t 2│s 2│
+│s 2│d 1│r 2│r 2│v 2│v 2│
+│n 2│v 2│t 2│s 2│n 1│a 2│
+│v 2│n 2│s 3│e 1│a 2│t 1│
+└───┴───┴───┴───┴───┴───┘
+</span></div></div>
+</div>
+<p>Now we sort each array based on the last column, and select the element at 0 0 in each, which should be the most frequent letter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∊</span><span class="kt">{</span><span class="m">0</span> <span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍒</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">1</span><span class="sr">];]</span><span class="kt">}</span><span class="na">¨</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸¨</span><span class="o">↓⍉↑</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">easter
+</span></div></div>
+</div>
+<p>Looks promising. Let’s try that on the real data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;../../AoCDyalog/data/2016/06.txt&#39;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">part1</span> <span class="kd">←</span> <span class="o">∊</span><span class="kt">{</span><span class="m">0</span> <span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍒</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">1</span><span class="sr">];]</span><span class="kt">}</span><span class="na">¨</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸¨</span><span class="o">↓⍉↑</span><span class="nv">data</span>
+<span class="nv">assert</span> <span class="s1">&#39;qrqlznrl&#39;</span><span class="o">≡</span><span class="nv">part1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">qrqlznrl
+</span></div></div>
+</div>
+<p>Part 2 - the same, but now pick the <em>least</em> frequent. All we need to do is to swap grade down for grade up:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">part2</span> <span class="kd">←</span> <span class="o">∊</span><span class="kt">{</span><span class="m">0</span> <span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">1</span><span class="sr">];]</span><span class="kt">}</span><span class="na">¨</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸¨</span><span class="o">↓⍉↑</span><span class="nv">data</span>
+<span class="nv">assert</span> <span class="s1">&#39;kgzdfaon&#39;</span><span class="o">≡</span><span class="nv">part2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">kgzdfaon
+</span></div></div>
+</div>
+<p>If we wanted to be clever, we could make that an operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_day6</span> <span class="kd">←</span> <span class="kt">{</span><span class="o">∊</span><span class="bp">⍺⍺</span><span class="kt">{</span><span class="m">0</span> <span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="sr">[</span><span class="bp">⍺⍺⍵</span><span class="sr">[;</span><span class="m">1</span><span class="sr">];]</span><span class="kt">}</span><span class="na">¨</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸¨</span><span class="o">↓⍉↑</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍒</span><span class="nv">_day6</span> <span class="nv">data</span>
+<span class="o">⍋</span><span class="nv">_day6</span> <span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">qrqlznrl
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">kgzdfaon
+</span></div></div>
+</div>
+</div>
+<div class="section" id="the-stars-align">
+<h2>18/10 The Stars Align<a class="headerlink" href="#the-stars-align" title="Permalink to this headline">¶</a></h2>
+<p>Back in 2018, we were treated to this gem on <a class="reference external" href="https://adventofcode.com/2018/day/10">day 10</a>. We have a bunch of “stars” each having a position and a velocity. At some moment in time, these stars will align, forming a message.</p>
+<p>We can reasonably guess that the message forms when the bounding box of all the stars is at its smallest. If that <em>isn’t</em> the case, then this becomes much harder, so let’s try this hypothesis first.</p>
+<p>Step one is to pick out four numbers, including negatives, from each line of the input data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">↑</span><span class="s1">&#39;-?\d+&#39;</span><span class="nf">⎕S</span><span class="kt">{</span><span class="o">⍎</span><span class="bp">⍵</span><span class="na">.</span><span class="nv">Match</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;../../AoCDyalog/data/2018/10.txt&#39;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first two columns are the position, and the last two columns the velocity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">pos</span> <span class="kd">←</span> <span class="o">,</span><span class="na">/</span><span class="nv">data</span><span class="sr">[;</span><span class="m">0</span> <span class="m">1</span><span class="sr">]</span>
+<span class="nv">vel</span> <span class="kd">←</span> <span class="o">,</span><span class="na">/</span><span class="nv">data</span><span class="sr">[;</span><span class="m">2</span> <span class="m">3</span><span class="sr">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to minimise the bounding box. We can use the sum of the width and height of the bounding box as a single number that we can compare. Here’s a function to compute that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">bbx</span> <span class="kd">←</span> <span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="o">|-</span><span class="na">⌿</span><span class="m">2</span> <span class="m">2</span><span class="o">⍴</span><span class="p">(</span><span class="o">⌊</span><span class="na">⌿</span><span class="o">,⌈</span><span class="na">⌿</span><span class="p">)</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span> <span class="c1">⍝ Width + height of bounding box</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we want to repeatedly apply a function (the adding of the velocity to the position) to the output of itself until we reach a defined stopping condition – when the width plus the height of the bounding box no longer decreases. This sounds like a job for the power operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">msg</span> <span class="kd">←</span> <span class="nv">vel</span><span class="o">-</span><span class="na">⍨</span><span class="kt">{</span><span class="nv">vel</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⍣</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">&gt;</span><span class="na">⍥</span><span class="nv">bbx</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">⊢</span><span class="nv">pos</span> <span class="c1">⍝ Add velocity until bounding box no longer decreases.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s actually it – but in order to actually <em>see</em> the message we need to prune it down to the bounding box, and for extra flair, use the <code class="docutils literal notranslate"><span class="pre">*</span></code> character, as shown in the question.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">w</span> <span class="nv">h</span><span class="p">)</span> <span class="kd">←</span> <span class="o">|-</span><span class="na">⌿</span><span class="m">2</span> <span class="m">2</span><span class="o">⍴</span><span class="p">(</span><span class="o">⌊</span><span class="na">⌿</span><span class="o">,⌈</span><span class="na">⌿</span><span class="p">)</span><span class="o">↑</span><span class="nv">msg</span>           <span class="c1">⍝ Width and height of bounding box</span>
+<span class="p">(</span><span class="o">-</span><span class="nv">h</span><span class="o">+</span><span class="m">1</span><span class="p">)(</span><span class="o">-</span><span class="nv">w</span><span class="o">+</span><span class="m">1</span><span class="p">)</span><span class="o">↑</span><span class="s1">&#39;*&#39;</span><span class="na">@</span><span class="p">(</span><span class="o">⊖</span><span class="na">¨</span><span class="nv">msg</span><span class="p">)</span><span class="o">⊢</span><span class="m">143</span> <span class="m">203</span><span class="o">⍴</span><span class="s1">&#39; &#39;</span> <span class="c1">⍝ Prune our display, and make stars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">******  *****   *****   *****   *****   *****   ******    **  
+*       *    *  *    *  *    *  *    *  *    *       *   *  * 
+*       *    *  *    *  *    *  *    *  *    *       *  *    *
+*       *    *  *    *  *    *  *    *  *    *      *   *    *
+*****   *****   *****   *****   *****   *****      *    *    *
+*       *       *  *    *    *  *  *    *  *      *     ******
+*       *       *   *   *    *  *   *   *   *    *      *    *
+*       *       *   *   *    *  *   *   *   *   *       *    *
+*       *       *    *  *    *  *    *  *    *  *       *    *
+*       *       *    *  *****   *    *  *    *  ******  *    *
+</span></div></div>
+</div>
+</div>
+<div class="section" id="the-halting-problem">
+<h2>17/25 The Halting Problem<a class="headerlink" href="#the-halting-problem" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://adventofcode.com/2017/day/25">Christmas Day</a> problem from 2017. We’re asked to solve the <a class="reference external" href="https://en.wikipedia.org/wiki/Halting_problem">Halting Problem</a> for a Turing machine. We’re given a description of the state transitions – the program, basically. The description for state <code class="docutils literal notranslate"><span class="pre">A</span></code> is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="n">state</span> <span class="n">A</span><span class="p">:</span>
+  <span class="n">If</span> <span class="n">the</span> <span class="n">current</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">value</span> <span class="mf">1.</span>
+    <span class="o">-</span> <span class="n">Move</span> <span class="n">one</span> <span class="n">slot</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span><span class="o">.</span>
+    <span class="o">-</span> <span class="n">Continue</span> <span class="k">with</span> <span class="n">state</span> <span class="n">B</span><span class="o">.</span>
+  <span class="n">If</span> <span class="n">the</span> <span class="n">current</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">value</span> <span class="mf">0.</span>
+    <span class="o">-</span> <span class="n">Move</span> <span class="n">one</span> <span class="n">slot</span> <span class="n">to</span> <span class="n">the</span> <span class="n">left</span><span class="o">.</span>
+    <span class="o">-</span> <span class="n">Continue</span> <span class="k">with</span> <span class="n">state</span> <span class="n">C</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Compiling the state descriptions into a table, we get to something along the lines of</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>1 R B</p></td>
+<td><p>0 L C</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>1 L A</p></td>
+<td><p>1 R D</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>1 R A</p></td>
+<td><p>0 L E</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>1 R A</p></td>
+<td><p>0 R B</p></td>
+</tr>
+<tr class="row-even"><td><p>E</p></td>
+<td><p>1 L F</p></td>
+<td><p>1 L C</p></td>
+</tr>
+<tr class="row-odd"><td><p>F</p></td>
+<td><p>1 R D</p></td>
+<td><p>1 R A</p></td>
+</tr>
+</tbody>
+</table>
+<p>which we can translate to a neat APL 6×6 matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">STATE</span> <span class="kd">←</span> <span class="m">6</span> <span class="m">6</span><span class="o">⍴</span><span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">¯1</span> <span class="m">2</span> <span class="m">1</span> <span class="m">¯1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">3</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">¯1</span> <span class="m">4</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">¯1</span> <span class="m">5</span> <span class="m">1</span> <span class="m">¯1</span> <span class="m">2</span> <span class="m">1</span> <span class="m">1</span> <span class="m">3</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1  1 1 0 ¯1 2
+1 ¯1 0 1  1 3
+1  1 0 0 ¯1 4
+1  1 0 0  1 1
+1 ¯1 5 1 ¯1 2
+1  1 3 1  1 0
+</span></div></div>
+</div>
+<p>We’ll need a honking loooong magnetic tape, initially set to all zeros. We don’t know the exact length, but we know we are running 12919244 iterations, so let’s make the tape that size to start with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">TAPE</span> <span class="kd">←</span> <span class="m">12919244</span><span class="o">⍴</span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need a state transition function, applying the rules from the <code class="docutils literal notranslate"><span class="pre">STATE</span></code> table, reading from, and writing to <code class="docutils literal notranslate"><span class="pre">TAPE</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">stf</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="p">(</span><span class="nv">pos</span> <span class="nv">state</span><span class="p">)</span> <span class="kd">←</span> <span class="bp">⍵</span>
+    <span class="nv">args</span> <span class="kd">←</span> <span class="p">(</span><span class="m">0</span> <span class="m">3</span><span class="sr">[</span><span class="nv">pos</span><span class="o">⊃</span><span class="nv">TAPE</span><span class="sr">]</span><span class="p">)</span><span class="o">+⍳</span><span class="m">3</span>
+    <span class="p">(</span><span class="nv">nv</span> <span class="nv">m</span> <span class="nv">ns</span><span class="p">)</span> <span class="kd">←</span> <span class="nv">STATE</span><span class="sr">[</span><span class="nv">state</span><span class="sr">;</span><span class="nv">args</span><span class="sr">]</span>
+    <span class="nv">TAPE</span><span class="sr">[</span><span class="nv">pos</span><span class="sr">]</span> <span class="kd">←</span> <span class="nv">nv</span>
+    <span class="p">(</span><span class="nv">pos</span><span class="o">+</span><span class="nv">m</span><span class="p">)</span> <span class="nv">ns</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to run 12919244 iterations. We’ll start in the middle of the tape, and hope that it is long enough:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_</span> <span class="kd">←</span> <span class="nv">stf</span><span class="na">⍣</span><span class="m">12919244</span><span class="o">⊢</span><span class="m">6459622</span> <span class="m">0</span>  <span class="c1">⍝ Takes ~20s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span> <span class="m">4287</span><span class="o">=</span><span class="vg">⎕</span><span class="kd">←</span><span class="o">+</span><span class="na">/</span><span class="nv">TAPE</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4287
+</span></div></div>
+</div>
+</div>
+<div class="section" id="statsify-all-the-words">
+<h2>Statsify All The Words!<a class="headerlink" href="#statsify-all-the-words" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a task that I was set many, many years ago for a job interview. The original task sheet is included below, suitably redacted, although I’m sure they have moved on from this by now. They were somewhat arrogant to say “use any programming language” – I only wish I’d known APL by then…</p>
+<p><img alt="task" src="_images/task.png" /></p>
+<p>So the task is deliberately open-ended and not fully specified; part of the expectation was to show ability to work with ambiguous requirements yadda yadda. So we’ll make a note of the assumptions we make. First we need some test data in a file; let’s make a few paragraphs of <a class="reference external" href="https://www.lipsum.com/">Lorem Ipsum</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="kd">←</span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/learnapl/loremipsum.txt&#39;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">↑</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non finibus felis, id imperdiet purus. │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────┘
+</span></div></div>
+</div>
+<p>This file contains Latin words, mixed case, punctuation, whitespace including empty lines. Our first assumption is that we will do all calculations case-insensitively. So we’ll pick out the words, and turn them to upper-case. There are a number of ways we could do this, but let’s use a regex solution that’s UTF-8-safe – we do want to be able to deal with not just English, right?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">words</span><span class="kd">←</span><span class="vg">⎕</span><span class="kd">←</span><span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="o">⊃,</span><span class="na">/</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬───┬────┬───────────┬──────────┬────┬──────┬───┬───────┬─────┬──┬─────────┬─────┬───────┬─────────┬──────┬────┬─────────┬─────────┬──────┬──────┬──────┬──────┬────────┬──────────┬────┬─────┬───┬──┬─────┬──────┬─────┬─────┬──┬───────┬─────┬──────────┬─────────┬──┬───────┬─────┬──┬────┬─────────┬──┬───────────┬──────┬──────┬───┬───────┬──────┬──┬─────────┬───────┬─────┬──┬─────────┬──────┬──┬───┬────┬─────┬──┬──────┬───────┬──────┬──┬───┬────┬─────────┬──┬────┬─────┬────┬────────┬─────────┬───┬──┬──────┬────┬─────────┬─────┬────┬───────┬────────┬──────┬────┬────┬────────┬─────────┬──────┬───┬───────┬──────┬──────┬────────────┬─┬───────┬────┬───┬────────┬─────┬─────┬───┬───────┬───┬──────┬──┬─────────┬─────────┬──┬──────┬──┬────────┬───────┬──┬──────┬───────────┬────────┬─────┬──┬─────────┬────┬─────┬──────┬──────┬────────┬──┬──────┬────────┬───┬───────┬──────┬───┬────────┬─────────┬───────┬─────┬────┬───────────┬─────────┬────┬────┬────────┬──────┬────────┬───────┬─────────┬────┬──┬────────┬─────┬────────┬────┬─────┬───┬───────┬────┬─────────┬──┬───────┬────┬────────┬────┬───────┬──┬────┬───────┬───────┬────┬─────────┬───┬────┬────┬─────────┬─────────┬──────┬──────┬────┬─────┬─────┬────────────┬─┬──────┬─────┬──┬─────────┬─────┬───┬───┬──────┬──┬────┬──────┬────────┬──┬───────┬───────┬──────┬────┬────────┬───────┬────┬──┬─────────┬───┬───┬────┬──┬─────┬───────┬──────┬───┬──────┬──────┬──────┬─┬─────────┬─────┬───┬──────┬───┬────┬────────┬─────────┬─────┬────────┬─────┬────┬───┬────┬────────┬─────┬───────┬──┬──────────┬────┬─────┬──────┬──┬────────┬────┬──────┬──┬────────┬───────┬───────┬─────┬───┬────────┬────┬──┬───────┬─────────┬───┬────────┬───────┬─────┬────┬───────┬────┬────────┬──┬───────┬────────┬────┬──┬─────────┬───────┬───────────┬───┬─────┬───────┬──┬─────────┬───┬────────────┬───┬────┬──┬───────────┬──────┬───┬──────┬────────┬───────┬───────┬─────────┬────┬───────┬──────┬─────┬──┬─────────┬────┬───────┬─────┬────────┬─────┬────────────┬───────┬────┬───┬──────┬────────┬─────┬──────┬─────────┬────┬──┬───────┬─────┬────┬──┬────┬───────┬─────────┬─────┬───┬───────────┬──────┬─────┬──────┬─────┬───┬──┬────────┬────┬──┬──────┬─────┬────┬────────┬────┬─────┬─────────┬──────┬────┬──┬────────┬───┬─────────┬───────┬───┬──┬────┬─────────┬───────┬────┬──┬────────┬─────┬─────┬────┬──────┬──────┬────┬────────┬──┬─────────┬───┬─────┬──────┬──┬────┬──────┬───────────┬─────┬─────┬──────┬──┬────────┬──┬──────┬─────┬────┬────────────┬───┬─────┬───────┬───────┬──────┬──┬───────┬─────┬─────┬────────┬─────┬────┬───┬─────────┬────┬───────┬─┬───────┬───┬───────┬─────┬─────────┬──────┬────┬────────┬──┬─────────┬────┬───┬───────┬───────┬────┬───┬────┬───────────┬─────┬───────────┬──┬────┬──────┬──────┬────────┬─────┬─────────┬───────┬──────┬──┬────┬────────┬────────┬────┬─────┬─────┬──────────┬───┬───────┬─────┬──────┬───┬────────┬────┬─┬─────────┬────────┬─────────┬──┬─────┬───┬────┬──────┬─────────┬────┬──┬──────┬──┬──┬───────────┬──────┬─────┬─────┬────────┬─────────┬─────┬──────┬──────┬────────┬──┬──────┬────────┬───┬───────┬──────┬───┬────────┬─────────┬───────┬────────┬──────┬─┬────┬──────┬───┬────────┬─────┬───────┬───────────┬────┬───────────┬─────┬─────┬───────┬───┬───┬──────┬─────────┬────┬─────┬─────────┬──────┬─┬───────┬──────┬─────┬──┬─────┬─────┬─┬─────┬─────┬────────┬───┬─────┬──┬─────┬──────┬───────┬───┬────┬────┬─────┬──────┬───────┬──┬─────┬──┬───────┬────────┬───┬────┬───────┬─────────┬─────┬───┬────┬───────┬────┬───┬──┬─────┬──┬────┬─────────┬────────────┬───┬────┬─────┬─────┬────────┬──┬───┬─────┬────────────┬──┬──────┬──────┬─────────┐
+│LOREM│IPSUM│DOLOR│SIT│AMET│CONSECTETUR│ADIPISCING│ELIT│NULLAM│NON│FINIBUS│FELIS│ID│IMPERDIET│PURUS│ALIQUAM│HENDRERIT│SAPIEN│EGET│PORTTITOR│HENDRERIT│LIGULA│TORTOR│AUCTOR│TORTOR│ACCUMSAN│VESTIBULUM│NIBH│MAGNA│VEL│MI│ETIAM│LUCTUS│NULLA│VELIT│IN│PRETIUM│PURUS│VESTIBULUM│VULPUTATE│IN│BLANDIT│PURUS│ET│ENIM│FRINGILLA│ET│ULLAMCORPER│LIGULA│MATTIS│SED│VIVERRA│TORTOR│ID│CONSEQUAT│ALIQUET│FUSCE│UT│VULPUTATE│LIBERO│UT│SIT│AMET│MAGNA│ID│TORTOR│SODALES│RUTRUM│AC│NEC│ODIO│PHASELLUS│ID│ANTE│VITAE│NISI│SAGITTIS│FRINGILLA│NON│AT│LIBERO│CRAS│TRISTIQUE│PURUS│EGET│ALIQUAM│VEHICULA│NULLAM│ELIT│ELIT│ACCUMSAN│IMPERDIET│LIBERO│NON│ALIQUAM│TEMPOR│TURPIS│PELLENTESQUE│A│SODALES│ERAT│NAM│ULTRICES│LACUS│IPSUM│NEC│FINIBUS│DUI│AUCTOR│UT│PHASELLUS│EFFICITUR│AT│TELLUS│IN│ELEIFEND│VIVAMUS│AC│LIBERO│CONSECTETUR│SAGITTIS│RISUS│AC│FERMENTUM│NISL│CLASS│APTENT│TACITI│SOCIOSQU│AD│LITORA│TORQUENT│PER│CONUBIA│NOSTRA│PER│INCEPTOS│HIMENAEOS│ALIQUAM│VITAE│NIBH│CONSECTETUR│TINCIDUNT│ERAT│EGET│ULTRICES│LIGULA│MAECENAS│MAXIMUS│DIGNISSIM│ARCU│AT│INTERDUM│FUSCE│SUSCIPIT│NISI│JUSTO│VEL│BLANDIT│ARCU│TINCIDUNT│UT│ALIQUAM│ERAT│VOLUTPAT│CRAS│COMMODO│EX│NISL│LACINIA│LACINIA│NIBH│TINCIDUNT│SIT│AMET│NUNC│CONSEQUAT│TINCIDUNT│AUCTOR│AENEAN│EGET│DOLOR│METUS│PELLENTESQUE│A│SEMPER│RISUS│ID│ULTRICIES│METUS│SED│NON│TELLUS│AC│NISI│AUCTOR│MOLESTIE│UT│FEUGIAT│VIVERRA│SEMPER│CRAS│VEHICULA│RHONCUS│ARCU│EU│TINCIDUNT│SED│NON│NISI│ET│MAGNA│SODALES│CONGUE│NAM│CONGUE│VARIUS│LECTUS│A│VENENATIS│DONEC│NON│LIBERO│SED│ANTE│SUSCIPIT│FRINGILLA│NULLA│INTERDUM│NEQUE│ODIO│SIT│AMET│BIBENDUM│IPSUM│VIVERRA│UT│VESTIBULUM│ANTE│IPSUM│PRIMIS│IN│FAUCIBUS│ORCI│LUCTUS│ET│ULTRICES│POSUERE│CUBILIA│CURAE│NAM│PHARETRA│NUNC│UT│LAOREET│TINCIDUNT│SED│SAGITTIS│DAPIBUS│AUGUE│QUIS│EGESTAS│EROS│SUSCIPIT│ID│ALIQUAM│FAUCIBUS│NISL│UT│MALESUADA│SODALES│SUSPENDISSE│SEM│NULLA│IACULIS│UT│FRINGILLA│NEC│PELLENTESQUE│NON│NISI│IN│SCELERISQUE│MAURIS│SED│LIGULA│SUSCIPIT│DAPIBUS│INTEGER│HENDRERIT│ERAT│EUISMOD│TEMPUS│NULLA│UT│PORTTITOR│NISL│INTEGER│VITAE│ELEIFEND│AUGUE│PELLENTESQUE│ALIQUAM│NISI│SED│TEMPUS│INTERDUM│MAGNA│TELLUS│VENENATIS│DIAM│ID│IACULIS│RISUS│NUNC│EU│ODIO│INTEGER│PORTTITOR│RISUS│NON│CONSECTETUR│CURSUS│PROIN│LUCTUS│VITAE│EST│EU│VOLUTPAT│NUNC│AC│ORNARE│METUS│EGET│FAUCIBUS│ODIO│FUSCE│TINCIDUNT│TELLUS│ORCI│ET│VOLUTPAT│EST│FRINGILLA│EUISMOD│SED│ID│NUNC│FRINGILLA│PRETIUM│ANTE│AT│ULTRICES│PURUS│ETIAM│ANTE│LIGULA│VARIUS│QUIS│VEHICULA│UT│ELEMENTUM│NEC│MASSA│MAURIS│UT│URNA│TELLUS│SUSPENDISSE│FELIS│RISUS│LUCTUS│AC│ELEIFEND│UT│SEMPER│VITAE│NISI│PELLENTESQUE│NEC│FELIS│SODALES│EUISMOD│TURPIS│IN│VIVERRA│AUGUE│ETIAM│VOLUTPAT│NULLA│ANTE│VEL│MALESUADA│URNA│FINIBUS│A│INTEGER│SED│EUISMOD│AUGUE│VULPUTATE│SEMPER│URNA│PRAESENT│UT│VENENATIS│ELIT│SED│COMMODO│PRETIUM│NISL│SIT│AMET│CONSECTETUR│METUS│SCELERISQUE│IN│DUIS│MAURIS│TORTOR│FAUCIBUS│VITAE│TINCIDUNT│COMMODO│TEMPOR│ET│URNA│PRAESENT│PHARETRA│ENIM│VITAE│IPSUM│VESTIBULUM│NON│FINIBUS│RISUS│MATTIS│SED│ULTRICES│ENIM│A│FRINGILLA│ELEIFEND│PHASELLUS│AT│METUS│NEC│ARCU│MOLLIS│CONSEQUAT│DUIS│IN│ORNARE│MI│IN│SCELERISQUE│LIBERO│PORTA│RISUS│ULTRICES│VULPUTATE│CLASS│APTENT│TACITI│SOCIOSQU│AD│LITORA│TORQUENT│PER│CONUBIA│NOSTRA│PER│INCEPTOS│HIMENAEOS│QUISQUE│ELEIFEND│LECTUS│A│ERAT│CONGUE│VEL│ACCUMSAN│VELIT│IACULIS│SUSPENDISSE│EGET│CONDIMENTUM│VELIT│ETIAM│PRETIUM│LEO│NEC│MATTIS│VENENATIS│NISI│VELIT│MALESUADA│TELLUS│A│DAPIBUS│SAPIEN│MASSA│ET│PURUS│PROIN│A│MAGNA│MASSA│PRAESENT│NON│VELIT│EU│VELIT│SEMPER│EGESTAS│SIT│AMET│QUIS│MASSA│MAURIS│MAXIMUS│ID│VELIT│IN│LACINIA│PRAESENT│VEL│NISL│FINIBUS│TINCIDUNT│IPSUM│SIT│AMET│ALIQUET│ANTE│SED│AT│FELIS│IN│QUAM│VULPUTATE│PELLENTESQUE│NEC│EGET│NEQUE│DONEC│VOLUTPAT│MI│NON│MASSA│PELLENTESQUE│AT│RUTRUM│TELLUS│CONSEQUAT│
+└─────┴─────┴─────┴───┴────┴───────────┴──────────┴────┴──────┴───┴───────┴─────┴──┴─────────┴─────┴───────┴─────────┴──────┴────┴─────────┴─────────┴──────┴──────┴──────┴──────┴────────┴──────────┴────┴─────┴───┴──┴─────┴──────┴─────┴─────┴──┴───────┴─────┴──────────┴─────────┴──┴───────┴─────┴──┴────┴─────────┴──┴───────────┴──────┴──────┴───┴───────┴──────┴──┴─────────┴───────┴─────┴──┴─────────┴──────┴──┴───┴────┴─────┴──┴──────┴───────┴──────┴──┴───┴────┴─────────┴──┴────┴─────┴────┴────────┴─────────┴───┴──┴──────┴────┴─────────┴─────┴────┴───────┴────────┴──────┴────┴────┴────────┴─────────┴──────┴───┴───────┴──────┴──────┴────────────┴─┴───────┴────┴───┴────────┴─────┴─────┴───┴───────┴───┴──────┴──┴─────────┴─────────┴──┴──────┴──┴────────┴───────┴──┴──────┴───────────┴────────┴─────┴──┴─────────┴────┴─────┴──────┴──────┴────────┴──┴──────┴────────┴───┴───────┴──────┴───┴────────┴─────────┴───────┴─────┴────┴───────────┴─────────┴────┴────┴────────┴──────┴────────┴───────┴─────────┴────┴──┴────────┴─────┴────────┴────┴─────┴───┴───────┴────┴─────────┴──┴───────┴────┴────────┴────┴───────┴──┴────┴───────┴───────┴────┴─────────┴───┴────┴────┴─────────┴─────────┴──────┴──────┴────┴─────┴─────┴────────────┴─┴──────┴─────┴──┴─────────┴─────┴───┴───┴──────┴──┴────┴──────┴────────┴──┴───────┴───────┴──────┴────┴────────┴───────┴────┴──┴─────────┴───┴───┴────┴──┴─────┴───────┴──────┴───┴──────┴──────┴──────┴─┴─────────┴─────┴───┴──────┴───┴────┴────────┴─────────┴─────┴────────┴─────┴────┴───┴────┴────────┴─────┴───────┴──┴──────────┴────┴─────┴──────┴──┴────────┴────┴──────┴──┴────────┴───────┴───────┴─────┴───┴────────┴────┴──┴───────┴─────────┴───┴────────┴───────┴─────┴────┴───────┴────┴────────┴──┴───────┴────────┴────┴──┴─────────┴───────┴───────────┴───┴─────┴───────┴──┴─────────┴───┴────────────┴───┴────┴──┴───────────┴──────┴───┴──────┴────────┴───────┴───────┴─────────┴────┴───────┴──────┴─────┴──┴─────────┴────┴───────┴─────┴────────┴─────┴────────────┴───────┴────┴───┴──────┴────────┴─────┴──────┴─────────┴────┴──┴───────┴─────┴────┴──┴────┴───────┴─────────┴─────┴───┴───────────┴──────┴─────┴──────┴─────┴───┴──┴────────┴────┴──┴──────┴─────┴────┴────────┴────┴─────┴─────────┴──────┴────┴──┴────────┴───┴─────────┴───────┴───┴──┴────┴─────────┴───────┴────┴──┴────────┴─────┴─────┴────┴──────┴──────┴────┴────────┴──┴─────────┴───┴─────┴──────┴──┴────┴──────┴───────────┴─────┴─────┴──────┴──┴────────┴──┴──────┴─────┴────┴────────────┴───┴─────┴───────┴───────┴──────┴──┴───────┴─────┴─────┴────────┴─────┴────┴───┴─────────┴────┴───────┴─┴───────┴───┴───────┴─────┴─────────┴──────┴────┴────────┴──┴─────────┴────┴───┴───────┴───────┴────┴───┴────┴───────────┴─────┴───────────┴──┴────┴──────┴──────┴────────┴─────┴─────────┴───────┴──────┴──┴────┴────────┴────────┴────┴─────┴─────┴──────────┴───┴───────┴─────┴──────┴───┴────────┴────┴─┴─────────┴────────┴─────────┴──┴─────┴───┴────┴──────┴─────────┴────┴──┴──────┴──┴──┴───────────┴──────┴─────┴─────┴────────┴─────────┴─────┴──────┴──────┴────────┴──┴──────┴────────┴───┴───────┴──────┴───┴────────┴─────────┴───────┴────────┴──────┴─┴────┴──────┴───┴────────┴─────┴───────┴───────────┴────┴───────────┴─────┴─────┴───────┴───┴───┴──────┴─────────┴────┴─────┴─────────┴──────┴─┴───────┴──────┴─────┴──┴─────┴─────┴─┴─────┴─────┴────────┴───┴─────┴──┴─────┴──────┴───────┴───┴────┴────┴─────┴──────┴───────┴──┴─────┴──┴───────┴────────┴───┴────┴───────┴─────────┴─────┴───┴────┴───────┴────┴───┴──┴─────┴──┴────┴─────────┴────────────┴───┴────┴─────┴─────┴────────┴──┴───┴─────┴────────────┴──┴──────┴──────┴─────────┘
+</span></div></div>
+</div>
+<p>Is that sufficient? Well, it depends if we expect the file to contain numbers, too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span> <span class="s1">&#39;These are words 55, 56 and 57 in total. Number1nmiddle&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬───┬─────┬──┬──┬───┬──┬──┬─────┬──────────────┐
+│These│are│words│55│56│and│57│in│total│Number1nmiddle│
+└─────┴───┴─────┴──┴──┴───┴──┴──┴─────┴──────────────┘
+</span></div></div>
+</div>
+<p>The problem statement says nothing about numbers. We could remove those first, like so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span> <span class="s1">&#39;\d&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="o">⊢</span><span class="m">1</span><span class="nf">⎕C</span><span class="s1">&#39;These are words 55, 56 and 57 in total. Number1nmiddle&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬───┬─────┬───┬──┬─────┬─────────────┐
+│THESE│ARE│WORDS│AND│IN│TOTAL│NUMBERNMIDDLE│
+└─────┴───┴─────┴───┴──┴─────┴─────────────┘
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">words</span><span class="kd">←</span><span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span> <span class="s1">&#39;\d&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="o">⊢</span><span class="m">1</span><span class="nf">⎕C</span><span class="o">⊃,</span><span class="na">/</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we wanted to know the number of words and lines in the text. That’s just</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">≢</span><span class="nv">words</span><span class="p">)(</span><span class="o">≢</span><span class="nv">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">555 42
+</span></div></div>
+</div>
+<p>Next we want to find the most frequent letter. This is a fairly standard <em>Key</em> pattern, and here we also assume that if there are several most frequent letters, we should return all of them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">letters</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="nv">letters</span><span class="kd">←</span><span class="o">∊</span><span class="nv">words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">E
+</span></div></div>
+</div>
+<p>Finally, we need the average word length, to one decimal place. Let’s build a vector of word lengths and average with a neat little train:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">÷≢</span><span class="p">)</span><span class="o">≢</span><span class="na">¨</span><span class="nv">words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5.531531531531532
+</span></div></div>
+</div>
+<p>Oh, and to one decimal place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span><span class="m">1</span><span class="o">⍕</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">÷≢</span><span class="p">)</span><span class="o">≢</span><span class="na">¨</span><span class="nv">words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5.5
+</span></div></div>
+</div>
+<p>I think we have all the pieces. Let’s golf that down to confuse the interviewers properly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="o">≢</span><span class="nv">w</span><span class="p">)(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)(</span><span class="o">⍎</span><span class="m">1</span><span class="o">⍕</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">÷≢</span><span class="p">)</span><span class="o">≢</span><span class="na">¨</span><span class="nv">w</span><span class="p">)(</span><span class="nv">l</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="nv">l</span><span class="kd">←</span><span class="o">∊</span><span class="nv">w</span><span class="kd">←</span><span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span><span class="s1">&#39;\d&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="o">⊢</span><span class="m">1</span><span class="nf">⎕C</span><span class="o">⊃,</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬──┬───┬─┐
+│555│42│5.5│E│
+└───┴──┴───┴─┘
+</span></div></div>
+</div>
+<p>If we didn’t care about numbers, and we were dealing with only the letters A-Z, we could have written the more compact</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">≢</span><span class="nv">w</span><span class="p">)(</span><span class="o">≢</span><span class="nv">data</span><span class="p">)(</span><span class="o">⍎</span><span class="m">1</span><span class="o">⍕</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">÷≢</span><span class="p">)</span><span class="o">≢</span><span class="na">¨</span><span class="nv">w</span><span class="p">)(</span><span class="nv">l</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="nv">l</span><span class="kd">←</span><span class="o">∊</span><span class="nv">w</span><span class="kd">←</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="nf">⎕A</span><span class="o">⊆⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="o">⊃,</span><span class="na">/</span><span class="nv">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬──┬───┬─┐
+│555│42│5.5│E│
+└───┴──┴───┴─┘
+</span></div></div>
+</div>
+<p>Now we just have to wait for them to “assess the program for style and readability; and also look at how easy your program is to extend”. Once we’re done being smug, we could of course have structured that a bit friendlier for people new to APL (what Aaron Hsu calls “the didactic style”):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">stats</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">words</span>   <span class="kd">←</span> <span class="p">(</span><span class="s1">&#39;\W&#39;</span> <span class="s1">&#39;.&#39;</span><span class="nf">⎕S</span> <span class="m">3</span><span class="na">⍠</span><span class="s1">&#39;UCP&#39;</span><span class="m">1</span><span class="o">⊆⊢</span><span class="p">)</span> <span class="s1">&#39;\d&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="o">⊢</span><span class="m">1</span><span class="nf">⎕C</span><span class="o">⊃,</span><span class="na">/</span><span class="bp">⍵</span> <span class="c1">⍝ Flatten, upcase, remove numbers, split on &quot;non-word&quot;</span>
+    <span class="nv">letters</span> <span class="kd">←</span> <span class="o">∊</span><span class="nv">words</span>                                   <span class="c1">⍝ Join</span>
+    <span class="nv">common</span>  <span class="kd">←</span> <span class="nv">letters</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="nv">letters</span>               <span class="c1">⍝ Frequency table, picking the most frequent</span>
+    <span class="nv">lengths</span> <span class="kd">←</span> <span class="o">≢</span><span class="na">¨</span><span class="nv">words</span>                                  <span class="c1">⍝ Vector of length of each word</span>
+    <span class="nv">ave</span>     <span class="kd">←</span> <span class="o">⍎</span><span class="m">1</span><span class="o">⍕</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">÷≢</span><span class="p">)</span><span class="nv">lengths</span>                         <span class="c1">⍝ Average, and round to 1 decimal place</span>
+    <span class="p">(</span><span class="o">≢</span><span class="nv">words</span><span class="p">)</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span> <span class="nv">ave</span> <span class="nv">common</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">stats</span> <span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬──┬───┬─┐
+│555│42│5.5│E│
+└───┴──┴───┴─┘
+</span></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Extensibility</span></code> is an amorphous topic, and typically something lauded by Object Orientationists as something that has intrinsic value. Is the above function extensible? Sure! I can add another line to count (say) the number of paragraphs and tag that on the end of the returned vector. However, in an OO language, perhaps you’d created a class that could be extended through inheritance. As APLers, we’d say that this obscures the intent, hiding the functionality away in perhaps other files, instead of having all available within a line or two.</p>
+<p>So the question you’d have to ask yourself – would the above effort have gotten you the job?</p>
+<p>I think we know the answer to that :) They expected five pages of Java… Anyway, if you aspire to dazzle interviewers, take a leaf out of <a class="reference external" href="https://aphyr.com/tags/Interviews">Aphyr’s book</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="workflow.html" title="previous page">A Dyalog workflow. Or two.</a>
+    <a class='right-next' id="next-link" href="tldr.html" title="next page">Too long; didn’t read</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

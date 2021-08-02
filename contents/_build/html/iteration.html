@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iteration &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Key operator: ⌸" href="key.html" />
+    <link rel="prev" title="Direct functions and operators" href="functions.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/iteration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fiteration.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#each-a-k-a-map">
+   Each (a.k.a map):
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ¨
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduce-a-k-a-foldr">
+   Reduce (a.k.a foldr):
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌿
+    </span>
+   </code>
+   ,
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowed-reduction">
+   Windowed reduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scan">
+   Scan:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     \,
+    </span>
+    <span class="pre">
+     ⍀
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power">
+   Power:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍣
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recur">
+   Recur:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ∇
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-considerations">
+     Performance considerations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalar-extension">
+   Scalar extension
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="iteration">
+<h1>Iteration<a class="headerlink" href="#iteration" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>As long as I’m alive, APL will never be used in Munich –<em>Fritz Bauer</em><br>
+Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
+</div></blockquote>
+<p>We started all this by claiming that there are no loops in APL. This is of course not entirely true: there are plenty of ways of achieving iteration, some of which are more efficient than others.</p>
+<p>In order to get the best possible performance out of APL, it’s worth seeking data-parallel algorithms, typically employing boolean masks. However, it’s not always possible, or sometimes performance matters less than code complexity, and a more iterative solution can be both clearer and fast enough.</p>
+<p>We have at least four, maybe five different kinds of iteration mechanisms at our disposal: <em>Map</em> (<code class="docutils literal notranslate"><span class="pre">¨</span></code>), <em>Reduce</em> (<code class="docutils literal notranslate"><span class="pre">⌿</span></code>), <em>Recur</em> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) and <em>Power</em> (<code class="docutils literal notranslate"><span class="pre">⍣</span></code>). The fifth is that of <em>scalar extension</em>, which can either be seen as a way of achieving iteration, or as a way of <em>avoiding</em> iteration, depending on your point of view. Wait, is it six? Maybe we should count <em>Rank</em> (<code class="docutils literal notranslate"><span class="pre">⍤</span></code>), too? <em>Rank</em> deserves its own separate <a class="reference internal" href="rank.html"><span class="doc std std-doc">section</span></a>! Oh, and <em>Scan</em> (<code class="docutils literal notranslate"><span class="pre">⍀</span></code>), don’t forget <em>Scan</em>!</p>
+<p>Let’s introduce them.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
+<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
+</span></div></div>
+</div>
+<div class="section" id="each-a-k-a-map">
+<h2>Each (a.k.a map): <code class="docutils literal notranslate"><span class="pre">¨</span></code><a class="headerlink" href="#each-a-k-a-map" title="Permalink to this headline">¶</a></h2>
+<p>Most languages nowadays have a <code class="docutils literal notranslate"><span class="pre">map</span></code> construct. In fact, it’s occasionally touted – erroneously – as sufficient evidence that a language is “functional” if it has a map function.</p>
+<p>Perhaps you’ve seen Python’s somewhat cumbersome version of map:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span> <span class="c1"># Square elements</span>
+<span class="go">[1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+</pre></div>
+</div>
+<p>which in Python corresponds to something like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mymap</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">func</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Of course, seasoned Pythonistas would rightly frown at the above and instead recommend a <em>list comprehension</em>.</p>
+<p>A map takes a function and applies it to every element in an array, creating a result array of the same length as its argument.</p>
+<p>In APL, the glyph for map – usually referred to as <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Each%20with%20Monadic%20Operand.htm"><em>Each</em></a> – is two high dots: <code class="docutils literal notranslate"><span class="pre">¨</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍨¨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">9</span>  <span class="c1">⍝ Square elements via each (but see below!)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
+</span></div></div>
+</div>
+<p>This wasn’t actually a great example, this is one of those cases where <em>scalar extension</em> already does the job for us:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">9</span>  <span class="c1">⍝ Square elements via scalar extension</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
+</span></div></div>
+</div>
+<p>Scalar extension means that functions in certain cases already know how to penetrate arrays.</p>
+<p>Let’s try another. Given a nested vector, what are the lengths of the elements?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">V</span> <span class="kd">←</span> <span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">1</span> <span class="m">2</span><span class="p">)(</span><span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span><span class="p">)(</span><span class="o">,</span><span class="m">2</span><span class="p">)(</span><span class="m">5</span> <span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span><span class="p">)</span>
+<span class="o">≢</span><span class="na">¨</span><span class="nv">V</span> <span class="c1">⍝ Tally-each</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬───┬─────────┬─┬─────────┐
+│1 2 3 4│1 2│3 4 5 6 7│2│5 4 3 2 1│
+└───────┴───┴─────────┴─┴─────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">4 2 5 1 5
+</span></div></div>
+</div>
+<p>If you’re used to a different language, <em>Each</em> has a seductive quality, as it maps conceptually onto constructs you already know how to use. Beware though that in APL it’s often inefficient, and that there are usually better alternatives.</p>
+</div>
+<div class="section" id="reduce-a-k-a-foldr">
+<h2>Reduce (a.k.a foldr): <code class="docutils literal notranslate"><span class="pre">⌿</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code><a class="headerlink" href="#reduce-a-k-a-foldr" title="Permalink to this headline">¶</a></h2>
+<p>Most languages today sport some kind of variety of <em>fold</em> or <em>reduce</em>, regardless of the level of “functional” they claim to be.</p>
+<p>In APL, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce.htm"><em>Reduce</em></a> is a central feature, which somewhat unhelpfully hijacks the glyph also used by <em>Compress/replicate</em>, <code class="docutils literal notranslate"><span class="pre">/</span></code>.  This is one, albeit not the main, reason why we prefer to use its close cousin, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce%20First.htm"><em>Reduce first</em></a>, <code class="docutils literal notranslate"><span class="pre">⌿</span></code>, where we can. Reduction has a bit of an unfair reputation of being hard to understand. Guido reportedly hates <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> in Python so much that it was demoted down to the dusty <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.reduce">functools</a> module:</p>
+<blockquote>
+<div><p>So now reduce(). This is actually the one I’ve always hated most, because, apart from a few examples involving + or *, almost every time I see a reduce() call with a non-trivial function argument, I need to grab pen and paper to diagram what’s actually being fed into that function before I understand what the reduce() is supposed to do. So in my mind, the applicability of reduce() is pretty much limited to associative operators, and in all other cases it’s better to write out the accumulation loop explicitly. –<em>Guido van Rossum</em></p>
+</div></blockquote>
+<p>Despite what Guido thinks, reduction is actually a pretty simple idea, and APL may even have been the first programming language <a class="reference external" href="https://www.jsoftware.com/papers/APL1.htm#1.8">with reduce in it</a> (some Lispers disagree). Think of the operation of summing a bunch of numbers – this is an example of a reduction.</p>
+<p>In APL, <em>Reduce</em> applies a function to elements in an array, producing a result which is rank-reduced by 1. In other words, reducing a vector (rank 1) produces a scalar (rank 0). In the example of <em>sum</em>, summing the elements of a vector obviously produces a scalar: the total.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ sum-reduce-first integers 1-9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>We can, somewhat simplified, think of the <em>Reduce first</em> operator injecting its left operand function in the gaps between elements in the argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">+</span><span class="m">2</span><span class="o">+</span><span class="m">3</span><span class="o">+</span><span class="m">4</span><span class="o">+</span><span class="m">5</span><span class="o">+</span><span class="m">6</span><span class="o">+</span><span class="m">7</span><span class="o">+</span><span class="m">8</span><span class="o">+</span><span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>When using <em>Reduce</em> in APL, you need to take extra care to ensure that it works with its strict right to left evaluation order. A reduce is also called a <em>fold</em> in other languages (Lisp, Erlang etc), and APL’s <em>Reduce</em> is a so-called <em>foldr</em> – it reduces right to left, which makes sense for APL, but occasionally less sense for the programmer.</p>
+<p>Again, it can help writing it out in long-hand to see what’s going on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ difference-reduction -- take care: right to left fold!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+</span></div></div>
+</div>
+<p>If that was the result you expected, you’re well on your way to mastery. Inject the operand between items:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">-</span><span class="m">2</span><span class="o">-</span><span class="m">3</span><span class="o">-</span><span class="m">4</span><span class="o">-</span><span class="m">5</span><span class="o">-</span><span class="m">6</span><span class="o">-</span><span class="m">7</span><span class="o">-</span><span class="m">8</span><span class="o">-</span><span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+</span></div></div>
+</div>
+<p>Reduction is especially useful when working with higher-rank arrays. <em>Reduce first</em> is so called because it reduces along the <em>first</em> axis. So a sum-reduce-first of a rank 2 integer array will sum its columns to produce a <em>vector</em> (rank 1) of the columnar sums:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span>
+<span class="o">+</span><span class="na">⌿</span><span class="nv">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 0 5
+4 1 8
+6 7 2
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">13 8 15
+</span></div></div>
+</div>
+<p>If we wanted to sum-reduce along the rows, we can either use <code class="docutils literal notranslate"><span class="pre">/</span></code> which for historical reasons does just that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="nv">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">8 13 15
+</span></div></div>
+</div>
+<p>or we can explicitly tell <code class="docutils literal notranslate"><span class="pre">⌿</span></code> to apply along a different axis, using bracket axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="nv">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">8 13 15
+</span></div></div>
+</div>
+<p>In general, for consistency it’s best to prefer operators and functions that default to applying to the leading axis where possible. The fact that APL, unlike J, has a mixture is somewhat of an unhelpful side-effect of backwards compatibility.</p>
+</div>
+<div class="section" id="windowed-reduction">
+<h2>Windowed reduction<a class="headerlink" href="#windowed-reduction" title="Permalink to this headline">¶</a></h2>
+<p><em>Reduce</em> has a few more handy tricks up its sleeve. Instead of reducing the whole argument array, we can employ a sliding window and so instead compute a set of reductions over shorter stretches of the data. The derived function returned by the reduction operators can be called dyadically, specifying as the left argument the size of the sliding window.</p>
+<p>For example, to calculate the sum of each element in a vector with its subsequent element, we employ a sliding reduction window of size 2:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 5 7 9 11 13 15 17
+</span></div></div>
+</div>
+</div>
+<div class="section" id="scan">
+<h2>Scan: <code class="docutils literal notranslate"><span class="pre">\,</span> <span class="pre">⍀</span></code><a class="headerlink" href="#scan" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Scan.htm"><em>Scan/Scan first</em></a> blurrs the distinction between <em>Each</em> and <em>Reduce</em>. In right hands, it can be a true APL super power, but beware that scans tend to be slow: most scans run to O(n²), although the interpreter can optimise some to the O(n) you perhaps expected.</p>
+<p><em>Scan</em> is just like <em>Reduce</em>, but instead returns every intermediate state, not just the end state. A sum-reduce of a vector of numbers returns the sum total. A sum-scan of the same vector returns the running sums:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ Sum-reduce first</span>
+<span class="o">+</span><span class="na">⍀</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ Sum-scan first</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 6 10 15 21 28 36 45
+</span></div></div>
+</div>
+<p>One way we can think of scan is that it’s the amalgamation of all possible calls to <em>Reduce</em> with the same operand, taking in increasing lengths of the argument array. In the case above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> 
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span>
+<span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">3
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">6
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">10
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">15
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">21
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">28
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">36
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>As with <em>Reduce</em>, it’s worth re-emphasizing that <em>Scan</em> still is evaluated right-to-left, as with everything else APL, no matter how much you’d prefer it to run left to right instead. You can, of course, roll your own <a class="reference external" href="https://aplcart.info/?q=left%20scan">scan-left</a> if you really need it.</p>
+</div>
+<div class="section" id="power">
+<h2>Power: <code class="docutils literal notranslate"><span class="pre">⍣</span></code><a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h2>
+<p>One of my favourite glyphs! It looks like a happy starfish! The <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Power%20Operator.htm"><em>Power</em></a> operator is… powerful. Conceptually it should be easy to grasp, but there are some aspects that take time to understand. Formally, it’s defined as a function repeatedly applied to the output of itself, until some stopping criterion is fulfilled. If you pass it an integer as its right operand, it’s basically a for-loop:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">f</span> <span class="kd">←</span> <span class="kt">{</span> <span class="na">...</span> <span class="kt">}</span>               <span class="c1">⍝ some function or other</span>
+<span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">f</span> <span class="nv">argvector</span> <span class="c1">⍝ repeatedly apply function to itself, eh 8 times</span>
+<span class="nv">f</span><span class="na">⍣</span><span class="m">8</span> <span class="o">⊢</span> <span class="nv">argvector</span>           <span class="c1">⍝ power-8</span>
+</pre></div>
+</div>
+<p>If you give it a function as the right operand, it can be used as a while-loop. One example is to find a function’s <em>fixpoint</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">÷</span><span class="na">⍨⍣</span><span class="o">=</span><span class="m">10</span> <span class="c1">⍝ Divide by 2 until fixpoint</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div></div>
+</div>
+<p>Here the right operand function is <em>equals</em> <code class="docutils literal notranslate"><span class="pre">=</span></code>. This says: repeatedly apply the left operand (<code class="docutils literal notranslate"><span class="pre">2÷⍨</span></code>) until two subsequent applications return the same value.</p>
+<p>We can explicitly refer to the left and right arguments of the right operand function. The left argument, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>, refers to the result of the function application to the right argument, <code class="docutils literal notranslate"><span class="pre">⍵</span></code>.</p>
+<p>Keep generating random numbers between 1 and 10 until we get a 6:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span> <span class="kt">{</span><span class="vg">⍞</span> <span class="kd">←</span> <span class="o">?</span><span class="m">10</span><span class="kt">}</span><span class="na">⍣</span><span class="kt">{</span><span class="m">6</span><span class="o">=</span><span class="bp">⍺</span><span class="kt">}</span> <span class="m">0</span> <span class="c1">⍝ Keep generating random numbers between 1 and 10 until we get a 6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1991487931157990989988905581516
+6
+</span></div></div>
+</div>
+<p>The <a class="reference external" href="https://help.dyalog.com/latest/#Language/System%20Functions/Character%20Input%20Output.htm"><em>Quad-quote-gets</em></a> (<code class="docutils literal notranslate"><span class="pre">⍞←</span></code>) combo prints values without newlines. The final result is also returned, the expected 6.</p>
+</div>
+<div class="section" id="recur">
+<h2>Recur: <code class="docutils literal notranslate"><span class="pre">∇</span></code><a class="headerlink" href="#recur" title="Permalink to this headline">¶</a></h2>
+<p>Dyalog has a most excellent, concise and efficient <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm">recursion operator</a>, <code class="docutils literal notranslate"><span class="pre">∇</span></code>. It allows you to express recursive algorithms in a natural, almost Lisp-like fashion. The interpreter has a very good <a class="reference external" href="https://en.wikipedia.org/wiki/Tail_call">TCO</a> implementation.</p>
+<p>Let’s start with making our own version of sum-reduce, this time without actually using the <em>Reduce</em> operator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Sum</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">0</span>        <span class="c1">⍝ Left arg defaults to 0 if not given</span>
+    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>       <span class="c1">⍝ If right arg is empty, return left arg</span>
+    <span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>   <span class="c1">⍝ Add head to acc, recur over tail</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">mysum</span> <span class="kd">←</span> <span class="nv">Sum</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+<span class="nv">assert</span> <span class="nv">mysum</span><span class="o">=+</span><span class="na">/</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>Yup, that seems to work; good.</p>
+<p>The glyph <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm"><em>Recur</em></a> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the current innermost dfn. If your dfn has a name, you can substitute it for the actual function name. In our case, the last line could equally well have been written:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="nv">sum</span> <span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>
+</pre></div>
+</div>
+<p>However, using the glyph has a number of advantages: it’s more concise, immune to function name changes, and works equally well for anonymous dfns.</p>
+<p>Our <code class="docutils literal notranslate"><span class="pre">Sum</span></code> dfn follows a common pattern: we accumulate something as the left argument, and decrease the right argument, either by magnitude, or as in this case, by dropping items off the front of a vector.</p>
+<p>The recursion termination guard,</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>
+</pre></div>
+</div>
+<p>simply states that if the right argument is empty, we should return our accumulator. The recursive call itself is “add the head of the right argument to the accumulator, and recur on this to the left, and the tail to the right”.</p>
+<p>If the last thing the function does is a function call, and this includes a <em>Recur</em> call, this is what’s called a <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Tail%20Calls.htm"><em>tail call</em></a> which the Dyalog interpreter can handle without the addition of an extra stack frame. If you’re using <em>Recur</em>, strive to make your functions tail-recursive – avoid making your function do any work on the value you get back from the recurring line.</p>
+<p>For a fractionally more involved example, let’s write our own <em>sum-scan</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Sscan</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="bp">⍺</span> <span class="kd">←</span> <span class="no">⍬</span>              <span class="c1">⍝ Left arg defaults to ⍬ if not given</span>
+    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>             <span class="c1">⍝ If right arg is empty, return left arg</span>
+    <span class="p">(</span><span class="bp">⍺</span><span class="o">,⊃</span><span class="bp">⍵</span><span class="o">+⊃</span><span class="m">¯1</span><span class="o">↑</span><span class="bp">⍺</span><span class="p">)</span><span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>   <span class="c1">⍝ Append the sum of the head and the last element of acc and recur on tail</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">myscan</span> <span class="kd">←</span> <span class="nv">Sscan</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+<span class="nv">assert</span> <span class="nv">myscan</span><span class="o">≡+</span><span class="na">⍀</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 6 10 15 21 28 36 45
+</span></div></div>
+</div>
+<p>No discourse on recursion is complete without mentioning the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci</a> sequence. You know which one I mean – every number is the sum of its two direct predecessors:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0 1 1 2 3 5 8 13 21 34 ⍝ etc, something about rabbits
+</pre></div>
+</div>
+<p>Here’s one possible formulation where the right argument is the Fibonacci ordinal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Fib</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Tail-recursive Fibonacci.</span>
+    <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">0</span> <span class="m">1</span>
+    <span class="bp">⍵</span><span class="o">=</span><span class="m">0</span><span class="bp">:</span><span class="o">⊃</span><span class="bp">⍺</span>
+    <span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍺</span><span class="o">,+</span><span class="na">/</span><span class="bp">⍺</span><span class="p">)</span><span class="bp">∇⍵</span><span class="o">-</span><span class="m">1</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Fib</span><span class="na">¨</span><span class="o">⍳</span><span class="m">10</span> <span class="c1">⍝ The 10 first Fibonacci numbers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 1 2 3 5 8 13 21 34
+</span></div></div>
+</div>
+<p>The pattern is still the same: set a default for the accumulator, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Terminate on some condition on <code class="docutils literal notranslate"><span class="pre">⍵</span></code>, returning a function of the accumulator. Modify the accumulator, given the head of the right argument, and recur on the tail.</p>
+<p>The guts of the function is the last line. To the right, we decrease the right argument – this is our loop counter if you like. To the left is our accumulator, which basically is a sliding window of size 2 over the Fib sequence. We append the sum of the two numbers, and drop the first, and recur over the tail.</p>
+<p>Here’s a pretty neat implementation of the <a class="reference external" href="https://en.wikipedia.org/wiki/Quicksort">Quicksort</a> algorithm:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Quicksort</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="m">1</span><span class="o">≥≢</span><span class="bp">⍵:⍵</span>
+    <span class="nv">S</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span><span class="na">⌿⍨</span><span class="bp">⍺</span> <span class="bp">⍺⍺</span> <span class="bp">⍵</span><span class="kt">}</span>
+    <span class="bp">⍵</span><span class="p">((</span><span class="bp">∇</span><span class="o">&lt;</span><span class="nv">S</span><span class="p">)</span><span class="o">,=</span><span class="nv">S</span><span class="o">,</span><span class="p">(</span><span class="bp">∇</span><span class="o">&gt;</span><span class="nv">S</span><span class="p">))</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">?≢</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">⍵⌷⍨?≢⍵</span></code> is the pivot element, picked at random, and the <code class="docutils literal notranslate"><span class="pre">S</span></code> operator partitions its left argument array based on its left operand function and the pivot element to the right. The whole idea of quicksort is pretty clearly visible in the <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> fork <code class="docutils literal notranslate"><span class="pre">(∇&lt;S),=S,(∇&gt;S)</span></code> – elements <em>less than</em> the pivot, the pivot, elements <em>greater than</em> the pivot, recursively applied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Quicksort</span> <span class="vg">⎕</span><span class="kd">←</span><span class="m">20</span><span class="o">?</span><span class="m">20</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 10 4 15 9 11 0 7 6 14 13 5 2 19 18 12 8 1 17 16
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+</span></div></div>
+</div>
+<p>Another example is binary search: locate an element in an array that is known to be sorted. Here’s a function to do that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">bsearch</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="m">0</span> <span class="p">(</span><span class="bp">⍺</span> <span class="kt">{</span>                   <span class="c1">⍝ Operator: ⍺,⍵ - lower,upper index. ⍺⍺ - item, ⍵⍵ - array</span>
+        <span class="bp">⍺</span><span class="o">&gt;</span><span class="bp">⍵:</span> <span class="no">⍬</span>               <span class="c1">⍝ If lower index has moved past upper, item&#39;s not present</span>
+        <span class="nv">mid</span> <span class="kd">←</span> <span class="o">⌈</span><span class="m">0.5</span><span class="o">×</span><span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span>       <span class="c1">⍝ New midpoint  </span>
+        <span class="bp">⍺⍺</span><span class="o">=</span><span class="nv">mid</span><span class="o">⊃</span><span class="bp">⍵⍵:</span> <span class="nv">mid</span>       <span class="c1">⍝ Check if item is at the new midpoint</span>
+        <span class="bp">⍺⍺</span><span class="o">&lt;</span><span class="nv">mid</span><span class="o">⊃</span><span class="bp">⍵⍵:</span> <span class="bp">⍺∇</span><span class="m">¯1</span><span class="o">+</span><span class="nv">mid</span>  <span class="c1">⍝ Drill into lower half</span>
+        <span class="bp">⍵∇</span><span class="na">⍨</span><span class="m">1</span><span class="o">+</span><span class="nv">mid</span>             <span class="c1">⍝ Upper half</span>
+    <span class="kt">}</span><span class="p">(</span><span class="o">,</span><span class="bp">⍵</span><span class="p">))</span> <span class="m">¯1</span><span class="o">+≢,</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">5</span> <span class="nv">bsearch</span> <span class="m">0</span> <span class="m">2</span> <span class="m">3</span> <span class="m">5</span> <span class="m">8</span> <span class="m">12</span> <span class="m">75</span>
+<span class="m">5</span> <span class="nv">bsearch</span> <span class="m">0</span> <span class="m">2</span> <span class="m">3</span> <span class="m">5</span> <span class="m">8</span> <span class="m">12</span>
+<span class="m">5</span> <span class="nv">bsearch</span> <span class="m">5</span> <span class="m">5</span>
+<span class="m">5</span> <span class="nv">bsearch</span> <span class="m">5</span>
+<span class="sr">]</span><span class="nv">display</span> <span class="m">1</span> <span class="nv">bsearch</span> <span class="m">0</span> <span class="m">2</span> <span class="m">3</span> <span class="m">5</span> <span class="m">8</span> <span class="m">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">3
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌⊖┐
+│0│
+└~┘
+</span></div></div>
+</div>
+<div class="section" id="performance-considerations">
+<h3>Performance considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this headline">¶</a></h3>
+<p>The pattern we’ve used in some of the examples above,</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ some stuff</span>
+<span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>
+<span class="nv">head</span> <span class="kd">←</span> <span class="m">1</span><span class="o">↑</span><span class="bp">⍵</span>
+<span class="nv">tail</span> <span class="kd">←</span> <span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>
+<span class="p">(</span><span class="nv">head</span> <span class="nv">f</span> <span class="bp">⍺</span><span class="p">)</span><span class="bp">∇</span><span class="nv">tail</span>
+</pre></div>
+</div>
+<p>has a …sting in the tail, especially if you come from a functional language where that pattern is the expectation, like <a class="reference external" href="https://racket-lang.org/">Racket</a>, <a class="reference external" href="https://www.erlang.org/">Erlang</a> or <a class="reference external" href="https://clojure.org/">Clojure</a>. In such languages, vectors/lists are either implemented as linked lists, slices, or are immutable, meaning that dropping an element from the front is an <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> operation. In APL, like in Python, that’s an <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> operation. When combined with recursion, this can be crushing for performance. Here’s an example.</p>
+<p>The <a class="reference external" href="https://brilliant.org/wiki/knuth-morris-pratt-algorithm/">Knuth-Morris-Pratt algorithm</a> is an efficient string search algorithm. In one of its forms it pre-calculates a prefix table, which is a metric of how well a string matches against shifts of itself. The brilliant.org article linked to above has this written out in Python as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prefix</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="c1"># https://brilliant.org/wiki/knuth-morris-pratt-algorithm/</span>
+    <span class="n">m</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">pi</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+    <span class="n">j</span><span class="o">=</span><span class="mi">0</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">j</span><span class="o">=</span><span class="n">pi</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">j</span><span class="o">=-</span><span class="mi">1</span> 
+        <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">j</span>
+    <span class="k">return</span> <span class="n">pi</span>
+</pre></div>
+</div>
+<p>Here’s an example running that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Stefans-MacBook-Pro:~ stefan$ python
+Python 3.8.5 (default, Sep 17 2020, 11:24:17) 
+[Clang 11.0.3 (clang-1103.0.32.62)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from kmp import prefix
+&gt;&gt;&gt; prefix(&#39;CAGCATGGTATCACAGCAGAG&#39;)
+[0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 3, 4, 5, 3, 0, 0]
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>We can write that as an APL dfn like so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">prefix1</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="nv">p</span> <span class="kd">←</span> <span class="bp">⍵</span>
+    <span class="nv">pi</span> <span class="kd">←</span> <span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">≢</span><span class="bp">⍵</span>
+    <span class="nv">j</span> <span class="kd">←</span> <span class="m">0</span>
+    <span class="kt">{</span>
+        <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="nv">pi</span>
+        <span class="nv">i</span> <span class="kd">←</span> <span class="o">⊃</span><span class="bp">⍵</span> <span class="c1">⍝ head</span>
+        <span class="nv">pi</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span> <span class="kd">←</span> <span class="nv">j</span><span class="o">⊢</span><span class="kd">←</span><span class="m">1</span><span class="o">+</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">&lt;</span><span class="m">0</span><span class="bp">:⍵</span><span class="p">⋄</span><span class="nv">p</span><span class="sr">[</span><span class="bp">⍵</span><span class="sr">]</span><span class="o">=</span><span class="nv">p</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span><span class="bp">:⍵</span><span class="p">⋄</span><span class="m">0</span><span class="o">≤</span><span class="bp">⍵</span><span class="o">-</span><span class="m">1</span><span class="bp">:∇</span><span class="nv">pi</span><span class="sr">[</span><span class="bp">⍵</span><span class="o">-</span><span class="m">1</span><span class="sr">]</span><span class="p">⋄</span><span class="m">¯1</span><span class="kt">}</span> <span class="nv">j</span> <span class="c1">⍝ while j&gt;=0 and p[j] != p[i]</span>
+        <span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span> <span class="c1">⍝ tail</span>
+    <span class="kt">}</span> <span class="m">1</span><span class="o">+⍳</span><span class="m">¯1</span><span class="o">+≢</span><span class="bp">⍵</span> <span class="c1">⍝ for i in range(1, m)</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and we’d hope it produces the same result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix1</span> <span class="s1">&#39;CAGCATGGTATCACAGCAGAG&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
+</span></div></div>
+</div>
+<p>So that’s two nested “loops”, both nicely tail recursive, and probably similar how you’d construct it in Clojure or Racket. However, as the argument string grows, the performance tanks. We can illustrate this by tweaking it a tiny bit to avoid the reallocation of the argument to the recursive call in the outer loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">prefix2</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="nv">p</span> <span class="kd">←</span> <span class="bp">⍵</span>
+    <span class="nv">pi</span> <span class="kd">←</span> <span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">≢</span><span class="bp">⍵</span>
+    <span class="nv">j</span> <span class="kd">←</span> <span class="m">0</span>
+    <span class="m">0</span> <span class="kt">{</span>
+        <span class="bp">⍺</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="nv">pi</span>
+        <span class="nv">i</span> <span class="kd">←</span> <span class="bp">⍺</span><span class="o">⊃</span><span class="bp">⍵</span> <span class="c1">⍝ Note: pick ⍺, not first</span>
+        <span class="nv">pi</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span> <span class="kd">←</span> <span class="nv">j</span><span class="o">⊢</span><span class="kd">←</span><span class="m">1</span><span class="o">+</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">&lt;</span><span class="m">0</span><span class="bp">:⍵</span> <span class="p">⋄</span> <span class="nv">p</span><span class="sr">[</span><span class="bp">⍵</span><span class="sr">]</span><span class="o">=</span><span class="nv">p</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span><span class="bp">:⍵</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">≤</span><span class="bp">⍵</span><span class="o">-</span><span class="m">1</span><span class="bp">:∇</span> <span class="nv">pi</span><span class="sr">[</span><span class="bp">⍵</span><span class="o">-</span><span class="m">1</span><span class="sr">]</span> <span class="p">⋄</span> <span class="m">¯1</span><span class="kt">}</span> <span class="nv">j</span>
+        <span class="p">(</span><span class="bp">⍺</span><span class="o">+</span><span class="m">1</span><span class="p">)</span><span class="bp">∇</span> <span class="bp">⍵</span> <span class="c1">⍝ Note: no tail!</span>
+    <span class="kt">}</span> <span class="m">1</span><span class="o">+⍳</span><span class="m">¯1</span><span class="o">+≢</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Instead of taking the tail of <code class="docutils literal notranslate"><span class="pre">⍵</span></code>, we pass the current index as <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Let’s see if that works before we proceed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix2</span> <span class="s1">&#39;CAGCATGGTATCACAGCAGAG&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
+</span></div></div>
+</div>
+<p>To demonstrate the difference, let’s compare performance on a long string. Here’s one taken from Project Rosalind:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⊃⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;../kmp.txt&#39;</span><span class="m">1</span> <span class="c1">⍝ From http://rosalind.info/problems/kmp/</span>
+<span class="o">≢</span><span class="nv">data</span> <span class="c1">⍝ LONG STRING!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">99972
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span> <span class="c1">⍝ Load `cmpx` - comparative benchmarking</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span> <span class="s1">&#39;prefix1 data&#39;</span> <span class="s1">&#39;prefix2 data&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.0E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  prefix2 data → 2.1E¯1 | -80% ⎕⎕⎕⎕⎕⎕⎕⎕                                
+</span></div></div>
+</div>
+<p>Quite a staggering difference for such an innocuous change, perhaps.</p>
+<p>The binary search implementation we concluded the previous section above with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a million or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>. Except when it doesn’t:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⍳</span><span class="m">100000</span> <span class="c1">⍝ A meeeeelion numbers</span>
+<span class="nv">cmpx</span> <span class="s1">&#39;data ⍳ 17777&#39;</span> <span class="s1">&#39;17777 bsearch data&#39;</span> <span class="c1">⍝ Look for the number 17777</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.5E¯6 |     0% ⎕⎕⎕                                     
+  17777 bsearch data → 1.9E¯5 | +1133% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</span></div></div>
+</div>
+<p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate if there are no other alternatives.</p>
+<p>Exercise for the reader: as the data grows, sooner or later the <code class="docutils literal notranslate"><span class="pre">bsearch</span></code> function will win out. How large does the array need to be for that to happen?</p>
+</div>
+</div>
+<div class="section" id="scalar-extension">
+<h2>Scalar extension<a class="headerlink" href="#scalar-extension" title="Permalink to this headline">¶</a></h2>
+<p>We touched briefly on <em>scalar extension</em> above, but it’s an important topic, so let’s dive in a little bit deeper. It’s worth reading what Dyalog has to say on the topic in the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Scalar%20Functions.htm">docs</a>.</p>
+<p>The idea is that a certain class of functions is <em>pervasive</em>. With this we mean that a function that operates on a scalar will operate on scalars at any level of nesting if applied to an array. Note that the level of nesting is <em>not</em> the same as the rank in APL (rank and depth <em>are</em> equivalent in the K language, though).</p>
+<p>Consider a nested vector that contains both numbers and other vectors of numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">nesty</span> <span class="kd">←</span> <span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="p">(</span><span class="m">3</span> <span class="m">4</span> <span class="p">(</span><span class="m">5</span> <span class="m">6</span><span class="p">))</span> <span class="m">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬─┬─┬─────────┬─┐
+│1│2│3│┌─┬─┬───┐│7│
+│ │ │ ││3│4│5 6││ │
+│ │ │ │└─┴─┴───┘│ │
+└─┴─┴─┴─────────┴─┘
+</span></div></div>
+</div>
+<p>As an obvious and simple example, let’s say we want to negate all the numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="nv">nesty</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬──┬──┬─────────────┬──┐
+│¯1│¯2│¯3│┌──┬──┬─────┐│¯7│
+│  │  │  ││¯3│¯4│¯5 ¯6││  │
+│  │  │  │└──┴──┴─────┘│  │
+└──┴──┴──┴─────────────┴──┘
+</span></div></div>
+</div>
+<p>Where it can be applied, scalar extension is an efficient operation in Dyalog APL. It works for dyads, too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span> <span class="m">3</span> <span class="o">+</span> <span class="m">4</span> <span class="p">(</span><span class="m">5</span> <span class="m">6</span><span class="p">)</span>
+<span class="p">(</span><span class="m">1</span> <span class="m">1</span><span class="o">⍴</span><span class="m">5</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span> <span class="p">(</span><span class="m">2</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┐
+│5 6│8 9│
+└───┴───┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬───┐
+│4│3 2│
+└─┴───┘
+</span></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="functions.html" title="previous page">Direct functions and operators</a>
+    <a class='right-next' id="next-link" href="key.html" title="next page">The Key operator: <code class="docutils literal notranslate"><span class="pre">⌸</span></code></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

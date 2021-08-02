@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Dyalog workflow. Or two. &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What now?" href="next.html" />
+    <link rel="prev" title="Testing" href="testing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/workflow.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fworkflow.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-and-loading-workspaces">
+   Saving and loading workspaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-link">
+   Using LINK
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#link-limitations">
+   LINK limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dyalogscript">
+   Dyalogscript
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-workflow">
+   Jupyter workflow
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="a-dyalog-workflow-or-two">
+<h1>A Dyalog workflow. Or two.<a class="headerlink" href="#a-dyalog-workflow-or-two" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>I don’t know how many of you have ever met Dijkstra, but you probably know that arrogance in computer science is measured in nano-Dijkstras.
+–<em>Alan Kay</em></p>
+</div></blockquote>
+<p>For the majority of the examples we’ll encounter in this book, you can just type them directly into the Dyalog IDE, or TryAPL, and when you understand the point made, scrap them. But as you progress, sooner or later you will want to save your work to disk.</p>
+<p>If you have a similar background to me, you’ll expect to be able to write your code using an editor of your choice, arranging it into files containing logically related routines, which you then put into a source code revision management system, like git, perhaps triggering a build and test pipeline on every commit via something like jenkins or circle-ci. This is most likely in the neighbourhood of your current workflow, regardless of which language or platform you’re using, from ADA to Zig.</p>
+<p>Before we get into the practicalities of how you can do this and more, we’ll need a slight diversion into the history of APL and Dyalog in particular [<a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3386319">Kromb&amp;Hui2020</a>]. Firstly, APL predates all these workflows and build tools. That in itself isn’t an issue: so does C. But APL wasn’t really conceived as a software engineering tool. During its heyday, middle management and CFOs were slinging APL to generate forecasts and reports, and they <em>loved</em> APL as it allowed them to essentially perform tasks that up until then had been in the realm of specialist “batch processing” on the company mainframe. It essentially occupied the niche which is now dominated by Microsoft Excel.</p>
+<p>This influenced all APL vendors. Commercial APL systems are full application stacks that make it seductively convenient to package up your work as binary workspaces that can be easily distributed to other APL users without ever having to “leave” the confines of the stack itself. In terms of Dyalog, its tooling and development philosophy supports this world view, as that is what its customers expect: professional Dyalog developers working for billion-dollar financial institutions will be of the opinion that you can pry their binary workspaces from their cold, dead hands. You can build fully-fledged, GUI-driven applications integrating deeply with code bases written in .NET.</p>
+<p>Yet, for you, the newcomer, this approach will probably feel a bit alien. Dyalog obviously understand this, and they’re walking the tightrope of both delivering what their current paying, long-term customers need, but also a keen eye on what <em>new</em> users and potential customers might be looking to. Morten Kromberg, Dyalog CTO, wrote a <a class="reference external" href="https://www.dyalog.com/blog/2021/02/the-apl-orchard/">blog post</a> recently, ostensibly about the <a class="reference external" href="https://apl.chat">APL Orchard</a> chat room, but also touching on some of Dyalog’s challenges when dealing with this dichotomy.</p>
+<p>Fortunately, and for the avoidance of any doubt, you can <em>absolutely</em> work with modern Dyalog (I’m using version 18.0) in a pretty similar way to what you expect, but it requires a little bit of setup to get right, and is not quite there “out of the box” at the time of writing. However, at the time of <em>reading</em> some of the kinks may well have been ironed out: better support for Dyalog as a scripting engine, and working with code-as-text is a priority for Dyalog right now.</p>
+<p>So let’s take a brief look at workspaces and then at the <code class="docutils literal notranslate"><span class="pre">]LINK</span></code> tool that allows you to keep your code in text files that can be versioned.</p>
+<p>Other resources:</p>
+<ul class="simple">
+<li><p>Dyalog <a class="reference external" href="https://dyalog.tv/Webinar/?v=S3JBHDayVjU">webinar</a></p></li>
+</ul>
+<div class="section" id="saving-and-loading-workspaces">
+<h2>Saving and loading workspaces<a class="headerlink" href="#saving-and-loading-workspaces" title="Permalink to this headline">¶</a></h2>
+<p>If you open RIDE, you’ll see no “Save as..” in the menu, and your OS’s default key binding for “Save” does nothing. You might have figured out how to enter multi-line functions, and how to “fix” (somewhere between “save” and “compile”) them. Yet, when you “fix” a function, where does it go?</p>
+<p>At no point were you asked for a file name. The Excel analogy might help to clarify. Think of a cell containing a formula in Excel – you’re not expecting to “save” the formula out to a separate file. Instead, the formula becomes an integral part of the sheet or workbook. We can think of Dyalog workspaces as analoguous to Excel workbooks: a snapshot of values and logic to manipulate them. It has the nice feature that if you distribute a workspace, you can be sure that users of that workspace sees exactly what you intended: it’s an exact snapshot.</p>
+<p>Let’s try this out. In a new RIDE session, let’s create a few functions and variables, like so:
+<img alt="workspace1" src="_images/ws1.png" /></p>
+<p>To save the workspace into a workspace file, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>)save myworkspace
+Cannot perform operation with trace/edit windows open.
+</pre></div>
+</div>
+<p>Ooops, that didn’t work. Dyalog can only save a workspace if you close down all edit windows first. So let’s do that, and once you’ve saved your workspace, close down the session and reopen a fresh one.</p>
+<p>To get back your workspace, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>)load myworkspace
+</pre></div>
+</div>
+<p><img alt="workspace2" src="_images/ws3.png" /></p>
+<p>We can use the commands <code class="docutils literal notranslate"><span class="pre">)vars</span></code> to see the defined variables, and <code class="docutils literal notranslate"><span class="pre">)fns</span></code> to show the names of any functions contained in the workspace. As we can see, they’re all present and correct. If you find yourself using a set of utility functions over and over, they might be usefully combined into a workspace that you can then load up as a unit with a simple <code class="docutils literal notranslate"><span class="pre">)load</span></code> command. As you might expect, the workspace concept is deeply engrained in Dyalog and it comes with rich, sophisticated, thoroughly battle-tested functionality – all of which is overkill for our needs right now. If you want to explore this further, Legrand’s book, <a class="reference external" href="https://www.dyalog.com/uploads/documents/MasteringDyalogAPL.pdf">Mastering Dyalog APL</a> covers it extensively.</p>
+</div>
+<div class="section" id="using-link">
+<h2>Using LINK<a class="headerlink" href="#using-link" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/Dyalog/link">LINK</a> is a Dyalog library that can be used to set up synchronisation between a directory of text files containing APL source code, and namespaces in your current workspace. As you may recall from the chapter on <a class="reference internal" href="namespaces.html"><span class="doc std std-doc">namespaces</span></a>, one way to think of them is as a grouping mechanism akin to a module or class. Recent Dyalog versions come with LINK bundled, but it’s under active development and you can always install the latest version from the above github repo.</p>
+<p>The LINK concept is pretty intuitive: a LINKed directory becomes a namespace, and all its content loaded. If you make a change to a file using an external tool or editor, that change will be reflected inside Dyalog, and if you make a change to the namespace inside Dyalog, these changes are reflected on disk. This means that you can write APL code in Emacs or VS Code, and have your Dyalog session see any changes you make. And – of course – now you can put your code in github with all that this entails in terms of your workflow.</p>
+<p>Let’s work through a complete example, step by step, by building a “dict” – an array that gives the illusion of being indexable by string. Yes, you’re not the only one wishing Dyalog had one of those. Start by creating a new directory called <code class="docutils literal notranslate"><span class="pre">dict</span></code> and make a note of the full path:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>stefan-% mkdir -p ~/work/dyalog/dict
+</pre></div>
+</div>
+<p>Now, using an editor of your choice, you’re going to create five functions, each contained in a file with the <code class="docutils literal notranslate"><span class="pre">.aplf</span></code> extension (for APL function). Here’s me editing the first one in VS Code, called <code class="docutils literal notranslate"><span class="pre">Create.aplf</span></code>:</p>
+<p><img alt="dict1" src="_images/dict1.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One thing you’ll notice when editing APL code in VS Code is that as VS Code also uses the option key for certain commands, it becomes a bit more tricky to type APL glyphs. You can always use the backtick as the APL key for combos that VS Code hijacks.</p>
+</div>
+<p>Here are the functions themselves, leaving aside for the moment how they work (or indeed if they’re particularly good):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Append</span><span class="kd">←</span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="c1">⍝ Given a vector of keys and a vector of vals append vals</span>
+    <span class="bp">⍺</span><span class="na">∘</span><span class="kt">{</span>
+        <span class="nv">k</span><span class="kd">←</span><span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span> <span class="p">⋄</span> <span class="nv">v</span><span class="kd">←</span><span class="m">1</span><span class="o">⌷</span><span class="bp">⍵</span>
+        <span class="nv">i</span><span class="kd">←</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Keys</span><span class="o">⍳</span><span class="nv">k</span>
+        <span class="nv">i</span><span class="o">=≢</span><span class="bp">⍺</span><span class="na">.</span><span class="nl">Keys:</span><span class="m">1</span><span class="o">⊣</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Keys</span><span class="o">,</span><span class="kd">←</span><span class="nv">k</span><span class="o">⊣</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Vals</span><span class="o">,</span><span class="kd">←</span><span class="nv">v</span>  <span class="c1">⍝ New key</span>
+        <span class="bp">⍺</span><span class="na">.</span><span class="nv">Vals</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span><span class="o">,</span><span class="kd">←</span><span class="nv">v</span>                     <span class="c1">⍝ Append to existing</span>
+        <span class="m">0</span>
+    <span class="kt">}</span><span class="na">¨</span><span class="o">↓⍉↑</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Create</span><span class="kd">←</span><span class="kt">{</span>
+    <span class="nv">keys</span><span class="kd">←</span><span class="p">(</span><span class="m">1500</span><span class="na">⌶</span><span class="p">)</span><span class="o">,</span><span class="bp">⍺</span>
+    <span class="nv">vals</span><span class="kd">←</span><span class="o">,</span><span class="bp">⍵</span>
+    <span class="kt">{</span><span class="bp">⍵</span><span class="o">⊣</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="nv">Vals</span> <span class="nv">Keys</span> <span class="nv">Default</span><span class="p">)</span><span class="kd">←</span><span class="nv">vals</span> <span class="nv">keys</span> <span class="no">⍬</span><span class="kt">}</span><span class="nf">⎕NS</span><span class="s1">&#39;&#39;</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Get</span><span class="kd">←</span><span class="kt">{</span>
+    <span class="o">~</span><span class="bp">⍵</span> <span class="nv">In</span> <span class="bp">⍺:⍺</span><span class="na">.</span><span class="nv">Default</span>
+    <span class="bp">⍺</span><span class="na">.</span><span class="nv">Vals</span><span class="sr">[</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Keys</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">In</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">∊</span><span class="bp">⍵</span><span class="na">.</span><span class="nv">Keys</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">Set</span><span class="kd">←</span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+    <span class="c1">⍝ Upsert ht ⍺ given a vector of keys and a vector of vals</span>
+    <span class="bp">⍺</span><span class="na">∘</span><span class="kt">{</span>
+        <span class="nv">k</span><span class="kd">←</span><span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span> <span class="p">⋄</span> <span class="nv">v</span><span class="kd">←</span><span class="m">1</span><span class="o">⌷</span><span class="bp">⍵</span>
+        <span class="nv">i</span><span class="kd">←</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Keys</span><span class="o">⍳</span><span class="nv">k</span>
+        <span class="nv">i</span><span class="o">=≢</span><span class="bp">⍺</span><span class="na">.</span><span class="nl">Keys:</span><span class="m">1</span><span class="o">⊣</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Keys</span><span class="o">,</span><span class="kd">←</span><span class="nv">k</span><span class="o">⊣</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">Vals</span><span class="o">,</span><span class="kd">←</span><span class="nv">v</span> <span class="c1">⍝ New key</span>
+        <span class="bp">⍺</span><span class="na">.</span><span class="nv">Vals</span><span class="sr">[</span><span class="nv">i</span><span class="sr">]</span><span class="kd">←</span><span class="nv">v</span>                     <span class="c1">⍝ Replace existing</span>
+        <span class="m">0</span>
+    <span class="kt">}</span><span class="na">¨</span><span class="o">↓⍉↑</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now open a new Dyalog session, and link this directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>]LINK.Create dict /Users/stefan/work/dyalog/dict
+</pre></div>
+</div>
+<p>You should see the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Linked: #.dict → /Users/stefan/work/dyalog/dict
+</pre></div>
+</div>
+<p>If you see a pop-up window with an error message about the .NET bridge not being present, this is a known bug you can ignore, see <a class="reference external" href="https://github.com/Dyalog/link/issues/166">issue 166</a>.</p>
+<p>All being well, our session should now be aware of the code we just wrote. We can list the functions that Dyalog now thinks the namespace contains by executing the following obvious and intuitive “list functions in namespace” command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dict.⎕NL -3
+Append  Create  Get  In  Set
+</pre></div>
+</div>
+<p>Great! Our functions have clearly been loaded. Let’s see if they work, shall we?</p>
+<p><img alt="link2" src="_images/link2.png" /></p>
+</div>
+<div class="section" id="link-limitations">
+<h2>LINK limitations<a class="headerlink" href="#link-limitations" title="Permalink to this headline">¶</a></h2>
+<p>That works really well so far. Any change we make in RIDE to the <code class="docutils literal notranslate"><span class="pre">dict</span></code> namespace will be reflected on disk, including new functions, or modifications of existing. However, there are a few limitations you need to be aware of here. The eagle-eyed reader may have spotted our link being one-directional only:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Linked: #.dict → /Users/stefan/work/dyalog/dict
+</pre></div>
+</div>
+<p>The arrow shows synchronization direction. Bi-directional sync is really what we want, but at the time of writing this is only available under Windows. Do read the <a class="reference external" href="https://github.com/Dyalog/link/wiki/Overview">docs</a> for LINK.</p>
+<p>In Dyalog version 18.1 (which at the time of writing isn’t formally released yet) you can get bi-directional <code class="docutils literal notranslate"><span class="pre">]LINK</span></code> on non-Windows platforms if you also install Microsoft .NET Core 3.1.</p>
+<p><img alt="l2w" src="_images/linktwoway.png" /></p>
+<p>The other thing is that when you’re working this way, you’ll need to keep each function, namespace, class, or operator in its own separate file, and they all have their separate file extensions, which if you’re anything like me is quite a fine granularity, especially since APL functions tend to be pretty short.</p>
+</div>
+<div class="section" id="dyalogscript">
+<h2>Dyalogscript<a class="headerlink" href="#dyalogscript" title="Permalink to this headline">¶</a></h2>
+<p>Also in Dyalog v18.1, a new feature called <code class="docutils literal notranslate"><span class="pre">dyalogscript</span></code> is present. For me, this is a bit of a workflow game changer. <code class="docutils literal notranslate"><span class="pre">dyalogscript</span></code> allows you to execute a text file containing APL code, top to bottom, with function definitions and all, from the command-line, following standard un×x conventions. This means that with this approach you can now use Dyalog for ‘quick and dirty’ scripts where you otherwise would have reached for Python, and that you can easily share code as files, or via a github gist and have other people run it. For example, I created the following file:</p>
+<p><img alt="ds" src="_images/dyalogscript.png" /></p>
+<p>and can run it from the command line:</p>
+<p><img alt="trm" src="_images/term.png" /></p>
+</div>
+<div class="section" id="jupyter-workflow">
+<h2>Jupyter workflow<a class="headerlink" href="#jupyter-workflow" title="Permalink to this headline">¶</a></h2>
+<p>As I’ve mentioned before, this book is composed of a set of Jupyter notebooks running the Dyalog kernel. APL is a pretty sharp tool for data analysis and ad-hoc modeling and experimentation, and as such fits neatly into the expectations and workflows that gave rise to Jupyter in the first place. The way I have ended up working with Dyalog APL is 75% Jupyter, 20% exploration and debugging in RIDE and 5% LINK for stuff I really think I might reuse.</p>
+<p>Here’s a Dyalog <a class="reference external" href="https://dyalog.tv/Webinar/?v=P7rGW5ZMq9w">webinar</a> introducing the Jupyter kernel.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="testing.html" title="previous page">Testing</a>
+    <a class='right-next' id="next-link" href="next.html" title="next page">What now?</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

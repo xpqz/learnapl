@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Key operator: ⌸ &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The At operator: @" href="at.html" />
+    <link rel="prev" title="Iteration" href="iteration.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/key.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fkey.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-key-operator">
+<h1>The Key operator: <code class="docutils literal notranslate"><span class="pre">⌸</span></code><a class="headerlink" href="#the-key-operator" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Overemphasis of efficiency leads to an unfortunate circularity in design: for reasons of efficiency early programming languages reflected the characteristics of the early computers, and each generation of computers reflects the needs of the programming languages of the preceding generation. –<em>Kenneth E. Iverson</em></p>
+</div></blockquote>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
+<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
+</span></div></div>
+</div>
+<p>The monadic operator <em>Key</em> (<code class="docutils literal notranslate"><span class="pre">⌸</span></code>) groups things. It can, for example, be used to generate histograms, or if you are so inclined, you can think of it as similar to SQL’s <a class="reference external" href="https://en.wikipedia.org/wiki/Group_by_(SQL)">GROUP BY</a> clause.</p>
+<p>Other resources on <em>Key</em>:</p>
+<ul class="simple">
+<li><p>Dyalog <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Key.htm">docs</a></p></li>
+<li><p>APL Orchard <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-5-even-more-apl-operators--">cultivation</a> (also covering <em>Stencil</em>)</p></li>
+</ul>
+<p>The function derived by <em>Key</em> is ambivalent (can be called either monadically or dyadically). The operand function can be any dyadic function returning a value. Let’s start with the monadic case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+│┌────┐│0 2 4│
+││bill││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │1 5  │
+││bob│ │     │
+│└───┘ │     │
+├──────┼─────┤
+│┌────┐│3 6  │
+││eric││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │7    │
+││sue│ │     │
+│└───┘ │     │
+└──────┴─────┘
+</span></div></div>
+</div>
+<p>In this case, the operator function is called with each unique element from the argument array in turn as the left argument, and a vector of indices where they occur. If we wanted this to be a histogram, all we need to to is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─┐
+│┌────┐│3│
+││bill││ │
+│└────┘│ │
+├──────┼─┤
+│┌───┐ │2│
+││bob│ │ │
+│└───┘ │ │
+├──────┼─┤
+│┌────┐│2│
+││eric││ │
+│└────┘│ │
+├──────┼─┤
+│┌───┐ │1│
+││sue│ │ │
+│└───┘ │ │
+└──────┴─┘
+</span></div></div>
+</div>
+<p>In its dyadic form, <em>Key</em> takes each unique element to the left, and groups the corresponding elements from the right. In other words, the following two formulations do the same thing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">names</span> <span class="kd">←</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
+<span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">names</span>
+<span class="nv">names</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="o">⍳≢</span><span class="nv">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+│┌────┐│0 2 4│
+││bill││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │1 5  │
+││bob│ │     │
+│└───┘ │     │
+├──────┼─────┤
+│┌────┐│3 6  │
+││eric││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │7    │
+││sue│ │     │
+│└───┘ │     │
+└──────┴─────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+│┌────┐│0 2 4│
+││bill││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │1 5  │
+││bob│ │     │
+│└───┘ │     │
+├──────┼─────┤
+│┌────┐│3 6  │
+││eric││     │
+│└────┘│     │
+├──────┼─────┤
+│┌───┐ │7    │
+││sue│ │     │
+│└───┘ │     │
+└──────┴─────┘
+</span></div></div>
+</div>
+<p>Let’s look at a slightly more involved example. Here are the Rugby Union Gallagher English Premiership results for Jan, 2021, home fixtures only. The 0-0 games were COVID cancellations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">scores</span><span class="kd">←</span><span class="s1">&#39;London Irish,31-22&#39;</span> <span class="s1">&#39;Wasps,17-49&#39;</span> <span class="s1">&#39;Gloucester,26-31&#39;</span> <span class="s1">&#39;Worcester Warriors,17-21&#39;</span> <span class="s1">&#39;Bristol,48-3&#39;</span> <span class="s1">&#39;Leicester Tigers,15-25&#39;</span> <span class="s1">&#39;Harlequins,27-27&#39;</span> <span class="s1">&#39;Newcastle Falcons,22-10&#39;</span> <span class="s1">&#39;Exeter Chiefs,7-20&#39;</span> <span class="s1">&#39;Northampton Saints,0-0&#39;</span> <span class="s1">&#39;Bath,44-52&#39;</span> <span class="s1">&#39;Sale,20-13&#39;</span> <span class="s1">&#39;London Irish,0-0&#39;</span> <span class="s1">&#39;Leicester Tigers,36-31&#39;</span> <span class="s1">&#39;Wasps,34-5&#39;</span> <span class="s1">&#39;Gloucester,19-22&#39;</span> <span class="s1">&#39;Bristol,29-17&#39;</span> <span class="s1">&#39;Worcester Warriors,0-0&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll do some quick and dirty slicing and dicing to separate team names from results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">table</span><span class="kd">←</span><span class="nf">⎕CSV</span> <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;,&#39;</span><span class="o">⊢</span><span class="nv">scores</span><span class="p">)</span><span class="s1">&#39;&#39;</span><span class="m">4</span>
+<span class="nv">teams</span><span class="kd">←</span><span class="o">⊣</span><span class="na">/</span><span class="nv">table</span>
+<span class="nv">scores</span><span class="kd">←</span><span class="nv">table</span><span class="sr">[;</span><span class="m">1</span> <span class="m">2</span><span class="sr">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To illustrate the similarity with SQL’s GROUP BY, by using dyadic <em>Key</em> we can group the scores under each team:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">teams</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────────────┬─────┐
+│┌────────────┐      │31 22│
+││London Irish│      │ 0  0│
+│└────────────┘      │     │
+├────────────────────┼─────┤
+│┌─────┐             │17 49│
+││Wasps│             │34  5│
+│└─────┘             │     │
+├────────────────────┼─────┤
+│┌──────────┐        │26 31│
+││Gloucester│        │19 22│
+│└──────────┘        │     │
+├────────────────────┼─────┤
+│┌──────────────────┐│17 21│
+││Worcester Warriors││ 0  0│
+│└──────────────────┘│     │
+├────────────────────┼─────┤
+│┌───────┐           │48  3│
+││Bristol│           │29 17│
+│└───────┘           │     │
+├────────────────────┼─────┤
+│┌────────────────┐  │15 25│
+││Leicester Tigers│  │36 31│
+│└────────────────┘  │     │
+├────────────────────┼─────┤
+│┌──────────┐        │27 27│
+││Harlequins│        │     │
+│└──────────┘        │     │
+├────────────────────┼─────┤
+│┌─────────────────┐ │22 10│
+││Newcastle Falcons│ │     │
+│└─────────────────┘ │     │
+├────────────────────┼─────┤
+│┌─────────────┐     │7 20 │
+││Exeter Chiefs│     │     │
+│└─────────────┘     │     │
+├────────────────────┼─────┤
+│┌──────────────────┐│0 0  │
+││Northampton Saints││     │
+│└──────────────────┘│     │
+├────────────────────┼─────┤
+│┌────┐              │44 52│
+││Bath│              │     │
+│└────┘              │     │
+├────────────────────┼─────┤
+│┌────┐              │20 13│
+││Sale│              │     │
+│└────┘              │     │
+└────────────────────┴─────┘
+</span></div></div>
+</div>
+<p>One more example. Given a vector, return the most frequent element, or if there are several, return all of those:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;Mississippi&#39;</span> <span class="c1">⍝ Most frequent from APLCart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
+</span></div></div>
+</div>
+<p>Ouch.</p>
+<p>A lot of stuff there we haven’t seen yet, and rather ‘golfy’. Let’s unpick it, and see how far we get. From the right we first have our <em>Key</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="na">⌸</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0  0
+1 4 7 10
+2 3 5  6
+8 9 0  0
+</span></div></div>
+</div>
+<p>That’s just the indices of each unique element in turn, as if we’d written</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0  0
+1 4 7 10
+2 3 5  6
+8 9 0  0
+</span></div></div>
+</div>
+<p>We then prepend a 0 column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0  0
+0 1 4 7 10
+0 2 3 5  6
+0 8 9 0  0
+</span></div></div>
+</div>
+<p>Why is this? It doesn’t seem to be necessary?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="o">⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
+</span></div></div>
+</div>
+<p>This is just guarding against a special case – should the function be passed an empty argument we don’t want to error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="o">⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;&#39;</span> <span class="c1">⍝ Note: DOMAIN ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DOMAIN ERROR
+      {⍵⌷⍨⊂0~⍨⊢/⊢⌸⍵}&#39;&#39; ⍝ Note: DOMAIN ERROR
+              ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>whereas with the prepended zeros it does the right thing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">
+</span></div></div>
+</div>
+<p>Anyway. After prepending a zero-col, we pick the <em>last</em> column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 10 6 0
+</span></div></div>
+</div>
+<p>This is how we can find the most frequent element(s) without any sorting – the vector(s) of indices of the most frequent elements will be the longest, and hence the non-zero elements in the last column will be corresponding to the last occurrence of the most frequent elements. We need to exclude the zeros first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="o">⊢</span><span class="na">⌸</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 6
+</span></div></div>
+</div>
+<p>and then enclose and index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;Mississippi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
+</span></div></div>
+</div>
+<p>Pretty cool, eh? But there is one gotcha here –</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;abc&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">bc
+</span></div></div>
+</div>
+<p>If the argument array contains only unique cells, we get the wrong result if we run under <code class="docutils literal notranslate"><span class="pre">⎕IO←0</span></code>. Set it to 1 and it works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">1</span><span class="p">⋄</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;abc&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">abc
+</span></div></div>
+</div>
+<p>This is of course to do with the excluding of zeros from the last column. Unfortunately we rely on zero being the template element for the array, so sadly we can’t prepend, say, a negative number instead of zero for ⎕IO-independence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">¯1</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">¯1</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;abc&#39;</span> <span class="c1">⍝ Whilst this works....</span>
+<span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">¯1</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">¯1</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;Mississippi&#39;</span> <span class="c1">⍝ This breaks!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">abc
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">MisM
+</span></div></div>
+</div>
+<p>Here are some drills on <em>Key</em>, suggested by Roger Hui in his <a class="reference external" href="https://www.jsoftware.com/papers/APL_exercises/">APL Exercises</a>. Try to work out in your head what the answers are before you reveal:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="kd">←</span><span class="s1">&#39;Supercalifragilisticexpialidocious&#39;</span>
+
+<span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
+<span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
+<span class="kt">{</span><span class="o">≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
+<span class="kt">{</span><span class="bp">⍺</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬───────────────────┐
+│S│0                  │
+├─┼───────────────────┤
+│u│1 32               │
+├─┼───────────────────┤
+│p│2 22               │
+├─┼───────────────────┤
+│e│3 20               │
+├─┼───────────────────┤
+│r│4 10               │
+├─┼───────────────────┤
+│c│5 19 29            │
+├─┼───────────────────┤
+│a│6 11 24            │
+├─┼───────────────────┤
+│l│7 14 25            │
+├─┼───────────────────┤
+│i│8 13 15 18 23 26 30│
+├─┼───────────────────┤
+│f│9                  │
+├─┼───────────────────┤
+│g│12                 │
+├─┼───────────────────┤
+│s│16 33              │
+├─┼───────────────────┤
+│t│17                 │
+├─┼───────────────────┤
+│x│21                 │
+├─┼───────────────────┤
+│d│27                 │
+├─┼───────────────────┤
+│o│28 31              │
+└─┴───────────────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">S 1
+u 2
+p 2
+e 2
+r 2
+c 3
+a 3
+l 3
+i 7
+f 1
+g 1
+s 2
+t 1
+x 1
+d 1
+o 2
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 2 2 2 3 3 3 7 1 1 2 1 1 1 2
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Supercalifgstxdo
+</span></div></div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="kd">←</span><span class="s1">&#39;abcdefghijk&#39;</span>
+<span class="nv">y</span><span class="kd">←</span><span class="m">10</span><span class="o">+</span><span class="m">11</span> <span class="m">2</span><span class="o">⍴⍳</span><span class="m">22</span>
+
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="o">≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+<span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span><span class="p">(</span><span class="o">⌊</span><span class="na">/</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬─────┐
+│a│10 11│
+├─┼─────┤
+│b│12 13│
+├─┼─────┤
+│c│14 15│
+├─┼─────┤
+│d│16 17│
+├─┼─────┤
+│e│18 19│
+├─┼─────┤
+│f│20 21│
+├─┼─────┤
+│g│22 23│
+├─┼─────┤
+│h│24 25│
+├─┼─────┤
+│i│26 27│
+├─┼─────┤
+│j│28 29│
+├─┼─────┤
+│k│30 31│
+└─┴─────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 1
+b 1
+c 1
+d 1
+e 1
+f 1
+g 1
+h 1
+i 1
+j 1
+k 1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1 1 1 1 1 1 1 1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">abcdefghijk
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 21
+b 25
+c 29
+d 33
+e 37
+f 41
+g 45
+h 49
+i 53
+j 57
+k 61
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 11
+b 13
+c 15
+d 17
+e 19
+f 21
+g 23
+h 25
+i 27
+j 29
+k 31
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 10
+b 12
+c 14
+d 16
+e 18
+f 20
+g 22
+h 24
+i 26
+j 28
+k 30
+</span></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="iteration.html" title="previous page">Iteration</a>
+    <a class='right-next' id="next-link" href="at.html" title="next page">The At operator: <code class="docutils literal notranslate"><span class="pre">&#64;</span></code></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encode decode: ⊤⊥ &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Products" href="products.html" />
+    <link rel="prev" title="Dyadic transpose: A⍉B" href="dyadictrn.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/decode.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fdecode.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="encode-decode">
+<h1>Encode decode: <code class="docutils literal notranslate"><span class="pre">⊤⊥</span></code><a class="headerlink" href="#encode-decode" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Teaching peers is one of the best ways to develop mastery. –<em>Jeff Atwood</em></p>
+</div></blockquote>
+<p>Here’s some of APL’s secret sauce, not commonly encountered in other languages: <em>Encode</em>, <code class="docutils literal notranslate"><span class="pre">⊤</span></code> and <em>Decode</em>, <code class="docutils literal notranslate"><span class="pre">⊥</span></code>. <em>Encode</em> and <em>Decode</em> provide efficient basis conversion across potentially mixed radixes.</p>
+<p>Other resources:</p>
+<ul class="simple">
+<li><p>Dyalog docs <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Encode.htm"><em>Encode</em></a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Decode.htm"><em>Decode</em></a></p></li>
+<li><p>Cultivations <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-6-apl-functions-----">Lesson 6</a>, <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-37--in-depth">Lesson 37</a>, <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-38--in-depth">Lesson 38</a></p></li>
+<li><p>APL Wiki <a class="reference external" href="https://aplwiki.com/wiki/Encode"><em>Encode</em></a>, <a class="reference external" href="https://aplwiki.com/wiki/Decode"><em>Decode</em></a></p></li>
+</ul>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span> <span class="c1">⍝ You know the drill</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The canonical example is to convert numbers between bases, for example, converting a base-10 number to 8-bit binary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">8</span><span class="o">⍴</span><span class="m">2</span><span class="p">)</span><span class="o">⊤</span><span class="m">54</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 0 1 1 0
+</span></div></div>
+</div>
+<p>…and back to base-10:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">⊥</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">54
+</span></div></div>
+</div>
+<p>I vowed not to mention magic inverses, but these few are too damned useful to leave out. Convert a base-10 number to binary, using the least number of bits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span> <span class="o">⊢</span> <span class="m">54</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 1 1 0
+</span></div></div>
+</div>
+<p>…and as a consequence, split a number into its constituent digits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span> <span class="o">⊢</span> <span class="m">677398723</span> <span class="c1">⍝ Number to digit vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">6 7 7 3 9 8 7 2 3
+</span></div></div>
+</div>
+<p>Those were all fixed radix. An example of <em>mixed</em> radix is converting between seconds and days, hours, mins and seconds, e.g “how many days, hours, mins and seconds is 10000 seconds”?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">24</span> <span class="m">60</span> <span class="m">60</span><span class="o">⊤</span><span class="m">10000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 2 46 40
+</span></div></div>
+</div>
+<p>and, conversely, how many seconds in 1 day (and night)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">24</span> <span class="m">60</span> <span class="m">60</span><span class="o">⊥</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">86400
+</span></div></div>
+</div>
+<p>Here’s an example of <em>Decode</em> and <em>Encode</em>, borrowed from <a class="reference external" href="https://reference.wolfram.com/language/ref/MixedRadix.html">Mathematica’s</a> documentation for its corresponding <em>MixedRadix</em> function.</p>
+<p>A Roman legion was made of 10 <em>cohorts</em>, a cohort of 6 <em>centuries</em>, a century of 10 <em>contuberniae</em>, and a contubernia of 8 soldiers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">units</span> <span class="kd">←</span> <span class="s1">&#39;legion&#39;</span> <span class="s1">&#39;cohort&#39;</span> <span class="s1">&#39;century&#39;</span> <span class="s1">&#39;contubernia&#39;</span> <span class="s1">&#39;soldier&#39;</span>
+<span class="nv">bases</span> <span class="kd">←</span> <span class="m">10</span> <span class="m">10</span> <span class="m">6</span> <span class="m">10</span> <span class="m">8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given 16,894 soldiers, how are they organized?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">units</span> <span class="p">(</span><span class="nv">bases</span><span class="o">⊤</span><span class="m">16894</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬──────┬───────┬───────────┬───────┐
+│legion│cohort│century│contubernia│soldier│
+├──────┼──────┼───────┼───────────┼───────┤
+│3     │5     │1      │1          │6      │
+└──────┴──────┴───────┴───────────┴───────┘
+</span></div></div>
+</div>
+<p>Going the other way, how many soldiers are there in a legion?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">bases</span><span class="o">⊥</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4800
+</span></div></div>
+</div>
+<p>There are some less obvious uses, too. For example, we can use <code class="docutils literal notranslate"><span class="pre">1⊥</span></code> to sum vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">⊥⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
+</span></div></div>
+</div>
+<p>The utility of that may not be obvious, but it comes very handy when writing <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> code which we’ll cover in depth later, but here’s a taster – given a vector where all elements are the same, bar one, what’s the index of the “odd one out”?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span><span class="o">⍳</span><span class="na">⍨</span><span class="m">1</span><span class="o">⊥</span><span class="na">∘.</span><span class="o">=</span><span class="na">⍨</span><span class="p">)</span> <span class="m">243</span> <span class="m">243</span> <span class="m">243</span> <span class="m">243</span> <span class="m">251</span> <span class="m">243</span> <span class="m">243</span> <span class="c1">⍝ Index of &quot;odd one out&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4
+</span></div></div>
+</div>
+<p>The enigmatic <code class="docutils literal notranslate"><span class="pre">⊥⍨</span></code> counts trailing 1s:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊥</span><span class="na">⍨</span><span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+</span></div></div>
+</div>
+<p>We can also use <em>Encode</em> and <em>Decode</em> between indices of an array and its ravel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">5</span> <span class="o">⍴</span><span class="m">15</span><span class="o">?</span><span class="m">15</span>
+<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">rav</span> <span class="kd">←</span> <span class="o">,</span><span class="nv">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace"> 3 0 5 12  4
+ 9 8 6  2 10
+11 7 1 14 13
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">3 0 5 12 4 9 8 6 2 10 11 7 1 14 13
+</span></div></div>
+</div>
+<p>Given <code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">←</span> <span class="pre">1</span> <span class="pre">4</span></code> into the above array, what’s the corresponding index into the ravel vector?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">index</span> <span class="kd">←</span> <span class="m">1</span> <span class="m">4</span>
+<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">k</span> <span class="kd">←</span> <span class="p">(</span><span class="o">⍴</span><span class="nv">m</span><span class="p">)</span><span class="o">⊥</span><span class="nv">index</span> <span class="c1">⍝ 2D to 1D</span>
+<span class="nv">m</span><span class="sr">[</span><span class="o">⊂</span><span class="nv">index</span><span class="sr">]</span>
+<span class="nv">k</span><span class="o">⊃</span><span class="nv">rav</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">9
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">10
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">10
+</span></div></div>
+</div>
+<p>And the reverse:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">i</span> <span class="nv">j</span><span class="kd">←</span><span class="p">(</span><span class="o">⍴</span><span class="nv">m</span><span class="p">)</span><span class="o">⊤</span><span class="nv">k</span> <span class="c1">⍝ 1D to 2D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4
+</span></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="dyadictrn.html" title="previous page">Dyadic transpose: <code class="docutils literal notranslate"><span class="pre">A⍉B</span></code></a>
+    <a class='right-next' id="next-link" href="products.html" title="next page">Products</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

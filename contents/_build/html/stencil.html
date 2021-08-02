@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Stencil operator: ⌺ &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Över operator: ⍥" href="over.html" />
+    <link rel="prev" title="The Rank/Atop operator: ⍤" href="rank.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/stencil.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fstencil.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-left-argument">
+   The left argument
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-stencil-operator">
+<h1>The Stencil operator: <code class="docutils literal notranslate"><span class="pre">⌺</span></code><a class="headerlink" href="#the-stencil-operator" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Every time I see some piece of medical research saying that caffeine is good for you, I high-five myself. Because I’m going to live forever.
+–<em>Linus Torvalds</em></p>
+</div></blockquote>
+<p>Are you familiar with Conway’s <a class="reference external" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"><em>Game of Life</em></a>? If not, it’s a cellular automaton with a deceptively simple set of rules:</p>
+<ol class="simple">
+<li><p>Any live cell with two or three live neighbours survives.</p></li>
+<li><p>Any dead cell with three live neighbours becomes a live cell.</p></li>
+<li><p>All other live cells die in the next generation.</p></li>
+</ol>
+<p>yet <em>Game of Life</em> gives rise to extraordinary complex patterns. It’s fun to implement – try it in your favourite language! Some good ones can be found on <a class="reference external" href="https://rosettacode.org/wiki/Conway%27s_Game_of_Life">Rosettacode</a>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
+<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
+</span></div></div>
+</div>
+<p><em>Game of Life</em> is a bit of an APL party trick, to the extent that it may be the only application of APL that people have heard of after seeing a <a class="reference external" href="https://www.youtube.com/watch?v=a9xAKttWgP4">famous video</a> of John Scholes’.</p>
+<p>Here’s the current champion, all 17 symbols of it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">gol</span><span class="kd">←</span><span class="kt">{</span><span class="o">≢⍸</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span> <span class="m">3</span><span class="o">∊</span><span class="na">¨</span><span class="m">3</span><span class="o">+</span><span class="m">0</span><span class="o">,</span><span class="na">¨</span><span class="o">⊢</span> <span class="c1">⍝ Generate the next generation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To run it, we first need an array with some live cells in it. Here’s an 8×8 petri dish containing a “glider”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">glider</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span>
+<span class="nv">dish</span> <span class="kd">←</span> <span class="m">8</span> <span class="m">8</span><span class="o">⍴</span><span class="m">0</span>
+<span class="nv">dish</span><span class="sr">[</span><span class="p">(</span><span class="o">⊂</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">+⍸</span><span class="nv">glider</span><span class="sr">]</span><span class="kd">←</span><span class="m">1</span>
+<span class="nv">dish</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 1 0 0
+0 0 0 1 0 1 0 0
+0 0 0 0 1 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>The glider pattern is called so because it glides across the dish. Here’s a full cycle:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">4</span><span class="o">⍴</span><span class="p">(</span><span class="nv">gol</span><span class="na">⍣</span><span class="m">1</span><span class="o">⊢</span><span class="nv">dish</span><span class="p">)(</span><span class="nv">gol</span><span class="na">⍣</span><span class="m">2</span><span class="o">⊢</span><span class="nv">dish</span><span class="p">)(</span><span class="nv">gol</span><span class="na">⍣</span><span class="m">3</span><span class="o">⊢</span><span class="nv">dish</span><span class="p">)(</span><span class="nv">gol</span><span class="na">⍣</span><span class="m">4</span><span class="o">⊢</span><span class="nv">dish</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────────────┬───────────────┬───────────────┬───────────────┐
+│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+│0 0 0 0 1 0 0 0│0 0 0 0 0 1 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+│0 0 0 0 0 1 1 0│0 0 0 0 0 0 1 0│0 0 0 0 1 0 1 0│0 0 0 0 0 0 1 0│
+│0 0 0 0 1 1 0 0│0 0 0 0 1 1 1 0│0 0 0 0 0 1 1 0│0 0 0 0 1 0 1 0│
+│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 1 0 0│0 0 0 0 0 1 1 0│
+│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+└───────────────┴───────────────┴───────────────┴───────────────┘
+</span></div></div>
+</div>
+<p>If you’d like to have the above Game of Life implementation dissected in detail, head over to <a class="reference external" href="https://dyalog.tv/Webinar/?v=3FjYly2G_QI">dyalog.tv</a>.</p>
+<p>Anyway – this APL <em>Game of Life</em> implementation is primarily a demonstration of the power and versatility of the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Stencil.htm"><em>Stencil</em></a> operator, <code class="docutils literal notranslate"><span class="pre">⌺</span></code>. In simple terms, the dyadic <em>Stencil</em> operator lets you specify a sliding window of a rank of your choice to the right and a function operating over this sliding window to the left. It makes it trivial to implement image processing filters or <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolution</a>. In essence, for the 2D case, it’s four nested for-loops, the outermost two moving the window, and the innermost two visiting every data point within the window.</p>
+<p>This is obviously a good fit for <em>Game of Life</em>: the rules are defined within a 3×3 neighbourhood, so all we need to do is count the 1s in the windows that <em>Stencil</em> delivers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">≢⍸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="nv">glider</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+</span></div></div>
+</div>
+<p>Let’s look at <em>Stencil</em> in a bit more detail. We can illustrate the sliding window using enclose as the left operand and a size 2 window over a vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">2</span><span class="o">⊢⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│0 1│1 2│2 3│3 4│4 5│5 6│6 7│7 8│8 9│
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+</span></div></div>
+</div>
+<p>But now look what happens if we increase the window size to 3, which does not divide cleanly the operand array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span><span class="o">⊢⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│0 0 1│0 1 2│1 2 3│2 3 4│3 4 5│4 5 6│5 6 7│6 7 8│7 8 9│8 9 0│
+└─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+</span></div></div>
+</div>
+<p>The first and last windows now “overhang” the edge, filling the overhang with zeros. The way to think of it is that given an odd-size window, each data point in the argument array must line up with the <em>centre</em> of the window. With even-sized windows, we have no choice, as we can’t have fractional indexing.</p>
+<p><em>Stencil</em> has a few more tricks up its sleeve. The right operand can be an array, where the first row defines the shape of the window, and the second row defines the <em>step size</em>. Again, using the vector above, we can say that we want a size 3 window, but instead of moving it one step (the default) we want to shift it three steps each time:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┐
+│0 0 1│2 3 4│5 6 7│8 9 0│
+└─────┴─────┴─────┴─────┘
+</span></div></div>
+</div>
+<p>We still have an odd-size window, and the first is centered over the first item as before. The step size, 3, dictates how far the center of the window moves, so the next window is centered over item 3 etc.</p>
+<p>With an even size we can create non-overlapping windows that don’t “overhang”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">2</span> <span class="m">2</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┐
+│0 1│2 3│4 5│6 7│8 9│
+└───┴───┴───┴───┴───┘
+</span></div></div>
+</div>
+<div class="section" id="the-left-argument">
+<h2>The left argument<a class="headerlink" href="#the-left-argument" title="Permalink to this headline">¶</a></h2>
+<p>The left operand function is actually called with a left argument; a vector indicating the number of fill arguments per axis: positive for the “before”, and negative for the “after”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍺</span> <span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span> <span class="m">3</span><span class="o">⊢</span><span class="m">3</span> <span class="m">5</span><span class="o">⍴</span><span class="nf">⎕A</span> <span class="c1">⍝ Show the left argument vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────────┬──────────┬──────────┬──────────┬───────────┐
+│┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌────┬───┐ │
+││1 1│   │ ││1 0│   │ ││1 0│   │ ││1 0│   │ ││1 ¯1│   │ │
+││   │ AB│ ││   │ABC│ ││   │BCD│ ││   │CDE│ ││    │DE │ │
+││   │ FG│ ││   │FGH│ ││   │GHI│ ││   │HIJ│ ││    │IJ │ │
+│└───┴───┘ │└───┴───┘ │└───┴───┘ │└───┴───┘ │└────┴───┘ │
+├──────────┼──────────┼──────────┼──────────┼───────────┤
+│┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌────┬───┐ │
+││0 1│ AB│ ││0 0│ABC│ ││0 0│BCD│ ││0 0│CDE│ ││0 ¯1│DE │ │
+││   │ FG│ ││   │FGH│ ││   │GHI│ ││   │HIJ│ ││    │IJ │ │
+││   │ KL│ ││   │KLM│ ││   │LMN│ ││   │MNO│ ││    │NO │ │
+│└───┴───┘ │└───┴───┘ │└───┴───┘ │└───┴───┘ │└────┴───┘ │
+├──────────┼──────────┼──────────┼──────────┼───────────┤
+│┌────┬───┐│┌────┬───┐│┌────┬───┐│┌────┬───┐│┌─────┬───┐│
+││¯1 1│ FG│││¯1 0│FGH│││¯1 0│GHI│││¯1 0│HIJ│││¯1 ¯1│IJ ││
+││    │ KL│││    │KLM│││    │LMN│││    │MNO│││     │NO ││
+││    │   │││    │   │││    │   │││    │   │││     │   ││
+│└────┴───┘│└────┴───┘│└────┴───┘│└────┴───┘│└─────┴───┘│
+└──────────┴──────────┴──────────┴──────────┴───────────┘
+</span></div></div>
+</div>
+<p>Another way to think of it is as what you need to drop to get rid of all the fillers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍺</span><span class="o">↓</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span> <span class="m">3</span><span class="o">⊢</span><span class="m">3</span> <span class="m">5</span><span class="o">⍴</span><span class="nf">⎕A</span> <span class="c1">⍝ Drop all fillers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬───┬───┬───┬──┐
+│AB│ABC│BCD│CDE│DE│
+│FG│FGH│GHI│HIJ│IJ│
+├──┼───┼───┼───┼──┤
+│AB│ABC│BCD│CDE│DE│
+│FG│FGH│GHI│HIJ│IJ│
+│KL│KLM│LMN│MNO│NO│
+├──┼───┼───┼───┼──┤
+│FG│FGH│GHI│HIJ│IJ│
+│KL│KLM│LMN│MNO│NO│
+└──┴───┴───┴───┴──┘
+</span></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="rank.html" title="previous page">The Rank/Atop operator: <code class="docutils literal notranslate"><span class="pre">⍤</span></code></a>
+    <a class='right-next' id="next-link" href="over.html" title="next page">The Över operator: <code class="docutils literal notranslate"><span class="pre">⍥</span></code></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

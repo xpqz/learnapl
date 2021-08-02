@@ -1,0 +1,1277 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HttpCommand &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The dfns workspace" href="dfnsws.html" />
+    <link rel="prev" title="Dealing with real data" href="io.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="errors.html">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/http.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fhttp.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kanye-rest">
+   Kanye.rest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-more-complex-api">
+   A more complex API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-useful-bits">
+   Other useful bits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-scraping">
+   Web scraping
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="httpcommand">
+<h1>HttpCommand<a class="headerlink" href="#httpcommand" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Ignorance more frequently begets confidence than does knowledge: it is those who know little, not those who know much, who so positively assert that this or that problem will never be solved by science. –<em>Charles Darwin</em></p>
+</div></blockquote>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
+<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
+</span></div></div>
+</div>
+<p>Ah yes, the web. I’m sure you’ve heard of it. Dyalog has a nifty http client library built in, called <code class="docutils literal notranslate"><span class="pre">HttpCommand</span></code>. In order to make us of it, we first need to load it up:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">hc</span> <span class="kd">←</span> <span class="nf">⎕SE</span><span class="na">.</span><span class="nv">SALT</span><span class="na">.</span><span class="nv">Load</span><span class="s1">&#39;HttpCommand&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This loads the <code class="docutils literal notranslate"><span class="pre">HttpCommand</span></code> class, calling it <code class="docutils literal notranslate"><span class="pre">hc</span></code>. We could also have used the Dyalog user command <code class="docutils literal notranslate"><span class="pre">]load</span> <span class="pre">HttpCommand</span></code>, which loads it as <code class="docutils literal notranslate"><span class="pre">HttpCommand</span></code> – but who wants to type all that? The above approach is also usable programmatically.</p>
+<div class="section" id="kanye-rest">
+<h2>Kanye.rest<a class="headerlink" href="#kanye-rest" title="Permalink to this headline">¶</a></h2>
+<p>There is a handy web service delivering random Kanye West quotations we can put to good use, <code class="docutils literal notranslate"><span class="pre">kanye.rest</span></code>, to demonstrate this. Kanye as a Service?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">resp</span> <span class="kd">←</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="s1">&#39;https://api.kanye.rest/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">[rc: 0 | msg: "" | HTTP Status: 200 "OK" | ⍴Data: 25]
+</span></div></div>
+</div>
+<p>What did we get back? Let’s look in the headers to start with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">0</span><span class="sr">]</span><span class="o">∊⊂</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">)</span><span class="na">⌿</span><span class="bp">⍵</span><span class="kt">}</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Headers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────┬────────────────┐
+│Content-Type│application/json│
+└────────────┴────────────────┘
+</span></div></div>
+</div>
+<p>We know JSON; good. Let’s unpack that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">body</span> <span class="kd">←</span> <span class="nf">⎕JSON</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the handy user command <code class="docutils literal notranslate"><span class="pre">]map</span></code> to show what the inside of a namespace looks like (and yes, there is no way you’d ever discover its existence without being told):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span> <span class="nv">body</span>  <span class="c1">⍝ list the fields</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.[JSON object]
+·   ~ quote
+</span></div></div>
+</div>
+<p>So the payload we’re interested in is in the <code class="docutils literal notranslate"><span class="pre">quote</span></code> field of the <code class="docutils literal notranslate"><span class="pre">body</span></code> namespace:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">body</span><span class="na">.</span><span class="nv">quote</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Manga all day
+</span></div></div>
+</div>
+<p>If we already know we’re dealing with JSON, there is a handy shortcut, called <code class="docutils literal notranslate"><span class="pre">GetJSON</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">GetJSON</span> <span class="s1">&#39;GET&#39;</span> <span class="s1">&#39;https://api.kanye.rest/&#39;</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span><span class="na">.</span><span class="nv">quote</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">There are people sleeping in parking lots
+</span></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GetJSON</span></code> will do a couple of things for us behind the scenes. It will unpack the JSON body of the http response. If we’re POSTing to the url, it will also treat a parameter namespace as the JSON body of the <em>request</em>; we’ll look at that in more detail below. One last pearl of wisdom from Kanye:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">GetJSON</span> <span class="s1">&#39;GET&#39;</span> <span class="s1">&#39;https://api.kanye.rest/&#39;</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span><span class="na">.</span><span class="nv">quote</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">I feel calm but energized
+</span></div></div>
+</div>
+<p>Thanks for that, Kanye. Here’s the seminal <a class="reference external" href="https://open.spotify.com/track/3QHPHLAkYV5cQBUYs6rowx?si=7JnJeGWiT6aGCAXr1YlRIg">Gold Digger</a>, feat. Jamie Foxx. If you’re easily offended by colorful language, that’s probably not a choon for you.</p>
+<iframe src="https://open.spotify.com/embed/track/3QHPHLAkYV5cQBUYs6rowx" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+<div class="section" id="a-more-complex-api">
+<h2>A more complex API<a class="headerlink" href="#a-more-complex-api" title="Permalink to this headline">¶</a></h2>
+<p>Anyway. Back to APL. Let’s look at a more complex API to examine a large data set. The Cloudant database <code class="docutils literal notranslate"><span class="pre">https://skruger.cloudant.com/airaccidents</span></code> contains a large data set drawn from the FAA, listing air accident reports. <a class="reference external" href="https://www.ibm.com/cloud/cloudant">Cloudant</a> is a db as a service running the open source <a class="reference external" href="https://couchdb.apache.org/">CouchDB</a> database, a JSON-over-HTTP distributed document store. Let’s pull a few documents from it and see what they look like.</p>
+<p>We’re going to hit the <code class="docutils literal notranslate"><span class="pre">_all_docs</span></code> endpoint, but as this is a large database, we only want to fetch a few documents. In order to do so, we pass the parameters <code class="docutils literal notranslate"><span class="pre">limit=3</span></code> and <code class="docutils literal notranslate"><span class="pre">include_docs=true</span></code> on the URL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">url</span> <span class="kd">←</span> <span class="s1">&#39;https://skruger.cloudant.com/airaccidents/_all_docs&#39;</span>
+<span class="p">(</span><span class="nv">params</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="p">)</span><span class="na">.</span><span class="p">(</span><span class="nv">include_docs</span> <span class="nv">limit</span><span class="p">)</span> <span class="kd">←</span> <span class="s1">&#39;true&#39;</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">resp</span> <span class="kd">←</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="nv">url</span> <span class="nv">params</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We know it’s going to be JSON, as everything in CouchDB is JSON.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">body</span> <span class="kd">←</span> <span class="nf">⎕JSON</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Data</span>
+<span class="sr">]</span><span class="nv">map</span> <span class="nv">body</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.[JSON object]
+·   ~ offset rows total_rows
+</span></div></div>
+</div>
+<p>For the <code class="docutils literal notranslate"><span class="pre">_all_docs</span></code> API endpoint, the data is returned under <code class="docutils literal notranslate"><span class="pre">rows</span></code>, and if we set the <code class="docutils literal notranslate"><span class="pre">include_docs</span></code> parameter, each of those entries will have a <code class="docutils literal notranslate"><span class="pre">doc</span></code> field, containing the document itself. Let’s look at the first one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span> <span class="nv">body</span><span class="na">.</span><span class="nv">rows</span><span class="sr">[</span><span class="m">0</span><span class="sr">]</span><span class="na">.</span><span class="nv">doc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.[JSON object].[JSON object].[JSON object]
+·   ~ Country Latitude Location Longitude Make Model Schedule _id _rev ⍙Accident⍙32⍙Number ⍙Aircraft⍙32⍙Category ⍙Aircraft⍙32⍙Damage ⍙Airport⍙32⍙Code ⍙Airport⍙32⍙Name ⍙Air⍙32⍙Carrier ⍙Amateur⍙32⍙Built ⍙Broad⍙32⍙Phase⍙32⍙of⍙32⍙Flight ⍙Engine⍙32⍙Type ⍙Event⍙32⍙Date ⍙Event⍙32⍙Id ⍙FAR⍙32⍙Description ⍙Injury⍙32⍙Severity ⍙Investigation⍙32⍙Type ⍙Number⍙32⍙of⍙32⍙Engines ⍙Publication⍙32⍙Date ⍙Purpose⍙32⍙of⍙32⍙Flight ⍙Registration⍙32⍙Number ⍙Report⍙32⍙Status ⍙Total⍙32⍙Fatal⍙32⍙Injuries ⍙Total⍙32⍙Minor⍙32⍙Injuries ⍙Total⍙32⍙Serious⍙32⍙Injuries ⍙Total⍙32⍙Uninjured ⍙Weather⍙32⍙Condition
+</span></div></div>
+</div>
+<p>Yuck. What <em>is</em> that‽ So the JSON field names aren’t valid APL names, meaning Dyalog had to mangle them when converting to namespaces. We <em>can</em> read them like that if we want to, for example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">body</span><span class="na">.</span><span class="nv">rows</span><span class="sr">[</span><span class="m">0</span><span class="sr">]</span><span class="na">.</span><span class="nv">doc</span><span class="na">.</span><span class="nv">⍙Event⍙32⍙Date</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10/10/1982
+</span></div></div>
+</div>
+<p>but it sure hurts the eyes. A handy trick if we want to quickly peer into a nested JSON namespace thing is to… turn it back into JSON, but nicer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="p">(</span><span class="nf">⎕JSON</span><span class="na">⍠</span><span class="s1">&#39;Compact&#39;</span> <span class="m">0</span><span class="p">)</span><span class="nv">body</span><span class="na">.</span><span class="nv">rows</span><span class="sr">[</span><span class="m">0</span><span class="sr">]</span><span class="na">.</span><span class="nv">doc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">{
+  "Country": "United States",
+  "Latitude": "",
+  "Location": "1/4NM S. OF PEO, OR",
+  "Longitude": "",
+  "Make": "BELLANCA",
+  "Model": "7GCBC",
+  "Schedule": "",
+  "_id": "42788bb50806d9cc7770d46953000c99",
+  "_rev": "1-0f7d34e40be0c3d4db805cf52c4adf42",
+  "Accident Number": "SEA83FYM01",
+  "Aircraft Category": "Airplane",
+  "Aircraft Damage": "Substantial",
+  "Airport Code": "",
+  "Airport Name": "",
+  "Air Carrier": "",
+  "Amateur Built": "No",
+  "Broad Phase of Flight": "CLIMB",
+  "Engine Type": "Reciprocating",
+  "Event Date": "10/10/1982",
+  "Event Id": "20020917X05139",
+  "FAR Description": "Part 91: General Aviation",
+  "Injury Severity": "Fatal(1)",
+  "Investigation Type": "Accident",
+  "Number of Engines": "1",
+  "Publication Date": "10/10/1983",
+  "Purpose of Flight": "Personal",
+  "Registration Number": "N57457",
+  "Report Status": "Probable Cause",
+  "Total Fatal Injuries": "1",
+  "Total Minor Injuries": "1",
+  "Total Serious Injuries": "0",
+  "Total Uninjured": "0",
+  "Weather Condition": "VMC"
+}
+</span></div></div>
+</div>
+<p>As before, we could have used <code class="docutils literal notranslate"><span class="pre">GetJSON</span></code> instead, and we can utilize the scalar extension behavior of arrays of namespaces to pick out all the embedded docs in the <code class="docutils literal notranslate"><span class="pre">rows</span></code> field of the CouchDB <code class="docutils literal notranslate"><span class="pre">_all_docs</span></code> response.</p>
+<p>A quirk with <code class="docutils literal notranslate"><span class="pre">GetJSON</span></code> if you’re used to, say, Python’s <code class="docutils literal notranslate"><span class="pre">requests</span></code> library, is that it will encode any parameters given as JSON and pass those in the request body, which isn’t going to work against the CouchDB API, so we need to tag on the parameters on the URL ourselves first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">GetJSON</span> <span class="s1">&#39;GET&#39;</span> <span class="p">(</span><span class="nv">url</span><span class="o">,</span><span class="s1">&#39;?include_docs=true&amp;limit=3&#39;</span><span class="p">))</span><span class="na">.</span><span class="nv">Data</span><span class="na">.</span><span class="nv">rows</span><span class="na">.</span><span class="nv">doc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace"> #.HttpCommand.[JSON object].[JSON object].[JSON object]  #.HttpCommand.[JSON object].[JSON object].[JSON object]  #.HttpCommand.[JSON object].[JSON object].[JSON object]
+</span></div></div>
+</div>
+<p>The other option is to convert the data to an array instead:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">body</span> <span class="kd">←</span> <span class="nf">⎕JSON</span><span class="na">⍠</span><span class="s1">&#39;M&#39;</span> <span class="o">⊢</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────────────────────┬──────────────────────────────────┬─┐
+│0│                      │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│total_rows            │68389                             │3│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│offset                │0                                 │3│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│rows                  │                                  │2│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│2│                      │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│id                    │42788bb50806d9cc7770d46953000c99  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│key                   │42788bb50806d9cc7770d46953000c99  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│value                 │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│rev                   │1-0f7d34e40be0c3d4db805cf52c4adf42│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│doc                   │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_id                   │42788bb50806d9cc7770d46953000c99  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_rev                  │1-0f7d34e40be0c3d4db805cf52c4adf42│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Air Carrier           │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Category     │Airplane                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Injury Severity       │Fatal(1)                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Id              │20020917X05139                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Country               │United States                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Name          │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Fatal Injuries  │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Minor Injuries  │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Uninjured       │0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Latitude              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Amateur Built         │No                                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Date            │10/10/1982                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Report Status         │Probable Cause                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Code          │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│FAR Description       │Part 91: General Aviation         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Schedule              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Publication Date      │10/10/1983                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Longitude             │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Make                  │BELLANCA                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Model                 │7GCBC                             │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Engine Type           │Reciprocating                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Serious Injuries│0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Purpose of Flight     │Personal                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Broad Phase of Flight │CLIMB                             │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Weather Condition     │VMC                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Damage       │Substantial                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Accident Number       │SEA83FYM01                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Location              │1/4NM S. OF PEO, OR               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Registration Number   │N57457                            │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Number of Engines     │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Investigation Type    │Accident                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│2│                      │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│id                    │42788bb50806d9cc7770d469530012b9  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│key                   │42788bb50806d9cc7770d469530012b9  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│value                 │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│rev                   │1-4aae09af2230b2cbb6ffec5fa2767e56│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│doc                   │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_id                   │42788bb50806d9cc7770d469530012b9  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_rev                  │1-4aae09af2230b2cbb6ffec5fa2767e56│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Air Carrier           │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Category     │Airplane                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Injury Severity       │Non-Fatal                         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Id              │20020917X05078                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Country               │United States                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Name          │CHEMUNG CO.                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Fatal Injuries  │0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Minor Injuries  │0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Uninjured       │2                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Latitude              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Amateur Built         │No                                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Date            │10/10/1982                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Report Status         │Probable Cause                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Code          │ELM                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│FAR Description       │Part 91: General Aviation         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Schedule              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Publication Date      │10/10/1983                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Longitude             │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Make                  │GLOBE                             │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Model                 │SWIFT GC-1B                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Engine Type           │Reciprocating                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Serious Injuries│0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Purpose of Flight     │Personal                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Broad Phase of Flight │APPROACH                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Weather Condition     │VMC                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Damage       │Substantial                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Accident Number       │NYC83LA007                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Location              │ELMIRA, NY                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Registration Number   │N50BS                             │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Number of Engines     │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Investigation Type    │Accident                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│2│                      │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│id                    │42788bb50806d9cc7770d46953001c8c  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│key                   │42788bb50806d9cc7770d46953001c8c  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│value                 │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│rev                   │1-0b3960a8c809e5b33b0cfb122c2fb7bb│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│3│doc                   │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_id                   │42788bb50806d9cc7770d46953001c8c  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│_rev                  │1-0b3960a8c809e5b33b0cfb122c2fb7bb│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Air Carrier           │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Category     │Airplane                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Injury Severity       │Non-Fatal                         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Id              │20020917X05079                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Country               │United States                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Name          │SULLIVAN CO. INT'L                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Fatal Injuries  │0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Minor Injuries  │0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Uninjured       │3                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Latitude              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Amateur Built         │No                                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Event Date            │10/10/1982                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Report Status         │Probable Cause                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Airport Code          │MSV                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│FAR Description       │Part 91: General Aviation         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Schedule              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Publication Date      │10/10/1983                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Longitude             │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Make                  │CESSNA                            │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Model                 │172P                              │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Engine Type           │Reciprocating                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Total Serious Injuries│0                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Purpose of Flight     │Personal                          │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Broad Phase of Flight │MANEUVERING                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Weather Condition     │VMC                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Aircraft Damage       │Substantial                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Accident Number       │NYC83LA008                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Location              │GRAHAMSVILLE, NY                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Registration Number   │N54177                            │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Number of Engines     │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│4│Investigation Type    │Accident                          │4│
+└─┴──────────────────────┴──────────────────────────────────┴─┘
+</span></div></div>
+</div>
+<p>Which is actually quite suitable for this data – the documents are completely flat. The documents themselves are at “depth 4”, as indicated by the first column.</p>
+<p>The database has a few handy indexes, too, which in CouchDB-speak is called <em>views</em>. Let’s look at a couple of those. The first view allows us to fetch documents based on the make of aircraft. Here’s the first entry in the index where the make of the plane involved was a Cessna:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">url</span> <span class="kd">←</span> <span class="s1">&#39;https://skruger.cloudant.com/airaccidents/_design/make/_view/by-make&#39;</span>
+<span class="p">(</span><span class="nv">params</span> <span class="kd">←</span> <span class="nf">⎕NS</span><span class="no">⍬</span><span class="p">)</span><span class="na">.</span><span class="p">(</span><span class="nv">limit</span> <span class="nv">reduce</span> <span class="nv">key</span><span class="p">)</span> <span class="kd">←</span> <span class="m">1</span> <span class="s1">&#39;false&#39;</span> <span class="s1">&#39;&quot;Cessna&quot;&#39;</span>
+<span class="nv">resp</span> <span class="kd">←</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="nv">url</span> <span class="nv">params</span>
+<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">body</span> <span class="kd">←</span> <span class="nf">⎕JSON</span><span class="na">⍠</span><span class="s1">&#39;M&#39;</span> <span class="o">⊢</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────────┬────────────────────────────────┬─┐
+│0│          │                                │1│
+├─┼──────────┼────────────────────────────────┼─┤
+│1│total_rows│68387                           │3│
+├─┼──────────┼────────────────────────────────┼─┤
+│1│offset    │13905                           │3│
+├─┼──────────┼────────────────────────────────┼─┤
+│1│rows      │                                │2│
+├─┼──────────┼────────────────────────────────┼─┤
+│2│          │                                │1│
+├─┼──────────┼────────────────────────────────┼─┤
+│3│id        │5b97c6d78b17b37ceff620baf9657693│4│
+├─┼──────────┼────────────────────────────────┼─┤
+│3│key       │Cessna                          │4│
+├─┼──────────┼────────────────────────────────┼─┤
+│3│value     │1                               │3│
+└─┴──────────┴────────────────────────────────┴─┘
+</span></div></div>
+</div>
+<p>This is a materialised view, keyed on make. The view iteself contains no particularly interesting information beyond the document id and the “value” 1. We can fetch this document by the id:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">url</span> <span class="kd">←</span> <span class="s1">&#39;https://skruger.cloudant.com/airaccidents/5b97c6d78b17b37ceff620baf9657693&#39;</span>
+<span class="nv">resp</span> <span class="kd">←</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="nv">url</span>
+<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">body</span> <span class="kd">←</span> <span class="nf">⎕JSON</span><span class="na">⍠</span><span class="s1">&#39;M&#39;</span> <span class="o">⊢</span> <span class="nv">resp</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────────────────────┬──────────────────────────────────┬─┐
+│0│                      │                                  │1│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│_id                   │5b97c6d78b17b37ceff620baf9657693  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│_rev                  │1-8d2e3c5096718be0236ef51ff7e0f153│4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Air Carrier           │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Aircraft Category     │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Injury Severity       │Non-Fatal                         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Event Id              │20080611X00825                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Country               │United States                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Airport Name          │PORTLAND-TROUTDALE                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Total Fatal Injuries  │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Total Minor Injuries  │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Total Uninjured       │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Latitude              │45.549444                         │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Amateur Built         │No                                │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Event Date            │05/24/2008                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Report Status         │Probable Cause                    │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Airport Code          │TTD                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│FAR Description       │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Schedule              │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Publication Date      │06/30/2008                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Longitude             │-122.401389                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Make                  │Cessna                            │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Model                 │172P                              │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Engine Type           │Reciprocating                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Total Serious Injuries│                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Purpose of Flight     │Instructional                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Broad Phase of Flight │                                  │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Weather Condition     │VMC                               │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Aircraft Damage       │Substantial                       │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Accident Number       │LAX08CA156                        │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Location              │Troutdale, OR                     │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Registration Number   │N62348                            │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Number of Engines     │1                                 │4│
+├─┼──────────────────────┼──────────────────────────────────┼─┤
+│1│Investigation Type    │Accident                          │4│
+└─┴──────────────────────┴──────────────────────────────────┴─┘
+</span></div></div>
+</div>
+<p>but perhaps more interesting is that we can do aggregations if we enable the <code class="docutils literal notranslate"><span class="pre">reduce</span></code> part of the view. We can also exploit the CouchDB API a bit further by using a POST instead, noting that we again treat the body and URL parameters separately. Let’s say we want to find the accident distribution, per make, for a make subset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">url</span> <span class="kd">←</span> <span class="s1">&#39;https://skruger.cloudant.com/airaccidents/_design/make/_view/by-make?group=true&#39;</span>
+<span class="p">(</span><span class="nv">params</span> <span class="kd">←</span> <span class="nf">⎕NS</span><span class="no">⍬</span><span class="p">)</span><span class="na">.</span><span class="nv">keys</span> <span class="kd">←</span> <span class="s1">&#39;Cessna&#39;</span> <span class="s1">&#39;Boeing&#39;</span> <span class="s1">&#39;Airbus&#39;</span> <span class="c1">⍝ Request body payload; will be JSON-encoded</span>
+<span class="nv">body</span> <span class="kd">←</span> <span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">GetJSON</span> <span class="s1">&#39;POST&#39;</span> <span class="nv">url</span> <span class="nv">params</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we’re now relying on <code class="docutils literal notranslate"><span class="pre">GetJSON</span></code> to encode our parameter list, we no longer need the ugly double-quotes in our list of keys.</p>
+<p>Reductions in CouchDB views are similar to reduces in APL. All we did there was a <code class="docutils literal notranslate"><span class="pre">+/</span></code> over the values in the view, which as we saw earlier was a “1”, grouping by key:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="p">(</span><span class="nf">⎕JSON</span><span class="na">⍠</span><span class="s1">&#39;Compact&#39;</span> <span class="m">0</span><span class="p">)</span><span class="nv">body</span><span class="na">.</span><span class="nv">rows</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">[
+  {
+    "key": "Cessna",
+    "value": 7728
+  },
+  {
+    "key": "Boeing",
+    "value": 771
+  },
+  {
+    "key": "Airbus",
+    "value": 13
+  }
+]
+</span></div></div>
+</div>
+<p>Now we’re running the risk of making this about the CouchDB API, but this is quite an interesting data set. I made a <a class="reference external" href="https://www.youtube.com/watch?v=2SXPMCvuTQA">video</a> a long time ago about it and how to process the data with map-reduce using CouchDB, and this was all inspired by a very old <a class="reference external" href="https://blog.cloudant.com/2011/01/13/mapreduce-from-the-basics-to-the-actually-useful.html">blog post</a> from Cloudant founder, <a class="reference external" href="https://www.linkedin.com/in/mlmilleratmit">Mike Miller</a>.</p>
+</div>
+<div class="section" id="other-useful-bits">
+<h2>Other useful bits<a class="headerlink" href="#other-useful-bits" title="Permalink to this headline">¶</a></h2>
+<p>You can pass a left argument 1 to <code class="docutils literal notranslate"><span class="pre">HttpCommand</span></code>’s functions to inspect what the request would have looked like had it been issued:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">GetJSON</span> <span class="s1">&#39;GET&#39;</span> <span class="s1">&#39;https://api.kanye.rest/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">GET / HTTP/1.1
+Host: api.kanye.rest
+Content-Type: application/json
+User-Agent: Dyalog/Conga
+Accept: */*
+Accept-Encoding: gzip, deflate
+
+
+</span></div></div>
+</div>
+<p>HttpCommand will strip basic auth params passed on the URL and turn them into a header instead:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="s1">&#39;https://username:password@example.com&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">GET / HTTP/1.1
+Host: example.com
+User-Agent: Dyalog/Conga
+Accept: */*
+Accept-Encoding: gzip, deflate
+Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+
+
+</span></div></div>
+</div>
+</div>
+<div class="section" id="web-scraping">
+<h2>Web scraping<a class="headerlink" href="#web-scraping" title="Permalink to this headline">¶</a></h2>
+<p>The Dyalog student competition in 2020 had a web-scraping problem set, problem 3, from <a class="reference external" href="https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase2.pdf">Phase 2</a>, asking us to find all URLs referencing PDF-files off the competition website, <a class="reference external" href="https://www.dyalog.com/student-competition.htm">https://www.dyalog.com/student-competition.htm</a>. There will be spoilers here, so if you want to have a go yourself, stop reading here.</p>
+<p>Still here? The suggestion is that we process the data as XML (<em>sigh</em>). Let’s grab that page and see what we can find:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">page</span> <span class="kd">←</span> <span class="p">(</span><span class="nv">_</span><span class="kd">←</span><span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="s1">&#39;https://www.dyalog.com/student-competition.htm&#39;</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">xml</span> <span class="kd">←</span> <span class="nf">⎕XML</span> <span class="nv">page</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we get back from <code class="docutils literal notranslate"><span class="pre">⎕XML</span></code> is a matrix with columns for depth, tag, content, attribute and type. We care only about the tag and attribute columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">tags</span> <span class="nv">attributes</span><span class="p">)</span> <span class="kd">←</span> <span class="p">(</span><span class="o">⊂</span><span class="m">1</span> <span class="m">3</span><span class="p">)</span><span class="o">⌷↓⍉</span><span class="nv">xml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To pick out URLS, we need to look at the anchor tags:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">anchors</span> <span class="kd">←</span> <span class="p">((</span><span class="o">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="na">∘</span><span class="o">≡</span><span class="na">¨</span><span class="nv">tags</span><span class="p">)</span><span class="na">/</span><span class="nv">attributes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each such tag has a set of attribute key-value pairs. Let’s grab those:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">names</span> <span class="nv">vals</span><span class="p">)</span> <span class="kd">←</span> <span class="o">↓⍉⊃⍪</span><span class="na">/</span><span class="nv">anchors</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can look through the attribute values to find things that end in <code class="docutils literal notranslate"><span class="pre">.pdf</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">pdfs</span> <span class="kd">←</span> <span class="nv">vals</span><span class="na">/⍨</span><span class="kt">{</span><span class="s1">&#39;.pdf&#39;</span><span class="na">∘</span><span class="o">≡</span><span class="m">¯4</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="nv">vals</span>
+<span class="o">↑</span><span class="m">3</span><span class="o">↑</span><span class="nv">pdfs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">uploads/files/student_competition/2020_problems_phase1.pdf
+uploads/files/student_competition/2020_problems_phase2.pdf
+uploads/files/student_competition/2019_problems_phase1.pdf
+</span></div></div>
+</div>
+<p>As we can see, these are all relative URLs. To convert to absolute, we need to extract the <code class="docutils literal notranslate"><span class="pre">base</span></code>, and prepend that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">base</span> <span class="kd">←</span> <span class="o">⊃⌽⊃</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="na">∘</span><span class="o">≡</span><span class="na">¨</span><span class="nv">tags</span><span class="p">)</span><span class="na">/</span><span class="nv">attributes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">https://www.dyalog.com/
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="m">3</span><span class="o">↑</span><span class="nv">base</span><span class="na">∘</span><span class="o">,</span><span class="na">¨</span><span class="nv">pdfs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2019_problems_phase1.pdf
+</span></div></div>
+</div>
+<p>Putting it all together, we get something like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">PastTasks</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="p">(</span><span class="nv">tags</span> <span class="nv">attributes</span><span class="p">)</span> <span class="kd">←</span> <span class="p">(</span><span class="o">⊂</span><span class="m">1</span> <span class="m">3</span><span class="p">)</span><span class="o">⌷↓⍉</span><span class="nf">⎕XML</span><span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="bp">⍵</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span>
+    <span class="p">(</span><span class="nv">names</span> <span class="nv">vals</span><span class="p">)</span> <span class="kd">←</span> <span class="o">↓⍉⊃⍪</span><span class="na">/</span><span class="p">((</span><span class="o">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="na">∘</span><span class="o">≡</span><span class="na">¨</span><span class="nv">tags</span><span class="p">)</span><span class="na">/</span><span class="nv">attributes</span> <span class="c1">⍝ Names and values of attributes of anchor tags</span>
+    <span class="nv">pdfs</span> <span class="kd">←</span> <span class="nv">vals</span><span class="na">/⍨</span><span class="kt">{</span><span class="s1">&#39;.pdf&#39;</span><span class="na">∘</span><span class="o">≡</span><span class="m">¯4</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="nv">vals</span>
+    <span class="nv">base</span> <span class="kd">←</span> <span class="o">⊃⌽⊃</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="na">∘</span><span class="o">≡</span><span class="na">¨</span><span class="nv">tags</span><span class="p">)</span><span class="na">/</span><span class="nv">attributes</span>
+    <span class="nv">base</span><span class="na">∘</span><span class="o">,</span><span class="na">¨</span><span class="nv">pdfs</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s what we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">PastTasks</span> <span class="s1">&#39;https://www.dyalog.com/student-competition.htm&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2019_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2019_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2018_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2018_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2017_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2017_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2016_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2016_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2015_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2015_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2014_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2014_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2013_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2013_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2012_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2011_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2010_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2009_problems.pdf       
+</span></div></div>
+</div>
+<p>For the sake of completeness, we could equally have solved this with some filthy regexing if we were so inclined:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">PastTasksRE</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">body</span> <span class="kd">←</span> <span class="p">(</span><span class="nv">hc</span><span class="na">.</span><span class="nv">Get</span> <span class="bp">⍵</span><span class="p">)</span><span class="na">.</span><span class="nv">Data</span>
+    <span class="nv">pdfs</span> <span class="kd">←</span> <span class="s1">&#39;&lt;a href=&quot;(.+?\.pdf)&quot;&#39;</span><span class="nf">⎕S</span><span class="s1">&#39;\1&#39;</span><span class="o">⊢</span><span class="nv">body</span>
+    <span class="nv">base</span> <span class="kd">←</span> <span class="s1">&#39;&lt;base href=&quot;(.+?)&quot;&#39;</span><span class="nf">⎕S</span><span class="s1">&#39;\1&#39;</span><span class="o">⊢</span><span class="nv">body</span>
+    <span class="nv">base</span><span class="o">,</span><span class="na">¨</span><span class="nv">pdfs</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">PastTasksRE</span> <span class="s1">&#39;https://www.dyalog.com/student-competition.htm&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2019_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2019_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2018_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2018_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2017_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2017_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2016_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2016_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2015_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2015_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2014_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2014_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2013_problems_phase1.pdf
+https://www.dyalog.com/uploads/files/student_competition/2013_problems_phase2.pdf
+https://www.dyalog.com/uploads/files/student_competition/2012_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2011_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2010_problems.pdf       
+https://www.dyalog.com/uploads/files/student_competition/2009_problems.pdf       
+</span></div></div>
+</div>
+<p>So which one is better? I wrote a bit on this topic on my guest <a class="reference external" href="https://www.dyalog.com/blog/2021/04/2020-problem-solving-competition-phase-ii-highlights/">blog post on Dyalog’s blog</a>. In this case, as we <em>know</em> that the page is valid XML, we can delegate a lot of complexity to the <code class="docutils literal notranslate"><span class="pre">⎕XML</span></code> function, such as different quotes, whitespace etc, which we’d need to be explicit about in anything regexy if we wanted it to be robust. However, regular expressions are hard to beat when looking for complex patterns in textual data. If the page had <em>not</em> been correct XML, it would have been a lot harder solving this problem without reaching for regular expressions.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="io.html" title="previous page">Dealing with real data</a>
+    <a class='right-next' id="next-link" href="dfnsws.html" title="next page">The dfns workspace</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

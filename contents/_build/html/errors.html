@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error handling &#8212; Learning APL</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The APL Way" href="aplway.html" />
+    <link rel="prev" title="Partitions" href="cookbook1.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo2.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Learning APL</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   It’s arrays all the way down
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manip.html">
+   Glyphiary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Direct functions and operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="key.html">
+   The Key operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="at.html">
+   The At operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     @
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rank.html">
+   The Rank/Atop operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍤
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stencil.html">
+   The Stencil operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⌺
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="over.html">
+   The Över operator:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dyadictrn.html">
+   Dyadic transpose:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A⍉B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decode.html">
+   Encode decode:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊤⊥
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="products.html">
+   Products
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tacit.html">
+   Trainspotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="find.html">
+   Finding things
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook1.html">
+   Partitions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Error handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aplway.html">
+   The APL Way
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="namespaces.html">
+   Namespaces
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NS
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Dealing with real data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="http.html">
+   HttpCommand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dfnsws.html">
+   The dfns workspace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="workflow.html">
+   A Dyalog workflow. Or two.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="next.html">
+   What now?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tldr.html">
+   Too long; didn’t read
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/errors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Ferrors.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="error-handling">
+<h1>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Controlling complexity is the essence of computer programming. –<em>Brian Kernighan</em></p>
+</div></blockquote>
+<p>Other resources on the topic:</p>
+<ul class="simple">
+<li><p>Dyalog docs: <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm">Error guards</a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Errors/APL%20Errors.htm">Error codes</a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/signal.htm">Signal event</a></p></li>
+<li><p>Dyalog webinars: <a class="reference external" href="https://dyalog.tv/Webinar/?v=tDK0AKXXRAk">Part 1</a>, <a class="reference external" href="https://dyalog.tv/Webinar/?v=PSrXyk5tN6o">Part 2</a>, <a class="reference external" href="https://dyalog.tv/Webinar/?v=jkD-iQfjo_Q">Part 3</a>, <a class="reference external" href="https://dyalog.tv/Webinar/?v=G7Ht8iKvDMo">Part 4</a></p></li>
+</ul>
+<p>By now you will have encountered a range of errors where Dyalog takes objection to something you wrote, like for example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">vec</span> <span class="kd">←</span> <span class="o">⍳</span><span class="m">10</span>
+<span class="m">50</span><span class="o">⊃</span><span class="nv">vec</span>      <span class="c1">⍝ INDEX ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INDEX ERROR
+      50⊃vec      ⍝ INDEX ERROR
+        ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you’re used to a Java or Python stack trace, the errors thrown by Dyalog will appear spartan, but after a bit of experience, they’re actually <em>blissfully</em> spartan, not unlike APL itself. As an aside, the K language is even more brutal in its simplicity here.</p>
+<p>So how do you deal with errors? There is no <code class="docutils literal notranslate"><span class="pre">try-catch-throw</span></code> exception mechanism to draw on. What we have instead is the concept of an <em>error guard</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">pick50</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="m">3</span><span class="bp">::</span><span class="s1">&#39;out of range&#39;</span> <span class="c1">⍝ Error guard, catching INDEX ERROR</span>
+    <span class="m">50</span><span class="o">⊃</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">pick50</span> <span class="o">⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">out of range
+</span></div></div>
+</div>
+<p>An error guard takes an array of error numbers to the left, and an expression to be returned to the right, separated by two colons. Simple, right? Wrong.</p>
+<p>Here’s a rather contrived function that prepends a 1 to its left argument and then multiplies it with the inverse of its right argument. We want to protect against division by zero, in which case we just want to return the 1 prepended to the left argument, like so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">f</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">nums</span><span class="kd">←</span><span class="m">1</span> <span class="bp">⍺</span>
+    <span class="m">0</span><span class="o">=</span><span class="bp">⍵:</span><span class="nv">nums</span>
+    <span class="nv">nums</span><span class="o">×÷</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">4</span> <span class="nv">f</span> <span class="m">0</span>
+<span class="m">4</span> <span class="nv">f</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0.5 2
+</span></div></div>
+</div>
+<p>This seems like a job for an error guard. Division by zero in this case will throw a <code class="docutils literal notranslate"><span class="pre">DOMAIN</span> <span class="pre">ERROR</span></code>, which has a code of 11.</p>
+<p>Try to predict what happens before revealing the actual result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">fbug</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Can you spot the bug?</span>
+    <span class="m">11</span><span class="bp">::</span><span class="nv">nums</span>
+    <span class="nv">nums</span><span class="kd">←</span><span class="m">1</span> <span class="bp">⍺</span>
+    <span class="nv">nums</span><span class="o">×÷</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">4</span> <span class="nv">fbug</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VALUE ERROR: Undefined name: nums
+fbug[1] 11::nums
+            ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happens is that the local environment is unwound <em>before</em> the error-guard’s body is evaluated. To get the behavior we wanted we’d need to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">fnew</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Now correct</span>
+    <span class="nv">nums</span><span class="kd">←</span><span class="m">1</span> <span class="bp">⍺</span>
+    <span class="m">11</span><span class="bp">::</span><span class="nv">nums</span>
+    <span class="nv">nums</span><span class="o">×÷</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">4</span> <span class="nv">fnew</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4
+</span></div></div>
+</div>
+<p>The other subtlety is that following the <em>setting</em> of an error guard, subsequent calls disable tail-call optimization:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">g</span> <span class="kd">←</span> <span class="kt">{</span> 
+    <span class="m">3</span><span class="bp">::</span><span class="s1">&#39;out of range&#39;</span> <span class="c1">⍝ Error guard, catching INDEX ERROR</span>
+    <span class="nv">h</span> <span class="bp">⍺</span><span class="o">⊃</span><span class="bp">⍵</span> <span class="c1">⍝ No longer a tail call, due to precense of error guard</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can be worked around by localizing the error guard in its own dfn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">g</span> <span class="kd">←</span> <span class="kt">{</span> 
+    <span class="nv">val</span> <span class="kd">←</span> <span class="bp">⍺</span> <span class="kt">{</span><span class="m">3</span><span class="bp">::</span><span class="s1">&#39;out of range&#39;</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">⊃</span><span class="bp">⍵</span><span class="kt">}</span> <span class="bp">⍵</span>
+    <span class="nv">h</span> <span class="nv">val</span> <span class="c1">⍝ Tail call</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The mapping of numeric error code to error message can be found in Dyalog’s documentation, referenced above, or via the system function <code class="docutils literal notranslate"><span class="pre">⎕EM</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕EM</span><span class="o">⍳</span><span class="m">10</span> <span class="c1">⍝ ...and the rest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬────────────┬───────────┬──────────┬────────────┬───────────┬────────────┬───────┬───────┬───────────┐
+│WS FULL│SYNTAX ERROR│INDEX ERROR│RANK ERROR│LENGTH ERROR│VALUE ERROR│FORMAT ERROR│ERROR 8│ERROR 9│LIMIT ERROR│
+└───────┴────────────┴───────────┴──────────┴────────────┴───────────┴────────────┴───────┴───────┴───────────┘
+</span></div></div>
+</div>
+<p>Error guards can also be stacked if you want to take different actions for different kinds of errors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">g</span> <span class="kd">←</span> <span class="kt">{</span> 
+    <span class="m">3</span><span class="bp">::</span><span class="s1">&#39;handle index error&#39;</span>
+    <span class="m">4</span><span class="bp">::</span><span class="s1">&#39;handle rank error&#39;</span>
+    <span class="m">11</span><span class="bp">::</span><span class="s1">&#39;handle domain error&#39;</span>
+    <span class="c1">⍝ error-prone function body here</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>or if you want a catch-all for the errors you think you might encounter, the guard takes a vector to the left:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">g</span> <span class="kd">←</span> <span class="kt">{</span> 
+    <span class="m">3</span> <span class="m">4</span> <span class="m">11</span><span class="bp">::</span><span class="s1">&#39;it all went pear-shaped in some way&#39;</span>
+    <span class="c1">⍝ error-prone function body here</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also (sort of) throw “exceptions”. You may have noticed the definition for <code class="docutils literal notranslate"><span class="pre">assert</span></code> I’ve used here and there already:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕SIGNAL</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span> <span class="m">0</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>assertion failure
+      assert 0=1
+      ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">⎕SIGNAL</span></code> ambivalent system function <em>throws</em> an error of the number given by its right argument, presenting as the corresponding message from the vector given by <code class="docutils literal notranslate"><span class="pre">⎕EM</span></code> if no left argument is given, or by the left argument if given, as is the case in the <code class="docutils literal notranslate"><span class="pre">assert</span></code> function above. In other words, we could for example claim that the “workspace is full” by throwing error 1, somewhat duplicitously:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕SIGNAL</span> <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WS FULL
+      ⎕SIGNAL 1
+      ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">assert</span></code> function we make use of an error code that isn’t used by Dyalog normally, error 8:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕SIGNAL</span> <span class="m">8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 8
+      ⎕SIGNAL 8
+      ∧
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            kernelName: "dyalog-kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="cookbook1.html" title="previous page">Partitions</a>
+    <a class='right-next' id="next-link" href="aplway.html" title="next page">The APL Way</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Stefan Kruger, Computational Array and Magic<br/>
+        
+          <div class="extra_footer">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

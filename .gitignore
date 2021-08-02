@@ -50,7 +50,6 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-*_build
 
 
 # Translations
@@ -140,5 +139,3 @@ dmypy.json
 
 # OSX
 .DS_Store
-
-*/_build/*
