@@ -40,7 +40,7 @@ fnew ← { ⍝ Now correct
 ]dinput
 g ← { 
     3::'out of range' ⍝ Error guard, catching INDEX ERROR
-    h ⍺⊃⍵ ⍝ No longer a tail call, due to precense of error guard
+    h ⍺⊃⍵ ⍝ No longer a tail call, due to presense of error guard
 }
 
 ]dinput
