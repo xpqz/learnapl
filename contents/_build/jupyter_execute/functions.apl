@@ -2,7 +2,7 @@
 ]box on
 ]rows on
 
-assert←{⍺←'assertion failure' ⋄ 0∊⍵:⍺ ⎕signal 8 ⋄ shy←0}
+assert ← {⍺ ← 'assertion failure' ⋄ 0∊⍵: ⍺ ⎕signal 8 ⋄ shy ← 0}
 
 ]dinput
 MyFirstFunction ← {
@@ -21,10 +21,10 @@ Sum ← {
 
 32 Sum 98
 
-{⍺←¯99 ⋄ ⍺+⍵} 99
-57 {⍺←¯99 ⋄ ⍺+⍵} 99
+{⍺ ← ¯99 ⋄ ⍺+⍵} 99
+57 {⍺ ← ¯99 ⋄ ⍺+⍵} 99
 
-{⍺←¯99 ⋄ ⍺←¯999999 ⋄ ⍺+⍵} 99
+{⍺ ← ¯99 ⋄ ⍺ ← ¯999999 ⋄ ⍺+⍵} 99
 
 ]dinput
 sum ← {
@@ -68,9 +68,9 @@ foo ← {⎕IO←0
 }
 
 ]dinput
-foo←{
-    a←45
-    _←{a←¯99⋄⍬}⍬
+foo ← {
+    a ← 45
+    _ ← {a←¯99}⍬
     a
 }
 
@@ -79,17 +79,17 @@ foo ⍬ ⍝ Note: 45, not ¯99
 ]dinput
 foo ← {
     a ← 45
-    _ ← {a +← 45 ⋄ ⍬}⍬
+    _ ← {a +← 45}⍬
     a
 }
 
-⊢r ← foo ⍬
+⎕ ← r ← foo ⍬
 assert r=90
 
 ]dinput
 foo ← {
     a ← 45
-    _ ← {a ⊢← ¯99 ⋄ ⍬}⍬
+    _ ← {a ⊢← ¯99}⍬
     a
 }
 
@@ -99,11 +99,11 @@ assert r=¯99
 ]dinput
 foo ← {
     a ← 3 3⍴1 ⍝ 3×3 matrix of all 1
-    _ ← {a[1;1] ← 0 ⋄ ⍬}⍬
+    _ ← {a[1;1] ← 0}⍬
     a
 }
 
-⊢r ← foo ⍬
+⎕ ← r ← foo ⍬
 assert r≡3 3⍴1 1 1 1 0 1 1 1 1 
 
 2 (+/) ⍳10 ⍝ Parentheses not required, added for illustrative purposes

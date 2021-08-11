@@ -1,7 +1,7 @@
 ⎕IO ← 0
 ]box on -s=min
 ]rows on
-assert←{⍺←'assertion failure' ⋄ 0∊⍵:⍺ ⎕signal 8 ⋄ shy←0}
+assert ← {⍺ ← 'assertion failure' ⋄ 0∊⍵: ⍺ ⎕signal 8 ⋄ shy ← 0}
 
 ×⍨¨1+⍳9  ⍝ Square elements via each (but see below!)
 
@@ -47,11 +47,11 @@ assert←{⍺←'assertion failure' ⋄ 0∊⍵:⍺ ⎕signal 8 ⋄ shy←0}
 ]dinput
 Sum ← {
     ⍺ ← 0        ⍝ Left arg defaults to 0 if not given
-    0=≢⍵:⍺       ⍝ If right arg is empty, return left arg
+    0=≢⍵: ⍺      ⍝ If right arg is empty, return left arg
     (⍺+⊃⍵)∇1↓⍵   ⍝ Add head to acc, recur over tail
 }
 
-⊢mysum ← Sum 1 2 3 4 5 6 7 8 9
+⎕ ← mysum ← Sum 1 2 3 4 5 6 7 8 9
 assert mysum=+/1 2 3 4 5 6 7 8 9
 
 ]dinput
@@ -67,7 +67,7 @@ assert myscan≡+⍀1 2 3 4 5 6 7 8 9
 ]dinput
 Fib ← { ⍝ Tail-recursive Fibonacci.
     ⍺ ← 0 1
-    ⍵=0:⊃⍺
+    ⍵=0: ⊃⍺
     (1↓⍺,+/⍺)∇⍵-1
 }
 
@@ -75,7 +75,7 @@ Fib¨⍳10 ⍝ The 10 first Fibonacci numbers
 
 ]dinput
 Quicksort ← {
-    1≥≢⍵:⍵
+    1≥≢⍵: ⍵
     S ← {⍺⌿⍨⍺ ⍺⍺ ⍵}
     ⍵((∇<S),=S,(∇>S))⍵⌷⍨?≢⍵
 }
@@ -136,7 +136,7 @@ data ← ⊃⊃⎕NGET'../kmp.txt'1 ⍝ From http://rosalind.info/problems/kmp/
 
 cmpx 'prefix1 data' 'prefix2 data'
 
-data ← ⍳100000 ⍝ A meeeeelion numbers
+data ← ⍳100000 ⍝ A loooot of numbers
 cmpx 'data ⍳ 17777' '17777 bsearch data' ⍝ Look for the number 17777
 
 ⎕ ← nesty ← (1 2 3 (3 4 (5 6)) 7)

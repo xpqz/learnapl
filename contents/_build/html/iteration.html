@@ -405,8 +405,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#recur">
-   Recur:
+  <a class="reference internal nav-link" href="#del">
+   Del:
    <code class="docutils literal notranslate">
     <span class="pre">
      ∇
@@ -444,15 +444,15 @@
 Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div></blockquote>
 <p>We started all this by claiming that there are no loops in APL. This is of course not entirely true: there are plenty of ways of achieving iteration, some of which are more efficient than others.</p>
-<p>In order to get the best possible performance out of APL, it’s worth seeking data-parallel algorithms, typically employing boolean masks. However, it’s not always possible, or sometimes performance matters less than code complexity, and a more iterative solution can be both clearer and fast enough.</p>
-<p>We have at least four, maybe five different kinds of iteration mechanisms at our disposal: <em>Map</em> (<code class="docutils literal notranslate"><span class="pre">¨</span></code>), <em>Reduce</em> (<code class="docutils literal notranslate"><span class="pre">⌿</span></code>), <em>Recur</em> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) and <em>Power</em> (<code class="docutils literal notranslate"><span class="pre">⍣</span></code>). The fifth is that of <em>scalar extension</em>, which can either be seen as a way of achieving iteration, or as a way of <em>avoiding</em> iteration, depending on your point of view. Wait, is it six? Maybe we should count <em>Rank</em> (<code class="docutils literal notranslate"><span class="pre">⍤</span></code>), too? <em>Rank</em> deserves its own separate <a class="reference internal" href="rank.html"><span class="doc std std-doc">section</span></a>! Oh, and <em>Scan</em> (<code class="docutils literal notranslate"><span class="pre">⍀</span></code>), don’t forget <em>Scan</em>!</p>
+<p>In order to get the best possible performance out of APL, it’s worth seeking data-parallel algorithms, typically employing Boolean masks. However, it’s not always possible, or sometimes performance matters less than code complexity, and a more iterative solution can be both clearer and fast enough.</p>
+<p>We have at least four, maybe five different kinds of iteration mechanisms at our disposal: <em>Each</em> (<code class="docutils literal notranslate"><span class="pre">¨</span></code>), <em>Reduce</em> (<code class="docutils literal notranslate"><span class="pre">⌿</span></code>), <em>Del</em> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) and <em>Power</em> (<code class="docutils literal notranslate"><span class="pre">⍣</span></code>). The fifth is that of <em>scalar extension</em>, which can either be seen as a way of achieving iteration, or as a way of <em>avoiding</em> iteration, depending on your point of view. Wait, is it six? Maybe we should count <em>Rank</em> (<code class="docutils literal notranslate"><span class="pre">⍤</span></code>), too? <em>Rank</em> deserves its own separate <a class="reference internal" href="rank.html"><span class="doc std std-doc">section</span></a>! Oh, and <em>Scan</em> (<code class="docutils literal notranslate"><span class="pre">⍀</span></code>), don’t forget <em>Scan</em>!</p>
 <p>Let’s introduce them.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
 <span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
 <span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
-<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+<span class="nv">assert</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:</span> <span class="bp">⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span> <span class="kd">←</span> <span class="m">0</span><span class="kt">}</span>
 </pre></div>
 </div>
 </div>
@@ -477,7 +477,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 <p>Of course, seasoned Pythonistas would rightly frown at the above and instead recommend a <em>list comprehension</em>.</p>
 <p>A map takes a function and applies it to every element in an array, creating a result array of the same length as its argument.</p>
-<p>In APL, the glyph for map – usually referred to as <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Each%20with%20Monadic%20Operand.htm"><em>Each</em></a> – is two high dots: <code class="docutils literal notranslate"><span class="pre">¨</span></code>.</p>
+<p>In APL, the glyph for map – referred to as <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Each%20with%20Monadic%20Operand.htm"><em>Each</em></a> – is two high dots: <code class="docutils literal notranslate"><span class="pre">¨</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍨¨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">9</span>  <span class="c1">⍝ Square elements via each (but see below!)</span>
@@ -704,8 +704,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 <p>The <a class="reference external" href="https://help.dyalog.com/latest/#Language/System%20Functions/Character%20Input%20Output.htm"><em>Quad-quote-gets</em></a> (<code class="docutils literal notranslate"><span class="pre">⍞←</span></code>) combo prints values without newlines. The final result is also returned, the expected 6.</p>
 </div>
-<div class="section" id="recur">
-<h2>Recur: <code class="docutils literal notranslate"><span class="pre">∇</span></code><a class="headerlink" href="#recur" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="del">
+<h2>Del: <code class="docutils literal notranslate"><span class="pre">∇</span></code><a class="headerlink" href="#del" title="Permalink to this headline">¶</a></h2>
 <p>Dyalog has a most excellent, concise and efficient <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm">recursion operator</a>, <code class="docutils literal notranslate"><span class="pre">∇</span></code>. It allows you to express recursive algorithms in a natural, almost Lisp-like fashion. The interpreter has a very good <a class="reference external" href="https://en.wikipedia.org/wiki/Tail_call">TCO</a> implementation.</p>
 <p>Let’s start with making our own version of sum-reduce, this time without actually using the <em>Reduce</em> operator.</p>
 <div class="cell docutils container">
@@ -713,7 +713,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">Sum</span> <span class="kd">←</span> <span class="kt">{</span>
     <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">0</span>        <span class="c1">⍝ Left arg defaults to 0 if not given</span>
-    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>       <span class="c1">⍝ If right arg is empty, return left arg</span>
+    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="bp">⍺</span>      <span class="c1">⍝ If right arg is empty, return left arg</span>
     <span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>   <span class="c1">⍝ Add head to acc, recur over tail</span>
 <span class="kt">}</span>
 </pre></div>
@@ -722,7 +722,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">mysum</span> <span class="kd">←</span> <span class="nv">Sum</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">mysum</span> <span class="kd">←</span> <span class="nv">Sum</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
 <span class="nv">assert</span> <span class="nv">mysum</span><span class="o">=+</span><span class="na">/</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
 </pre></div>
 </div>
@@ -732,18 +732,18 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </span></div></div>
 </div>
 <p>Yup, that seems to work; good.</p>
-<p>The glyph <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm"><em>Recur</em></a> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the current innermost dfn. If your dfn has a name, you can substitute it for the actual function name. In our case, the last line could equally well have been written:</p>
+<p>The glyph <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm"><em>Del</em></a> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the current innermost dfn. If your dfn has a name, you can substitute it for the actual function name. In our case, the last line could equally well have been written:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="nv">sum</span> <span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>
 </pre></div>
 </div>
 <p>However, using the glyph has a number of advantages: it’s more concise, immune to function name changes, and works equally well for anonymous dfns.</p>
 <p>Our <code class="docutils literal notranslate"><span class="pre">Sum</span></code> dfn follows a common pattern: we accumulate something as the left argument, and decrease the right argument, either by magnitude, or as in this case, by dropping items off the front of a vector.</p>
 <p>The recursion termination guard,</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="bp">⍺</span>
 </pre></div>
 </div>
-<p>simply states that if the right argument is empty, we should return our accumulator. The recursive call itself is “add the head of the right argument to the accumulator, and recur on this to the left, and the tail to the right”.</p>
-<p>If the last thing the function does is a function call, and this includes a <em>Recur</em> call, this is what’s called a <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Tail%20Calls.htm"><em>tail call</em></a> which the Dyalog interpreter can handle without the addition of an extra stack frame. If you’re using <em>Recur</em>, strive to make your functions tail-recursive – avoid making your function do any work on the value you get back from the recurring line.</p>
+<p>simply states that, if the right argument is empty, we should return our accumulator. The recursive call itself is “add the head of the right argument to the accumulator, and recur on this to the left, and the tail to the right”.</p>
+<p>If the last thing the function does is a function call, and this includes <em>Del</em>, this is what’s called a <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Tail%20Calls.htm"><em>tail call</em></a> which the Dyalog interpreter can handle without the addition of an extra stack frame. If you’re using <em>Del</em>, strive to make your functions tail-recursive – avoid making your function do any work on the value you get back from the recurring line.</p>
 <p>For a fractionally more involved example, let’s write our own <em>sum-scan</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -778,7 +778,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">Fib</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Tail-recursive Fibonacci.</span>
     <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">0</span> <span class="m">1</span>
-    <span class="bp">⍵</span><span class="o">=</span><span class="m">0</span><span class="bp">:</span><span class="o">⊃</span><span class="bp">⍺</span>
+    <span class="bp">⍵</span><span class="o">=</span><span class="m">0</span><span class="bp">:</span> <span class="o">⊃</span><span class="bp">⍺</span>
     <span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍺</span><span class="o">,+</span><span class="na">/</span><span class="bp">⍺</span><span class="p">)</span><span class="bp">∇⍵</span><span class="o">-</span><span class="m">1</span>
 <span class="kt">}</span>
 </pre></div>
@@ -802,7 +802,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">Quicksort</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="m">1</span><span class="o">≥≢</span><span class="bp">⍵:⍵</span>
+    <span class="m">1</span><span class="o">≥≢</span><span class="bp">⍵:</span> <span class="bp">⍵</span>
     <span class="nv">S</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span><span class="na">⌿⍨</span><span class="bp">⍺</span> <span class="bp">⍺⍺</span> <span class="bp">⍵</span><span class="kt">}</span>
     <span class="bp">⍵</span><span class="p">((</span><span class="bp">∇</span><span class="o">&lt;</span><span class="nv">S</span><span class="p">)</span><span class="o">,=</span><span class="nv">S</span><span class="o">,</span><span class="p">(</span><span class="bp">∇</span><span class="o">&gt;</span><span class="nv">S</span><span class="p">))</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">?≢</span><span class="bp">⍵</span>
 <span class="kt">}</span>
@@ -984,22 +984,23 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.0E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-  prefix2 data → 2.1E¯1 | -80% ⎕⎕⎕⎕⎕⎕⎕⎕                                
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.1E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  prefix2 data → 3.0E¯1 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
 </span></div></div>
 </div>
 <p>Quite a staggering difference for such an innocuous change, perhaps.</p>
-<p>The binary search implementation we concluded the previous section above with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a million or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>. Except when it doesn’t:</p>
+<p>The binary search implementation we concluded the previous section above with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a hundred thousand or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>!</p>
+<p>Except when it doesn’t:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⍳</span><span class="m">100000</span> <span class="c1">⍝ A meeeeelion numbers</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⍳</span><span class="m">100000</span> <span class="c1">⍝ A loooot of numbers</span>
 <span class="nv">cmpx</span> <span class="s1">&#39;data ⍳ 17777&#39;</span> <span class="s1">&#39;17777 bsearch data&#39;</span> <span class="c1">⍝ Look for the number 17777</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.5E¯6 |     0% ⎕⎕⎕                                     
-  17777 bsearch data → 1.9E¯5 | +1133% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.1E¯6 |     0% ⎕                                       
+  17777 bsearch data → 3.4E¯5 | +2904% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 </span></div></div>
 </div>
 <p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate if there are no other alternatives.</p>
