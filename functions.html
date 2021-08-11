@@ -415,8 +415,8 @@
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>)ed name
 </pre></div>
 </div>
-<p>if you want to create a function called <code class="docutils literal notranslate"><span class="pre">name</span></code>. RIDE will open its function editor and let you enter your code there. Once you want to test your function, you first need to save it, which in APL-speak is called “to fix your function”. The default way (and you’re unlikely to ever discover this by yourself) to fix (save) your function is to hit “escape”. Yes, really. Fortunately – and I recommend you do so right now – RIDE allows you to re-bind keystrokes by clicking on the little keyboard symbol in the top-right corner.</p>
-<p>Locate the row that says “Fix the current function” and map that to the key combo that is <code class="docutils literal notranslate"><span class="pre">save</span></code> on your platform. And whilst you’re there, make a note of the keys binding to “Forward” and “Backward” – they default to ctrl-shift-enter and ctrl-shift-backspace. In the REPL, these mean forward/back in the history of executed lines, like the arrow keys in the shell. The arrow keys instead moves up and down spatially, in the <em>output</em>, still, to me an incomprehensible design decision. You might also want to rebind “Strong interrupt” to ctrl-c while you’re at it.</p>
+<p>if you want to create a function called <code class="docutils literal notranslate"><span class="pre">name</span></code>. RIDE will open its function editor and let you enter your code there. Once you want to test your function, you first need to save it, which in APL-speak is called “to fix your function”. The default way (and you’re unlikely to ever discover this by yourself) to fix (save) your function is to hit <kbd>esc</kbd>. Yes, really. Fortunately – and I recommend you do so right now – RIDE allows you to re-bind keystrokes by clicking on the little keyboard symbol in the top-right corner.</p>
+<p>Locate the row that says “Fix the current function” and map that to the key combo that is <code class="docutils literal notranslate"><span class="pre">save</span></code> on your platform. And whilst you’re there, make a note of the keys binding to “Forward” and “Backward” – they default to <kbd>ctrl-shift-enter</kbd> and <kbd>ctrl-shift-backspace</kbd>. In the REPL, these mean forward/back in the history of executed lines, like the arrow keys in the shell. The arrow keys instead move up and down spatially, in the <em>output</em>, still, to me an incomprehensible design decision. You might also want to rebind “Strong interrupt” to <kbd>ctrl-c</kbd> while you’re at it.</p>
 <p>The other thing to note is that in RIDE there is no visual cue that an editor window contains unsaved changes. This is sure to bite you sooner or later.</p>
 <p>In a Jupyter notebook, like here, entering functions might feel a bit more familiar: just type them into a cell. The only quirk is that in order to enter a multi-line dfn, you need to start the cell with <code class="docutils literal notranslate"><span class="pre">]dinput</span></code> (which isn’t needed in a RIDE edit window). You <em>can</em> actually use the <code class="docutils literal notranslate"><span class="pre">]dinput</span></code> way of entering a multi-line function in the interpreter REPL, too, but (in my opinion) it’s rather cumbersome unless you’re just cutting and pasting from somewhere else. In the upcoming (at the time of writing) version 18.1 there is experimental support for being able to type in multi-line functions directly in the REPL, similar to how that works in Python’s REPL.</p>
 <p>First, our now familiar prelude:</p>
@@ -436,7 +436,7 @@
 <p>We’re also going to make some assertions, so let’s have a helper function for that, courtesy of APL legend Roger Hui (and not speculating on its inner workings for now):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:</span> <span class="bp">⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span> <span class="kd">←</span> <span class="m">0</span><span class="kt">}</span>
 </pre></div>
 </div>
 </div>
@@ -495,8 +495,8 @@
 <p>A useful feature is that you can set a default value for the left argument, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Compare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
-<span class="m">57</span> <span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+<span class="m">57</span> <span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
 </pre></div>
 </div>
 </div>
@@ -508,7 +508,7 @@
 <p>This way a function can behave in different ways depending on if it is called monadically or dyadically. If you give a value to <code class="docutils literal notranslate"><span class="pre">⍺</span></code> with <code class="docutils literal notranslate"><span class="pre">←</span></code>, then <code class="docutils literal notranslate"><span class="pre">⍺</span></code> will have this value if you didn’t pass a left argument to the function. On the other hand, if you <em>do</em> pass a left argument, the “alpha gets” line has no effect. When defaulting the left argument this way, note that this only works for the <em>first</em> time you give a value to alpha, which is perhaps obvious when you think of it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="kd">←</span><span class="m">¯999999</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="m">¯99</span> <span class="p">⋄</span> <span class="bp">⍺</span> <span class="kd">←</span> <span class="m">¯999999</span> <span class="p">⋄</span> <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="kt">}</span> <span class="m">99</span>
 </pre></div>
 </div>
 </div>
@@ -516,7 +516,7 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">0
 </span></div></div>
 </div>
-<p>Setting a default value for the left argument is a useful tool if you write recursive dfns, which typically accumulate their result on the left argument. This way you can call the function monadically to start, but subsequent iterations can use the left argument to build up the result. We’ll talk more about recursion later in the chapter on <a class="reference internal" href="iteration.html"><span class="doc std std-doc">iteration techniques</span></a>, but here’s a taster to demonstrate the default left argument technique. The glyph <em>Recur</em> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the innermost function:</p>
+<p>Setting a default value for the left argument is a useful tool if you write recursive dfns, which typically accumulate their result on the left argument. This way you can call the function monadically to start, but subsequent iterations can use the left argument to build up the result. We’ll talk more about recursion later in the chapter on <a class="reference internal" href="iteration.html"><span class="doc std std-doc">iteration techniques</span></a>, but here’s a taster to demonstrate the default left argument technique. The glyph <em>Del</em> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the innermost function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
@@ -641,9 +641,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">foo</span><span class="kd">←</span><span class="kt">{</span>
-    <span class="nv">a</span><span class="kd">←</span><span class="m">45</span>
-    <span class="nv">_</span><span class="kd">←</span><span class="kt">{</span><span class="nv">a</span><span class="kd">←</span><span class="m">¯99</span><span class="p">⋄</span><span class="no">⍬</span><span class="kt">}</span><span class="no">⍬</span>
+<span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span>
+    <span class="nv">a</span> <span class="kd">←</span> <span class="m">45</span>
+    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span><span class="kd">←</span><span class="m">¯99</span><span class="kt">}</span><span class="no">⍬</span>
     <span class="nv">a</span>
 <span class="kt">}</span>
 </pre></div>
@@ -676,7 +676,7 @@
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span>
     <span class="nv">a</span> <span class="kd">←</span> <span class="m">45</span>
-    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span> <span class="o">+</span><span class="kd">←</span> <span class="m">45</span> <span class="p">⋄</span> <span class="no">⍬</span><span class="kt">}</span><span class="no">⍬</span>
+    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span> <span class="o">+</span><span class="kd">←</span> <span class="m">45</span><span class="kt">}</span><span class="no">⍬</span>
     <span class="nv">a</span>
 <span class="kt">}</span>
 </pre></div>
@@ -685,7 +685,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
 <span class="nv">assert</span> <span class="nv">r</span><span class="o">=</span><span class="m">90</span>
 </pre></div>
 </div>
@@ -700,7 +700,7 @@
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span>
     <span class="nv">a</span> <span class="kd">←</span> <span class="m">45</span>
-    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span> <span class="o">⊢</span><span class="kd">←</span> <span class="m">¯99</span> <span class="p">⋄</span> <span class="no">⍬</span><span class="kt">}</span><span class="no">⍬</span>
+    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span> <span class="o">⊢</span><span class="kd">←</span> <span class="m">¯99</span><span class="kt">}</span><span class="no">⍬</span>
     <span class="nv">a</span>
 <span class="kt">}</span>
 </pre></div>
@@ -724,7 +724,7 @@
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">foo</span> <span class="kd">←</span> <span class="kt">{</span>
     <span class="nv">a</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="c1">⍝ 3×3 matrix of all 1</span>
-    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;</span><span class="m">1</span><span class="sr">]</span> <span class="kd">←</span> <span class="m">0</span> <span class="p">⋄</span> <span class="no">⍬</span><span class="kt">}</span><span class="no">⍬</span>
+    <span class="nv">_</span> <span class="kd">←</span> <span class="kt">{</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;</span><span class="m">1</span><span class="sr">]</span> <span class="kd">←</span> <span class="m">0</span><span class="kt">}</span><span class="no">⍬</span>
     <span class="nv">a</span>
 <span class="kt">}</span>
 </pre></div>
@@ -733,7 +733,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">r</span> <span class="kd">←</span> <span class="nv">foo</span> <span class="no">⍬</span>
 <span class="nv">assert</span> <span class="nv">r</span><span class="o">≡</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> 
 </pre></div>
 </div>
@@ -759,7 +759,7 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 5 7 9 11 13 15 17
 </span></div></div>
 </div>
-<p>Here we see the monadic reduction operator, its sole operand being the plus function. The derived function it returns, plus-reduce, is called dyadically, with 2 to its left and <code class="docutils literal notranslate"><span class="pre">⍳10</span></code> to its right. In this case, a windowed reduction. We could have said:</p>
+<p>Here we see the monadic reduction operator, its sole operand being the plus function. The derived function it returns, plus-reduce, is called dyadically, with 2 to its left and <code class="docutils literal notranslate"><span class="pre">⍳10</span></code> to its right. In this case, a windowed reduction. We could have said</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">sumred</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span>
