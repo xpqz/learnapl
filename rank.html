@@ -842,7 +842,7 @@
 </div>
 <div class="section" id="atop">
 <h2>Atop<a class="headerlink" href="#atop" title="Permalink to this headline">¶</a></h2>
-<p>As we mentioned above, from version 18 of Dyalog, <code class="docutils literal notranslate"><span class="pre">⍤</span></code> can also be <em>Atop</em> if given a right operand function instead of array. We’ll see more of different kinds of <em>Atop</em> later, but for now it’s a functional composition rule, stating that (for the dyadic case),</p>
+<p>As we mentioned above, from version 18 of Dyalog, <code class="docutils literal notranslate"><span class="pre">⍤</span></code> can also be <em>Atop</em> if given a right operand function instead of array. We’ll see more of different kinds of <em>Atop</em> later in the <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> chapter, but for now it’s a functional composition rule, stating that (for the dyadic case),</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">X</span> <span class="nv">f</span><span class="na">⍤</span><span class="nv">g</span> <span class="nv">Y</span> <span class="kd">→</span> <span class="nv">f</span> <span class="nv">X</span> <span class="nv">g</span> <span class="nv">Y</span>
 </pre></div>
 </div>
@@ -853,7 +853,40 @@
 <span class="nv">X</span> <span class="nv">f</span><span class="na">⍤</span><span class="nv">g</span> <span class="nv">Y</span> <span class="kd">→</span> <span class="nv">f</span> <span class="nv">X</span> <span class="nv">g</span> <span class="nv">Y</span>
 </pre></div>
 </div>
-<p>As the monadic <em>Atop</em> is equivalent for <code class="docutils literal notranslate"><span class="pre">∘</span></code> and <code class="docutils literal notranslate"><span class="pre">⍤</span></code>, it’s worth using <code class="docutils literal notranslate"><span class="pre">⍤</span></code> for both monadic and dyadic atops for consistency.</p>
+<p>Another way to think about it is that in the dyadic case, the difference between <code class="docutils literal notranslate"><span class="pre">∘</span></code> and <code class="docutils literal notranslate"><span class="pre">⍤</span></code> is which operand function (<code class="docutils literal notranslate"><span class="pre">f</span></code> or <code class="docutils literal notranslate"><span class="pre">g</span></code>) gets the left argument. In the monadic case, <em>Atop</em> is equivalent for <code class="docutils literal notranslate"><span class="pre">∘</span></code> and <code class="docutils literal notranslate"><span class="pre">⍤</span></code>, so it’s worth using <code class="docutils literal notranslate"><span class="pre">⍤</span></code> for both monadic and dyadic atops for consistency.</p>
+<p>Here is a simple example of a dyadic <em>Atop</em>,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="o">-</span><span class="na">⍤</span><span class="o">+</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="c1">⍝ Negate the sum of two vectors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯5 ¯7 ¯9
+</span></div></div>
+</div>
+<p>which, following the <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">f⍤g</span> <span class="pre">Y</span> <span class="pre">→</span> <span class="pre">f</span> <span class="pre">X</span> <span class="pre">g</span> <span class="pre">Y</span></code> rule, is the same as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span><span class="o">+</span><span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="c1">⍝ Negate the sum of two vectors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯5 ¯7 ¯9
+</span></div></div>
+</div>
+<p>or, as a tacit formulation (which we’ll cover in more detail later),</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="p">(</span><span class="o">-+</span><span class="p">)</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="c1">⍝ Negate the sum of two vectors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯5 ¯7 ¯9
+</span></div></div>
+</div>
 </div>
 </div>
 
