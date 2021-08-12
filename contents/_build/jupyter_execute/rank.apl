@@ -63,4 +63,10 @@ A/⍤1⊢B
 ]DISPLAY ⊖⍤2⊢t
 ]DISPLAY ⊖⍤1⊢t
 
+1 2 3 -⍤+ 4 5 6 ⍝ Negate the sum of two vectors
+
+-1 2 3+4 5 6 ⍝ Negate the sum of two vectors
+
+1 2 3 (-+) 4 5 6 ⍝ Negate the sum of two vectors
+
 
