@@ -396,7 +396,7 @@
 <p>Here’s the current champion, all 17 symbols of it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">gol</span><span class="kd">←</span><span class="kt">{</span><span class="o">≢⍸</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span> <span class="m">3</span><span class="o">∊</span><span class="na">¨</span><span class="m">3</span><span class="o">+</span><span class="m">0</span><span class="o">,</span><span class="na">¨</span><span class="o">⊢</span> <span class="c1">⍝ Generate the next generation</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">gol</span> <span class="kd">←</span> <span class="kt">{</span><span class="o">≢⍸</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span> <span class="m">3</span><span class="o">∊</span><span class="na">¨</span><span class="m">3</span><span class="o">+</span><span class="m">0</span><span class="o">,</span><span class="na">¨</span><span class="o">⊢</span> <span class="c1">⍝ Generate the next generation</span>
 </pre></div>
 </div>
 </div>
@@ -406,7 +406,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">glider</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span>
 <span class="nv">dish</span> <span class="kd">←</span> <span class="m">8</span> <span class="m">8</span><span class="o">⍴</span><span class="m">0</span>
-<span class="nv">dish</span><span class="sr">[</span><span class="p">(</span><span class="o">⊂</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">+⍸</span><span class="nv">glider</span><span class="sr">]</span><span class="kd">←</span><span class="m">1</span>
+<span class="nv">dish</span><span class="sr">[</span><span class="p">(</span><span class="o">⊂</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">+⍸</span><span class="nv">glider</span><span class="sr">]</span> <span class="kd">←</span> <span class="m">1</span>
 <span class="nv">dish</span>
 </pre></div>
 </div>
@@ -485,7 +485,7 @@
 <p><em>Stencil</em> has a few more tricks up its sleeve. The right operand can be an array, where the first row defines the shape of the window, and the second row defines the <em>step size</em>. Again, using the vector above, we can say that we want a size 3 window, but instead of moving it one step (the default), we want to shift it three steps each time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="o">⍪</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
@@ -499,7 +499,7 @@
 <p>With an even size we can create non-overlapping windows that don’t overhang,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">2</span> <span class="m">2</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="o">⍪</span><span class="m">2</span> <span class="m">2</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
