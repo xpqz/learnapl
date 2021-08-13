@@ -458,7 +458,7 @@
 <p>Let’s look at <em>Stencil</em> in a bit more detail. We can illustrate the sliding window using enclose as the left operand and a size 2 window over a vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">2</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="m">2</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
@@ -468,10 +468,10 @@
 └───┴───┴───┴───┴───┴───┴───┴───┴───┘
 </span></div></div>
 </div>
-<p>But now look what happens if we increase the window size to 3, which does not divide cleanly the operand array:</p>
+<p>But now look what happens if we increase the window size to 3:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="m">3</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
@@ -481,11 +481,11 @@
 └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
 </span></div></div>
 </div>
-<p>The first and last windows now “overhang” the edge, filling the overhang with zeros. The way to think of it is that given an odd-size window, each data point in the argument array must line up with the <em>centre</em> of the window. With even-sized windows, we have no choice, as we can’t have fractional indexing.</p>
-<p><em>Stencil</em> has a few more tricks up its sleeve. The right operand can be an array, where the first row defines the shape of the window, and the second row defines the <em>step size</em>. Again, using the vector above, we can say that we want a size 3 window, but instead of moving it one step (the default) we want to shift it three steps each time:</p>
+<p>The first and last windows now “overhang” the edge, filling the overhang with zeros. The way to think of it is that each data point in the argument array must line up with the <em>centre</em> of the window.</p>
+<p><em>Stencil</em> has a few more tricks up its sleeve. The right operand can be an array, where the first row defines the shape of the window, and the second row defines the <em>step size</em>. Again, using the vector above, we can say that we want a size 3 window, but instead of moving it one step (the default), we want to shift it three steps each time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">3</span> <span class="m">3</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
@@ -496,10 +496,10 @@
 </span></div></div>
 </div>
 <p>We still have an odd-size window, and the first is centered over the first item as before. The step size, 3, dictates how far the center of the window moves, so the next window is centered over item 3 etc.</p>
-<p>With an even size we can create non-overlapping windows that don’t “overhang”:</p>
+<p>With an even size we can create non-overlapping windows that don’t overhang,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">2</span> <span class="m">2</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="m">2</span> <span class="m">1</span><span class="o">⍴</span><span class="m">2</span> <span class="m">2</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
 </pre></div>
 </div>
 </div>
@@ -507,6 +507,19 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┐
 │0 1│2 3│4 5│6 7│8 9│
 └───┴───┴───┴───┴───┘
+</span></div></div>
+</div>
+<p>and, of course, even-sized, non-overlapping windows that <em>do</em> overhang, too, if that’s what we want:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌺</span><span class="p">(</span><span class="o">⍪</span><span class="m">4</span> <span class="m">4</span><span class="p">)</span><span class="o">⊢⍳</span><span class="m">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬───────┬───────┐
+│0 0 1 2│3 4 5 6│7 8 9 0│
+└───────┴───────┴───────┘
 </span></div></div>
 </div>
 <div class="section" id="the-left-argument">
