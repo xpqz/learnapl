@@ -17,7 +17,7 @@
 {5+⍵} 0 2 4 6 8 10 ⍝ Left operand applied to elements selected by right operand
 
 ]dinput
-_At_←{ ⍝ Partial @ - left and right operands must be functions, and the right arg a vector
+_At_ ← { ⍝ Partial @ - left and right operands must be functions, and the right arg a vector
     mutator ← ⍺⍺                   ⍝ Left operand -- function only
     selector ← ⍵⍵                  ⍝ Right operand -- function only
     data ← ⍵                       ⍝ Derived function right argument -- vector only. Note: copy
@@ -31,7 +31,7 @@ _At_←{ ⍝ Partial @ - left and right operands must be functions, and the righ
 {5+⍵}_At_{0=2|⍵} ⍳12
 
 ]dinput
-_At_←{ ⍝ Partial @ - left and right operands must be functions, and the right arg a vector
+_At_ ← { ⍝ Partial @ - left and right operands must be functions, and the right arg a vector
     data ← ⍵
     (mask/data) ← ⍺⍺ (mask←⍵⍵ ⍵)/⍵
     data
@@ -43,23 +43,23 @@ _At_←{ ⍝ Partial @ - left and right operands must be functions, and the righ
 
 -@(0 0)(2 2) ⊢ 3 3⍴1 2 3 4 5 6 7 8 9 ⍝ Negate corners of main diagonal by choose indexing
 
-⊢G←2 3⍴('Adam' 1)('Bob' 2)('Carl' 3)('Danni' 4)('Eve' 5)('Frank' 6)
-'***' ¯999@((0 0)0)((1 2)1) ⊢ G
+⎕ ← G ← 2 3⍴('Adam' 1)('Bob' 2)('Carl' 3)('Danni' 4)('Eve' 5)('Frank' 6)
+'***' ¯999@((0 0)0)((1 2)1)⊢G
 
-' '@(=∘'-')⊢'Hello-World-One-Two'
+' '@(=∘'-') 'Hello-World-One-Two'
 
 {⍵@(1+⍳⍴⍵)⊢0⍴⍨2+⍴⍵} 2 2⍴1 1 1 1 
 
 ]DISPLAY array ← ?10 3⍴10
 ]DISPLAY 1 2 3 4 {⍺⍺(⍵⍵⌷⍨∘⊂⍳)@(∊∘⍺⍺)⍵} 0 10 100 1000 ⊢ array 
 
-A←1 2 3 4
-B←11 22 33 44
-C←0 1 0 1
+A ← 1 2 3 4
+B ← 11 22 33 44
+C ← 0 1 0 1
 (C/⍥,B)@{C}A
 
 (C/B)@{C}A
 
-(C/A)←C/B
+(C/A) ← C/B
 
 A
