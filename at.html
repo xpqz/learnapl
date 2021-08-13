@@ -377,7 +377,7 @@
 <div><p>Once you understand how to write a program get someone else to write it.
 –<em>Alan Perlis</em></p>
 </div></blockquote>
-<p>Let’s look at the powerful immutable array update operator, <em>At</em> (<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>). By “immutable” in this context we mean non-destructive – it creates a new array, rather than mutating in place. Immutability is a good thing.</p>
+<p>Let’s look at the powerful immutable array update operator, <em>At</em> (<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>). By “immutable”, in this context, we mean non-destructive – it creates a new array, rather than mutating in place. Immutability is a good thing.</p>
 <p>The dyadic <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator has a lot of moving parts, and we won’t cover all possible combinations here.</p>
 <p>References for <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>:</p>
 <ul class="simple">
@@ -399,7 +399,7 @@
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> can take both functions and arrays as either operand. In its simplest form, the left operand specifies values, and the right operand indexes:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> can take both functions and arrays as either operand. In its simplest form, the left operand specifies values, and the right operand indices:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="na">@</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span><span class="o">⊢</span><span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span>
@@ -481,7 +481,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">_At_</span><span class="kd">←</span><span class="kt">{</span> <span class="c1">⍝ Partial @ - left and right operands must be functions, and the right arg a vector</span>
+<span class="nv">_At_</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Partial @ - left and right operands must be functions, and the right arg a vector</span>
     <span class="nv">mutator</span> <span class="kd">←</span> <span class="bp">⍺⍺</span>                   <span class="c1">⍝ Left operand -- function only</span>
     <span class="nv">selector</span> <span class="kd">←</span> <span class="bp">⍵⍵</span>                  <span class="c1">⍝ Right operand -- function only</span>
     <span class="nv">data</span> <span class="kd">←</span> <span class="bp">⍵</span>                       <span class="c1">⍝ Derived function right argument -- vector only. Note: copy</span>
@@ -509,7 +509,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">_At_</span><span class="kd">←</span><span class="kt">{</span> <span class="c1">⍝ Partial @ - left and right operands must be functions, and the right arg a vector</span>
+<span class="nv">_At_</span> <span class="kd">←</span> <span class="kt">{</span> <span class="c1">⍝ Partial @ - left and right operands must be functions, and the right arg a vector</span>
     <span class="nv">data</span> <span class="kd">←</span> <span class="bp">⍵</span>
     <span class="p">(</span><span class="nv">mask</span><span class="na">/</span><span class="nv">data</span><span class="p">)</span> <span class="kd">←</span> <span class="bp">⍺⍺</span> <span class="p">(</span><span class="nv">mask</span><span class="kd">←</span><span class="bp">⍵⍵</span> <span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span>
     <span class="nv">data</span>
@@ -528,16 +528,16 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">5 1 7 3 9 5 11 7 13 9 15 11
 </span></div></div>
 </div>
-<p>We used leading and trailing underscores when naming our operator to indicate visually that it’s a dyad, as suggested by the unofficial <a class="reference external" href="https://abrudz.github.io/style/#cc">style guide</a>.</p>
+<p>We used leading and trailing underscores when naming our operator to indicate visually that it’s a dyad, as suggested by Adám Brudzewsky’s unofficial <a class="reference external" href="https://abrudz.github.io/style/#cc">style guide</a>.</p>
 <div class="section" id="higher-rank-choose-and-reach">
 <h2>Higher rank: choose and reach<a class="headerlink" href="#higher-rank-choose-and-reach" title="Permalink to this headline">¶</a></h2>
 <p>The real <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> has many more tricks up its sleeve, of course. It can also be applied to arrays of any rank, not just vectors.</p>
-<p>If we look at <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/At.htm">Dyalog’s specification of <code class="docutils literal notranslate"><span class="pre">&#64;</span></code></a> we have</p>
+<p>If we look at <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/At.htm">Dyalog’s specification</a> of <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> we have</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="nv">X</span><span class="kt">}</span><span class="p">(</span><span class="nv">f</span><span class="na">@</span><span class="nv">g</span><span class="p">)</span><span class="nv">Y</span>
 </pre></div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">g</span></code> is a simple vector, it chooses <em>major cells</em> in Y. If g is nested, it specifies indices for <em>choose</em> or <em>reach</em> indexing. What does that mean, then? One way to think of it is that the g vector behaves just as if it had been inserted between square brackets.</p>
-<p>The first case is straight-forward: the major cells of an array is basically those given by the first axis of the shape. In the case of a 2-D matrix, its rows:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">g</span></code> is a simple vector, it chooses <em>major cells</em> in <code class="docutils literal notranslate"><span class="pre">Y</span></code>. If <code class="docutils literal notranslate"><span class="pre">g</span></code> is nested, it specifies indices for <em>choose</em> or <em>reach</em> indexing. What does that mean, then? One way to think of it is that the <code class="docutils literal notranslate"><span class="pre">g</span></code> vector behaves just as if it had been inserted between square brackets.</p>
+<p>The first case is straightforward: the major cells of an array are those given by the first axis of the shape. In the case of a 2D matrix, its rows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="na">@</span><span class="m">0</span> <span class="m">2</span> <span class="o">⊢</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ Negate rows 0 and 2: major cells</span>
@@ -563,11 +563,11 @@
  7 8 ¯9
 </span></div></div>
 </div>
-<p>We can also access elements that are deeply nested using <em>reach indexing</em> which we met briefly in the <a class="reference internal" href="indexing.html"><span class="doc std std-doc">indexing</span></a> section:</p>
+<p>We can also access elements that are deeply nested using <em>reach indexing</em>, which we met briefly in the <a class="reference internal" href="indexing.html"><span class="doc std std-doc">indexing</span></a> section:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">G</span><span class="kd">←</span><span class="m">2</span> <span class="m">3</span><span class="o">⍴</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span> <span class="m">1</span><span class="p">)(</span><span class="s1">&#39;Bob&#39;</span> <span class="m">2</span><span class="p">)(</span><span class="s1">&#39;Carl&#39;</span> <span class="m">3</span><span class="p">)(</span><span class="s1">&#39;Danni&#39;</span> <span class="m">4</span><span class="p">)(</span><span class="s1">&#39;Eve&#39;</span> <span class="m">5</span><span class="p">)(</span><span class="s1">&#39;Frank&#39;</span> <span class="m">6</span><span class="p">)</span>
-<span class="s1">&#39;***&#39;</span> <span class="m">¯999</span><span class="na">@</span><span class="p">((</span><span class="m">0</span> <span class="m">0</span><span class="p">)</span><span class="m">0</span><span class="p">)((</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span><span class="m">1</span><span class="p">)</span> <span class="o">⊢</span> <span class="nv">G</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">G</span> <span class="kd">←</span> <span class="m">2</span> <span class="m">3</span><span class="o">⍴</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span> <span class="m">1</span><span class="p">)(</span><span class="s1">&#39;Bob&#39;</span> <span class="m">2</span><span class="p">)(</span><span class="s1">&#39;Carl&#39;</span> <span class="m">3</span><span class="p">)(</span><span class="s1">&#39;Danni&#39;</span> <span class="m">4</span><span class="p">)(</span><span class="s1">&#39;Eve&#39;</span> <span class="m">5</span><span class="p">)(</span><span class="s1">&#39;Frank&#39;</span> <span class="m">6</span><span class="p">)</span>
+<span class="s1">&#39;***&#39;</span> <span class="m">¯999</span><span class="na">@</span><span class="p">((</span><span class="m">0</span> <span class="m">0</span><span class="p">)</span><span class="m">0</span><span class="p">)((</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span><span class="m">1</span><span class="p">)</span><span class="o">⊢</span><span class="nv">G</span>
 </pre></div>
 </div>
 </div>
@@ -599,7 +599,7 @@
 <p><strong>Replace dashes with spaces</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="na">@</span><span class="p">(</span><span class="o">=</span><span class="na">∘</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">⊢</span><span class="s1">&#39;Hello-World-One-Two&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="na">@</span><span class="p">(</span><span class="o">=</span><span class="na">∘</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="s1">&#39;Hello-World-One-Two&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -661,9 +661,9 @@
 <p>Given two arrays A, B and a boolean filter C, select items from A where C is false and from B where C is true:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
-<span class="nv">B</span><span class="kd">←</span><span class="m">11</span> <span class="m">22</span> <span class="m">33</span> <span class="m">44</span>
-<span class="nv">C</span><span class="kd">←</span><span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span> <span class="kd">←</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+<span class="nv">B</span> <span class="kd">←</span> <span class="m">11</span> <span class="m">22</span> <span class="m">33</span> <span class="m">44</span>
+<span class="nv">C</span> <span class="kd">←</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span>
 <span class="p">(</span><span class="nv">C</span><span class="na">/⍥</span><span class="o">,</span><span class="nv">B</span><span class="p">)</span><span class="na">@</span><span class="kt">{</span><span class="nv">C</span><span class="kt">}</span><span class="nv">A</span>
 </pre></div>
 </div>
@@ -686,7 +686,7 @@
 <p>All that says is: replace the true spots (as defined by C) in A with the true spots (as defined by C) from B, which we could also do as an assignable indexing expression if we don’t mind mutating A:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">C</span><span class="na">/</span><span class="nv">A</span><span class="p">)</span><span class="kd">←</span><span class="nv">C</span><span class="na">/</span><span class="nv">B</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">C</span><span class="na">/</span><span class="nv">A</span><span class="p">)</span> <span class="kd">←</span> <span class="nv">C</span><span class="na">/</span><span class="nv">B</span>
 </pre></div>
 </div>
 </div>
