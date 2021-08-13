@@ -360,13 +360,13 @@
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
 <span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
@@ -376,10 +376,11 @@
 <li><p>Dyalog <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Key.htm">docs</a></p></li>
 <li><p>APL Orchard <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-5-even-more-apl-operators--">cultivation</a> (also covering <em>Stencil</em>)</p></li>
 </ul>
-<p>The function derived by <em>Key</em> is ambivalent (can be called either monadically or dyadically). The operand function can be any dyadic function returning a value. Let’s start with the monadic case.</p>
+<p>The function derived by <em>Key</em> is ambivalent (can be called either monadically or dyadically). The operand function can be any dyadic function returning a value.</p>
+<p>Let’s look at the derived function, when called monadically:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -406,7 +407,7 @@
 <p>In this case, the operator function is called with each unique element from the argument array in turn as the left argument, and a vector of indices where they occur. If we wanted this to be a histogram, all we need to to is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -430,12 +431,12 @@
 └──────┴─┘
 </span></div></div>
 </div>
-<p>In its dyadic form, <em>Key</em> takes each unique element to the left, and groups the corresponding elements from the right. In other words, the following two formulations do the same thing:</p>
+<p>In the dyadic form, <em>Key</em> takes each unique element to the left, and groups the corresponding elements from the right. In other words, the following two formulations do the same thing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">names</span> <span class="kd">←</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;bill&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;eric&#39;</span> <span class="s1">&#39;sue&#39;</span>
-<span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">names</span>
-<span class="nv">names</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="o">⍳≢</span><span class="nv">names</span>
+<span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="nv">names</span>
+<span class="nv">names</span> <span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="o">⍳≢</span><span class="nv">names</span>
 </pre></div>
 </div>
 </div>
@@ -479,7 +480,7 @@
 <p>Let’s look at a slightly more involved example. Here are the Rugby Union Gallagher English Premiership results for Jan, 2021, home fixtures only. The 0-0 games were COVID cancellations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">scores</span><span class="kd">←</span><span class="s1">&#39;London Irish,31-22&#39;</span> <span class="s1">&#39;Wasps,17-49&#39;</span> <span class="s1">&#39;Gloucester,26-31&#39;</span> <span class="s1">&#39;Worcester Warriors,17-21&#39;</span> <span class="s1">&#39;Bristol,48-3&#39;</span> <span class="s1">&#39;Leicester Tigers,15-25&#39;</span> <span class="s1">&#39;Harlequins,27-27&#39;</span> <span class="s1">&#39;Newcastle Falcons,22-10&#39;</span> <span class="s1">&#39;Exeter Chiefs,7-20&#39;</span> <span class="s1">&#39;Northampton Saints,0-0&#39;</span> <span class="s1">&#39;Bath,44-52&#39;</span> <span class="s1">&#39;Sale,20-13&#39;</span> <span class="s1">&#39;London Irish,0-0&#39;</span> <span class="s1">&#39;Leicester Tigers,36-31&#39;</span> <span class="s1">&#39;Wasps,34-5&#39;</span> <span class="s1">&#39;Gloucester,19-22&#39;</span> <span class="s1">&#39;Bristol,29-17&#39;</span> <span class="s1">&#39;Worcester Warriors,0-0&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">results</span> <span class="kd">←</span> <span class="s1">&#39;London Irish,31-22&#39;</span> <span class="s1">&#39;Wasps,17-49&#39;</span> <span class="s1">&#39;Gloucester,26-31&#39;</span> <span class="s1">&#39;Worcester Warriors,17-21&#39;</span> <span class="s1">&#39;Bristol,48-3&#39;</span> <span class="s1">&#39;Leicester Tigers,15-25&#39;</span> <span class="s1">&#39;Harlequins,27-27&#39;</span> <span class="s1">&#39;Newcastle Falcons,22-10&#39;</span> <span class="s1">&#39;Exeter Chiefs,7-20&#39;</span> <span class="s1">&#39;Northampton Saints,0-0&#39;</span> <span class="s1">&#39;Bath,44-52&#39;</span> <span class="s1">&#39;Sale,20-13&#39;</span> <span class="s1">&#39;London Irish,0-0&#39;</span> <span class="s1">&#39;Leicester Tigers,36-31&#39;</span> <span class="s1">&#39;Wasps,34-5&#39;</span> <span class="s1">&#39;Gloucester,19-22&#39;</span> <span class="s1">&#39;Bristol,29-17&#39;</span> <span class="s1">&#39;Worcester Warriors,0-0&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -487,17 +488,51 @@
 <p>We’ll do some quick and dirty slicing and dicing to separate team names from results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">table</span><span class="kd">←</span><span class="nf">⎕CSV</span> <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;,&#39;</span><span class="o">⊢</span><span class="nv">scores</span><span class="p">)</span><span class="s1">&#39;&#39;</span><span class="m">4</span>
-<span class="nv">teams</span><span class="kd">←</span><span class="o">⊣</span><span class="na">/</span><span class="nv">table</span>
-<span class="nv">scores</span><span class="kd">←</span><span class="nv">table</span><span class="sr">[;</span><span class="m">1</span> <span class="m">2</span><span class="sr">]</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">table</span> <span class="kd">←</span> <span class="nf">⎕CSV</span> <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;,&#39;</span><span class="o">⊢</span><span class="nv">results</span><span class="p">)</span><span class="s1">&#39;&#39;</span><span class="m">4</span>
+<span class="nv">teams</span> <span class="kd">←</span> <span class="o">⊣</span><span class="na">/</span><span class="nv">table</span>
+<span class="nv">scores</span> <span class="kd">←</span> <span class="nv">table</span><span class="sr">[;</span><span class="m">1</span> <span class="m">2</span><span class="sr">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>To illustrate the similarity with SQL’s GROUP BY, by using dyadic <em>Key</em> we can group the scores under each team:</p>
+<p>which gives us</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">teams</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">scores</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">6</span><span class="o">⍴</span><span class="nv">teams</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────┬─────────────────┬─────────────┬──────────────────┬───────┬──────────────────┐
+│London Irish│Wasps            │Gloucester   │Worcester Warriors│Bristol│Leicester Tigers  │
+├────────────┼─────────────────┼─────────────┼──────────────────┼───────┼──────────────────┤
+│Harlequins  │Newcastle Falcons│Exeter Chiefs│Northampton Saints│Bath   │Sale              │
+├────────────┼─────────────────┼─────────────┼──────────────────┼───────┼──────────────────┤
+│London Irish│Leicester Tigers │Wasps        │Gloucester        │Bristol│Worcester Warriors│
+└────────────┴─────────────────┴─────────────┴──────────────────┴───────┴──────────────────┘
+</span></div></div>
+</div>
+<p>and</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">6</span><span class="o">⍴↓</span><span class="nv">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┬─────┬─────┐
+│31 22│17 49│26 31│17 21│48 3 │15 25│
+├─────┼─────┼─────┼─────┼─────┼─────┤
+│27 27│22 10│7 20 │0 0  │44 52│20 13│
+├─────┼─────┼─────┼─────┼─────┼─────┤
+│0 0  │36 31│34 5 │19 22│29 17│0 0  │
+└─────┴─────┴─────┴─────┴─────┴─────┘
+</span></div></div>
+</div>
+<p>To illustrate the similarity with SQL’s <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, by using dyadic <em>Key</em>, we can group the scores under each team:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">teams</span> <span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span> <span class="nv">scores</span>
 </pre></div>
 </div>
 </div>
@@ -618,7 +653,7 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">is
 </span></div></div>
 </div>
-<p>This is just guarding against a special case – should the function be passed an empty argument we don’t want to error:</p>
+<p>This is just guarding against a special case – should the function be passed an empty argument, we don’t want to error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">0</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="o">⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;&#39;</span> <span class="c1">⍝ Note: DOMAIN ERROR</span>
@@ -647,7 +682,7 @@
 <p>Anyway. After prepending a zero-col, we pick the <em>last</em> column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span><span class="s1">&#39;Mississippi&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="na">/</span><span class="m">0</span><span class="o">,⊢</span><span class="na">⌸</span> <span class="s1">&#39;Mississippi&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +734,7 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">abc
 </span></div></div>
 </div>
-<p>This is of course to do with the excluding of zeros from the last column. Unfortunately we rely on zero being the template element for the array, so sadly we can’t prepend, say, a negative number instead of zero for ⎕IO-independence:</p>
+<p>This is, of course, to do with the excluding of zeros from the last column. Unfortunately, as we rely on 0 being the <a class="reference external" href="help.dyalog.com/18.0/index.htm#Language/Introduction/Variables/Prototypes%20and%20Fill%20Items.htm">fill item</a> for the array, so sadly we can’t prepend, say, a negative number instead of 0 for ⎕IO-independence:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">¯1</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">¯1</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;abc&#39;</span> <span class="c1">⍝ Whilst this works....</span>
@@ -715,7 +750,7 @@
 <p>Here are some drills on <em>Key</em>, suggested by Roger Hui in his <a class="reference external" href="https://www.jsoftware.com/papers/APL_exercises/">APL Exercises</a>. Try to work out in your head what the answers are before you reveal:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="kd">←</span><span class="s1">&#39;Supercalifragilisticexpialidocious&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span> <span class="kd">←</span> <span class="s1">&#39;Supercalifragilisticexpialidocious&#39;</span>
 
 <span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
 <span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">x</span>
@@ -780,8 +815,8 @@ o 2
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="kd">←</span><span class="s1">&#39;abcdefghijk&#39;</span>
-<span class="nv">y</span><span class="kd">←</span><span class="m">10</span><span class="o">+</span><span class="m">11</span> <span class="m">2</span><span class="o">⍴⍳</span><span class="m">22</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span> <span class="kd">←</span> <span class="s1">&#39;abcdefghijk&#39;</span>
+<span class="nv">y</span> <span class="kd">←</span> <span class="m">10</span><span class="o">+</span><span class="m">11</span> <span class="m">2</span><span class="o">⍴⍳</span><span class="m">22</span>
 
 <span class="nv">x</span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
 <span class="nv">x</span><span class="kt">{</span><span class="bp">⍺</span> <span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="na">⌸</span><span class="nv">y</span>
