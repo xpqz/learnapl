@@ -1311,7 +1311,7 @@
 └~───────────────────────────────────────────────────────────────┘
 </span></div></div>
 </div>
-<p>Grading an array (up or down) produces a set of <em>indices</em>, not values. Consider the first element in the grade array. It says: the smallest element is to be found at index 24. The second-smallest is at index 12. The third smallest at index 6 etc.</p>
+<p>Grading an array (up or down) produces a set of <em>indices</em>, not values. Consider the first element in the grade array. It says: the smallest element is to be found at index 6. The second-smallest is at index 23. The third smallest at index 19 etc.</p>
 <p>At first blush, this seems like a roundabout way to sort something. First generate an indexing expression, then select elements according to this indexing expression. However, doing it this way – separating the determining of the order from the reordering of elements – has a number of advantages, chiefly that we can as easily apply the ordering to another array, not just the one that we generated the ordering from.</p>
 <p>In any sort of data processing or analysis, this crops up all the time: give the customer names, ordered by contract date. Sort the keys based on the values. That sort of thing. You can also answer questions such as <em>where</em> is the smallest value?</p>
 <div class="cell docutils container">
