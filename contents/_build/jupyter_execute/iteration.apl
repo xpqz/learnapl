@@ -1,11 +1,11 @@
 ⎕IO ← 0
-]box on -s=min
+]box on
 ]rows on
 assert ← {⍺ ← 'assertion failure' ⋄ 0∊⍵: ⍺ ⎕signal 8 ⋄ shy ← 0}
 
 ×⍨¨1+⍳9  ⍝ Square elements via each (but see below!)
 
-×⍨1+⍳9  ⍝ Square elements via scalar extension
+×⍨1+⍳9  ⍝ Square elements via scalar pervasion
 
 ⎕ ← V ← (1 2 3 4)(1 2)(3 4 5 6 7)(,2)(5 4 3 2 1)
 ≢¨V ⍝ Tally-each
@@ -40,7 +40,7 @@ assert ← {⍺ ← 'assertion failure' ⋄ 0∊⍵: ⍺ ⎕signal 8 ⋄ shy ←
 +⌿1 2 3 4 5 6 7 8
 +⌿1 2 3 4 5 6 7 8 9
 
-2÷⍨⍣=10 ⍝ Divide by 2 until fixpoint
+2÷⍨⍣=10 ⍝ Divide by 2 until we reach a fixed point
 
  {⍞ ← ?10}⍣{6=⍺} 0 ⍝ Keep generating random numbers between 1 and 10 until we get a 6
 
@@ -57,11 +57,11 @@ assert mysum=+/1 2 3 4 5 6 7 8 9
 ]dinput
 Sscan ← {
     ⍺ ← ⍬              ⍝ Left arg defaults to ⍬ if not given
-    0=≢⍵:⍺             ⍝ If right arg is empty, return left arg
+    0=≢⍵: ⍺            ⍝ If right arg is empty, return left arg
     (⍺,⊃⍵+⊃¯1↑⍺)∇1↓⍵   ⍝ Append the sum of the head and the last element of acc and recur on tail
 }
 
-⊢myscan ← Sscan 1 2 3 4 5 6 7 8 9
+⎕ ← myscan ← Sscan 1 2 3 4 5 6 7 8 9
 assert myscan≡+⍀1 2 3 4 5 6 7 8 9
 
 ]dinput
@@ -84,13 +84,14 @@ Quicksort ⎕←20?20
 
 ]dinput
 bsearch ← {⎕IO←0
-    0 (⍺ {                   ⍝ Operator: ⍺,⍵ - lower,upper index. ⍺⍺ - item, ⍵⍵ - array
-        ⍺>⍵: ⍬               ⍝ If lower index has moved past upper, item's not present
+    _bs_ ← {                 ⍝ Operator: ⍺,⍵ - lower,upper index. ⍺⍺ - item, ⍵⍵ - array
+        ⍺>⍵: ⍬               ⍝ If lower index has moved past upper, item's not present
         mid ← ⌈0.5×⍺+⍵       ⍝ New midpoint  
         ⍺⍺=mid⊃⍵⍵: mid       ⍝ Check if item is at the new midpoint
         ⍺⍺<mid⊃⍵⍵: ⍺∇¯1+mid  ⍝ Drill into lower half
         ⍵∇⍨1+mid             ⍝ Upper half
-    }(,⍵)) ¯1+≢,⍵
+    }
+    0 (⍺ _bs_ (,⍵)) ¯1+≢,⍵
 }
 
 5 bsearch 0 2 3 5 8 12 75
