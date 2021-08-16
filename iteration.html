@@ -422,8 +422,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scalar-extension">
-   Scalar extension
+  <a class="reference internal nav-link" href="#scalar-pervasion">
+   Scalar pervasion
   </a>
  </li>
 </ul>
@@ -450,14 +450,14 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
 <span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
 <span class="nv">assert</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍺</span> <span class="kd">←</span> <span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:</span> <span class="bp">⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span> <span class="kd">←</span> <span class="m">0</span><span class="kt">}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
@@ -488,10 +488,10 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
 </span></div></div>
 </div>
-<p>This wasn’t actually a great example, this is one of those cases where <em>scalar extension</em> already does the job for us:</p>
+<p>This wasn’t actually a great example, this is one of those cases where using a scalar function already does the job for us:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">9</span>  <span class="c1">⍝ Square elements via scalar extension</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">9</span>  <span class="c1">⍝ Square elements via scalar pervasion</span>
 </pre></div>
 </div>
 </div>
@@ -499,7 +499,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
 </span></div></div>
 </div>
-<p>Scalar extension means that functions in certain cases already know how to penetrate arrays.</p>
+<p>Scalar pervasion means that functions in certain cases already know how to penetrate arrays.</p>
 <p>Let’s try another. Given a nested vector, what are the lengths of the elements?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -520,12 +520,12 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="section" id="reduce-a-k-a-foldr">
 <h2>Reduce (a.k.a foldr): <code class="docutils literal notranslate"><span class="pre">⌿</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code><a class="headerlink" href="#reduce-a-k-a-foldr" title="Permalink to this headline">¶</a></h2>
 <p>Most languages today sport some kind of variety of <em>fold</em> or <em>reduce</em>, regardless of the level of “functional” they claim to be.</p>
-<p>In APL, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce.htm"><em>Reduce</em></a> is a central feature, which somewhat unhelpfully hijacks the glyph also used by <em>Compress/replicate</em>, <code class="docutils literal notranslate"><span class="pre">/</span></code>.  This is one, albeit not the main, reason why we prefer to use its close cousin, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce%20First.htm"><em>Reduce first</em></a>, <code class="docutils literal notranslate"><span class="pre">⌿</span></code>, where we can. Reduction has a bit of an unfair reputation of being hard to understand. Guido reportedly hates <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> in Python so much that it was demoted down to the dusty <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.reduce">functools</a> module:</p>
+<p>In APL, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce.htm"><em>Reduce</em></a> is a central feature, which somewhat unhelpfully hijacks the glyph also used by <em>Compress/Replicate</em>, <code class="docutils literal notranslate"><span class="pre">/</span></code>.  This is one, albeit not the main, reason why we prefer to use its close cousin, <a class="reference external" href="https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce%20First.htm"><em>Reduce first</em></a>, <code class="docutils literal notranslate"><span class="pre">⌿</span></code>, where we can. Reduction has a bit of an unfair reputation of being hard to understand. Guido reportedly hates <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> in Python so much that it was demoted down to the dusty <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.reduce">functools</a> module:</p>
 <blockquote>
 <div><p>So now reduce(). This is actually the one I’ve always hated most, because, apart from a few examples involving + or *, almost every time I see a reduce() call with a non-trivial function argument, I need to grab pen and paper to diagram what’s actually being fed into that function before I understand what the reduce() is supposed to do. So in my mind, the applicability of reduce() is pretty much limited to associative operators, and in all other cases it’s better to write out the accumulation loop explicitly. –<em>Guido van Rossum</em></p>
 </div></blockquote>
 <p>Despite what Guido thinks, reduction is actually a pretty simple idea, and APL may even have been the first programming language <a class="reference external" href="https://www.jsoftware.com/papers/APL1.htm#1.8">with reduce in it</a> (some Lispers disagree). Think of the operation of summing a bunch of numbers – this is an example of a reduction.</p>
-<p>In APL, <em>Reduce</em> applies a function to elements in an array, producing a result which is rank-reduced by 1. In other words, reducing a vector (rank 1) produces a scalar (rank 0). In the example of <em>sum</em>, summing the elements of a vector obviously produces a scalar: the total.</p>
+<p>In APL, <em>Reduce</em> applies a function to elements in an array, producing a result which is rank-reduced by 1. In other words, reducing a vector (rank 1) produces a scalar (rank 0). In the example of <code class="docutils literal notranslate"><span class="pre">+</span></code>, summing the elements of a vector obviously produces a scalar: the total.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="c1">⍝ sum-reduce-first integers 1-9</span>
@@ -536,7 +536,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">45
 </span></div></div>
 </div>
-<p>We can, somewhat simplified, think of the <em>Reduce first</em> operator injecting its left operand function in the gaps between elements in the argument:</p>
+<p>Simplifying a bit, we can think of the Reduce first as an operator that injects its left operand function in the gaps between elements of the argument:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">+</span><span class="m">2</span><span class="o">+</span><span class="m">3</span><span class="o">+</span><span class="m">4</span><span class="o">+</span><span class="m">5</span><span class="o">+</span><span class="m">6</span><span class="o">+</span><span class="m">7</span><span class="o">+</span><span class="m">8</span><span class="o">+</span><span class="m">9</span>
@@ -570,7 +570,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">5
 </span></div></div>
 </div>
-<p>Reduction is especially useful when working with higher-rank arrays. <em>Reduce first</em> is so called because it reduces along the <em>first</em> axis. So a sum-reduce-first of a rank 2 integer array will sum its columns to produce a <em>vector</em> (rank 1) of the columnar sums:</p>
+<p>Reduction is especially useful when working with higher-rank arrays. <em>Reduce first</em> is called so because it reduces along the <em>first</em> axis. So a sum-reduce-first of a rank 2 integer array will sum its columns to produce a <em>vector</em> (rank 1) of the columnar sums:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span>
@@ -585,7 +585,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">13 8 15
 </span></div></div>
 </div>
-<p>If we wanted to sum-reduce along the rows, we can either use <code class="docutils literal notranslate"><span class="pre">/</span></code> which for historical reasons does just that:</p>
+<p>If we wanted to sum-reduce along the rows, we can either use <code class="docutils literal notranslate"><span class="pre">/</span></code> (which for historical reasons does just that):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="nv">m</span>
@@ -607,12 +607,12 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">8 13 15
 </span></div></div>
 </div>
-<p>In general, for consistency it’s best to prefer operators and functions that default to applying to the leading axis where possible. The fact that APL, unlike J, has a mixture is somewhat of an unhelpful side-effect of backwards compatibility.</p>
+<p>For consistency, it’s best to prefer operators and functions that default to applying to the leading axis where possible. The fact that APL, unlike J, has a mixture is an unhelpful side-effect of backwards compatibility.</p>
 </div>
 <div class="section" id="windowed-reduction">
 <h2>Windowed reduction<a class="headerlink" href="#windowed-reduction" title="Permalink to this headline">¶</a></h2>
-<p><em>Reduce</em> has a few more handy tricks up its sleeve. Instead of reducing the whole argument array, we can employ a sliding window and so instead compute a set of reductions over shorter stretches of the data. The derived function returned by the reduction operators can be called dyadically, specifying as the left argument the size of the sliding window.</p>
-<p>For example, to calculate the sum of each element in a vector with its subsequent element, we employ a sliding reduction window of size 2:</p>
+<p><em>Reduce</em> has a few more handy tricks up its sleeve. Instead of reducing the whole argument array, we can employ a sliding window. This lets us compute a set of reductions over shorter stretches of the data. The derived function returned by the reduction operators can be called dyadically, specifying as the left argument the size of the sliding window.</p>
+<p>For example, to calculate the sum of each element in a vector with its subsequent element, we employ a reduction with a sliding window of size 2:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">+</span><span class="na">⌿</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
@@ -677,10 +677,10 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <span class="nv">f</span><span class="na">⍣</span><span class="m">8</span> <span class="o">⊢</span> <span class="nv">argvector</span>           <span class="c1">⍝ power-8</span>
 </pre></div>
 </div>
-<p>If you give it a function as the right operand, it can be used as a while-loop. One example is to find a function’s <em>fixpoint</em>:</p>
+<p>If you give it a function as the right operand, it can be used as a while-loop. One example is to find a function’s <em>fixed point</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">÷</span><span class="na">⍨⍣</span><span class="o">=</span><span class="m">10</span> <span class="c1">⍝ Divide by 2 until fixpoint</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">÷</span><span class="na">⍨⍣</span><span class="o">=</span><span class="m">10</span> <span class="c1">⍝ Divide by 2 until we reach a fixed point</span>
 </pre></div>
 </div>
 </div>
@@ -742,15 +742,19 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="bp">⍺</span>
 </pre></div>
 </div>
-<p>simply states that, if the right argument is empty, we should return our accumulator. The recursive call itself is “add the head of the right argument to the accumulator, and recur on this to the left, and the tail to the right”.</p>
-<p>If the last thing the function does is a function call, and this includes <em>Del</em>, this is what’s called a <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Tail%20Calls.htm"><em>tail call</em></a> which the Dyalog interpreter can handle without the addition of an extra stack frame. If you’re using <em>Del</em>, strive to make your functions tail-recursive – avoid making your function do any work on the value you get back from the recurring line.</p>
+<p>simply states that, if the right argument is empty, we should return our accumulator. The recursive call itself is:</p>
+<ul class="simple">
+<li><p>Add the head of the right argument to the accumulator.</p></li>
+<li><p>Recur with the updated accumulator as the new left argument and with the tail as the right argument.</p></li>
+</ul>
+<p>If the last thing the function does is a function call, and this includes <em>Del</em>, this is what’s called a <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Tail%20Calls.htm"><em>tail call</em></a> which the Dyalog interpreter can handle without the addition of an extra stack frame. If you’re using <em>Del</em>, strive to make all your recursive functions tail calls – avoid making your function do any work on the value you get back from the recurring line – for example, note that <code class="docutils literal notranslate"><span class="pre">1+⍺∇⍵</span></code> isn’t a tail call, as the last thing that happens is the <code class="docutils literal notranslate"><span class="pre">1+...</span></code> not the <code class="docutils literal notranslate"><span class="pre">⍺∇⍵</span></code>.</p>
 <p>For a fractionally more involved example, let’s write our own <em>sum-scan</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">Sscan</span> <span class="kd">←</span> <span class="kt">{</span>
     <span class="bp">⍺</span> <span class="kd">←</span> <span class="no">⍬</span>              <span class="c1">⍝ Left arg defaults to ⍬ if not given</span>
-    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:⍺</span>             <span class="c1">⍝ If right arg is empty, return left arg</span>
+    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="bp">⍺</span>            <span class="c1">⍝ If right arg is empty, return left arg</span>
     <span class="p">(</span><span class="bp">⍺</span><span class="o">,⊃</span><span class="bp">⍵</span><span class="o">+⊃</span><span class="m">¯1</span><span class="o">↑</span><span class="bp">⍺</span><span class="p">)</span><span class="bp">∇</span><span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>   <span class="c1">⍝ Append the sum of the head and the last element of acc and recur on tail</span>
 <span class="kt">}</span>
 </pre></div>
@@ -759,7 +763,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">myscan</span> <span class="kd">←</span> <span class="nv">Sscan</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">myscan</span> <span class="kd">←</span> <span class="nv">Sscan</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
 <span class="nv">assert</span> <span class="nv">myscan</span><span class="o">≡+</span><span class="na">⍀</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
 </pre></div>
 </div>
@@ -827,13 +831,14 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
 <span class="nv">bsearch</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
-    <span class="m">0</span> <span class="p">(</span><span class="bp">⍺</span> <span class="kt">{</span>                   <span class="c1">⍝ Operator: ⍺,⍵ - lower,upper index. ⍺⍺ - item, ⍵⍵ - array</span>
-        <span class="bp">⍺</span><span class="o">&gt;</span><span class="bp">⍵:</span> <span class="no">⍬</span>               <span class="c1">⍝ If lower index has moved past upper, item&#39;s not present</span>
+    <span class="nv">_bs_</span> <span class="kd">←</span> <span class="kt">{</span>                 <span class="c1">⍝ Operator: ⍺,⍵ - lower,upper index. ⍺⍺ - item, ⍵⍵ - array</span>
+        <span class="bp">⍺</span><span class="o">&gt;</span><span class="bp">⍵:</span> <span class="no">⍬</span>               <span class="c1">⍝ If lower index has moved past upper, item&#39;s not present</span>
         <span class="nv">mid</span> <span class="kd">←</span> <span class="o">⌈</span><span class="m">0.5</span><span class="o">×</span><span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span>       <span class="c1">⍝ New midpoint  </span>
         <span class="bp">⍺⍺</span><span class="o">=</span><span class="nv">mid</span><span class="o">⊃</span><span class="bp">⍵⍵:</span> <span class="nv">mid</span>       <span class="c1">⍝ Check if item is at the new midpoint</span>
         <span class="bp">⍺⍺</span><span class="o">&lt;</span><span class="nv">mid</span><span class="o">⊃</span><span class="bp">⍵⍵:</span> <span class="bp">⍺∇</span><span class="m">¯1</span><span class="o">+</span><span class="nv">mid</span>  <span class="c1">⍝ Drill into lower half</span>
         <span class="bp">⍵∇</span><span class="na">⍨</span><span class="m">1</span><span class="o">+</span><span class="nv">mid</span>             <span class="c1">⍝ Upper half</span>
-    <span class="kt">}</span><span class="p">(</span><span class="o">,</span><span class="bp">⍵</span><span class="p">))</span> <span class="m">¯1</span><span class="o">+≢,</span><span class="bp">⍵</span>
+    <span class="kt">}</span>
+    <span class="m">0</span> <span class="p">(</span><span class="bp">⍺</span> <span class="nv">_bs_</span> <span class="p">(</span><span class="o">,</span><span class="bp">⍵</span><span class="p">))</span> <span class="m">¯1</span><span class="o">+≢,</span><span class="bp">⍵</span>
 <span class="kt">}</span>
 </pre></div>
 </div>
@@ -928,7 +933,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
 </span></div></div>
 </div>
-<p>So that’s two nested “loops”, both nicely tail recursive, and probably similar how you’d construct it in Clojure or Racket. However, as the argument string grows, the performance tanks. We can illustrate this by tweaking it a tiny bit to avoid the reallocation of the argument to the recursive call in the outer loop:</p>
+<p>So that’s two nested “loops”, both nicely tail recursive, and probably similar to how you’d construct it in Clojure or Racket. However, as the argument string grows, the performance tanks. We can illustrate this by tweaking it a tiny bit to avoid the reallocation of the argument to the recursive call in the outer loop:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
@@ -984,12 +989,12 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.1E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-  prefix2 data → 3.0E¯1 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 8.9E¯1 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  prefix2 data → 2.1E¯1 | -77% ⎕⎕⎕⎕⎕⎕⎕⎕⎕                               
 </span></div></div>
 </div>
 <p>Quite a staggering difference for such an innocuous change, perhaps.</p>
-<p>The binary search implementation we concluded the previous section above with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a hundred thousand or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>!</p>
+<p>The binary search implementation we concluded the previous section with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a hundred thousand or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>!</p>
 <p>Except when it doesn’t:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -999,18 +1004,18 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.1E¯6 |     0% ⎕                                       
-  17777 bsearch data → 3.4E¯5 | +2904% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 2.3E¯6 |    0% ⎕⎕⎕⎕⎕                                   
+  17777 bsearch data → 1.8E¯5 | +697% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 </span></div></div>
 </div>
 <p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate if there are no other alternatives.</p>
 <p>Exercise for the reader: as the data grows, sooner or later the <code class="docutils literal notranslate"><span class="pre">bsearch</span></code> function will win out. How large does the array need to be for that to happen?</p>
 </div>
 </div>
-<div class="section" id="scalar-extension">
-<h2>Scalar extension<a class="headerlink" href="#scalar-extension" title="Permalink to this headline">¶</a></h2>
-<p>We touched briefly on <em>scalar extension</em> above, but it’s an important topic, so let’s dive in a little bit deeper. It’s worth reading what Dyalog has to say on the topic in the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Scalar%20Functions.htm">docs</a>.</p>
-<p>The idea is that a certain class of functions is <em>pervasive</em>. With this we mean that a function that operates on a scalar will operate on scalars at any level of nesting if applied to an array. Note that the level of nesting is <em>not</em> the same as the rank in APL (rank and depth <em>are</em> equivalent in the K language, though).</p>
+<div class="section" id="scalar-pervasion">
+<h2>Scalar pervasion<a class="headerlink" href="#scalar-pervasion" title="Permalink to this headline">¶</a></h2>
+<p>We touched briefly on <em>scalar pervasion</em> above, but it’s an important topic, so let’s dive in a little bit deeper. It’s worth reading what Dyalog has to say on the topic in the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Scalar%20Functions.htm">docs</a>.</p>
+<p>The idea is that a certain class of functions is <em>pervasive</em>. This means that a function that operates on a scalar will operate on scalars at any level of nesting if applied to an array. Recall that the level of nesting is <em>not</em> the same as the rank in APL.</p>
 <p>Consider a nested vector that contains both numbers and other vectors of numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1041,7 +1046,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 └──┴──┴──┴─────────────┴──┘
 </span></div></div>
 </div>
-<p>Where it can be applied, scalar extension is an efficient operation in Dyalog APL. It works for dyads, too:</p>
+<p>Where it can be applied, scalar pervasion is an efficient operation in Dyalog APL. It works for dyads, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span> <span class="m">2</span><span class="p">)</span> <span class="m">3</span> <span class="o">+</span> <span class="m">4</span> <span class="p">(</span><span class="m">5</span> <span class="m">6</span><span class="p">)</span>
