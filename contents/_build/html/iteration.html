@@ -733,7 +733,7 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 <p>Yup, that seems to work; good.</p>
 <p>The glyph <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm"><em>Del</em></a> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the current innermost dfn. If your dfn has a name, you can substitute it for the actual function name. In our case, the last line could equally well have been written:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="nv">sum</span> <span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="bp">⍺</span><span class="o">+⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="nv">Sum</span> <span class="m">1</span><span class="o">↓</span><span class="bp">⍵</span>
 </pre></div>
 </div>
 <p>However, using the glyph has a number of advantages: it’s more concise, immune to function name changes, and works equally well for anonymous dfns.</p>
