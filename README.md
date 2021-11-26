@@ -10,4 +10,6 @@ This is -- and will remain -- a work in progress; I'll keep adding material spor
 
 Many thanks for checking it out! For APL-related conversations, try the [APL Orchard](https://apl.chat) chat room.
 
+I gave a presentation on how and why this book came to be at the Dyalog '21 conference. You can watch it [here](https://dyalog.tv/Dyalog21/?v=qrWCYPFfsCU).
+
 @xpqz
