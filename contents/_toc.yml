@@ -1,9 +1,6 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-# jupyter-book build contents/
-# - file: intro
-
-- file: intro
+format: jb-article
+root: intro
+sections:
 - file: array
 - file: indexing
 - file: manip

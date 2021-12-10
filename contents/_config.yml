@@ -41,3 +41,4 @@ launch_buttons:
 sphinx:
     config:
         html_show_copyright: false
+        html_favicon: favicon.ico

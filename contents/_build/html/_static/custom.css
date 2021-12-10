@@ -1,8 +1,22 @@
+@font-face {
+  font-family: 'codefont';
+  src: local('DejaVu Sans Mono'),
+       local('APL385 Unicode'),
+       local('SImPL'),
+       url(https://aplwiki.com/images/7/75/DejaVuSansMono.ttf) format('truetype');
+}
+
+.CodeMirror pre {font-family: codefont, monospace;}
+
 /* Reduce excessive line height in code outputs */
 .output.text_html {
-    font-family: 'APL385';
+    font-family: codefont, monospace;
     line-height: 0.95em;
 }
+/*.output.text_html {
+    font-family: 'APL385';
+    line-height: 0.95em;
+}*/
 
 /* Reduce excessive whitespace in tables */
 .table td, .table th {
