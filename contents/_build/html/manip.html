@@ -397,6 +397,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-interval-index">
+   Where, Interval Index:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ravel-catenate-enlist-member">
    Ravel, Catenate, Enlist, Member:
    <code class="docutils literal notranslate">
@@ -919,6 +929,208 @@
 │ │Bob│ │Not found│ │
 │ └───┘ └─────────┘ │
 └∊──────────────────┘
+</span></div></div>
+</div>
+</div>
+<div class="section" id="where-interval-index">
+<h2>Where, Interval Index: <code class="docutils literal notranslate"><span class="pre">⍸</span></code><a class="headerlink" href="#where-interval-index" title="Permalink to this headline">¶</a></h2>
+<p>Iota-underbar, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, is <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a> as a monad, and <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Interval%20Index.htm"><em>Interval Index</em></a> as a dyad.</p>
+<p><em>Where</em> gives the indices of an array where the value is non-zero. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────────────┐
+│0 3 5 7 8 9 11 13│
+└~────────────────┘
+</span></div></div>
+</div>
+<p>This can be combined with indexing to select a subset that matches some criterion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">nums</span><span class="kd">←</span><span class="o">⍳</span><span class="m">20</span>
+<span class="nv">nums</span><span class="sr">[</span><span class="o">⍸</span><span class="m">0</span><span class="o">=</span><span class="m">5</span><span class="o">|</span><span class="nv">nums</span><span class="sr">]</span> <span class="c1">⍝ Find all numbers divisible by 5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────────────────────────────────────────────┐
+│0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19│
+└~────────────────────────────────────────────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────┐
+│0 5 10 15│
+└~────────┘
+</span></div></div>
+</div>
+<p>It works for any rank, of course:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
+<span class="o">⍸</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────┐
+↓1 0 0│
+│1 1 0│
+│0 1 0│
+└~────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────────────────────┐
+│ ┌→──┐ ┌→──┐ ┌→──┐ ┌→──┐ │
+│ │0 0│ │1 0│ │1 1│ │2 1│ │
+│ └~──┘ └~──┘ └~──┘ └~──┘ │
+└∊────────────────────────┘
+</span></div></div>
+</div>
+<p>You probably expected that. Perhaps more surprising is that the right argument array does not have to be Boolean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">2</span> <span class="m">0</span> <span class="m">3</span> <span class="m">0</span> <span class="m">4</span> <span class="m">0</span> <span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────────────────────────┐
+│1 3 3 5 5 5 7 7 7 7 9 9 9 9 9│
+└~────────────────────────────┘
+</span></div></div>
+</div>
+<p>It still finds the indices of non-zero elements, but this time it uses the element itself as the repeat count. In the result in example above, we have a single 1, as the right argument array has a 1 at index 1. We have four 7s, as the array has a 4 in index 7.</p>
+<p>When used dyadically, we have <em>interval index</em>. Interval index is a <em>binning algorithm</em> – given a set of ranged bins in order, it picks the bin corresponding to the arguments. Here’s how it works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">8</span> <span class="m">9</span> <span class="m">0</span>  <span class="c1">⍝ bin 8, 9 and 0 over the intervals 1 3 5 7 9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→─────┐
+│3 4 ¯1│
+└~─────┘
+</span></div></div>
+</div>
+<p>Consider the gaps between the elements to the left. The first interval is then [1, 3), the second is [3, 5), the third is [5, 7) etc. An element belongs to the bin where it is greater than or equal to the lower end, and less than the upper end.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">5</span>      <span class="c1">⍝ elements on on boundary goes in the higher bin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace"> 
+2
+
+</span></div></div>
+</div>
+<p>As we saw above, elements smaller than the first bin goes in the -1 bin, which is assumed to cover every number lower than the first bin. Similarly, elements greater than the last bin will end up with a bin number equal to the number of elements (note: not the number of bins) to the left:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">0</span> <span class="m">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───┐
+│¯1 3│
+└~───┘
+</span></div></div>
+</div>
+<p>It works for other types, too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍸</span><span class="s1">&#39;HELLO WORLD&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→─────────────────────┐
+│1 1 2 2 3 ¯1 4 3 3 2 0│
+└~─────────────────────┘
+</span></div></div>
+</div>
+<p>In other words, “H” comes on or after “E” but not after “I”, “E” is on or after “E” etc.</p>
+<p>Typical use cases for <em>bin search</em> involves various kinds of classification. For example, in the UK, alcoholic beverages are <a class="reference external" href="https://www.gov.uk/government/publications/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances">taxed</a> based on their <em>alcohol by volume</em> (abv) percentage. Let’s consider cider and perry:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Class or description</p></th>
+<th class="text-align:right head"><p>Tax type code</p></th>
+<th class="text-align:right head"><p>Rate of excise duty/hl</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>abv does not exceed 1.2%</p></td>
+<td class="text-align:right"><p>431</p></td>
+<td class="text-align:right"><p>£0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>abv exceeding 1.2% but less than 6.9%</p></td>
+<td class="text-align:right"><p>481</p></td>
+<td class="text-align:right"><p>£40.38</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>abv at least 6.9% but not exceeding 7.5%</p></td>
+<td class="text-align:right"><p>487</p></td>
+<td class="text-align:right"><p>£50.71</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>abv at least 7.5% but not exceeding 8.5%</p></td>
+<td class="text-align:right"><p>483</p></td>
+<td class="text-align:right"><p>£61.04</p></td>
+</tr>
+</tbody>
+</table>
+<p>Given the following ciders with the associated abv, what are their respective tax code and tax rate per hecto-litre?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ciders</span><span class="kd">←</span><span class="s1">&#39;Kopparberg Sparkling Rose&#39;</span> <span class="s1">&#39;Bulmers Original&#39;</span> <span class="s1">&#39;Crispin the Jacket&#39;</span> <span class="s1">&#39;Old Mout Cherries &amp; Berries&#39;</span>
+<span class="nv">abv</span><span class="kd">←</span><span class="m">7.0</span> <span class="m">4.5</span> <span class="m">8.3</span> <span class="m">0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s encode the table above into a set of vectors first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">code</span><span class="kd">←</span><span class="m">431</span> <span class="m">481</span> <span class="m">487</span> <span class="m">486</span>
+<span class="nv">rate</span><span class="kd">←</span><span class="m">0</span> <span class="m">40.38</span> <span class="m">50.71</span> <span class="m">61.04</span>
+<span class="nv">limits</span><span class="kd">←</span><span class="m">1.2</span> <span class="m">6.9</span> <span class="m">7.5</span> <span class="m">8.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the bins from the limits, and add one to capture the -1 bin appropriately:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">bin</span><span class="kd">←</span><span class="m">1</span><span class="o">+</span><span class="nv">limits</span><span class="o">⍸</span><span class="nv">abv</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────┐
+│2 1 3 0│
+└~──────┘
+</span></div></div>
+</div>
+<p>Now we can lay this out nicely,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span> <span class="nv">off</span>
+<span class="p">(</span><span class="s1">&#39;Name&#39;</span> <span class="s1">&#39;Rate&#39;</span> <span class="s1">&#39;Code&#39;</span><span class="p">)</span><span class="o">⍪⍉↑</span><span class="p">(</span><span class="nv">ciders</span> <span class="p">(</span><span class="nv">rate</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">)</span> <span class="p">(</span><span class="nv">code</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">))</span>
+<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> Name                          Rate  Code
+ Kopparberg Sparkling Rose    50.71   487
+ Bulmers Original             40.38   481
+ Crispin the Jacket           61.04   486
+ Old Mout Cherries &amp; Berries   0      431
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────┐
+│Was OFF│
+└───────┘
 </span></div></div>
 </div>
 </div>

@@ -67,6 +67,37 @@ mat
 lookup ← staff,⊂'Not found'
 lookup[staff⍳'Bob' 'David']
 
+⍸1 0 0 1 0 1 0 1 1 1 0 1 0 1
+
+⎕←nums←⍳20
+nums[⍸0=5|nums] ⍝ Find all numbers divisible by 5
+
+3 3⍴1 0 0 1 1 0 0 1 0
+⍸3 3⍴1 0 0 1 1 0 0 1 0
+
+⍸0 1 0 2 0 3 0 4 0 5
+
+1 3 5 7 9⍸8 9 0  ⍝ bin 8, 9 and 0 over the intervals 1 3 5 7 9
+
+1 3 5 7 9⍸5      ⍝ elements on on boundary goes in the higher bin
+
+3 5 7 9⍸0 100
+
+'AEIOU'⍸'HELLO WORLD'
+
+ciders←'Kopparberg Sparkling Rose' 'Bulmers Original' 'Crispin the Jacket' 'Old Mout Cherries & Berries'
+abv←7.0 4.5 8.3 0.0
+
+code←431 481 487 486
+rate←0 40.38 50.71 61.04
+limits←1.2 6.9 7.5 8.5
+
+⎕←bin←1+limits⍸abv
+
+]box off
+('Name' 'Rate' 'Code')⍪⍉↑(ciders (rate[bin]) (code[bin]))
+]box on
+
 simple ← 3 4⍴3 0 5 1 7 9 8 6 2 10 11 4
 ,simple ⍝ Ravel
 ∊simple ⍝ Enlist
