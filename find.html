@@ -446,7 +446,7 @@
 </div>
 <div class="section" id="equality">
 <h2>Equality <code class="docutils literal notranslate"><span class="pre">=</span></code><a class="headerlink" href="#equality" title="Permalink to this headline">¶</a></h2>
-<p>So how do you locate where an element resides in an array in APL? Well, the obvious way to do it is to exploit equality and scalar extension. Where is the number 2?</p>
+<p>So how do you locate where an element resides in an array in APL? Well, the obvious way to do it is to exploit equality and scalar pervasion. Where is the number 2?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="o">↑</span><span class="p">(</span><span class="m">2</span><span class="o">=</span><span class="nv">data</span><span class="p">)(</span><span class="nv">data</span> <span class="kd">←</span> <span class="m">4</span> <span class="m">1</span> <span class="m">22</span> <span class="m">20</span> <span class="m">16</span> <span class="m">10</span> <span class="m">25</span> <span class="m">7</span> <span class="m">18</span> <span class="m">11</span> <span class="m">15</span> <span class="m">2</span> <span class="m">12</span> <span class="m">23</span> <span class="m">9</span> <span class="m">17</span> <span class="m">6</span> <span class="m">14</span> <span class="m">21</span> <span class="m">19</span> <span class="m">3</span> <span class="m">8</span> <span class="m">5</span> <span class="m">13</span> <span class="m">24</span><span class="p">)</span>
@@ -460,7 +460,7 @@
 └~────────────────────────────────────────────────────────────────┘
 </span></div></div>
 </div>
-<p>That’s surely sufficiently <em>Zen</em> in the <em>Zen of Python</em> sense. Hands up every item that equals 2. We can find out the actual index, too, by using <em>Iota underbar</em>, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, which in its monadic form is appropriately enough called <a class="reference external" href="https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a>:</p>
+<p>That’s surely sufficiently <em>Zen</em> in the <em>Zen of Python</em> sense. Hands up every item that equals 2. We can find out the actual index, too, by using <em>Iota underbar</em>, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, which, as you may recall from an <a class="reference internal" href="manip.html"><span class="doc std std-doc">earlier chapter</span></a>, in its monadic form is appropriately enough called <a class="reference external" href="https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">2</span><span class="o">=</span><span class="nv">data</span> <span class="c1">⍝ Where is data = 2?</span>

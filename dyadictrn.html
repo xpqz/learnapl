@@ -367,6 +367,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#repeated-axes">
+   Repeated axes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-filling-order">
    The filling order
   </a>
@@ -884,6 +889,44 @@
 └~────────────────────────────────────────────────────────────────────────────────────────┘
 </span></div></div>
 </div>
+</div>
+<div class="section" id="repeated-axes">
+<h2>Repeated axes<a class="headerlink" href="#repeated-axes" title="Permalink to this headline">¶</a></h2>
+<p>It gets weirder. You can map axes together via dyadic transpose. Here’s an example.</p>
+<p>APL Orchard regular &#64;rak1507 posed the following <a class="reference external" href="https://chat.stackexchange.com/transcript/message/59841725#59841725">challenge</a>:</p>
+<blockquote>
+<div><p>&#64;Adám so without trying it could you tell me what <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">2</span> <span class="pre">1⍉2</span> <span class="pre">3</span> <span class="pre">4⍴⍳24</span></code> gives?</p>
+</div></blockquote>
+<p>Let’s work through &#64;Adám’s explanation. Let’s start with the answer, and then figure out what’s happening:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴⍳</span><span class="m">24</span>
+<span class="m">0</span> <span class="m">1</span> <span class="m">0</span><span class="o">⍉</span><span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴⍳</span><span class="m">24</span>   <span class="c1">⍝ adjusted for ⎕IO←0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌┌→──────────┐
+↓↓ 0  1  2  3│
+││ 4  5  6  7│
+││ 8  9 10 11│
+││           │
+││12 13 14 15│
+││16 17 18 19│
+││20 21 22 23│
+└└~──────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───────┐
+↓ 0  4  8│
+│13 17 21│
+└~───────┘
+</span></div></div>
+</div>
+<p>The axis reordering vector is <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">0</span></code>. With that we’re mapping together the first and last axes, giving us a first axis with length <code class="docutils literal notranslate"><span class="pre">2⌊4</span></code> and a second axis with length 3.</p>
+<p>When we increase the index of the first axis, we also have to increase it along the second axis. So the second “layer” (which will become a row; see below) picks up elements from <code class="docutils literal notranslate"><span class="pre">[;;1]</span></code> i.e. <code class="docutils literal notranslate"><span class="pre">[1;;1]</span></code>.</p>
+<p>The first major cell is <code class="docutils literal notranslate"><span class="pre">[0;;0]</span></code> and the second is <code class="docutils literal notranslate"><span class="pre">[1;;1]</span></code> and since we’ve only got two dimensions left, the first dimension is rows, and the second is columns.</p>
+<p>Another way to think of it is by elimination of indices. As we’re mapping together the first and third axes, any element that has unequal indices in those dimensions is eliminated:</p>
+<p><img alt="axis" src="_images/axis-elim.png" /></p>
+<p>The green boxes show the indices of the two major cells that make up the result.</p>
 </div>
 <div class="section" id="the-filling-order">
 <h2>The filling order<a class="headerlink" href="#the-filling-order" title="Permalink to this headline">¶</a></h2>

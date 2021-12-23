@@ -995,8 +995,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 8.9E¯1 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-  prefix2 data → 2.1E¯1 | -77% ⎕⎕⎕⎕⎕⎕⎕⎕⎕                               
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.0E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  prefix2 data → 2.4E¯1 | -76% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                              
 </span></div></div>
 </div>
 <p>Quite a staggering difference for such an innocuous change, perhaps.</p>
@@ -1010,11 +1010,54 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 2.3E¯6 |    0% ⎕⎕⎕⎕⎕                                   
-  17777 bsearch data → 1.8E¯5 | +697% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.6E¯6 |    0% ⎕⎕⎕⎕                                    
+  17777 bsearch data → 1.6E¯5 | +926% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 </span></div></div>
 </div>
-<p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate if there are no other alternatives.</p>
+<p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. But wait, we can do even better. Let’s have a randomised array for APL to go at:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">randInts</span> <span class="kd">←</span> <span class="m">100000</span> <span class="o">?</span> <span class="m">100000</span> 
+<span class="nv">cmpx</span> <span class="s1">&#39;randInts⍳1&#39;</span> <span class="s1">&#39;randInts⍳19326&#39;</span> <span class="s1">&#39;randInts⍳46729&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  randInts⍳1     → 8.4E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* randInts⍳19326 → 2.3E¯6 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
+* randInts⍳46729 → 6.6E¯7 | -93% ⎕⎕⎕                                     
+</span></div></div>
+</div>
+<p>We can make this even faster by pre-binding the array to the <em>Index Of</em> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">find</span><span class="kd">←</span><span class="nv">randInts</span><span class="na">∘</span><span class="o">⍳</span>
+<span class="nv">cmpx</span> <span class="s1">&#39;find 1&#39;</span> <span class="s1">&#39;find 19326&#39;</span> <span class="s1">&#39;find 46729&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  find 1     → 2.5E¯7 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* find 19326 → 1.6E¯7 | -38% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕               
+* find 46729 → 1.7E¯7 | -35% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕              
+</span></div></div>
+</div>
+<p>What’s happening there is that Dyalog takes the binding to mean that as the lookup array is now fixed, it can make a hashed index behind the scenes. You can see that the times taken don’t vary much with the argument.</p>
+<p>But there is more performance to squeeze out here. If our search array is ordered, we can use <em>Interval Index</em>, dyadic <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, as a binary search (which it is!):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span> <span class="s1">&#39;data⍸1&#39;</span> <span class="s1">&#39;data⍸19326&#39;</span> <span class="s1">&#39;data⍸46729&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data⍸1     → 1.3E¯7 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕    
+* data⍸19326 → 1.4E¯7 |  +8% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
+* data⍸46729 → 1.5E¯7 | +10% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</span></div></div>
+</div>
+<p><em>Interval Index</em> is very optimised in the 18.0/1 versions of Dyalog. Sadly, this optimisation had to be dropped in 18.2.</p>
+<p>Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate or recurse if there are no other alternatives.</p>
 <p>Exercise for the reader: as the data grows, sooner or later the <code class="docutils literal notranslate"><span class="pre">bsearch</span></code> function will win out. How large does the array need to be for that to happen?</p>
 </div>
 </div>
