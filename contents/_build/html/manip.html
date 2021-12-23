@@ -1115,22 +1115,18 @@
 <p>Now we can lay this out nicely,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span> <span class="nv">off</span>
-<span class="p">(</span><span class="s1">&#39;Name&#39;</span> <span class="s1">&#39;Rate&#39;</span> <span class="s1">&#39;Code&#39;</span><span class="p">)</span><span class="o">⍪⍉↑</span><span class="p">(</span><span class="nv">ciders</span> <span class="p">(</span><span class="nv">rate</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">)</span> <span class="p">(</span><span class="nv">code</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">))</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍕</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span> <span class="s1">&#39;Rate&#39;</span> <span class="s1">&#39;Code&#39;</span><span class="p">)</span><span class="o">⍪⍉↑</span><span class="p">(</span><span class="nv">ciders</span> <span class="p">(</span><span class="nv">rate</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">)</span> <span class="p">(</span><span class="nv">code</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> Name                          Rate  Code
- Kopparberg Sparkling Rose    50.71   487
- Bulmers Original             40.38   481
- Crispin the Jacket           61.04   486
- Old Mout Cherries &amp; Berries   0      431
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────┐
-│Was OFF│
-└───────┘
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→─────────────────────────────────────────┐
+↓ Name                          Rate  Code │
+│ Kopparberg Sparkling Rose    50.71   487 │
+│ Bulmers Original             40.38   481 │
+│ Crispin the Jacket           61.04   486 │
+│ Old Mout Cherries &amp; Berries   0      431 │
+└──────────────────────────────────────────┘
 </span></div></div>
 </div>
 </div>

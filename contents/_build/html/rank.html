@@ -357,6 +357,11 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#relative-rank">
+   Relative rank
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rank-drills">
    Rank drills
   </a>
@@ -402,7 +407,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">
+Rebuilding user command cache... 
+done
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
@@ -541,7 +549,7 @@
 </div>
 </div>
 </div>
-<p>Now that we understand a bit about <em>Rank</em>, we can at least make a start in taking that apart. So we have a <em>Rank</em> 0 99 to the right, stating that we should combine the left argument at rank 0 (scalars) with the right argument at “rank 99”. Rank 99 means “full rank”, as Dyalog has a max rank of 99. So we should combine “each scalar” to the left with “the whole thing, at whatever rank it happens to be” to the right.</p>
+<p>Now that we understand a bit about <em>Rank</em>, we can at least make a start in taking that apart. So we have a <em>Rank</em> 0 99 to the right, stating that we should combine the left argument at rank 0 (scalars) with the right argument at “rank 99”. Rank 99 means “full rank” (Dyalog has an <em>actual</em> max rank of 15, so we could have used any number greater than or equal to 15). So we should combine “each scalar” to the left with “the whole thing, at whatever rank it happens to be” to the right.</p>
 <p>The actual indexing is done by the leading <em>Squad</em> (<code class="docutils literal notranslate"><span class="pre">⌷</span></code>). Let’s de-selfie the expression and make it a dfn. Although we haven’t covered <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> functions yet, we can have the interpreter help us out a bit to see how that expression actually parses:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -689,6 +697,35 @@
 </tr>
 </tbody>
 </table>
+<div class="section" id="relative-rank">
+<h2>Relative rank<a class="headerlink" href="#relative-rank" title="Permalink to this headline">¶</a></h2>
+<p>The right operand can also contain negative numbers, which are taken to be rank relative to the argument, rather than an absolute specification:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/⍤</span><span class="m">¯1</span><span class="o">⊢</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span>              <span class="c1">⍝ Sum at rank one less than the rank of the matrix, i.e. along each row</span>
+<span class="sr">]</span><span class="nv">display</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴⍳</span><span class="m">24</span>
+<span class="sr">]</span><span class="nv">display</span> <span class="o">+</span><span class="na">/⍤</span><span class="m">¯2</span><span class="o">⊢</span><span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴⍳</span><span class="m">24</span>  <span class="c1">⍝ Sum at rank two less than the rank of the cube, i.e. along rows of each layer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 21
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌┌→──────────┐
+↓↓ 0  1  2  3│
+││ 4  5  6  7│
+││ 8  9 10 11│
+││           │
+││12 13 14 15│
+││16 17 18 19│
+││20 21 22 23│
+└└~──────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───────┐
+↓ 6 22 38│
+│54 70 86│
+└~───────┘
+</span></div></div>
+</div>
+</div>
 <div class="section" id="rank-drills">
 <h2>Rank drills<a class="headerlink" href="#rank-drills" title="Permalink to this headline">¶</a></h2>
 <p>In his paper <a class="reference external" href="https://www.jsoftware.com/papers/APL_exercises/">APL Excercises</a>, Roger Hui sets out the following drills for <em>Rank</em>. See if you can predict the results before revealing the answers:</p>

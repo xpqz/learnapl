@@ -41,6 +41,10 @@ A∘{⍺/⍵}/B ⍝ Nope... SYNTAX ERROR
 
 A/⍤1⊢B
 
++/⍤¯1⊢3 3⍴⍳9              ⍝ Sum at rank one less than the rank of the matrix, i.e. along each row
+]display 2 3 4⍴⍳24
+]display +/⍤¯2⊢2 3 4⍴⍳24  ⍝ Sum at rank two less than the rank of the cube, i.e. along rows of each layer
+
 ,t←2 3 4⍴⍳24
 
 ,⍤3⊢t

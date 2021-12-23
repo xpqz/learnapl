@@ -61,6 +61,9 @@ year month⌷0 2 1⍉sales
 
 month year⌷1 2 0⍉sales
 
+2 3 4⍴⍳24
+0 1 0⍉2 3 4⍴⍳24   ⍝ adjusted for ⎕IO←0
+
 ⊢data←⍳45
 
 ⎕ ← m←(9÷⍨≢data) 9⍴data

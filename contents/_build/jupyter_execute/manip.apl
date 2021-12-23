@@ -94,9 +94,7 @@ limits←1.2 6.9 7.5 8.5
 
 ⎕←bin←1+limits⍸abv
 
-]box off
-('Name' 'Rate' 'Code')⍪⍉↑(ciders (rate[bin]) (code[bin]))
-]box on
+⍕('Name' 'Rate' 'Code')⍪⍉↑(ciders (rate[bin]) (code[bin]))
 
 simple ← 3 4⍴3 0 5 1 7 9 8 6 2 10 11 4
 ,simple ⍝ Ravel

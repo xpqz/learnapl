@@ -140,6 +140,14 @@ cmpx 'prefix1 data' 'prefix2 data'
 data ← ⍳100000 ⍝ A loooot of numbers
 cmpx 'data ⍳ 17777' '17777 bsearch data' ⍝ Look for the number 17777
 
+randInts ← 100000 ? 100000 
+cmpx 'randInts⍳1' 'randInts⍳19326' 'randInts⍳46729'
+
+find←randInts∘⍳
+cmpx 'find 1' 'find 19326' 'find 46729'
+
+cmpx 'data⍸1' 'data⍸19326' 'data⍸46729'
+
 ⎕ ← nesty ← (1 2 3 (3 4 (5 6)) 7)
 
 -nesty
