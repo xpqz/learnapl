@@ -2,7 +2,7 @@
 
 Learning APL jupyterbook. See it in its published state on https://xpqz.github.io/learnapl
 
-If you prefer, you can download the whole thing as a single [pdf file](https://github.com/xpqz/learnapl/blob/main/contents/_build/pdf/book.pdf).
+If you prefer, you can download the whole thing as a single [pdf file](https://github.com/xpqz/learnapl/blob/3f73b88c58c7b0f1e601bae19c6326fc9ac40a36/contents/_build/pdf/book.pdf).
 
 If you find errors, please raise an issue so I can fix it.
 
