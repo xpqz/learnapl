@@ -927,6 +927,102 @@
 <p>Another way to think of it is by elimination of indices. As we’re mapping together the first and third axes, any element that has unequal indices in those dimensions is eliminated:</p>
 <p><img alt="axis" src="_images/axis-elim.png" /></p>
 <p>The green boxes show the indices of the two major cells that make up the result.</p>
+<p>Now that we understand repeated axes, we also understand why you can pick the diagonal from a matrix this way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">m</span><span class="kd">←</span><span class="m">4</span> <span class="m">4</span><span class="o">⍴</span><span class="m">13</span> <span class="m">7</span> <span class="m">9</span> <span class="m">1</span> <span class="m">5</span> <span class="m">4</span> <span class="m">12</span> <span class="m">11</span> <span class="m">3</span> <span class="m">2</span> <span class="m">15</span> <span class="m">8</span> <span class="m">10</span> <span class="m">16</span> <span class="m">14</span> <span class="m">6</span>
+<span class="m">0</span> <span class="m">0</span><span class="o">⍉</span><span class="nv">m</span>   <span class="c1">⍝ Pick main diagonal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────────┐
+↓13  7  9  1│
+│ 5  4 12 11│
+│ 3  2 15  8│
+│10 16 14  6│
+└~──────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────┐
+│13 4 15 6│
+└~────────┘
+</span></div></div>
+</div>
+<p>A cool thing with dyadic transpose is that it can be used in selective assignment. For example, if we want to zero out the main diagonal in the matrix above, we can do so with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">0</span> <span class="m">0</span><span class="o">⍉</span><span class="nv">m</span><span class="p">)</span><span class="kd">←</span><span class="m">0</span>
+<span class="nv">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────────┐
+↓ 0  7  9  1│
+│ 5  0 12 11│
+│ 3  2  0  8│
+│10 16 14  0│
+└~──────────┘
+</span></div></div>
+</div>
+<p>We can take this to higher ranks, too. Let’s say that we have a rank 3 array, where each major cell is square. How can we zero out the main diagonal in each major cell? Here’s a rank 3 array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">mat</span><span class="kd">←</span><span class="m">3</span> <span class="m">4</span> <span class="m">4</span><span class="o">⍴</span><span class="m">¯1</span> <span class="m">¯6</span> <span class="m">¯4</span> <span class="m">¯3</span> <span class="m">¯6</span> <span class="m">¯1</span> <span class="m">¯1</span> <span class="m">0</span> <span class="m">¯4</span> <span class="m">¯1</span> <span class="m">¯1</span> <span class="m">2</span> <span class="m">¯3</span> <span class="m">0</span> <span class="m">2</span> <span class="m">¯1</span> <span class="m">1</span> <span class="m">¯4</span> <span class="m">¯2</span> <span class="m">¯1</span> <span class="m">¯4</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="m">¯2</span> <span class="m">1</span> <span class="m">1</span> <span class="m">4</span> <span class="m">¯1</span> <span class="m">2</span> <span class="m">4</span> <span class="m">1</span> <span class="m">2</span> <span class="m">¯3</span> <span class="m">¯1</span> <span class="m">0</span> <span class="m">¯3</span> <span class="m">2</span> <span class="m">2</span> <span class="m">3</span> <span class="m">¯1</span> <span class="m">2</span> <span class="m">2</span> <span class="m">5</span> <span class="m">0</span> <span class="m">3</span> <span class="m">5</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌┌→──────────┐
+↓↓¯1 ¯6 ¯4 ¯3│
+││¯6 ¯1 ¯1  0│
+││¯4 ¯1 ¯1  2│
+││¯3  0  2 ¯1│
+││           │
+││ 1 ¯4 ¯2 ¯1│
+││¯4  1  1  2│
+││¯2  1  1  4│
+││¯1  2  4  1│
+││           │
+││ 2 ¯3 ¯1  0│
+││¯3  2  2  3│
+││¯1  2  2  5│
+││ 0  3  5  2│
+└└~──────────┘
+</span></div></div>
+</div>
+<p>Unfortunately, we can’t use rank 2 (<code class="docutils literal notranslate"><span class="pre">⍤2</span></code>) on our selective assignment. But can we instead use dyadic transpose directly? Indeed we can! We note that the first axis will remain the same, and the trailing two axes repeated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span> <span class="m">1</span> <span class="m">1</span><span class="o">⍉</span><span class="nv">mat</span>     <span class="c1">⍝ major cell diagonals</span>
+<span class="p">(</span><span class="m">0</span> <span class="m">1</span> <span class="m">1</span><span class="o">⍉</span><span class="nv">mat</span><span class="p">)</span><span class="kd">←</span><span class="m">0</span> <span class="c1">⍝ major cell diagonals, selectively assigned</span>
+<span class="nv">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────────┐
+↓¯1 ¯1 ¯1 ¯1│
+│ 1  1  1  1│
+│ 2  2  2  2│
+└~──────────┘
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌┌→──────────┐
+↓↓ 0 ¯6 ¯4 ¯3│
+││¯6  0 ¯1  0│
+││¯4 ¯1  0  2│
+││¯3  0  2  0│
+││           │
+││ 0 ¯4 ¯2 ¯1│
+││¯4  0  1  2│
+││¯2  1  0  4│
+││¯1  2  4  0│
+││           │
+││ 0 ¯3 ¯1  0│
+││¯3  0  2  3│
+││¯1  2  0  5│
+││ 0  3  5  0│
+└└~──────────┘
+</span></div></div>
+</div>
 </div>
 <div class="section" id="the-filling-order">
 <h2>The filling order<a class="headerlink" href="#the-filling-order" title="Permalink to this headline">¶</a></h2>
