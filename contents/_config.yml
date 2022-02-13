@@ -5,6 +5,8 @@ title: Learning APL
 author: Stefan Kruger, Computational Array and Magic
 logo: logo2.png
 
+only_build_toc_files: true
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
