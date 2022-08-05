@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>It’s arrays all the way down &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    It’s arrays all the way down
@@ -272,90 +289,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/array.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Farray.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Farray.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/array.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#let-s-get-in-shape">
    Let’s get in shape
@@ -383,17 +501,60 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>It’s arrays all the way down</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-get-in-shape">
+   Let’s get in shape
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rank-and-reshape">
+   Rank and reshape
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍴
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enclose-disclose">
+   Enclose, disclose
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⊂⊃
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="it-s-arrays-all-the-way-down">
-<h1>It’s arrays all the way down<a class="headerlink" href="#it-s-arrays-all-the-way-down" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="it-s-arrays-all-the-way-down">
+<h1>It’s arrays all the way down<a class="headerlink" href="#it-s-arrays-all-the-way-down" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies, and the other way is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult. –<em>Tony Hoare</em></p>
 </div></blockquote>
@@ -401,7 +562,7 @@
 <p>But first things first: we promised to be explicit about our index origin, so let’s set that to zero upfront:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -409,7 +570,7 @@
 <p>A large part of programming in APL becomes a matter of data wrangling. Instead of looping and branching, you use simple primitives to transform your data, perhaps from a big vector into a multi-dimensional array which you then reduce back down along a different axis. As a simple example, say we have a nested vector, and we want to know the sum of all the first elements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">data</span> <span class="kd">←</span> <span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span> <span class="p">(</span><span class="m">2</span> <span class="m">5</span> <span class="m">8</span> <span class="m">6</span><span class="p">)</span> <span class="p">(</span><span class="m">8</span> <span class="m">6</span> <span class="m">2</span> <span class="m">3</span><span class="p">)</span> <span class="p">(</span><span class="m">8</span> <span class="m">7</span> <span class="m">6</span> <span class="m">1</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">8</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -430,7 +591,7 @@
 <p>The APL version turns the vector into a 2D array, <em>sum-reduces</em> (we’ll explain properly what this means later) along the leading axis and picks the first value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -441,7 +602,7 @@
 <p>Wow. Ok, let’s take that apart. Starting from the right, first step is to “trade depth for rank” – turning the nested vector into a 2D array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -455,7 +616,7 @@
 <p>Now we sum each column, <em>reducing</em> the dimensionality by 1, turning our matrix into a vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -466,7 +627,7 @@
 <p>Finally, we pick the first value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃+</span><span class="na">⌿</span><span class="o">↑</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -474,12 +635,12 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">19
 </span></div></div>
 </div>
-<div class="section" id="let-s-get-in-shape">
-<h2>Let’s get in shape<a class="headerlink" href="#let-s-get-in-shape" title="Permalink to this headline">¶</a></h2>
+<section id="let-s-get-in-shape">
+<h2>Let’s get in shape<a class="headerlink" href="#let-s-get-in-shape" title="Permalink to this headline">#</a></h2>
 <p>The first concept we need to understand is that data is defined in terms of its <em>shape</em>. The shape defines the dimensionality of our data, and we can investigate that using the APL function <code class="docutils literal notranslate"><span class="pre">⍴</span></code> – the Greek letter “rho”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -490,8 +651,8 @@
 <p>Oh, ok – nothing? That was rather uninteresting, right? Let’s ask Dyalog to help us a bit by displaying output with borders indicating shape, type and structure, and try that again:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Some visualisation help, please.</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">max</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Some visualisation help, please.</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">box</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">max</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -503,7 +664,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -522,7 +683,7 @@
 <p>Running with <code class="docutils literal notranslate"><span class="pre">]box</span> <span class="pre">-style=max</span></code> gets very noisy after a while, so let’s dial that back a bit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">min</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">box</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">min</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -534,7 +695,7 @@
 <p>We can check that the shape of 5 is indeed <em>Zilde</em> by saying:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="no">⍬</span><span class="o">≡⍴</span><span class="m">5</span> <span class="c1">⍝ Does zilde match shape of 5?</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="no">⍬</span><span class="o">≡⍴</span><span class="m">5</span><span class="w"> </span><span class="c1">⍝ Does zilde match shape of 5?</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -546,7 +707,7 @@
 <p>Let’s instead consider a vector – in other words, something that <em>has</em> dimensional extent. Here’s a vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="m">8</span> <span class="m">5</span> <span class="m">2</span> <span class="m">3</span> <span class="c1">⍝ A vector, yay</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1">⍝ A vector, yay</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +721,7 @@
 <p>So, what shape does a vector have?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="o">⍴</span> <span class="m">8</span> <span class="m">5</span> <span class="m">2</span> <span class="m">3</span> <span class="c1">⍝ What&#39;s the shape of my vector?</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1">⍝ What&#39;s the shape of my vector?</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -574,8 +735,8 @@
 <p>Ok, let’s try a matrix – or a 2D array, disregarding for the moment the APL mechanics of its creation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">m</span> <span class="kd">←</span> <span class="o">↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span><span class="p">)(</span><span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span><span class="p">)</span>
-<span class="sr">]</span><span class="nv">DISPLAY</span> <span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">m</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="p">)(</span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -590,7 +751,7 @@
 <p>That gives us a 3×4 matrix called <code class="docutils literal notranslate"><span class="pre">m</span></code>, holding the integers 1-12. APL helps us by now showing two arrows on the surrounding box. What is its shape?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -601,7 +762,7 @@
 <p>The shape vector now has <em>two</em> components – as our matrix has two axes – the first axis, y, of length 3, and the second, x, of length 4. In other words, the <em>shape of the shape</em> tells us something about our array: its dimensionality, or its number of axes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="o">⍴⍴</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="o">⍴⍴</span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -614,7 +775,7 @@
 <p>The <em>shape-of-shape</em> thing has a name: <em>rank</em>, although it’s usually thought of as the <em>length</em> of the shape vector, as it’s more convenient to have it as a scalar, rather than as a 1-element vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">m</span> <span class="c1">⍝ Rank</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">m</span><span class="w"> </span><span class="c1">⍝ Rank</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -622,16 +783,16 @@
 <div class="output text_html"><span style="white-space:pre; font-family: monospace">2
 </span></div></div>
 </div>
-</div>
-<div class="section" id="rank-and-reshape">
-<h2>Rank and reshape <code class="docutils literal notranslate"><span class="pre">⍴</span></code><a class="headerlink" href="#rank-and-reshape" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rank-and-reshape">
+<h2>Rank and reshape <code class="docutils literal notranslate"><span class="pre">⍴</span></code><a class="headerlink" href="#rank-and-reshape" title="Permalink to this headline">#</a></h2>
 <p>Rank is a central concept in APL. APL’s functions are said to be rank-polymorphic, meaning that operations extend seamlessly to any-rank arguments where this is possible.</p>
 <p>For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="o">+</span> <span class="m">1</span>          <span class="c1">⍝ Scalar + scalar</span>
-<span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>      <span class="c1">⍝ Scalar + vector</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="o">+</span> <span class="m">9</span> <span class="m">3</span> <span class="m">2</span>  <span class="c1">⍝ Vector + vector</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1">⍝ Scalar + scalar</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w">      </span><span class="c1">⍝ Scalar + vector</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="c1">⍝ Vector + vector</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -645,7 +806,7 @@
 <p>When used dyadically, the <em>Shape</em> (<code class="docutils literal notranslate"><span class="pre">⍴</span></code>) function <em>reshapes</em> data. A typical use for this is to take data from some raw format and use <code class="docutils literal notranslate"><span class="pre">⍴</span></code> to bend it into the shape we want. Here’s an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="m">2</span> <span class="m">4</span><span class="o">⍴⍳</span><span class="m">8</span> <span class="c1">⍝ Reshape vector to 2×4 matrix</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="o">⍴⍳</span><span class="m">8</span><span class="w"> </span><span class="c1">⍝ Reshape vector to 2×4 matrix</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -661,8 +822,8 @@
 <p>Here’s another example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="nv">v</span> <span class="kd">←</span> <span class="m">8</span> <span class="m">6</span> <span class="m">2</span> <span class="m">9</span>     <span class="c1">⍝ Vector of length 4</span>
-<span class="sr">]</span><span class="nv">DISPLAY</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">1</span> <span class="m">4</span><span class="o">⍴</span><span class="nv">v</span>       <span class="c1">⍝ Reshape vector to 1×4 matrix</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">9</span><span class="w">     </span><span class="c1">⍝ Vector of length 4</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="o">⍴</span><span class="nv">v</span><span class="w">       </span><span class="c1">⍝ Reshape vector to 1×4 matrix</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -678,10 +839,10 @@
 <p>In case the difference isn’t obvious, let’s look at the ranks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">v</span>
-<span class="o">≢⍴</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">v</span><span class="w"></span>
+<span class="o">≢⍴</span><span class="nv">m</span><span class="w"></span>
 
-<span class="nv">v</span><span class="o">≡</span><span class="nv">m</span> <span class="c1">⍝ Does v match m?</span>
+<span class="nv">v</span><span class="o">≡</span><span class="nv">m</span><span class="w"> </span><span class="c1">⍝ Does v match m?</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -694,10 +855,10 @@
 <p>This is an issue that bites everyone at some stage of their APL journey. We can see from the rank that <code class="docutils literal notranslate"><span class="pre">v</span></code> is a <em>vector</em> – rank 1, but <code class="docutils literal notranslate"><span class="pre">m</span></code> is a 1×4 matrix – rank 2, even if they look the same. The visualisation shows this with two arrows on the box for <code class="docutils literal notranslate"><span class="pre">m</span></code>, but only one arrow on the box for <code class="docutils literal notranslate"><span class="pre">v</span></code>. If we switch off the verbose visualisation, it gets <em>much</em> trickier to spot:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span> 
-<span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span>
+<span class="nv">m</span><span class="w"></span>
 
-<span class="nv">v</span><span class="o">≡</span><span class="nv">m</span> <span class="c1">⍝ ?????</span>
+<span class="nv">v</span><span class="o">≡</span><span class="nv">m</span><span class="w"> </span><span class="c1">⍝ ?????</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -712,8 +873,8 @@
 <p>The other thing that is worth re-highlighting is how the array axes are enumerated in APL. We saw from a previous example that the shape of a 2D array lists y before x in the shape vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">2</span> <span class="m">4</span><span class="o">⍴</span><span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="c1">⍝ y=2, x=4</span>
-<span class="o">⍴</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="o">⍴</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="c1">⍝ y=2, x=4</span><span class="w"></span>
+<span class="o">⍴</span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -724,16 +885,16 @@
 </span></div></div>
 </div>
 <p>This idea extends to higher dimensions, too. A 3D matrix would have its shape vector represent z, y and x axes in that order. A 57D matrix would.. you get the point.</p>
-</div>
-<div class="section" id="enclose-disclose">
-<h2>Enclose, disclose <code class="docutils literal notranslate"><span class="pre">⊂⊃</span></code><a class="headerlink" href="#enclose-disclose" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="enclose-disclose">
+<h2>Enclose, disclose <code class="docutils literal notranslate"><span class="pre">⊂⊃</span></code><a class="headerlink" href="#enclose-disclose" title="Permalink to this headline">#</a></h2>
 <p><img alt="kk" src="_images/karatekid.png" /></p>
 <p>Arrays in Dyalog APL are always collections of scalars, regardless of rank. However, we can create arbitrarily complex scalars by a process known as <em>enclosing</em>. This means putting something in a “box”. It looks like so:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">v</span> <span class="kd">←</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-<span class="o">⊂</span><span class="nv">v</span>         <span class="c1">⍝ Enclose the vector 1 2 3</span>
-<span class="nv">v</span><span class="o">≡⊂</span><span class="nv">v</span>       <span class="c1">⍝ Does the vector v match the enclosed v? Of course not!</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
+<span class="o">⊂</span><span class="nv">v</span><span class="w">         </span><span class="c1">⍝ Enclose the vector 1 2 3</span><span class="w"></span>
+<span class="nv">v</span><span class="o">≡⊂</span><span class="nv">v</span><span class="w">       </span><span class="c1">⍝ Does the vector v match the enclosed v? Of course not!</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -748,8 +909,8 @@
 <p>We can check that enclosing creates a scalar by inspecting the rank:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">v</span>  <span class="c1">⍝ Rank of vector should be 1</span>
-<span class="o">≢⍴⊂</span><span class="nv">v</span> <span class="c1">⍝ Rank of scalar should be 0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢⍴</span><span class="nv">v</span><span class="w">  </span><span class="c1">⍝ Rank of vector should be 1</span><span class="w"></span>
+<span class="o">≢⍴⊂</span><span class="nv">v</span><span class="w"> </span><span class="c1">⍝ Rank of scalar should be 0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -761,7 +922,7 @@
 <p>This actually allows us to create a Python-style “list of lists” – or in APL terms, a vector of enclosed vectors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span> <span class="nv">v</span> <span class="kd">←</span> <span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span><span class="p">)</span> <span class="p">(</span><span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span> <span class="p">(</span><span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -776,7 +937,7 @@
 <p>See the little epsilon <code class="docutils literal notranslate"><span class="pre">∊</span></code> in the lower edge of the box? It indicates that the elements of the vector are enclosed. We’ll discuss indexing in depth later on, but for now, let’s get a cell out of that vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span> <span class="c1">⍝ Get position 1 -- we get back an enclosed vector</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="w"> </span><span class="c1">⍝ Get position 1 -- we get back an enclosed vector</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -789,7 +950,7 @@
 <p>We can create arbitrary levels of nesting:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span> <span class="p">(</span><span class="s1">&#39;hello&#39;</span> <span class="m">2</span><span class="p">))</span> <span class="p">(</span><span class="m">3</span> <span class="p">(</span><span class="s1">&#39;world&#39;</span> <span class="m">4</span><span class="p">))</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="w"> </span><span class="m">4</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -808,8 +969,8 @@
 <p>Non-simple, a.k.a nested, arrays can be detrimental to APL performance!</p>
 <p>It’s best to bear this in mind from the beginning: if you can, choose multiple simple vectors, rather than a single vector of complex scalars.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -833,9 +994,11 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -851,32 +1014,34 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

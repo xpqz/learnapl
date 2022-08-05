@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Namespaces ⎕NS &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="array.html">
    It’s arrays all the way down
@@ -272,90 +289,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/namespaces.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fnamespaces.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fnamespaces.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/namespaces.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scripted-namespaces">
    Scripted namespaces
@@ -383,17 +501,60 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Namespaces ⎕NS</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scripted-namespaces">
+   Scripted namespaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wait-this-is-starting-to-look-like-a-dict">
+   Wait, this is starting to look like a dict!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-note-on-mutability">
+   A note on mutability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrays-of-namespaces">
+   Arrays of namespaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#left-argument">
+   Left argument
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="namespaces-ns">
-<h1>Namespaces <code class="docutils literal notranslate"><span class="pre">⎕NS</span></code><a class="headerlink" href="#namespaces-ns" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="namespaces-ns">
+<h1>Namespaces <code class="docutils literal notranslate"><span class="pre">⎕NS</span></code><a class="headerlink" href="#namespaces-ns" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>The utility of a language as a tool of thought increases with the range of topics it can treat, but decreases with the amount of vocabulary and the complexity of grammatical rules which the user must keep in mind. Economy of notation is therefore important. –<em>Kenneth E. Iverson</em></p>
 </div></blockquote>
@@ -408,7 +569,7 @@
 <p>Here’s an anonymous namespace:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span> <span class="kd">←</span> <span class="nf">⎕NS</span><span class="no">⍬</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -416,14 +577,14 @@
 <p>We can assign values to variables inside this namespace:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span> <span class="nv">cost</span> <span class="nv">id</span><span class="p">)</span>  <span class="kd">←</span> <span class="s1">&#39;widget&#39;</span> <span class="m">55.0</span> <span class="s1">&#39;widg443&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span><span class="w"> </span><span class="nv">cost</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span><span class="w">  </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;widget&#39;</span><span class="w"> </span><span class="m">55.0</span><span class="w"> </span><span class="s1">&#39;widg443&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span> <span class="nv">cost</span> <span class="nv">id</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span><span class="w"> </span><span class="nv">cost</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -436,14 +597,14 @@
 <p>Names inside a namespace can hold any value that names can hold <em>outside</em> a namespace, including functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nv">sum</span><span class="kd">←</span><span class="o">+</span><span class="na">/</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nv">sum</span><span class="kd">←</span><span class="o">+</span><span class="na">/</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nv">sum</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nv">sum</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -454,7 +615,7 @@
 <p>There is a handy user command, <code class="docutils literal notranslate"><span class="pre">]map</span></code> that gives a tree outline of a namespace that’s worth adding to your repertoire:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span> <span class="nv">obj</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span><span class="w"> </span><span class="nv">obj</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -464,36 +625,36 @@
 ·   ∇ sum
 </span></div></div>
 </div>
-<div class="section" id="scripted-namespaces">
-<h2>Scripted namespaces<a class="headerlink" href="#scripted-namespaces" title="Permalink to this headline">¶</a></h2>
+<section id="scripted-namespaces">
+<h2>Scripted namespaces<a class="headerlink" href="#scripted-namespaces" title="Permalink to this headline">#</a></h2>
 <p>A nifty feature is that we can compose a namespace as a <em>script</em>. In RIDE, you need to say <code class="docutils literal notranslate"><span class="pre">)ed</span> <span class="pre">⍟</span> <span class="pre">mynamespace</span></code> in order to work with a scripted namespace. Yes, of course that’s a good use for the <em>Logarithm</em> glyph. It looks like so:</p>
 <p><img alt="ns1" src="_images/ns1.png" /></p>
 <p>In this way, the namespace can be a convenient way to organise your code. And in case it wasn’t obvious, it’s actually a way in which you can have many multi-line dfns in the same editing window – or even text file. It even works as intended in the Jupyter notebook:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="bp">:</span><span class="nv">Namespace</span> <span class="nv">myns</span>
-    <span class="nv">f</span> <span class="kd">←</span> <span class="kt">{</span>
-        <span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span>
-    <span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="bp">:</span><span class="nv">Namespace</span><span class="w"> </span><span class="nv">myns</span><span class="w"></span>
+<span class="w">    </span><span class="nv">f</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="bp">⍺</span><span class="o">+</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"></span>
 
-    <span class="nv">g</span> <span class="kd">←</span> <span class="kt">{</span>
-        <span class="c1">⍝ g fun</span>
-        <span class="bp">⍺⍵</span>
-    <span class="kt">}</span>
+<span class="w">    </span><span class="nv">g</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">⍝ g fun</span><span class="w"></span>
+<span class="w">        </span><span class="bp">⍺⍵</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"></span>
 
-    <span class="nv">h</span> <span class="kd">←</span> <span class="kt">{</span>
-        <span class="nv">s</span> <span class="kd">←</span> <span class="s1">&#39;\d+&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;D&#39;</span><span class="o">⊢</span><span class="bp">⍵</span>
-        <span class="bp">⍺</span> <span class="nv">g</span> <span class="nv">s</span>
-    <span class="kt">}</span>
-<span class="bp">:</span><span class="nv">EndNamespace</span>
+<span class="w">    </span><span class="nv">h</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;\d+&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;D&#39;</span><span class="o">⊢</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">        </span><span class="bp">⍺</span><span class="w"> </span><span class="nv">g</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"></span>
+<span class="bp">:</span><span class="nv">EndNamespace</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;nodigits&#39;</span> <span class="nv">myns</span><span class="na">.</span><span class="nv">h</span> <span class="s1">&#39;abd556jashgd8879&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;nodigits&#39;</span><span class="w"> </span><span class="nv">myns</span><span class="na">.</span><span class="nv">h</span><span class="w"> </span><span class="s1">&#39;abd556jashgd8879&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -503,13 +664,13 @@
 └────────┴───────────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="wait-this-is-starting-to-look-like-a-dict">
-<h2>Wait, this is starting to look like a dict!<a class="headerlink" href="#wait-this-is-starting-to-look-like-a-dict" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="wait-this-is-starting-to-look-like-a-dict">
+<h2>Wait, this is starting to look like a dict!<a class="headerlink" href="#wait-this-is-starting-to-look-like-a-dict" title="Permalink to this headline">#</a></h2>
 <p>We can get tantalisingly close to having a namespace function as a dict. In order to list the names of variables contained in a namespace, we have the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nl.htm">namelist</a>, <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code>, system function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">names</span> <span class="kd">←</span> <span class="nv">obj</span><span class="na">.</span><span class="nf">⎕NL</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">obj</span><span class="na">.</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -522,7 +683,7 @@ name
 <p>The <code class="docutils literal notranslate"><span class="pre">2</span></code> there lets <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> know that we want an array back.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">names</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">names</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -533,7 +694,7 @@ name
 <p>If we feed it <code class="docutils literal notranslate"><span class="pre">¯2</span></code> instead we get a nested vector instead:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nf">⎕NL</span> <span class="m">¯2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="na">.</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -547,8 +708,8 @@ name
 <p>We can get the <em>values</em> of variables by evaluating their names:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="o">⍎</span><span class="s1">&#39;cost&#39;</span>
-<span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL</span> <span class="m">¯2</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="o">⍎</span><span class="s1">&#39;cost&#39;</span><span class="w"></span>
+<span class="nv">obj</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -562,25 +723,25 @@ name
 <p>Almost, but not quite, a dict:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_set</span><span class="kd">←</span><span class="kt">{</span><span class="o">⍎</span><span class="s1">&#39;⍺⍺.&#39;</span><span class="o">,</span><span class="bp">⍺</span><span class="o">,</span><span class="s1">&#39;←⍵&#39;</span><span class="o">⊣</span><span class="bp">⍺⍺</span><span class="kt">}</span>
-<span class="nv">keys</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL</span> <span class="m">¯2</span><span class="kt">}</span>
-<span class="nv">vals</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL</span> <span class="m">¯2</span><span class="p">)</span><span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_set</span><span class="kd">←</span><span class="kt">{</span><span class="o">⍎</span><span class="s1">&#39;⍺⍺.&#39;</span><span class="o">,</span><span class="bp">⍺</span><span class="o">,</span><span class="s1">&#39;←⍵&#39;</span><span class="o">⊣</span><span class="bp">⍺⍺</span><span class="kt">}</span><span class="w"></span>
+<span class="nv">keys</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="kt">}</span><span class="w"></span>
+<span class="nv">vals</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="p">)</span><span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;hello&#39;</span> <span class="p">(</span><span class="nv">obj</span> <span class="nv">_set</span><span class="p">)</span> <span class="s1">&#39;world&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;hello&#39;</span><span class="w"> </span><span class="p">(</span><span class="nv">obj</span><span class="w"> </span><span class="nv">_set</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;world&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="o">⍎</span><span class="s1">&#39;hello&#39;</span>
-<span class="nv">keys</span> <span class="nv">obj</span>
-<span class="nv">vals</span> <span class="nv">obj</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">obj</span><span class="o">⍎</span><span class="s1">&#39;hello&#39;</span><span class="w"></span>
+<span class="nv">keys</span><span class="w"> </span><span class="nv">obj</span><span class="w"></span>
+<span class="nv">vals</span><span class="w"> </span><span class="nv">obj</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -595,16 +756,16 @@ name
 </span></div></div>
 </div>
 <p>but this approach won’t let you use anything but character vectors as keys, and the keys must also be valid APL names.  There are also some performance constraints if the number of items in a namespace grow large.</p>
-</div>
-<div class="section" id="a-note-on-mutability">
-<h2>A note on mutability<a class="headerlink" href="#a-note-on-mutability" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-note-on-mutability">
+<h2>A note on mutability<a class="headerlink" href="#a-note-on-mutability" title="Permalink to this headline">#</a></h2>
 <p>Namespaces in Dyalog are reference types, and mutable. This allows you to bypass some scope-related barriers that may have been erected for very good reasons, so <em>caveat emptor</em>. For example, we can mutate a namespace even if it’s passed as the <em>left</em> argument, which is an error for normal arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ns</span> <span class="kd">←</span> <span class="nf">⎕NS</span><span class="no">⍬</span>
-<span class="nv">ns</span><span class="na">.</span><span class="nv">key</span> <span class="kd">←</span> <span class="m">45</span>
-<span class="nv">ns</span> <span class="kt">{</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">key</span> <span class="kd">←</span> <span class="m">99</span> <span class="p">⋄</span> <span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;hello&#39;</span> <span class="c1">⍝ Mutation through ⍺...</span>
-<span class="nv">ns</span><span class="na">.</span><span class="nv">key</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ns</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="w"></span>
+<span class="nv">ns</span><span class="na">.</span><span class="nv">key</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">45</span><span class="w"></span>
+<span class="nv">ns</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="na">.</span><span class="nv">key</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span><span class="c1">⍝ Mutation through ⍺...</span><span class="w"></span>
+<span class="nv">ns</span><span class="na">.</span><span class="nv">key</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -614,24 +775,24 @@ name
 </span></div></div>
 </div>
 <p>It also means that there is no need for modified assignment through a tack, <code class="docutils literal notranslate"><span class="pre">⊢←</span></code> if we want to set a value in a namespace not in our immediate scope. All of this is either very useful, or very dangerous, depending on your particular view point. The reality is that it’s both useful, but also increases the risk of foot-gun incidents.</p>
-</div>
-<div class="section" id="arrays-of-namespaces">
-<h2>Arrays of namespaces<a class="headerlink" href="#arrays-of-namespaces" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="arrays-of-namespaces">
+<h2>Arrays of namespaces<a class="headerlink" href="#arrays-of-namespaces" title="Permalink to this headline">#</a></h2>
 <p>Certain namespace operations extend into arrays of namespaces, almost like scalar extension, which might not be obvious at all, but supremely useful. For example, we can assign to a specific field across the whole array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
-<span class="nv">nsarray</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="na">¨</span><span class="m">6</span><span class="o">⍴⊂</span><span class="no">⍬</span>
-<span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span><span class="kd">←</span><span class="s1">&#39;adam&#39;</span> <span class="s1">&#39;bob&#39;</span> <span class="s1">&#39;charlotte&#39;</span> <span class="s1">&#39;dave&#39;</span> <span class="s1">&#39;erica&#39;</span> <span class="s1">&#39;fred&#39;</span>
-<span class="nv">nsarray</span><span class="na">.</span><span class="nv">pid</span><span class="kd">←</span><span class="m">3</span> <span class="m">7</span> <span class="m">87</span> <span class="m">32</span> <span class="m">32</span> <span class="m">9</span>
-<span class="nv">nsarray</span><span class="na">.</span><span class="nv">items</span><span class="kd">←</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span><span class="p">)(</span><span class="m">2</span> <span class="m">3</span><span class="p">)(</span><span class="m">9</span> <span class="m">32</span> <span class="m">23</span><span class="p">)(</span><span class="m">9</span> <span class="m">8</span> <span class="m">7</span> <span class="m">6</span> <span class="m">5</span> <span class="m">4</span><span class="p">)(</span><span class="m">8</span> <span class="m">7</span><span class="p">)(</span><span class="o">,</span><span class="m">1</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span><span class="w"></span>
+<span class="nv">nsarray</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="na">¨</span><span class="m">6</span><span class="o">⍴⊂</span><span class="no">⍬</span><span class="w"></span>
+<span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span><span class="kd">←</span><span class="s1">&#39;adam&#39;</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span><span class="w"> </span><span class="s1">&#39;charlotte&#39;</span><span class="w"> </span><span class="s1">&#39;dave&#39;</span><span class="w"> </span><span class="s1">&#39;erica&#39;</span><span class="w"> </span><span class="s1">&#39;fred&#39;</span><span class="w"></span>
+<span class="nv">nsarray</span><span class="na">.</span><span class="nv">pid</span><span class="kd">←</span><span class="m">3</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">9</span><span class="w"></span>
+<span class="nv">nsarray</span><span class="na">.</span><span class="nv">items</span><span class="kd">←</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)(</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)(</span><span class="m">9</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">23</span><span class="p">)(</span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="p">)(</span><span class="o">,</span><span class="m">1</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="sr">[</span><span class="m">2</span><span class="sr">]</span><span class="na">.</span><span class="nv">name</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="sr">[</span><span class="m">2</span><span class="sr">]</span><span class="na">.</span><span class="nv">name</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -642,7 +803,7 @@ name
 <p>and, as a consequence, pick a field from all array elements:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -655,7 +816,7 @@ name
 <p>We can also execute functions on fields if we enclose in parentheses:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="p">(</span><span class="o">≢</span><span class="nv">items</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="p">(</span><span class="o">≢</span><span class="nv">items</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -666,7 +827,7 @@ name
 <p>or pick multiple fields, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span> <span class="nv">pid</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="na">.</span><span class="p">(</span><span class="nv">name</span><span class="w"> </span><span class="nv">pid</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -681,17 +842,17 @@ name
 <p>If you were jealous of KDB+’s neat SQL integration, we can even knock up a simple query DSL for accessing data represented as arrays of namespaces, as <a class="reference external" href="https://chat.stackexchange.com/users/130368/adam">Adám</a> showed in a post in <a class="reference external" href="https://chat.stackexchange.com/transcript/message/58127218#58127218">APL Orchard</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">From</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⍎</span><span class="na">¨</span><span class="o">⊂</span><span class="bp">⍺</span><span class="kt">}</span>
-<span class="nv">Has</span><span class="kd">←</span><span class="kt">{</span><span class="o">×</span><span class="bp">⍺</span><span class="na">.</span><span class="nf">⎕NC</span><span class="o">⊂⊂</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">In</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="na">∘</span><span class="p">(</span><span class="o">∨</span><span class="na">/</span><span class="o">⍷</span><span class="p">)</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">Where</span><span class="kd">←</span><span class="na">/⍨</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">From</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⍎</span><span class="na">¨</span><span class="o">⊂</span><span class="bp">⍺</span><span class="kt">}</span><span class="w"></span>
+<span class="nv">Has</span><span class="kd">←</span><span class="kt">{</span><span class="o">×</span><span class="bp">⍺</span><span class="na">.</span><span class="nf">⎕NC</span><span class="o">⊂⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"></span>
+<span class="nv">In</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="na">∘</span><span class="p">(</span><span class="o">∨</span><span class="na">/</span><span class="o">⍷</span><span class="p">)</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"></span>
+<span class="nv">Where</span><span class="kd">←</span><span class="na">/⍨</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;pid&#39;</span> <span class="nv">From</span> <span class="nv">nsarray</span> <span class="nv">Where</span> <span class="s1">&#39;dave&#39;</span> <span class="nv">In</span> <span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;pid&#39;</span><span class="w"> </span><span class="nv">From</span><span class="w"> </span><span class="nv">nsarray</span><span class="w"> </span><span class="nv">Where</span><span class="w"> </span><span class="s1">&#39;dave&#39;</span><span class="w"> </span><span class="nv">In</span><span class="w"> </span><span class="nv">nsarray</span><span class="na">.</span><span class="nv">name</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -702,14 +863,14 @@ name
 <p>Who needs SQL now? We can select on the existence of a particular field using the <code class="docutils literal notranslate"><span class="pre">Has</span></code> helper:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="sr">[</span><span class="m">2</span> <span class="m">5</span><span class="sr">]</span><span class="na">.</span><span class="nv">title</span><span class="kd">←</span><span class="s1">&#39;manager&#39;</span> <span class="s1">&#39;pointy-haired boss&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">nsarray</span><span class="sr">[</span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="sr">]</span><span class="na">.</span><span class="nv">title</span><span class="kd">←</span><span class="s1">&#39;manager&#39;</span><span class="w"> </span><span class="s1">&#39;pointy-haired boss&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;name&#39;</span> <span class="nv">From</span> <span class="nv">nsarray</span> <span class="nv">Where</span> <span class="nv">nsarray</span> <span class="nv">Has</span> <span class="s1">&#39;title&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="nv">From</span><span class="w"> </span><span class="nv">nsarray</span><span class="w"> </span><span class="nv">Where</span><span class="w"> </span><span class="nv">nsarray</span><span class="w"> </span><span class="nv">Has</span><span class="w"> </span><span class="s1">&#39;title&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -719,14 +880,14 @@ name
 └─────────┴────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="left-argument">
-<h2>Left argument<a class="headerlink" href="#left-argument" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="left-argument">
+<h2>Left argument<a class="headerlink" href="#left-argument" title="Permalink to this headline">#</a></h2>
 <p>We can also pass a left argument to <code class="docutils literal notranslate"><span class="pre">⎕NS</span></code>, which names the namespace, <em>including nested names</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;a&#39;</span><span class="nf">⎕NS</span><span class="no">⍬</span>
-<span class="nv">a</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;a&#39;</span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="w"></span>
+<span class="nv">a</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -736,14 +897,14 @@ name
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;top.middle.bottom&#39;</span><span class="nf">⎕NS</span><span class="no">⍬</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;top.middle.bottom&#39;</span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span> <span class="nv">top</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">map</span><span class="w"> </span><span class="nv">top</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -753,8 +914,8 @@ name
 ·   ·   bottom
 </span></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -778,9 +939,11 @@ name
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="aplway.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -796,32 +959,34 @@ name
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

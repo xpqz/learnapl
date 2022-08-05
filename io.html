@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Dealing with real data &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="array.html">
    It’s arrays all the way down
@@ -272,90 +289,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/io.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fio.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fio.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/io.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reading-text-files-nget">
    Reading text files:
@@ -388,17 +506,65 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dealing with real data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-text-files-nget">
+   Reading text files:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕NGET
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-csv-csv">
+   Reading CSV:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕CSV
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-json-json">
+   Reading JSON:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⎕JSON
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="dealing-with-real-data">
-<h1>Dealing with real data<a class="headerlink" href="#dealing-with-real-data" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dealing-with-real-data">
+<h1>Dealing with real data<a class="headerlink" href="#dealing-with-real-data" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>You want it in one line? Does it have to fit in 80 columns?
 –<em>Larry Wall</em></p>
@@ -411,9 +577,9 @@
 </ul>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span>
-<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">box</span><span class="w"> </span><span class="nv">on</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">rows</span><span class="w"> </span><span class="nv">on</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -422,12 +588,12 @@
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
-<div class="section" id="reading-text-files-nget">
-<h2>Reading text files: <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code><a class="headerlink" href="#reading-text-files-nget" title="Permalink to this headline">¶</a></h2>
+<section id="reading-text-files-nget">
+<h2>Reading text files: <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code><a class="headerlink" href="#reading-text-files-nget" title="Permalink to this headline">#</a></h2>
 <p>The system function <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nget.htm">⎕NGET</a> reads text files from disk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -445,7 +611,7 @@
 <p>Let’s explore what happens if we don’t do these things.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -461,7 +627,7 @@
 <p>What happens if we leave out the <code class="docutils literal notranslate"><span class="pre">1</span></code> at the end?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -478,7 +644,7 @@
 <p>Leaving out the <code class="docutils literal notranslate"><span class="pre">1</span></code> (or indeed instead passing the default value of <code class="docutils literal notranslate"><span class="pre">0</span></code>) returns a single character vector containing the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -489,7 +655,7 @@
 <p>This is probably not what you want in most cases when processing a text file. Note that we’ve read lines of <em>characters</em>. But we can convert them to numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span> <span class="c1">⍝ Note health warning below!</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span><span class="w"> </span><span class="c1">⍝ Note health warning below!</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -503,7 +669,7 @@
 <p>We mixed the vector into an array of rank 2, then applied the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Symbols/Execute%20Symbol.htm"><em>Hydrant</em></a>, <code class="docutils literal notranslate"><span class="pre">⍎</span></code> at rank 1 (vectors). <em>Hydrant</em> is a function called  <em>Execute</em>, and it takes a string and evaluates it as if it was a little APL program, similar to how <a class="reference external" href="https://docs.python.org/3/library/functions.html#eval">eval()</a> works in Python and Perl:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span> <span class="s1">&#39;1 8 6 7 5 9 5 9&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span><span class="w"> </span><span class="s1">&#39;1 8 6 7 5 9 5 9&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -517,14 +683,14 @@
 <p>Dyalog provides more industry-strength mechanisms for converting strings to numbers in a safe manner, like <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/vfi.htm">verify-fix-input</a>, <code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code></p>
 </div>
 <p>Anyway, enough of the yak shaving already.</p>
-</div>
-<div class="section" id="reading-csv-csv">
-<h2>Reading CSV: <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code><a class="headerlink" href="#reading-csv-csv" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reading-csv-csv">
+<h2>Reading CSV: <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code><a class="headerlink" href="#reading-csv-csv" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>, or <em>comma-separated values</em>, is a data format for tabular data. It’s <a class="reference external" href="http://thomasburette.com/blog/2014/05/25/so-you-want-to-write-your-own-CSV-code/">hairier than one might think</a> to write a correct CSV parser. Fortunately, Dyalog provides one for us as the system function <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/csv.htm">⎕CSV</a>. It can be used to convert data both to and from the CSV format. The <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> function has one extremely handy feature: it converts numbers for us, avoiding the hydrant-dance we resorted to above.</p>
 <p>Consider the following decidedly not-CSV-looking data. It’s a section from the data given in Day 2 in the <a class="reference external" href="https://adventofcode.com/2020/day/2">Advent of Code</a> competition from 2020. Let’s assume we’ve already read from disk using <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="s1">&#39;3-6 s: ssdsssss&#39;</span> <span class="s1">&#39;17-19 f: cnffsfffzhfnsffttms&#39;</span> <span class="s1">&#39;8-11 c: tzvtwncnwvwttp&#39;</span> <span class="s1">&#39;8-10 r: rwrrtrvttrrrr&#39;</span> <span class="s1">&#39;1-2 p: zhpjph&#39;</span> <span class="s1">&#39;4-6 l: pldnxv&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;3-6 s: ssdsssss&#39;</span><span class="w"> </span><span class="s1">&#39;17-19 f: cnffsfffzhfnsffttms&#39;</span><span class="w"> </span><span class="s1">&#39;8-11 c: tzvtwncnwvwttp&#39;</span><span class="w"> </span><span class="s1">&#39;8-10 r: rwrrtrvttrrrr&#39;</span><span class="w"> </span><span class="s1">&#39;1-2 p: zhpjph&#39;</span><span class="w"> </span><span class="s1">&#39;4-6 l: pldnxv&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -532,7 +698,7 @@
 <p>Whilst it’s not CSV, it <em>does</em> look tabular. One handy use of <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> is to rely on it to make a table from data, and convert columns of numbers. In our case, we separate each item by converting each “non-word” character to a comma, and then ask <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> to do the conversion:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕CSV</span><span class="p">(</span><span class="s1">&#39;\W+&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;,&#39;</span><span class="o">⊢</span><span class="nv">data</span><span class="p">)</span><span class="s1">&#39;&#39;</span><span class="m">4</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕CSV</span><span class="p">(</span><span class="s1">&#39;\W+&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;,&#39;</span><span class="o">⊢</span><span class="nv">data</span><span class="p">)</span><span class="s1">&#39;&#39;</span><span class="m">4</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -561,9 +727,9 @@
 <div><p>4: The field is to be interpreted numeric data but invalid numeric data is tolerated. Empty fields and fields which cannot be converted to numeric values are returned instead as character data.</p>
 </div></blockquote>
 <p>We can read files containing CSV data directly with <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code>, in which case the first element of the argument vector should be a character vector containing the file name. We can also use <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> to <em>write</em> .csv files – consult Dyalog’s docs for details.</p>
-</div>
-<div class="section" id="reading-json-json">
-<h2>Reading JSON: <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code><a class="headerlink" href="#reading-json-json" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reading-json-json">
+<h2>Reading JSON: <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code><a class="headerlink" href="#reading-json-json" title="Permalink to this headline">#</a></h2>
 <p>Dyalog also has a function for reading (and writing) JSON, appropriately enough called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/json.htm">⎕JSON</a>. The JSON data interchange format crops up everywhere: usually in REST-like APIs as the payload, as config files, as the document format in document-oriented databases. The name JSON is short for <em>JavaScript Object Notation</em>, and as one can expect, dealing with JSON in JavaScript is both trivial and convenient. Python’s native dictionary and list types - through luck, mostly - map pretty closely to JSON, too, making working with JSON in Python pretty simple.</p>
 <p>In APL, we have a wealth of different data types: array. JSON doesn’t do arrays of rank &gt; 1. This makes a recursively defined format depending on dictionaries, like JSON, potentially more awkward to deal with. In the specific case of Dyalog APL, we do have the <em>namespace</em> which can be persuaded to act a bit like a dictionary.</p>
 <div class="admonition warning">
@@ -581,7 +747,7 @@
 <p>Let’s look at some examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">json</span> <span class="kd">←</span> <span class="s1">&#39;{&quot;key&quot;: 1, &quot;list&quot;: [1, 2, 3, {&quot;colour&quot;: &quot;red&quot;, &quot;shape&quot;: &quot;oblong&quot;, &quot;number&quot;: 5}, [98, 43, 77]]}&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">json</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;{&quot;key&quot;: 1, &quot;list&quot;: [1, 2, 3, {&quot;colour&quot;: &quot;red&quot;, &quot;shape&quot;: &quot;oblong&quot;, &quot;number&quot;: 5}, [98, 43, 77]]}&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -589,7 +755,7 @@
 <p>Yep, that’s JSON alright. Let’s convert that to APL as vectors and namespaces:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">data</span> <span class="kd">←</span> <span class="nf">⎕JSON</span> <span class="nv">json</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nf">⎕JSON</span><span class="w"> </span><span class="nv">json</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -600,9 +766,9 @@
 <p>Ok, that went through without complaints, and we can see that Dyalog (correctly) thinks that the top level is “object”. We can now get at the innards of this by attribute names and indices:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="nv">key</span>
-<span class="nv">data</span><span class="na">.</span><span class="nv">list</span>
-<span class="nv">data</span><span class="na">.</span><span class="nv">list</span><span class="sr">[</span><span class="m">3</span><span class="sr">]</span><span class="na">.</span><span class="nv">shape</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="nv">key</span><span class="w"></span>
+<span class="nv">data</span><span class="na">.</span><span class="nv">list</span><span class="w"></span>
+<span class="nv">data</span><span class="na">.</span><span class="nv">list</span><span class="sr">[</span><span class="m">3</span><span class="sr">]</span><span class="na">.</span><span class="nv">shape</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -618,7 +784,7 @@
 <p>We can list all keys in a namespace using the following construct, where <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> is the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nl.htm"><em>Name list</em></a> and the <code class="docutils literal notranslate"><span class="pre">¯2</span></code> magic number means that we want a vector back:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="nf">⎕NL¯2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -631,7 +797,7 @@
 <p>To get the corresponding values, we need to <em>evaluate</em> each such key:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL¯2</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL¯2</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -646,33 +812,33 @@
 <p>Let’s say that we want to sum all numbers in the JSON. Here’s one way we can achieve that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">Values</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">keys</span> <span class="kd">←</span> <span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL¯2</span>
-    <span class="nv">values</span> <span class="kd">←</span> <span class="nv">keys</span> <span class="kt">{</span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍺:</span><span class="no">⍬</span><span class="p">⋄</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="bp">⍺</span><span class="p">)</span><span class="kt">}</span> <span class="bp">⍵</span> 
-    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL¯9</span><span class="bp">:</span><span class="nv">values</span>       <span class="c1">⍝ No nested namespaces: done</span>
-    <span class="nv">values</span><span class="o">,∊</span><span class="bp">∇</span><span class="na">¨</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL¯9</span><span class="p">)</span>   <span class="c1">⍝ Also expand any namespaces we found as values</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">Values</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">keys</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="w"></span>
+<span class="w">    </span><span class="nv">values</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keys</span><span class="w"> </span><span class="kt">{</span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍺:</span><span class="no">⍬</span><span class="p">⋄</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="bp">⍺</span><span class="p">)</span><span class="kt">}</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span>
+<span class="w">    </span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL¯9</span><span class="bp">:</span><span class="nv">values</span><span class="w">       </span><span class="c1">⍝ No nested namespaces: done</span><span class="w"></span>
+<span class="w">    </span><span class="nv">values</span><span class="o">,∊</span><span class="bp">∇</span><span class="na">¨</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL¯9</span><span class="p">)</span><span class="w">   </span><span class="c1">⍝ Also expand any namespaces we found as values</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">JSONSum</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">=</span><span class="m">2</span><span class="o">|</span><span class="nf">⎕DR</span><span class="p">)</span><span class="bp">⍵</span><span class="kt">}</span><span class="bp">⍵:⍵</span>                    <span class="c1">⍝ Are we a number?</span>
-    <span class="p">(</span><span class="o">⍕≡⊢</span><span class="p">)</span><span class="bp">⍵:</span><span class="m">0</span>                           <span class="c1">⍝ Are we a string?</span>
-    <span class="kt">{</span><span class="p">(</span><span class="m">326</span><span class="o">=</span><span class="nf">⎕DR</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∧</span><span class="p">(</span><span class="m">0</span><span class="o">=≡</span><span class="p">)</span><span class="bp">⍵</span><span class="kt">}</span> <span class="bp">⍵:</span><span class="o">+</span><span class="na">/</span><span class="bp">∇</span><span class="nv">Values</span> <span class="bp">⍵</span>  <span class="c1">⍝ Are we an object?</span>
-    <span class="o">+</span><span class="na">/</span><span class="o">∊</span><span class="bp">∇</span><span class="na">¨</span><span class="bp">⍵</span>                             <span class="c1">⍝ We&#39;re a list</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">JSONSum</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">=</span><span class="m">2</span><span class="o">|</span><span class="nf">⎕DR</span><span class="p">)</span><span class="bp">⍵</span><span class="kt">}</span><span class="bp">⍵:⍵</span><span class="w">                    </span><span class="c1">⍝ Are we a number?</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="o">⍕≡⊢</span><span class="p">)</span><span class="bp">⍵:</span><span class="m">0</span><span class="w">                           </span><span class="c1">⍝ Are we a string?</span><span class="w"></span>
+<span class="w">    </span><span class="kt">{</span><span class="p">(</span><span class="m">326</span><span class="o">=</span><span class="nf">⎕DR</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∧</span><span class="p">(</span><span class="m">0</span><span class="o">=≡</span><span class="p">)</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="bp">⍵:</span><span class="o">+</span><span class="na">/</span><span class="bp">∇</span><span class="nv">Values</span><span class="w"> </span><span class="bp">⍵</span><span class="w">  </span><span class="c1">⍝ Are we an object?</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="na">/</span><span class="o">∊</span><span class="bp">∇</span><span class="na">¨</span><span class="bp">⍵</span><span class="w">                             </span><span class="c1">⍝ We&#39;re a list</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">JSONSum</span> <span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">JSONSum</span><span class="w"> </span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -682,8 +848,8 @@
 </div>
 <p>The bits to find the type of each field in <code class="docutils literal notranslate"><span class="pre">JSONSum</span></code> are all things you can just look up on APLCart: monadic <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Data%20Representation%20Monadic.htm">⎕DR</a> means <em>Data representation</em>, and you just need to feed it the right magic number.</p>
 <p>There is a lot more to say about the <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code> function that we won’t go into here (we’ll see a bit more of it in the next <a class="reference internal" href="http.html"><span class="doc std std-doc">chapter</span></a>). It can also convert JSON to a pure array format instead of using namespaces, and it can also be used to convert APL arrays <em>to</em> JSON. The interested reader will have plenty to go at in the Dyalog docs, and Morten’s webinar signposted at the top of this chapter.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -707,9 +873,11 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="namespaces.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -725,32 +893,34 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

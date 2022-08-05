@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -61,7 +62,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +85,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +106,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Introduction
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="array.html">
    It’s arrays all the way down
@@ -271,90 +288,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#who-is-this-for">
    Who is this for?
@@ -419,35 +537,115 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-is-this-for">
+   Who is this for?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-apl">
+   What is APL?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-should-i-learn-apl">
+   Why should I learn APL?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#but-it-s-unreadable">
+   …but it’s unreadable!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#don-t-i-need-a-lot-of-mathematics">
+   Don’t I need a lot of mathematics?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-note-on-our-apl-subset">
+   A note on our APL subset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#not-covered">
+     Not covered
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-terser-better">
+   Is terser better?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-resources">
+   Other resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ok-i-m-convinced-how-do-i-get-started">
+   Ok, I’m convinced, how do I get started?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#our-first-tentative-steps">
+   Our first tentative steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#valence">
+   Valence
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>A language that doesn’t affect the way you think about programming is not worth knowing.
 –<em>Alan Perlis</em></p>
 </div></blockquote>
-<div class="section" id="who-is-this-for">
-<h2>Who is this for?<a class="headerlink" href="#who-is-this-for" title="Permalink to this headline">¶</a></h2>
+<section id="who-is-this-for">
+<h2>Who is this for?<a class="headerlink" href="#who-is-this-for" title="Permalink to this headline">#</a></h2>
 <p>I wrote this to be the book I would have wanted to read when I started to learn APL. An introduction to APL for an experienced practitioner from a different programming language or two. We all learn in different ways, and I prefer the fundamental concepts laid bare first, and then learn by example.</p>
 <p>I came to APL after discovering a file of <a class="reference external" href="https://github.com/KxSystems/kdb/blob/master/ad.k">solutions</a> to the <a class="reference external" href="https://adventofcode.com/">Advent of Code</a> 2015 challenge in <a class="reference external" href="https://en.wikipedia.org/wiki/K_(programming_language)">K</a>, an APL derivative. That’s around 100 lines of actual code, and whilst I didn’t understand any of it, I kept looking at it, trying to figure out which of the 50 problems (well, 49) this was a solution to. Each of my Python solutions typically ran to 50-100 lines+ for the bulk of the problems.</p>
 <p>Turns out it was the whole lot. That blew my mind.</p>
-</div>
-<div class="section" id="what-is-apl">
-<h2>What is APL?<a class="headerlink" href="#what-is-apl" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-is-apl">
+<h2>What is APL?<a class="headerlink" href="#what-is-apl" title="Permalink to this headline">#</a></h2>
 <p>APL is an <a class="reference external" href="https://en.wikipedia.org/wiki/Array_programming">array language</a>, and one of the oldest programming languages still in use today, next to <a class="reference external" href="https://fortran-lang.org/">FORTRAN</a>, <a class="reference external" href="https://lisp-lang.org/">Lisp</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/COBOL">COBOL</a>. APL uses its own curious-looking symbols, like <code class="docutils literal notranslate"><span class="pre">⍎⌽⍕⌈*○≡⍬</span></code>, rather than reserved words written out in English like most other languages, like <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a> or <a class="reference external" href="https://www.python.org/">Python</a>. As a language, APL sits at a very high level of abstraction, making it well suited to ultra-concise formulations of algorithms.</p>
 <p>APL is a language that time is only now beginning to catch up with. Modern processors sport dedicated vector-oriented instructions and APL presents a high degree of mechanical sympathy ideally suited to <a class="reference external" href="https://en.wikipedia.org/wiki/SIMD">SIMD instructions</a> and by often being completely branchless in nature. APL, and its more punk rock little sister, K, really <em>fly</em>. APL can offer unprecedented programmer efficiency, as well as all-out execution speed.</p>
 <p>But isn’t <a class="reference external" href="https://www.sacrideo.us/is-apl-dead/">APL dead</a>? APL is alive and well.</p>
-</div>
-<div class="section" id="why-should-i-learn-apl">
-<h2>Why should I learn APL?<a class="headerlink" href="#why-should-i-learn-apl" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="why-should-i-learn-apl">
+<h2>Why should I learn APL?<a class="headerlink" href="#why-should-i-learn-apl" title="Permalink to this headline">#</a></h2>
 <p>You will have your own motivations for wanting to learn APL. If you’re searching for the hottest thing on the market right now, to land a job at a <a class="reference external" href="https://www.investopedia.com/terms/f/faang-stocks.asp">FAANG</a> or pad your resumé with the most marketable skills, there are many other programming languages that will offer a better return: <a class="reference external" href="https://golang.org/">Go</a>, <a class="reference external" href="https://docs.oracle.com/javase/7/docs/technotes/guides/language/">Java</a>, <a class="reference external" href="https://www.rust-lang.org/">Rust</a>… APL doesn’t make a show in the <a class="reference external" href="https://www.tiobe.com/tiobe-index/">TIOBE index</a> in the top 100 “most popular” programming languages. Apparently, COBOL, <a class="reference external" href="https://el.media.mit.edu/logo-foundation/what_is_logo/logo_programming.html">Logo</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/AWK">AWK</a> are all more “popular” than APL, at the time of writing. That’s not to say there aren’t extremely well-paid jobs around for engineers with skills in the “Iverson-family” languages (<a class="reference external" href="https://www.dyalog.com">APL</a>, <a class="reference external" href="https://www.jsoftware.com/#/">J</a>, <a class="reference external" href="https://shakti.sh/">K</a>, <a class="reference external" href="https://code.kx.com/q/learn/startingkdb/language/">Q</a> etc), especially in finance. There are.</p>
 <p>However, learning APL will reward you in other ways. Perhaps the old trope about “expanding your mind” is tired, but if your background is “C-like” – C, <a class="reference external" href="https://www.cplusplus.com/">C++</a>, Java, Python etc – you will be exposed to a new way of solving problems. In fact, learning new programming languages that come from a different paradigm is a force multiplier for your brain.</p>
 <p>Talking about Lisp, but equally applicable to APL, <a class="reference external" href="http://www.catb.org/~esr/">Eric S. Raymond</a> says in his essay <a class="reference external" href="http://www.catb.org/~esr/faqs/hacker-howto.html">How to become a hacker</a>:</p>
@@ -458,13 +656,13 @@
 <p><img alt="lisp" src="https://imgs.xkcd.com/comics/lisp_cycles.png" /></p>
 <p>APL was conceived as a <em>notation for thought</em>. It actually took years before it even had an actual implementation as a programming language. APL is a very natural way to express algorithms. <a class="reference external" href="https://en.wikipedia.org/wiki/Kenneth_E._Iverson">Ken Iverson</a>, the creator of APL, was awarded the <a class="reference external" href="https://amturing.acm.org/award_winners/iverson_9147499.cfm">ACM Turing Award</a> in 1979 for his work on APL, and his accompanying paper, <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/358896.358899">Notation as a Tool of Thought</a> is somewhat of a computer science milestone. <a class="reference external" href="https://www.dyalog.com">Dyalog</a>, a leading commercial APL solutions provider, make a reference to this in their corporate tag-line: “The Tool of Thought for Software Solutions”.</p>
 <p>If you persist, you may discover an added bonus: code you write in <em>other</em> languages suddenly becomes more concise and efficient, too.</p>
-</div>
-<div class="section" id="but-it-s-unreadable">
-<h2>…but it’s unreadable!<a class="headerlink" href="#but-it-s-unreadable" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="but-it-s-unreadable">
+<h2>…but it’s unreadable!<a class="headerlink" href="#but-it-s-unreadable" title="Permalink to this headline">#</a></h2>
 <p>Every time APL gets a mention on <a class="reference external" href="https://hn.algolia.com/?dateRange=all&amp;page=0&amp;prefix=false&amp;query=apl&amp;sort=byDate&amp;type=story">Hacker News</a> (it happens regularly), someone chirps up in the comments that “APL is unreadable”, so let’s deal with that upfront.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">crt</span><span class="kd">←</span><span class="kt">{</span><span class="nv">m</span><span class="o">|</span><span class="bp">⍵</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="bp">⍺</span><span class="p">(</span><span class="o">⊣×⊢|</span><span class="na">∘</span><span class="o">⊃</span><span class="kt">{</span><span class="m">0</span><span class="o">=</span><span class="bp">⍵:</span><span class="m">1</span> <span class="m">0</span> <span class="p">⋄</span> <span class="p">(</span><span class="bp">⍵∇⍵</span><span class="o">|</span><span class="bp">⍺</span><span class="p">)</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="m">0</span> <span class="m">1</span><span class="o">,⍪</span><span class="m">1</span><span class="o">,-⌊</span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="p">)</span><span class="na">¨⍨</span><span class="bp">⍺</span><span class="o">÷</span><span class="na">⍨</span><span class="nv">m</span><span class="kd">←</span><span class="o">×</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span> <span class="c1">⍝ From APL Cart</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">crt</span><span class="kd">←</span><span class="kt">{</span><span class="nv">m</span><span class="o">|</span><span class="bp">⍵</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="bp">⍺</span><span class="p">(</span><span class="o">⊣×⊢|</span><span class="na">∘</span><span class="o">⊃</span><span class="kt">{</span><span class="m">0</span><span class="o">=</span><span class="bp">⍵:</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="bp">⍵∇⍵</span><span class="o">|</span><span class="bp">⍺</span><span class="p">)</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">,⍪</span><span class="m">1</span><span class="o">,-⌊</span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="p">)</span><span class="na">¨⍨</span><span class="bp">⍺</span><span class="o">÷</span><span class="na">⍨</span><span class="nv">m</span><span class="kd">←</span><span class="o">×</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ From APL Cart</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -480,54 +678,54 @@
 <p>What takes longer is to grasp the <a class="reference external" href="https://www.youtube.com/watch?v=myoK22rq1jk">APL <em>way</em></a> – how to wield it idiomatically, if you like. Learning how to solve problems the data-parallel way, no loops, no branching, is the key to writing APL that rocks.</p>
 <p>Once you get used to it, APL is <em>more</em> readable than more verbose languages [ <em>citation needed</em> ]. It strips away all the fluff, leaving only the algorithmic intent. <a class="reference external" href="https://beyondloom.com/about/index.html">John Earnest</a>, creator of <a class="reference external" href="http://johnearnest.github.io/ok/index.html">oK</a>, wrote a humorous <a class="reference external" href="http://beyondloom.com/blog/denial.html">blog post</a> on the topic, and <a class="reference external" href="https://www.sacrideo.us/">Aaron Hsu</a>’s presentation on <a class="reference external" href="https://www.sacrideo.us/apl-style-patterns-and-anti-patterns-in-apl/">APL patterns and anti-patterns</a> make some of the same points in a more serious vein.</p>
 <p>The last example from John Earnest’s blog post poses the hypothetical question – which is more readable, the JavaScript</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">list</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">max</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">max</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">max</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>or the APL (although John used the corresponding K version)</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="don-t-i-need-a-lot-of-mathematics">
-<h2>Don’t I need a lot of mathematics?<a class="headerlink" href="#don-t-i-need-a-lot-of-mathematics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="don-t-i-need-a-lot-of-mathematics">
+<h2>Don’t I need a lot of mathematics?<a class="headerlink" href="#don-t-i-need-a-lot-of-mathematics" title="Permalink to this headline">#</a></h2>
 <p>No, not really, no.</p>
 <p>Whilst APL can be traced back to Iverson’s attempts at fixing some of the shortcomings of traditional mathematical notation, you don’t have to be a math-wiz to understand, or benefit from, APL. If you’re familiar with sums and products, or if you know another programming language, that’s all you need. If you <em>do</em> have a background in maths, especially in linear algebra, you’ll no doubt recognize some concepts along the way.</p>
-</div>
-<div class="section" id="a-note-on-our-apl-subset">
-<h2>A note on our APL subset<a class="headerlink" href="#a-note-on-our-apl-subset" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-note-on-our-apl-subset">
+<h2>A note on our APL subset<a class="headerlink" href="#a-note-on-our-apl-subset" title="Permalink to this headline">#</a></h2>
 <p>Dyalog’s APL dialect, which we’ll chiefly work with here, has been around for a long time, and carries with it a lot of history in the shape of backwards compatibility. APL has also evolved a lot over the years. Dyalog’s APL is really two rather different languages rolled into one: <em>traditional</em> style, which is procedural, and the newer <em>dfn</em> (pronouced <em>DEE-fun</em>) style, which is functional(ish, but let’s not quibble). For the purposes of this exercise, we’re going to pretend that the traditional style doesn’t exist.</p>
 <p>When we claim that there are no if-statements or loops in APL, how come one can write</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="bp">∇</span> <span class="nv">FizzBuzz</span> <span class="nv">end</span><span class="sr">;</span><span class="nv">i</span>
-<span class="bp">:</span><span class="nv">For</span> <span class="nv">i</span> <span class="bp">:</span><span class="nv">In</span> <span class="o">⍳</span><span class="nv">end</span>
-    <span class="bp">:</span><span class="nv">If</span> <span class="m">0</span><span class="o">=</span><span class="m">15</span><span class="o">|</span><span class="nv">i</span>
-        <span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;FizzBuzz&#39;</span>
-    <span class="bp">:</span><span class="nv">ElseIf</span> <span class="m">0</span><span class="o">=</span><span class="m">3</span><span class="o">|</span><span class="nv">i</span>
-        <span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;Fizz&#39;</span>
-    <span class="bp">:</span><span class="nv">ElseIf</span> <span class="m">0</span><span class="o">=</span><span class="m">5</span><span class="o">|</span><span class="nv">i</span>
-        <span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;Buzz&#39;</span>
-    <span class="bp">:</span><span class="nv">Else</span>
-        <span class="vg">⎕</span><span class="kd">←</span><span class="nv">i</span>
-    <span class="bp">:</span><span class="nv">EndIf</span>
-<span class="bp">:</span><span class="nv">EndFor</span>
-<span class="bp">∇</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="bp">∇</span><span class="w"> </span><span class="nv">FizzBuzz</span><span class="w"> </span><span class="nv">end</span><span class="sr">;</span><span class="nv">i</span><span class="w"></span>
+<span class="bp">:</span><span class="nv">For</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="bp">:</span><span class="nv">In</span><span class="w"> </span><span class="o">⍳</span><span class="nv">end</span><span class="w"></span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">If</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="m">15</span><span class="o">|</span><span class="nv">i</span><span class="w"></span>
+<span class="w">        </span><span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;FizzBuzz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">ElseIf</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="m">3</span><span class="o">|</span><span class="nv">i</span><span class="w"></span>
+<span class="w">        </span><span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;Fizz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">ElseIf</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="m">5</span><span class="o">|</span><span class="nv">i</span><span class="w"></span>
+<span class="w">        </span><span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;Buzz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">Else</span><span class="w"></span>
+<span class="w">        </span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">i</span><span class="w"></span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">EndIf</span><span class="w"></span>
+<span class="bp">:</span><span class="nv">EndFor</span><span class="w"></span>
+<span class="bp">∇</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>which certainly looks both iffy and loopy – and dare I say even moderately readable, almost <a class="reference external" href="https://en.wikipedia.org/wiki/Pascal_(programming_language)">Pascal</a>-chic? This is an example of an APL trad-function, which we from now onwards will pretend doesn’t exist. This isn’t a value judgment so much as a practical one in the context of this book. We will not cover the traditional style, nor Dyalog’s object orientation extensions, and for simplicity’s sake, when we from now on talk about APL, take that to mean “our subset of APL”.</p>
 <p>As an historical aside, the “newer” <a class="reference external" href="http://archive.vector.org.uk/art10007770">dfn style</a> first appeared in Dyalog 8.1, from early 1997, according to <a class="reference external" href="https://en.wikipedia.org/wiki/John_M._Scholes">John Scholes</a>. So not <em>that</em> new.</p>
-<div class="section" id="not-covered">
-<h3>Not covered<a class="headerlink" href="#not-covered" title="Permalink to this headline">¶</a></h3>
+<section id="not-covered">
+<h3>Not covered<a class="headerlink" href="#not-covered" title="Permalink to this headline">#</a></h3>
 <p>Specifically, we’re not going to cover tradfns, OO, inverses, the trigonometric functions, complex numbers, variant, I-beams, spawn, threads, isolates, format, most of the ⎕-fns, .NET integration and probably many more.</p>
-</div>
-</div>
-<div class="section" id="is-terser-better">
-<h2>Is terser better?<a class="headerlink" href="#is-terser-better" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="is-terser-better">
+<h2>Is terser better?<a class="headerlink" href="#is-terser-better" title="Permalink to this headline">#</a></h2>
 <p>APL’s <em>raison d’être</em> is to cut out the noise, to become an extension of thought. A lofty aim, for sure. APL code can be exceptionally compact; no other general-purpose programming language (apart from its siblings) gets close. No bit of code we write here will likely be longer than a few lines, and anecdotally, from personal experience, the difference runs to perhaps an order of magnitude compared with Python.</p>
 <p>Is terser better? Opinions differ here. APLers, only half-jokingly, say they never scroll. <a class="reference external" href="https://en.wikipedia.org/wiki/Arthur_Whitney_(computer_scientist)">Arthur Whitney</a>, the creator of K, reputedly <em>hates</em> scrolling, even when writing in C:</p>
 <blockquote>
@@ -535,9 +733,9 @@
 </div></blockquote>
 <p>(from <a class="reference external" href="http://archive.vector.org.uk/art10500700">Vector</a>)</p>
 <p>Being able to see your whole implementation on a single page of code cuts down on context switching, and at least anecdotally makes mistakes easier to spot.</p>
-</div>
-<div class="section" id="other-resources">
-<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="other-resources">
+<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">#</a></h2>
 <p>If you’re interested in the history of APL, a good read is Kromberg and Hui’s weighty paper <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3386319">APL since 1978</a>. Morten and Roger do all their own stunts.</p>
 <p><a class="reference external" href="https://www.jsoftware.com">J Software</a> maintains a rich collection of APL-related <a class="reference external" href="https://www.jsoftware.com/papers/">publications</a>.</p>
 <p><a class="reference external" href="https://vector.org.uk/">Vector</a> is the journal of the British APL Association.</p>
@@ -548,9 +746,9 @@
 <p>Dyalog’s own developer <a class="reference external" href="http://help.dyalog.com/18.0/index.htm">documentation</a> is a reference - rich depth, but not the easiest place to learn new things from. <a class="reference external" href="https://dyalog.tv/">Dyalog TV</a> hosts Dyalog’s back catalog of webinars and lots of conference presentations with a lot of varied nuggets. There is also the Dyalog <a class="reference external" href="https://forums.dyalog.com/">forums</a> although a bit low-volume.</p>
 <p>Dyalog’s docs for the <a class="reference external" href="http://dfns.dyalog.com/">dfns</a> workspace is a treasure trove of APL exotica. It’s what passes as a “standard library” for Dyalog, and some of it is useful for everyday coding (like <a class="reference external" href="http://dfns.dyalog.com/n_segs.htm">segs</a> and <a class="reference external" href="http://dfns.dyalog.com/n_iotag.htm">iotag</a>), and other stuff perhaps less so – but you can learn a lot by looking at its implementations to see what “real APL” looks like.</p>
 <p>Speaking of “real APL”, Dyalog has a lot of public code in their <a class="reference external" href="https://github.com/Dyalog">github</a>, which is a great resource.</p>
-</div>
-<div class="section" id="ok-i-m-convinced-how-do-i-get-started">
-<h2>Ok, I’m convinced, how do I get started?<a class="headerlink" href="#ok-i-m-convinced-how-do-i-get-started" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ok-i-m-convinced-how-do-i-get-started">
+<h2>Ok, I’m convinced, how do I get started?<a class="headerlink" href="#ok-i-m-convinced-how-do-i-get-started" title="Permalink to this headline">#</a></h2>
 <p>There are a couple of options. To get started right now, you can head to <a class="reference external" href="https://tryapl.org/">TryAPL</a>, which is a web version of Dyalog APL’s latest and greatest release. That should work for most of the stuff we’ll do here.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -562,14 +760,14 @@
 <p>Assuming you’ve managed to get the APL keyboard layout installed, you’ll be hunting and pecking for a while. It takes a few days to learn where the most useful glyphs reside. The Dyalog IDE has the <em>language bar</em> at the top which you can also use – and hovering over a glyph will indicate where it resides on the keyboard. Here’s what my RIDE shows in terms of keyboard layout:</p>
 <p><img alt="keys" src="_images/keyboard.png" /></p>
 <p>Are you ready? Let’s begin.</p>
-</div>
-<div class="section" id="our-first-tentative-steps">
-<h2>Our first tentative steps<a class="headerlink" href="#our-first-tentative-steps" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="our-first-tentative-steps">
+<h2>Our first tentative steps<a class="headerlink" href="#our-first-tentative-steps" title="Permalink to this headline">#</a></h2>
 <p>The first thing we’ll do is to specify our <em>index origin</em>. In most programming languages in use today, arrays are indexed starting from 0, with a few notable exceptions (for example <a class="reference external" href="https://julialang.org/">Julia</a> and <a class="reference external" href="http://www.lua.org/">Lua</a>). In APL, the index origin is a configurable option. Leaving aside for a moment as to if this is a good idea or not, it’s one of those things that sooner or later will catch you out. We’ll try to always be explicit. If, when trying to run code someone else wrote, you’re faced with an <code class="docutils literal notranslate"><span class="pre">INDEX</span> <span class="pre">ERROR</span></code>, it’s worth changing the index origin to see if that makes a difference.</p>
 <p>Dyalog’s default index origin is 1, but we’ll set it to 0 for the least possible surprise. We won’t use anything where this actually matters for a while, but let’s get used to it from the beginning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span> <span class="c1">⍝ Index origin gets 0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1">⍝ Index origin gets 0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -579,7 +777,7 @@
 <p>Maybe an LED? Or a kerosene lamp, depending on how long you’ve been doing APL for. Anyway - a comment.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ This line does nothing!</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ This line does nothing!</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -587,7 +785,7 @@
 <p>The usual arithmetic operations work as expected, don’t they?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">*</span><span class="m">5</span> <span class="c1">⍝ Wait... wot?</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">*</span><span class="m">5</span><span class="w"> </span><span class="c1">⍝ Wait... wot?</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -598,7 +796,7 @@
 <p>Ok, that may have come as a surprise. It turns out that <code class="docutils literal notranslate"><span class="pre">*</span></code> is the symbol for exponentiation, not multiplication. If we want to multiply, we need to use <code class="docutils literal notranslate"><span class="pre">×</span></code> (which lives on the <code class="docutils literal notranslate"><span class="pre">-</span></code> key):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">×</span><span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -609,7 +807,7 @@
 <p>Ok, what about division?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="na">/</span><span class="m">2</span> <span class="c1">⍝....?</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="na">/</span><span class="m">2</span><span class="w"> </span><span class="c1">⍝....?</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -620,7 +818,7 @@
 <p>Nope. The slash does something decidedly not-division. We’ll get back to that one later. Division is <code class="docutils literal notranslate"><span class="pre">÷</span></code>, not <code class="docutils literal notranslate"><span class="pre">/</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="o">÷</span><span class="m">4</span> <span class="c1">⍝ Division is ÷, not /</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="o">÷</span><span class="m">4</span><span class="w"> </span><span class="c1">⍝ Division is ÷, not /</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -631,7 +829,7 @@
 <p>Negative numbers are not written with the traditional minus-sign, but with a special glyph, the <em>High minus</em>: <code class="docutils literal notranslate"><span class="pre">¯</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯87</span> <span class="c1">⍝ Note: not -87</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯87</span><span class="w"> </span><span class="c1">⍝ Note: not -87</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -642,7 +840,7 @@
 <p>Here’s another surprise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="o">+</span><span class="m">7</span> 
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="o">+</span><span class="m">7</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -654,7 +852,7 @@
 <p>In APL, everything evaluates strictly right to left. If you want to bend this evaluation order, you’ll need parentheses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="p">)</span><span class="o">+</span><span class="m">7</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="p">)</span><span class="o">+</span><span class="m">7</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -665,14 +863,14 @@
 <p>We can assign a value to a variable using <em>Gets</em> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) that we met earlier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span> <span class="kd">←</span> <span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="p">)</span><span class="o">+</span><span class="m">7</span> <span class="c1">⍝ a gets 17. </span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">5</span><span class="p">)</span><span class="o">+</span><span class="m">7</span><span class="w"> </span><span class="c1">⍝ a gets 17. </span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span> <span class="c1">⍝ Just evaluating the variable returns its value</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="w"> </span><span class="c1">⍝ Just evaluating the variable returns its value</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -682,7 +880,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">a</span> <span class="kd">←</span> <span class="m">42</span> <span class="c1">⍝ a gets 42, and please evaluate it so I can see the value</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">a</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="c1">⍝ a gets 42, and please evaluate it so I can see the value</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -693,7 +891,7 @@
 <p>The glyph <code class="docutils literal notranslate"><span class="pre">⊢</span></code> is called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Symbols/Right%20Tack.htm"><em>Right tack</em></a>, and is a function referred to as <em>Same</em>. It simply returns its argument. Used like this it allows us to show the result of an expression even if the expression itself wouldn’t normally return a result. <em>Right tack</em> might seem like a pretty pointless function, but we’ll put it to good use later in different contexts. To “print” the value of a variable we can also use <em>Quad gets</em>, <code class="docutils literal notranslate"><span class="pre">⎕</span> <span class="pre">←</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">a</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">a</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -705,9 +903,9 @@
 <p>APL variable names follow mostly similar rules to other programming languages – any combination of letters (upper, and lower case), digits (apart from the first character), and the underscore symbol (<code class="docutils literal notranslate"><span class="pre">_</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">fiftySeven</span> <span class="kd">←</span> <span class="m">57</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">five38</span> <span class="kd">←</span> <span class="m">538</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">My_Variable_Name</span> <span class="kd">←</span> <span class="s1">&#39;hello world&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">fiftySeven</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">57</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">five38</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">538</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">My_Variable_Name</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;hello world&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -720,8 +918,8 @@
 <p>One convention you’ll occasionally see is the <code class="docutils literal notranslate"><span class="pre">_</span></code> variable, which is sometimes used to denote a value we don’t care about. There is nothing special about a variable called <code class="docutils literal notranslate"><span class="pre">_</span></code> – it’s just a convention.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">_</span> <span class="nv">d</span><span class="p">)</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">1</span> <span class="m">4</span> <span class="m">1</span> <span class="c1">⍝ Don&#39;t care about the third value</span>
-<span class="nv">a</span> <span class="nv">b</span> <span class="nv">d</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="nv">d</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">⍝ Don&#39;t care about the third value</span><span class="w"></span>
+<span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">d</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -731,15 +929,15 @@
 </div>
 <p>There are two additional characters you can use in names, <code class="docutils literal notranslate"><span class="pre">⍙</span></code> and <code class="docutils literal notranslate"><span class="pre">∆</span></code>, if you feel the need to add extra spice in the lives of others reading your code. An advantage of APL’s use of glyphs instead of reserved words is that it’s impossible to create names that clash with internal or reserved words in APL.</p>
 <p>You can of course use whatever naming convention that pleases you, but <a class="reference external" href="https://aplwiki.com/wiki/Ad%C3%A1m_Brudzewsky">Adám</a> from Dyalog has written up an informal <a class="reference external" href="https://abrudz.github.io/style/">style guide</a> that’s useful reading. As APL lends itself to a terse style, long, rambling, Java-esque variable names are frowned upon. Here are some <a class="reference external" href="https://github.com/the-carlisle-group/Dado/wiki/How-Not-To-Code-In-Dyalog-APL">opinionated home truths</a> from the Carlisle Group, too, to consider on your APL journey.</p>
-</div>
-<div class="section" id="valence">
-<h2>Valence<a class="headerlink" href="#valence" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="valence">
+<h2>Valence<a class="headerlink" href="#valence" title="Permalink to this headline">#</a></h2>
 <p><em>Valence</em> (sometimes called <em>arity</em>, too) refers to the way that functions expect arguments. In APL, we talk about <em>monadic</em> and <em>dyadic</em> functions and operators (and occasionally <em>niladic</em>, too).</p>
 <p>There is a central tenet when writing about programming that for every mention of the word <a class="reference external" href="https://stackoverflow.com/questions/44965/what-is-a-monad">monad</a> you lose half your readership. We can blame Team <a class="reference external" href="http://learnyouahaskell.com">Haskell</a> for that. Fear not – we’re staying right out of <a class="reference external" href="https://en.wikipedia.org/wiki/Category_theory">category theory</a>. Whilst APL has monadic functions and operators, the term predates Haskell by some margin, and really refers to something different altogether. Hey, Haskell, make up your own words, will you? Just kidding, we’re huge Haskell fans.</p>
 <p>APL functions can take arguments on either side, just like you’re perfectly used to with arithmetic operators in many other languages (not Lisps):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="c1">⍝ Infix function application, dyadic +</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">⍝ Infix function application, dyadic +</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -748,13 +946,13 @@
 </span></div></div>
 </div>
 <p>In a Lispy language, function application is always monadic, even for arithmetic, so you’d write</p>
-<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>When we say that a function is <code class="docutils literal notranslate"><span class="pre">dyadic</span></code> in APL, all we mean is that the function takes both a left, and a right argument, like the <code class="docutils literal notranslate"><span class="pre">+</span></code> example above. A <code class="docutils literal notranslate"><span class="pre">monadic</span></code> function, conversely, is a function that only takes a right argument, for example, <em>Factorial</em>, <code class="docutils literal notranslate"><span class="pre">!</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="m">7</span> <span class="c1">⍝ Monadic ! is factorial: 1×2×3×4×5×6×7</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="m">7</span><span class="w"> </span><span class="c1">⍝ Monadic ! is factorial: 1×2×3×4×5×6×7</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -765,8 +963,8 @@
 <p>Some APL functions can be either monadic or dyadic, and in many cases these have different meanings – an endless source of <s>confusion</s> joy for the beginner. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">7</span><span class="o">×</span><span class="m">3</span> <span class="c1">⍝ Dyadic × is multiplication</span>
-<span class="o">×</span><span class="m">¯7</span> <span class="c1">⍝ Monadic × is &#39;direction&#39;, or signum (the sign, in our case). Thanks.</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">7</span><span class="o">×</span><span class="m">3</span><span class="w"> </span><span class="c1">⍝ Dyadic × is multiplication</span><span class="w"></span>
+<span class="o">×</span><span class="m">¯7</span><span class="w"> </span><span class="c1">⍝ Monadic × is &#39;direction&#39;, or signum (the sign, in our case). Thanks.</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -779,10 +977,10 @@
 <p class="admonition-title">Tip</p>
 <p>In the Dyalog IDE, if you hover over a glyph in the language bar, it will show brief examples of both its monadic and dyadic uses, where applicable. Some claim you can learn the whole language by hovering over this bar.</p>
 </div>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -806,8 +1004,10 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
     <a class='right-next' id="next-link" href="array.html" title="next page">
     <div class="prev-next-info">
@@ -817,32 +1017,34 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Glyphiary &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="array.html">
    It’s arrays all the way down
@@ -272,90 +289,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/manip.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fmanip.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Fmanip.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/manip.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tally-depth-match">
    Tally, Depth, Match:
@@ -448,17 +566,125 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Glyphiary</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tally-depth-match">
+   Tally, Depth, Match:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ≢≡
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transpose-reverse-and-rotate">
+   Transpose, Reverse and Rotate:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍉⊖⌽
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mix-split-take-and-drop">
+   Mix, Split, Take and Drop:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ↓↑
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#index-generator-and-index-of">
+   Index generator and Index of:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍳
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-interval-index">
+   Where, Interval Index:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍸
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ravel-catenate-enlist-member">
+   Ravel, Catenate, Enlist, Member:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ,⍪∊
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selfie-commute-constant">
+   Selfie, Commute, Constant:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍨
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unique-union-intersection-without">
+   Unique, Union, Intersection, Without:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ∪∩~
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grade-up-down">
+   Grade up/down:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ⍋⍒
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="glyphiary">
-<h1>Glyphiary<a class="headerlink" href="#glyphiary" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="glyphiary">
+<h1>Glyphiary<a class="headerlink" href="#glyphiary" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>Are you quite sure that all those bells and whistles, all those wonderful facilities of your so called powerful programming languages, belong to the solution set rather than the problem set?
 –<em>Edsger Dijkstra</em></p>
@@ -468,9 +694,9 @@
 <p>But first, the usual dance:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>            <span class="c1">⍝ Index origin is zero</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">max</span> <span class="c1">⍝ Show boxes at max verbosity</span>
-<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>           <span class="c1">⍝ Don&#39;t wrap long output lines</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w">            </span><span class="c1">⍝ Index origin is zero</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">box</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="o">-</span><span class="nv">style</span><span class="o">=</span><span class="nv">max</span><span class="w"> </span><span class="c1">⍝ Show boxes at max verbosity</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">rows</span><span class="w"> </span><span class="nv">on</span><span class="w">           </span><span class="c1">⍝ Don&#39;t wrap long output lines</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -486,7 +712,7 @@
 <p>Let’s have a random matrix for our demonstration purposes. We’ve met <em>Shape</em> (<code class="docutils literal notranslate"><span class="pre">⍴</span></code>) already, but we’ll get dyadic <code class="docutils literal notranslate"><span class="pre">?</span></code> – called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Deal.htm"><em>Deal</em></a> – for free. It gives us a random selection of numbers from a set, without replacement:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">mat</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴</span><span class="m">12</span><span class="o">?</span><span class="m">12</span> <span class="c1">⍝ Ladies and gentlemen: our matrix</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">mat</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="o">⍴</span><span class="m">12</span><span class="o">?</span><span class="m">12</span><span class="w"> </span><span class="c1">⍝ Ladies and gentlemen: our matrix</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -498,14 +724,14 @@
 └~────────┘
 </span></div></div>
 </div>
-<div class="section" id="tally-depth-match">
-<h2>Tally, Depth, Match: <code class="docutils literal notranslate"><span class="pre">≢≡</span></code><a class="headerlink" href="#tally-depth-match" title="Permalink to this headline">¶</a></h2>
+<section id="tally-depth-match">
+<h2>Tally, Depth, Match: <code class="docutils literal notranslate"><span class="pre">≢≡</span></code><a class="headerlink" href="#tally-depth-match" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Tally.htm"><em>Tally</em></a>, monadic <code class="docutils literal notranslate"><span class="pre">≢</span></code>, gives the number of major cells in an array, kind of like Python’s <a class="reference external" href="https://docs.python.org/3/library/functions.html#len">len()</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢</span><span class="m">7</span> <span class="m">5</span> <span class="m">1</span> <span class="m">2</span> <span class="m">9</span>
-<span class="o">≢</span><span class="s1">&#39;Hello world&#39;</span>
-<span class="o">≢</span><span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢</span><span class="m">7</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">9</span><span class="w"></span>
+<span class="o">≢</span><span class="s1">&#39;Hello world&#39;</span><span class="w"></span>
+<span class="o">≢</span><span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -524,10 +750,10 @@
 <p>Pretty straight-forward. Monadic <em>Equal underbar</em>, <code class="docutils literal notranslate"><span class="pre">≡</span></code> is <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Depth.htm"><em>Depth</em></a> – the max level of nesting:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≡</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
-<span class="o">≡</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span><span class="p">)(</span><span class="m">3</span> <span class="m">4</span><span class="p">)</span>
-<span class="o">≡</span><span class="p">((</span><span class="m">1</span> <span class="m">2</span><span class="p">)(</span><span class="m">2</span> <span class="m">3</span><span class="p">))((</span><span class="m">4</span> <span class="m">5</span><span class="p">)(</span><span class="m">6</span> <span class="m">7</span><span class="p">))</span>
-<span class="o">≡</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span><span class="p">)(</span><span class="m">3</span> <span class="m">4</span><span class="p">)</span><span class="m">3</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≡</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"></span>
+<span class="o">≡</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="p">)(</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"></span>
+<span class="o">≡</span><span class="p">((</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="p">)(</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">))((</span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="p">)(</span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="p">))</span><span class="w"></span>
+<span class="o">≡</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="p">)(</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="m">3</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -550,10 +776,10 @@
 <p>Turning to the dyadic forms, <code class="docutils literal notranslate"><span class="pre">≡</span></code> is <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Match.htm"><em>Match</em></a>, and with a pleasing visual symmetry, <code class="docutils literal notranslate"><span class="pre">≢</span></code> is <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not%20Match.htm"><em>Not match</em></a>. We can think of <em>Match</em> being “deep equals for arrays”: same rank, same order, same depth, every element the same:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">≡</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">≡</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">≡</span> <span class="m">4</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">≡</span> <span class="m">1</span> <span class="m">4</span><span class="o">⍴</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="o">⍴</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -572,15 +798,15 @@
 
 </span></div></div>
 </div>
-</div>
-<div class="section" id="transpose-reverse-and-rotate">
-<h2>Transpose, Reverse and Rotate: <code class="docutils literal notranslate"><span class="pre">⍉⊖⌽</span></code><a class="headerlink" href="#transpose-reverse-and-rotate" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="transpose-reverse-and-rotate">
+<h2>Transpose, Reverse and Rotate: <code class="docutils literal notranslate"><span class="pre">⍉⊖⌽</span></code><a class="headerlink" href="#transpose-reverse-and-rotate" title="Permalink to this headline">#</a></h2>
 <p>Three glyphs used to change arrays around are <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Transpose%20Monadic.htm"><em>Transpose</em></a> (<code class="docutils literal notranslate"><span class="pre">⍉</span></code>), <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reverse%20First.htm"><em>Reverse</em></a> (<code class="docutils literal notranslate"><span class="pre">⊖</span></code>) and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Rotate.htm"><em>Rotate</em></a> (<code class="docutils literal notranslate"><span class="pre">⌽</span></code>). They all look like a circle overstruck with a line. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍉</span><span class="nv">mat</span> <span class="c1">⍝ Transpose</span>
-<span class="o">⌽</span><span class="nv">mat</span> <span class="c1">⍝ Reverse</span>
-<span class="o">⊖</span><span class="nv">mat</span> <span class="c1">⍝ Reverse first</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍉</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Transpose</span><span class="w"></span>
+<span class="o">⌽</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Reverse</span><span class="w"></span>
+<span class="o">⊖</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Reverse first</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -606,8 +832,8 @@
 <p>The two reverse glyphs mirror the issue we’ve seen with <em>Replicate</em> (<code class="docutils literal notranslate"><span class="pre">/</span></code>) vs <em>Replicate first</em> (<code class="docutils literal notranslate"><span class="pre">⌿</span></code>) – if you can, use the -first versions (the leading axis versions), and if you want to apply them along other axes, use either <a class="reference internal" href="rank.html"><span class="doc std std-doc"><em>Rank</em></span></a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> or the <code class="docutils literal notranslate"><span class="pre">[axis]</span></code> notation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊖</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">mat</span> <span class="c1">⍝ Apply reverse-first to second axis using Rank</span>
-<span class="o">⊖</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="nv">mat</span> <span class="c1">⍝ Apply reverse-first to second axis bracket-axis</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊖</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Apply reverse-first to second axis using Rank</span><span class="w"></span>
+<span class="o">⊖</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Apply reverse-first to second axis bracket-axis</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -628,7 +854,7 @@
 <p>Dyadic <code class="docutils literal notranslate"><span class="pre">⊖</span></code> is actually <em>Rotate first</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">¯1</span> <span class="m">0</span><span class="o">⊖</span><span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">0</span><span class="o">⊖</span><span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -641,14 +867,14 @@
 </span></div></div>
 </div>
 <p>Here, the left argument vector specifies the per-column magnitude and direction of the rotation.</p>
-</div>
-<div class="section" id="mix-split-take-and-drop">
-<h2>Mix, Split, Take and Drop: <code class="docutils literal notranslate"><span class="pre">↓↑</span></code><a class="headerlink" href="#mix-split-take-and-drop" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mix-split-take-and-drop">
+<h2>Mix, Split, Take and Drop: <code class="docutils literal notranslate"><span class="pre">↓↑</span></code><a class="headerlink" href="#mix-split-take-and-drop" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Mix.htm"><em>Mix</em></a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> raises the rank by 1. Easiest to visualise as a means of turning a nested vector into a matrix (but works for any rank):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">v</span> <span class="kd">←</span> <span class="s1">&#39;Hello&#39;</span> <span class="s1">&#39;world&#39;</span>
-<span class="o">↑</span><span class="nv">v</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="w"> </span><span class="s1">&#39;world&#39;</span><span class="w"></span>
+<span class="o">↑</span><span class="nv">v</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -667,8 +893,8 @@
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Split.htm"><em>Split</em></a> <code class="docutils literal notranslate"><span class="pre">↓</span></code>, unsurprisingly, goes the other way; reducing rank:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span>
-<span class="o">↓</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span><span class="w"></span>
+<span class="o">↓</span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -688,8 +914,8 @@
 <p><em>Mix</em> and <em>Split</em>, when combined with <em>Transpose</em>, make for a bit of a power-combo, <code class="docutils literal notranslate"><span class="pre">↓⍉↑</span></code>, occasionally dubbed <em>Remix</em>, or <em>Zip</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">v</span> <span class="kd">←</span> <span class="p">(</span><span class="m">0</span> <span class="m">6</span> <span class="m">3</span><span class="p">)(</span><span class="m">2</span> <span class="m">5</span> <span class="m">1</span><span class="p">)(</span><span class="m">4</span> <span class="m">7</span> <span class="m">8</span><span class="p">)</span>
-<span class="o">↓⍉↑</span><span class="nv">v</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">3</span><span class="p">)(</span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="p">)(</span><span class="m">4</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="w"></span>
+<span class="o">↓⍉↑</span><span class="nv">v</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -709,7 +935,7 @@
 <p>Whilst it’s tempting to think of <em>Remix</em> as the <a class="reference external" href="https://docs.python.org/3/library/functions.html#zip">zip()</a> found in, for example, Python, note that it most likely behaves differently to what you’re used to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓⍉↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↓⍉↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -732,7 +958,7 @@
 <p>APL abhors ragged arrays and will inject the “prototype” element for whatever the element type is to ensure that all cells are the same size – Python has no concept of array as such, and so abandons play if an element can’t be filled. Mixing a vector with cells of unequal numbers of elements in each cell will show us what happens:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -747,8 +973,8 @@
 <p>Dyadically, <em>Mix</em> and <em>Split</em> become <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Take.htm"><em>Take</em></a> and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Drop.htm"><em>Drop</em></a>. <em>Take</em> … takes cells:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Take 1</span>
-<span class="m">2</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Take 2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Take 1</span><span class="w"></span>
+<span class="m">2</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Take 2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -768,8 +994,8 @@
 <p>Note carefully the fact that <em>Take</em> returns <em>cells</em>, not elements, even if you take 1. Recalling the <a class="reference internal" href="indexing.html"><span class="doc std std-doc">indexing</span></a> chapter, <em>Take</em> 1 is equivalent to <em>Squad</em> 0, not <em>Pick</em> 0:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">⌷</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Squad 0 returns a cell</span>
-<span class="m">0</span><span class="o">⊃</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Pick 0 returns an element</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">⌷</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Squad 0 returns a cell</span><span class="w"></span>
+<span class="m">0</span><span class="o">⊃</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Pick 0 returns an element</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -787,7 +1013,7 @@
 <p>We can also use negative numbers to take from the rear:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯1</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Take 1 from the back</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯1</span><span class="o">↑</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Take 1 from the back</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -802,8 +1028,8 @@
 <p><em>Drop</em> does what we hopefully expect:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">↓</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span>  <span class="c1">⍝ Drop 1 from the front</span>
-<span class="m">¯1</span><span class="o">↓</span><span class="p">(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)(</span><span class="m">5</span> <span class="m">6</span><span class="p">)(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="p">)</span> <span class="c1">⍝ Drop 1 from the back</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">↓</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">  </span><span class="c1">⍝ Drop 1 from the front</span><span class="w"></span>
+<span class="m">¯1</span><span class="o">↓</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="p">)(</span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Drop 1 from the back</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -823,9 +1049,9 @@
 <p><em>Take</em> and <em>Drop</em> work on any rank array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span>
-<span class="m">1</span><span class="o">↑</span><span class="nv">mat</span> <span class="c1">⍝ Take first cell</span>
-<span class="m">1</span><span class="o">↓</span><span class="nv">mat</span> <span class="c1">⍝ Drop first cell</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span><span class="w"></span>
+<span class="m">1</span><span class="o">↑</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Take first cell</span><span class="w"></span>
+<span class="m">1</span><span class="o">↓</span><span class="nv">mat</span><span class="w"> </span><span class="c1">⍝ Drop first cell</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -844,14 +1070,14 @@
 └~────────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="index-generator-and-index-of">
-<h2>Index generator and Index of: <code class="docutils literal notranslate"><span class="pre">⍳</span></code><a class="headerlink" href="#index-generator-and-index-of" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="index-generator-and-index-of">
+<h2>Index generator and Index of: <code class="docutils literal notranslate"><span class="pre">⍳</span></code><a class="headerlink" href="#index-generator-and-index-of" title="Permalink to this headline">#</a></h2>
 <p><em>Iota</em>, <code class="docutils literal notranslate"><span class="pre">⍳</span></code>, called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Generator.htm"><em>Index generator</em></a> (or <em>Interval</em>) when used monadically and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Of.htm"><em>Index of</em></a> when used dyadically is one to figure out early. Note that there is another glyph that looks similar, <em>iota underbar</em>, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, that does something entirely different, so don’t confuse the two!</p>
 <p>The monadic case generates an integer interval, starting from the currently set <code class="docutils literal notranslate"><span class="pre">⎕IO</span></code> (0 in our case, remember):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍳</span><span class="m">10</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍳</span><span class="m">10</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -864,7 +1090,7 @@
 <p>Thinking of this as a monadic function taking a shape vector, this generalises to more complex shapes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍳</span><span class="m">3</span> <span class="m">4</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍳</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -886,7 +1112,7 @@
 <p>In the dyadic form, <em>iota</em> becomes <em>Index of</em>, another useful thing to know. <em>Index of</em> tells us the index of the first occurrence of an element:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello world&#39;</span><span class="o">⍳</span><span class="s1">&#39;o&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello world&#39;</span><span class="o">⍳</span><span class="s1">&#39;o&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -899,7 +1125,7 @@
 <p>The right argument can have any shape, but the left argument is usually a vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello world&#39;</span><span class="o">⍳</span><span class="s1">&#39;od&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello world&#39;</span><span class="o">⍳</span><span class="s1">&#39;od&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -912,9 +1138,9 @@
 <p>A nifty feature is that if the right element isn’t found, the returned index is <code class="docutils literal notranslate"><span class="pre">1+≢⍺</span></code> – one more than the length of the left argument. This can be used to provide a default match for items not found:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">staff</span> <span class="kd">←</span> <span class="s1">&#39;Adam&#39;</span> <span class="s1">&#39;Bob&#39;</span> <span class="s1">&#39;Charlotte&#39;</span>
-<span class="nv">lookup</span> <span class="kd">←</span> <span class="nv">staff</span><span class="o">,⊂</span><span class="s1">&#39;Not found&#39;</span>
-<span class="nv">lookup</span><span class="sr">[</span><span class="nv">staff</span><span class="o">⍳</span><span class="s1">&#39;Bob&#39;</span> <span class="s1">&#39;David&#39;</span><span class="sr">]</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">staff</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Adam&#39;</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="w"> </span><span class="s1">&#39;Charlotte&#39;</span><span class="w"></span>
+<span class="nv">lookup</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">staff</span><span class="o">,⊂</span><span class="s1">&#39;Not found&#39;</span><span class="w"></span>
+<span class="nv">lookup</span><span class="sr">[</span><span class="nv">staff</span><span class="o">⍳</span><span class="s1">&#39;Bob&#39;</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="sr">]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -931,14 +1157,14 @@
 └∊──────────────────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="where-interval-index">
-<h2>Where, Interval Index: <code class="docutils literal notranslate"><span class="pre">⍸</span></code><a class="headerlink" href="#where-interval-index" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="where-interval-index">
+<h2>Where, Interval Index: <code class="docutils literal notranslate"><span class="pre">⍸</span></code><a class="headerlink" href="#where-interval-index" title="Permalink to this headline">#</a></h2>
 <p>Iota-underbar, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, is <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a> as a monad, and <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Interval%20Index.htm"><em>Interval Index</em></a> as a dyad.</p>
 <p><em>Where</em> gives the indices of an array where the value is non-zero. For example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -951,8 +1177,8 @@
 <p>This can be combined with indexing to select a subset that matches some criterion:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">nums</span><span class="kd">←</span><span class="o">⍳</span><span class="m">20</span>
-<span class="nv">nums</span><span class="sr">[</span><span class="o">⍸</span><span class="m">0</span><span class="o">=</span><span class="m">5</span><span class="o">|</span><span class="nv">nums</span><span class="sr">]</span> <span class="c1">⍝ Find all numbers divisible by 5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">nums</span><span class="kd">←</span><span class="o">⍳</span><span class="m">20</span><span class="w"></span>
+<span class="nv">nums</span><span class="sr">[</span><span class="o">⍸</span><span class="m">0</span><span class="o">=</span><span class="m">5</span><span class="o">|</span><span class="nv">nums</span><span class="sr">]</span><span class="w"> </span><span class="c1">⍝ Find all numbers divisible by 5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -968,8 +1194,8 @@
 <p>It works for any rank, of course:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
-<span class="o">⍸</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="o">⍸</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -989,7 +1215,7 @@
 <p>You probably expected that. Perhaps more surprising is that the right argument array does not have to be Boolean:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">2</span> <span class="m">0</span> <span class="m">3</span> <span class="m">0</span> <span class="m">4</span> <span class="m">0</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1003,7 +1229,7 @@
 <p>When used dyadically, we have <em>interval index</em>. Interval index is a <em>binning algorithm</em> – given a set of ranged bins in order, it picks the bin corresponding to the arguments. Here’s how it works:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">8</span> <span class="m">9</span> <span class="m">0</span>  <span class="c1">⍝ bin 8, 9 and 0 over the intervals 1 3 5 7 9</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="o">⍸</span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1">⍝ bin 8, 9 and 0 over the intervals 1 3 5 7 9</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1242,7 @@
 <p>Consider the gaps between the elements to the left. The first interval is then [1, 3), the second is [3, 5), the third is [5, 7) etc. An element belongs to the bin where it is greater than or equal to the lower end, and less than the upper end.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">5</span>      <span class="c1">⍝ elements on on boundary goes in the higher bin</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="o">⍸</span><span class="m">5</span><span class="w">      </span><span class="c1">⍝ elements on on boundary goes in the higher bin</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1029,7 +1255,7 @@
 <p>As we saw above, elements smaller than the first bin goes in the -1 bin, which is assumed to cover every number lower than the first bin. Similarly, elements greater than the last bin will end up with a bin number equal to the number of elements (note: not the number of bins) to the left:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="m">5</span> <span class="m">7</span> <span class="m">9</span><span class="o">⍸</span><span class="m">0</span> <span class="m">100</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="o">⍸</span><span class="m">0</span><span class="w"> </span><span class="m">100</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1042,7 +1268,7 @@
 <p>It works for other types, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍸</span><span class="s1">&#39;HELLO WORLD&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍸</span><span class="s1">&#39;HELLO WORLD&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1083,8 +1309,8 @@
 <p>Given the following ciders with the associated abv, what are their respective tax code and tax rate per hecto-litre?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ciders</span><span class="kd">←</span><span class="s1">&#39;Kopparberg Sparkling Rose&#39;</span> <span class="s1">&#39;Bulmers Original&#39;</span> <span class="s1">&#39;Crispin the Jacket&#39;</span> <span class="s1">&#39;Old Mout Cherries &amp; Berries&#39;</span>
-<span class="nv">abv</span><span class="kd">←</span><span class="m">7.0</span> <span class="m">4.5</span> <span class="m">8.3</span> <span class="m">0.0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">ciders</span><span class="kd">←</span><span class="s1">&#39;Kopparberg Sparkling Rose&#39;</span><span class="w"> </span><span class="s1">&#39;Bulmers Original&#39;</span><span class="w"> </span><span class="s1">&#39;Crispin the Jacket&#39;</span><span class="w"> </span><span class="s1">&#39;Old Mout Cherries &amp; Berries&#39;</span><span class="w"></span>
+<span class="nv">abv</span><span class="kd">←</span><span class="m">7.0</span><span class="w"> </span><span class="m">4.5</span><span class="w"> </span><span class="m">8.3</span><span class="w"> </span><span class="m">0.0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1092,9 +1318,9 @@
 <p>Let’s encode the table above into a set of vectors first:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">code</span><span class="kd">←</span><span class="m">431</span> <span class="m">481</span> <span class="m">487</span> <span class="m">486</span>
-<span class="nv">rate</span><span class="kd">←</span><span class="m">0</span> <span class="m">40.38</span> <span class="m">50.71</span> <span class="m">61.04</span>
-<span class="nv">limits</span><span class="kd">←</span><span class="m">1.2</span> <span class="m">6.9</span> <span class="m">7.5</span> <span class="m">8.5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">code</span><span class="kd">←</span><span class="m">431</span><span class="w"> </span><span class="m">481</span><span class="w"> </span><span class="m">487</span><span class="w"> </span><span class="m">486</span><span class="w"></span>
+<span class="nv">rate</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="m">40.38</span><span class="w"> </span><span class="m">50.71</span><span class="w"> </span><span class="m">61.04</span><span class="w"></span>
+<span class="nv">limits</span><span class="kd">←</span><span class="m">1.2</span><span class="w"> </span><span class="m">6.9</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="m">8.5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1102,7 +1328,7 @@
 <p>Let’s find the bins from the limits, and add one to capture the -1 bin appropriately:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">bin</span><span class="kd">←</span><span class="m">1</span><span class="o">+</span><span class="nv">limits</span><span class="o">⍸</span><span class="nv">abv</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">bin</span><span class="kd">←</span><span class="m">1</span><span class="o">+</span><span class="nv">limits</span><span class="o">⍸</span><span class="nv">abv</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1115,7 +1341,7 @@
 <p>Now we can lay this out nicely,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍕</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span> <span class="s1">&#39;Rate&#39;</span> <span class="s1">&#39;Code&#39;</span><span class="p">)</span><span class="o">⍪⍉↑</span><span class="p">(</span><span class="nv">ciders</span> <span class="p">(</span><span class="nv">rate</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">)</span> <span class="p">(</span><span class="nv">code</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">))</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍕</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="w"> </span><span class="s1">&#39;Rate&#39;</span><span class="w"> </span><span class="s1">&#39;Code&#39;</span><span class="p">)</span><span class="o">⍪⍉↑</span><span class="p">(</span><span class="nv">ciders</span><span class="w"> </span><span class="p">(</span><span class="nv">rate</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nv">code</span><span class="sr">[</span><span class="nv">bin</span><span class="sr">]</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1129,15 +1355,15 @@
 └──────────────────────────────────────────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="ravel-catenate-enlist-member">
-<h2>Ravel, Catenate, Enlist, Member: <code class="docutils literal notranslate"><span class="pre">,⍪∊</span></code><a class="headerlink" href="#ravel-catenate-enlist-member" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ravel-catenate-enlist-member">
+<h2>Ravel, Catenate, Enlist, Member: <code class="docutils literal notranslate"><span class="pre">,⍪∊</span></code><a class="headerlink" href="#ravel-catenate-enlist-member" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ravel.htm"><em>Ravel</em></a>, monadic <code class="docutils literal notranslate"><span class="pre">,</span></code> and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enlist.htm"><em>Enlist</em></a>, monadic <code class="docutils literal notranslate"><span class="pre">∊</span></code>, do related things: <em>Ravel</em> creates a vector of the major cells of its argument, and <em>Enlist</em> creates a vector of the <em>elements</em> of its argument. For non-nested arrays, there is no difference:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">simple</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">4</span><span class="o">⍴</span><span class="m">3</span> <span class="m">0</span> <span class="m">5</span> <span class="m">1</span> <span class="m">7</span> <span class="m">9</span> <span class="m">8</span> <span class="m">6</span> <span class="m">2</span> <span class="m">10</span> <span class="m">11</span> <span class="m">4</span>
-<span class="o">,</span><span class="nv">simple</span> <span class="c1">⍝ Ravel</span>
-<span class="o">∊</span><span class="nv">simple</span> <span class="c1">⍝ Enlist</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">simple</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="o">⍴</span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">4</span><span class="w"></span>
+<span class="o">,</span><span class="nv">simple</span><span class="w"> </span><span class="c1">⍝ Ravel</span><span class="w"></span>
+<span class="o">∊</span><span class="nv">simple</span><span class="w"> </span><span class="c1">⍝ Enlist</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1153,9 +1379,9 @@
 <p>For a nested array, the difference is clearer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">nested</span> <span class="kd">←</span> <span class="o">↑</span><span class="p">((</span><span class="m">2</span> <span class="m">3</span><span class="p">)(</span><span class="m">4</span> <span class="m">5</span><span class="p">))((</span><span class="m">6</span> <span class="m">7</span><span class="p">)(</span><span class="m">8</span> <span class="m">9</span><span class="p">))</span>
-<span class="o">,</span><span class="nv">nested</span> <span class="c1">⍝ Ravel</span>
-<span class="o">∊</span><span class="nv">nested</span> <span class="c1">⍝ Enlist</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">nested</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↑</span><span class="p">((</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)(</span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="p">))((</span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="p">)(</span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="p">))</span><span class="w"></span>
+<span class="o">,</span><span class="nv">nested</span><span class="w"> </span><span class="c1">⍝ Ravel</span><span class="w"></span>
+<span class="o">∊</span><span class="nv">nested</span><span class="w"> </span><span class="c1">⍝ Enlist</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1182,8 +1408,8 @@
 <p><em>Catenate</em> merges its left and right arguments:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">,</span> <span class="m">5</span> <span class="m">6</span> <span class="s1">&#39;hello&#39;</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="o">,</span> <span class="s1">&#39;hello&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">,</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1203,8 +1429,8 @@
 <p>We can catenate higher-rank arrays, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span> <span class="c1">⍝ Catenate-last (new cols)</span>
-<span class="p">(</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="o">⍪</span><span class="p">(</span><span class="m">3</span> <span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span> <span class="c1">⍝ Catenate-first/laminate (new rows)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Catenate-last (new cols)</span><span class="w"></span>
+<span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="o">⍪</span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Catenate-first/laminate (new rows)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1227,7 +1453,7 @@
 <p>Dyadic <code class="docutils literal notranslate"><span class="pre">∊</span></code> is <em>Membership</em>, another handy glyph in your arsenal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;l&#39;</span><span class="o">∊</span><span class="s1">&#39;Hello world&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;l&#39;</span><span class="o">∊</span><span class="s1">&#39;Hello world&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1245,7 +1471,7 @@
 <p>at least at a superficial level. The APL version extends naturally to higher-rank arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;lo w&#39;</span><span class="o">∊</span><span class="s1">&#39;Hello world&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;lo w&#39;</span><span class="o">∊</span><span class="s1">&#39;Hello world&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1263,7 +1489,7 @@
 <p>You can, of course, get a similar substring behaviour in APL, too, but you need a different approach:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;lo&#39;</span><span class="p">(</span><span class="o">⍸⍷</span><span class="p">)</span><span class="s1">&#39;Hello world&#39;</span> <span class="c1">⍝ Index of start of substring</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;lo&#39;</span><span class="p">(</span><span class="o">⍸⍷</span><span class="p">)</span><span class="s1">&#39;Hello world&#39;</span><span class="w"> </span><span class="c1">⍝ Index of start of substring</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1274,14 +1500,14 @@
 </span></div></div>
 </div>
 <p>but we need a bit more flesh on our APL bones before we’re ready for that – see the <a class="reference internal" href="find.html"><span class="doc std std-doc">Finding things</span></a> section later!</p>
-</div>
-<div class="section" id="selfie-commute-constant">
-<h2>Selfie, Commute, Constant: <code class="docutils literal notranslate"><span class="pre">⍨</span></code><a class="headerlink" href="#selfie-commute-constant" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="selfie-commute-constant">
+<h2>Selfie, Commute, Constant: <code class="docutils literal notranslate"><span class="pre">⍨</span></code><a class="headerlink" href="#selfie-commute-constant" title="Permalink to this headline">#</a></h2>
 <p>A firm favourite, the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Commute.htm"><em>Selfie</em></a> (although it’s really called <em>Commute</em>), mirroring the confused look of the APL neophyte: <code class="docutils literal notranslate"><span class="pre">⍨</span></code>. A monadic operator, the selfie commutes the left and right arguments of its operand function. At first, this seems beyond pointless – worse, in fact: it seems to offer nothing but added, deliberate obfuscation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">v</span> <span class="kd">←</span> <span class="m">6</span> <span class="m">9</span> <span class="m">5</span> <span class="m">2</span> <span class="m">0</span> <span class="m">9</span>
-<span class="nv">v</span><span class="o">↑</span><span class="na">⍨</span><span class="m">1</span>     <span class="c1">⍝ Take 1 but commute arguments ⍨</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">9</span><span class="w"></span>
+<span class="nv">v</span><span class="o">↑</span><span class="na">⍨</span><span class="m">1</span><span class="w">     </span><span class="c1">⍝ Take 1 but commute arguments ⍨</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1298,8 +1524,8 @@
 <p>Compare the following two equivalent forms (disregarding for the moment what they mean):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⊂</span><span class="na">⍨</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="o">≠</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="o">≠</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⊂</span><span class="na">⍨</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="o">≠</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"></span>
+<span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="o">≠</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1313,7 +1539,7 @@
 <p>If we give no left argument to the dyadic function derived by <em>Selfie</em> we echo the right argument to its left:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="na">⍨</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="na">⍨</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1326,7 +1552,7 @@
 <p>which is the same as saying:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="o">=</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1339,14 +1565,14 @@
 <p>If APL didn’t already have a <em>Tally</em> function built in (<code class="docutils literal notranslate"><span class="pre">≢</span></code>) we could make one as the sum-reduction of self-equals to count the number of elements in a vector, say:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">tally</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span><span class="o">=</span><span class="na">⍨</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">tally</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="o">=</span><span class="na">⍨</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">tally</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">tally</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1359,10 +1585,10 @@
 <p>If <em>Selfie</em> is given an <em>array</em> operand, it becomes <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Constant.htm"><em>Constant</em></a>: it always returns its operand:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="na">⍨</span> <span class="m">2</span>
-<span class="m">3</span> <span class="p">(</span><span class="m">1</span><span class="na">⍨</span><span class="p">)</span> <span class="m">2</span>
-<span class="m">1</span><span class="na">⍨</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
-<span class="m">1</span><span class="na">⍨¨</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="na">⍨</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="m">3</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="m">1</span><span class="na">⍨</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
+<span class="m">1</span><span class="na">⍨¨</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1384,8 +1610,8 @@
 <p>You can be excused for thinking that this is pretty pointless, but you’d be surprised how handy it can be. For example, you often find yourself wanting to create a vector of all the same value matching the shape of some other array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">m</span> <span class="kd">←</span> <span class="m">3</span> <span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span> 
-<span class="m">5</span><span class="na">⍨¨</span><span class="nv">m</span> <span class="c1">⍝ Make an array that looks like m, but will all elements 5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">9</span><span class="o">?</span><span class="m">9</span><span class="w"> </span>
+<span class="m">5</span><span class="na">⍨¨</span><span class="nv">m</span><span class="w"> </span><span class="c1">⍝ Make an array that looks like m, but will all elements 5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1405,7 +1631,7 @@
 <p>There are many other ways we could achieve the same thing, for example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">5</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">⍴</span><span class="nv">m</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">5</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">⍴</span><span class="nv">m</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1418,14 +1644,14 @@
 </span></div></div>
 </div>
 <p>but if you pronounce <code class="docutils literal notranslate"><span class="pre">5⍨¨m</span></code> as “constant 5 for each element in <code class="docutils literal notranslate"><span class="pre">m</span></code>” it matches the problem description nicely.</p>
-</div>
-<div class="section" id="unique-union-intersection-without">
-<h2>Unique, Union, Intersection, Without: <code class="docutils literal notranslate"><span class="pre">∪∩~</span></code><a class="headerlink" href="#unique-union-intersection-without" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="unique-union-intersection-without">
+<h2>Unique, Union, Intersection, Without: <code class="docutils literal notranslate"><span class="pre">∪∩~</span></code><a class="headerlink" href="#unique-union-intersection-without" title="Permalink to this headline">#</a></h2>
 <p>We have the full complement of set operations at our disposal. Starting with <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Unique.htm"><em>Unique</em></a>, monadic <code class="docutils literal notranslate"><span class="pre">∪</span></code>, it does exactly what it says on the tin:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∪</span><span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="m">2</span> <span class="m">3</span> <span class="m">3</span> <span class="m">4</span> <span class="m">4</span> <span class="m">5</span> <span class="m">5</span> <span class="m">6</span> <span class="m">6</span>
-<span class="o">∪</span><span class="s1">&#39;hello world&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∪</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">6</span><span class="w"></span>
+<span class="o">∪</span><span class="s1">&#39;hello world&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1441,7 +1667,7 @@
 <p>In its dyadic version, <code class="docutils literal notranslate"><span class="pre">∪</span></code> becomes <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Union.htm"><em>Union</em></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">∪</span> <span class="m">1</span> <span class="m">2</span> <span class="m">5</span> <span class="m">6</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">∪</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1455,7 +1681,7 @@
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Intersection.htm"><em>Intersection</em></a>, dyadic <code class="docutils literal notranslate"><span class="pre">∩</span></code>, works similarly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="o">∩</span> <span class="m">1</span> <span class="m">2</span> <span class="m">5</span> <span class="m">6</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">∩</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1469,7 +1695,7 @@
 <p>Dyadic <code class="docutils literal notranslate"><span class="pre">~</span></code> is <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Excluding.htm"><em>Without</em></a> – set difference:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="o">~</span> <span class="m">1</span> <span class="m">3</span> <span class="m">5</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1482,7 +1708,7 @@
 <p>The monadic <code class="docutils literal notranslate"><span class="pre">~</span></code> is Boolean <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not.htm"><em>Not</em></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1492,14 +1718,14 @@
 └~────────────┘
 </span></div></div>
 </div>
-</div>
-<div class="section" id="grade-up-down">
-<h2>Grade up/down: <code class="docutils literal notranslate"><span class="pre">⍋⍒</span></code><a class="headerlink" href="#grade-up-down" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="grade-up-down">
+<h2>Grade up/down: <code class="docutils literal notranslate"><span class="pre">⍋⍒</span></code><a class="headerlink" href="#grade-up-down" title="Permalink to this headline">#</a></h2>
 <p>To me, it’s a Christmas tree and a carrot, but these twins are called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Up%20Monadic.htm"><em>Grade up</em></a> (<code class="docutils literal notranslate"><span class="pre">⍋</span></code>) and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Down%20Monadic.htm"><em>Grade down</em></a> (<code class="docutils literal notranslate"><span class="pre">⍒</span></code>). They are APL’s very clever mechanisms for ordering arrays. To sort an array, we do:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">data</span> <span class="kd">←</span> <span class="m">110</span> <span class="m">109</span> <span class="m">204</span> <span class="m">40</span> <span class="m">105</span> <span class="m">201</span> <span class="m">2</span> <span class="m">208</span> <span class="m">160</span> <span class="m">143</span> <span class="m">213</span> <span class="m">31</span> <span class="m">21</span> <span class="m">317</span> <span class="m">132</span> <span class="m">242</span> <span class="m">164</span> <span class="m">176</span> <span class="m">67</span> <span class="m">18</span> <span class="m">75</span> <span class="m">89</span> <span class="m">18</span> <span class="m">7</span> <span class="m">20</span>
-<span class="nv">data</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">data</span><span class="sr">]</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">110</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">204</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="m">201</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">208</span><span class="w"> </span><span class="m">160</span><span class="w"> </span><span class="m">143</span><span class="w"> </span><span class="m">213</span><span class="w"> </span><span class="m">31</span><span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">317</span><span class="w"> </span><span class="m">132</span><span class="w"> </span><span class="m">242</span><span class="w"> </span><span class="m">164</span><span class="w"> </span><span class="m">176</span><span class="w"> </span><span class="m">67</span><span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">89</span><span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">20</span><span class="w"></span>
+<span class="nv">data</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">data</span><span class="sr">]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1515,7 +1741,7 @@
 <p>So what does the <em>Grade-up</em> actually do? Let’s have a look:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍋</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍋</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1530,8 +1756,8 @@
 <p>In any sort of data processing or analysis, this crops up all the time: give the customer names, ordered by contract date. Sort the keys based on the values. That sort of thing. You can also answer questions such as <em>where</em> is the smallest value?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">minidx</span> <span class="kd">←</span> <span class="o">⊃⍋</span><span class="nv">data</span> <span class="c1">⍝ Index of smallest value: first element of Grade-up</span>
-<span class="nv">data</span><span class="sr">[</span><span class="nv">minidx</span><span class="sr">]</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">minidx</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊃⍋</span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ Index of smallest value: first element of Grade-up</span><span class="w"></span>
+<span class="nv">data</span><span class="sr">[</span><span class="nv">minidx</span><span class="sr">]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1544,8 +1770,8 @@
 
 </span></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1569,9 +1795,11 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="indexing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1587,32 +1815,34 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

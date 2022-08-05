@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>The APL Way &#8212; Learning APL</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,36 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="array.html">
    It’s arrays all the way down
@@ -272,90 +289,191 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/aplway.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xpqz/learnapl"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Faplway.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xpqz/learnapl"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xpqz/learnapl/issues/new?title=Issue%20on%20page%20%2Faplway.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/aplway.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-power-of-the-array">
    The power of the Array
@@ -388,17 +506,65 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The APL Way</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-power-of-the-array">
+   The power of the Array
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#luhn-s-algorithm">
+   Luhn’s Algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#balancing-the-scales">
+   Balancing the Scales
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge">
+   Merge
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#right-align-a-block-of-text">
+   Right-align a block of text
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fizzbuzz">
+   FizzBuzz
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-apl-way">
-<h1>The APL Way<a class="headerlink" href="#the-apl-way" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-apl-way">
+<h1>The APL Way<a class="headerlink" href="#the-apl-way" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>Every reader should ask himself periodically “Toward what end, toward what end?”—but do not ask it too often lest you pass up the fun of programming for the constipation of bittersweet philosophy. –<em>Alan Perlis</em></p>
 </div></blockquote>
@@ -410,10 +576,10 @@
 <p>A few pointers – Richard Park gave a series of webinars on <a class="reference external" href="https://dyalog.tv/Webinar/?v=myoK22rq1jk">Thinking in APL</a> that you should check out, and Adám Brudzewski gave several interactive Cultivations dedicated to the topic, <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-39-array-programming-techniques">Lesson 39 - Array programming techniques</a> and <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-42-array-coding-style-in-depth">Lesson 42 - Array coding style in depth</a>, too.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span> <span class="kd">←</span> <span class="m">0</span>
-<span class="sr">]</span><span class="nv">box</span> <span class="nv">on</span> <span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span>
-<span class="sr">]</span><span class="nv">rows</span> <span class="nv">on</span>
-<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span> <span class="p">⋄</span> <span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span> <span class="nf">⎕signal</span> <span class="m">8</span> <span class="p">⋄</span> <span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">box</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="o">-</span><span class="nv">s</span><span class="o">=</span><span class="nv">min</span><span class="w"></span>
+<span class="sr">]</span><span class="nv">rows</span><span class="w"> </span><span class="nv">on</span><span class="w"></span>
+<span class="nv">assert</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="kd">←</span><span class="s1">&#39;assertion failure&#39;</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="m">0</span><span class="o">∊</span><span class="bp">⍵:⍺</span><span class="w"> </span><span class="nf">⎕signal</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">shy</span><span class="kd">←</span><span class="m">0</span><span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -422,8 +588,8 @@
 </span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
 </span></div></div>
 </div>
-<div class="section" id="the-power-of-the-array">
-<h2>The power of the Array<a class="headerlink" href="#the-power-of-the-array" title="Permalink to this headline">¶</a></h2>
+<section id="the-power-of-the-array">
+<h2>The power of the Array<a class="headerlink" href="#the-power-of-the-array" title="Permalink to this headline">#</a></h2>
 <p>Several factors super-charge array-oriented programming in APL:</p>
 <ol class="simple">
 <li><p>Many operations on non-nested arrays are fast; <em>really</em> fast, taking advantage of data parallelism in the processor (SIMD).</p></li>
@@ -441,15 +607,15 @@
 </pre></div>
 </div>
 <p>and here’s a data-parallel version:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">elems</span> <span class="kd">←</span> <span class="nv">f</span> <span class="nv">array</span> <span class="c1">⍝ Boolean mask</span>
-<span class="nv">elems</span><span class="na">/</span><span class="nv">array</span>     <span class="c1">⍝ Compress; i.e. pick elemets at 1s</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">elems</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">f</span><span class="w"> </span><span class="nv">array</span><span class="w"> </span><span class="c1">⍝ Boolean mask</span><span class="w"></span>
+<span class="nv">elems</span><span class="na">/</span><span class="nv">array</span><span class="w">     </span><span class="c1">⍝ Compress; i.e. pick elemets at 1s</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Let’s say we want to find the odd numbers in a sequence:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">where</span> <span class="kd">←</span> <span class="m">2</span><span class="o">|</span><span class="nv">data</span> <span class="kd">←</span> <span class="o">⍳</span><span class="m">20</span> <span class="c1">⍝ mod-2 for the whole array at once</span>
-<span class="nv">where</span><span class="na">/</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">where</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">2</span><span class="o">|</span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⍳</span><span class="m">20</span><span class="w"> </span><span class="c1">⍝ mod-2 for the whole array at once</span><span class="w"></span>
+<span class="nv">where</span><span class="na">/</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -461,7 +627,7 @@
 <p>We can think of many problems that can be solved using the pattern of a scalar selection function applied to an array. One example, given by Richard Park in his webinar mentioned above, is to pick out all vowels from a string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">∊</span><span class="bp">⍺</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;pick out all vowels from a string&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">∊</span><span class="bp">⍺</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;pick out all vowels from a string&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -472,7 +638,7 @@
 <p>…or for train spotters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span> <span class="p">(</span><span class="o">∊</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">⍤/</span><span class="o">⊢</span><span class="p">)</span> <span class="s1">&#39;pick out all vowels from a string&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">∊</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">⍤/</span><span class="o">⊢</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;pick out all vowels from a string&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -484,7 +650,7 @@
 <p>As an aside, and for the avoidance of any doubt, the <em>actual</em> APL way would be to just intersect the string with the vowels:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span> <span class="o">∩</span><span class="na">⍨</span> <span class="s1">&#39;pick out all vowels from a string&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aeiou&#39;</span><span class="w"> </span><span class="o">∩</span><span class="na">⍨</span><span class="w"> </span><span class="s1">&#39;pick out all vowels from a string&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -493,9 +659,9 @@
 </span></div></div>
 </div>
 <p>Shorter, faster, array-ier, nicer – but not the point we wanted to make.</p>
-</div>
-<div class="section" id="luhn-s-algorithm">
-<h2>Luhn’s Algorithm<a class="headerlink" href="#luhn-s-algorithm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="luhn-s-algorithm">
+<h2>Luhn’s Algorithm<a class="headerlink" href="#luhn-s-algorithm" title="Permalink to this headline">#</a></h2>
 <p>For something meatier, let’s look at implementing <a class="reference external" href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn’s</a> algorithm, an error-detecting code used for validating credit card numbers. This was used to illustrate array-oriented concepts by Dyalog CTO, <a class="reference external" href="https://aplwiki.com/wiki/Morten_Kromberg">Morten Kromberg</a>, at a <a class="reference external" href="https://jiotalks.com/watch/204/home/Morten_Kromberg_&amp;_Aaron_Hsu/Pragmatic_Array_Oriented_Functional_Programming">presentation</a> given at JIO. We’ll follow Morten’s clear explanation of this algorithm:</p>
 <ol>
 <li><p>Split the credit card number into a <em>body</em> and the last digit, a <em>checksum</em></p>
@@ -552,10 +718,10 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p><strong>1: Split the credit card number into a <em>body</em> and the last digit, a <em>checksum</em></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">card</span> <span class="kd">←</span> <span class="m">7</span> <span class="m">9</span> <span class="m">9</span> <span class="m">2</span> <span class="m">7</span> <span class="m">3</span> <span class="m">9</span> <span class="m">8</span> <span class="m">7</span> <span class="m">1</span> <span class="m">3</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">card</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
 
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">body</span> <span class="kd">←</span> <span class="p">(</span><span class="nv">count</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+≢</span><span class="nv">card</span><span class="p">)</span><span class="o">↑</span><span class="nv">card</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">check</span> <span class="kd">←</span> <span class="o">⊢</span><span class="na">/</span><span class="nv">card</span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">body</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">count</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+≢</span><span class="nv">card</span><span class="p">)</span><span class="o">↑</span><span class="nv">card</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊢</span><span class="na">/</span><span class="nv">card</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -567,8 +733,8 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p><strong>2: Multiply every other digit in the body by 2, starting from the last digit with a 2</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">weights</span> <span class="kd">←</span> <span class="nv">count</span><span class="o">⍴</span><span class="p">(</span><span class="m">2</span><span class="o">|</span><span class="nv">count</span><span class="p">)</span><span class="o">⌽</span><span class="m">1</span> <span class="m">2</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">products</span> <span class="kd">←</span> <span class="nv">body</span><span class="o">×</span><span class="nv">weights</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">weights</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">count</span><span class="o">⍴</span><span class="p">(</span><span class="m">2</span><span class="o">|</span><span class="nv">count</span><span class="p">)</span><span class="o">⌽</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">products</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">body</span><span class="o">×</span><span class="nv">weights</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -580,8 +746,8 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p><strong>3, 4. Separate any numbers greater than 9 into their individual digits, and sum</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">digits</span> <span class="kd">←</span> <span class="m">0</span> <span class="m">10</span><span class="o">⊤</span><span class="nv">products</span> <span class="c1">⍝ We can think of `0 10⊤` as divmod</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">sum</span> <span class="kd">←</span> <span class="o">+</span><span class="na">⌿</span><span class="o">,</span><span class="nv">digits</span>        <span class="c1">⍝ By raveling, we save doing sum the sum of cols</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">digits</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="o">⊤</span><span class="nv">products</span><span class="w"> </span><span class="c1">⍝ We can think of `0 10⊤` as divmod</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">sum</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">⌿</span><span class="o">,</span><span class="nv">digits</span><span class="w">        </span><span class="c1">⍝ By raveling, we save doing sum the sum of cols</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -594,7 +760,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p><strong>5. Digit sum, mod 10</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span><span class="o">|-</span><span class="nv">sum</span> <span class="c1">⍝ Magic</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span><span class="o">|-</span><span class="nv">sum</span><span class="w"> </span><span class="c1">⍝ Magic</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -605,29 +771,29 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>If we put all that together, we arrive at Morten’s solution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">luhn</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">check</span> <span class="kd">←</span> <span class="o">⊢</span><span class="na">/</span><span class="bp">⍵</span>
-    <span class="nv">body</span> <span class="kd">←</span> <span class="p">(</span><span class="nv">count</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↑</span><span class="bp">⍵</span>
-    <span class="nv">weights</span> <span class="kd">←</span> <span class="nv">count</span><span class="o">⍴</span><span class="p">(</span><span class="m">2</span><span class="o">|</span><span class="nv">count</span><span class="p">)</span><span class="o">⌽</span><span class="m">1</span> <span class="m">2</span>
-    <span class="nv">digits</span> <span class="kd">←</span> <span class="m">0</span> <span class="m">10</span><span class="o">⊤</span><span class="nv">body</span><span class="o">×</span><span class="nv">weights</span>
-    <span class="nv">check</span><span class="o">=</span><span class="m">10</span><span class="o">|-+</span><span class="na">/</span><span class="o">,</span><span class="nv">digits</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">luhn</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">check</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊢</span><span class="na">/</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="nv">body</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">count</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↑</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="nv">weights</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">count</span><span class="o">⍴</span><span class="p">(</span><span class="m">2</span><span class="o">|</span><span class="nv">count</span><span class="p">)</span><span class="o">⌽</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">    </span><span class="nv">digits</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="o">⊤</span><span class="nv">body</span><span class="o">×</span><span class="nv">weights</span><span class="w"></span>
+<span class="w">    </span><span class="nv">check</span><span class="o">=</span><span class="m">10</span><span class="o">|-+</span><span class="na">/</span><span class="o">,</span><span class="nv">digits</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span> <span class="nv">luhn</span> <span class="m">7</span> <span class="m">9</span> <span class="m">9</span> <span class="m">2</span> <span class="m">7</span> <span class="m">3</span> <span class="m">9</span> <span class="m">8</span> <span class="m">7</span> <span class="m">1</span> <span class="m">3</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">assert</span><span class="w"> </span><span class="nv">luhn</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>The Luhn algorithm was obviously chosen as an ideal fit for a data-parallel implementation. A few things stand out: firstly, the APL implementation follows the algorithm definition very closely, much closer than the Python version. Granted – and this is an interesting experiment – you can take the APL approach and implement a Python version following a similar pattern, albeit without array operations. Secondly, the solution is completely free or loops and branches. As Morten also observes, over 10 digits, there is no meaningful performance implication here, but it’s not hard to imagine what would happen over a million or more digits.</p>
-</div>
-<div class="section" id="balancing-the-scales">
-<h2>Balancing the Scales<a class="headerlink" href="#balancing-the-scales" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="balancing-the-scales">
+<h2>Balancing the Scales<a class="headerlink" href="#balancing-the-scales" title="Permalink to this headline">#</a></h2>
 <p>This is Problem 8, Phase II from the 2020 Dyalog problem solving competition. You can see the problem statement <a class="reference external" href="https://www.dyalog.com/uploads/files/student_competition/2020_problems_phase2.pdf">here</a>. Obviously, there are spoilers to follow – if you want to have a crack at it yourself, stop reading here.</p>
 <p>Our task is to partition a set of numbers into two groups of equal sum if this is possible, or return <code class="docutils literal notranslate"><span class="pre">⍬</span></code> if not. This is a well-known NP-hard problem, called <a class="reference external" href="https://en.wikipedia.org/wiki/Partition_problem">The Partition Problem</a>, and as such has no fast, always correct solutions for the general case. The problem statement indicates that we only need to consider a set of 20 numbers or fewer, which is a bit of a hint on what kind of solution is expected.</p>
 <p>This problem, in common with many other NP problems, also has a plethora of interesting heuristic solutions: faster algorithms that whilst not guaranteed to always find the optimal solution will either get close, or be correct for a significant subset of the problem domain in a fraction of the time the exhaustive search would take. We’ll look at one of these approaches, too, although it probably wasn’t what Dyalog wanted in terms of the competition (I might be wrong; I didn’t take part at the time).</p>
@@ -647,7 +813,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>So what are we dealing with here, in terms of the search space?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯1</span><span class="o">+</span><span class="m">2</span><span class="o">*</span><span class="m">20</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯1</span><span class="o">+</span><span class="m">2</span><span class="o">*</span><span class="m">20</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -658,7 +824,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>Just over a million or so different partitions to check, which should be manageable. The search space doubles in size for each additional item, which is something alluded to in the <a class="reference external" href="https://en.wikipedia.org/wiki/Wheat_and_chessboard_problem">old fable</a> about the inventor of Chess:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">e</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+</span><span class="m">2</span><span class="na">∘</span><span class="o">*</span><span class="p">⋄</span><span class="nv">e</span><span class="na">¨</span><span class="m">21</span><span class="o">+⍳</span><span class="m">9</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">e</span><span class="kd">←</span><span class="m">¯1</span><span class="o">+</span><span class="m">2</span><span class="na">∘</span><span class="o">*</span><span class="p">⋄</span><span class="nv">e</span><span class="na">¨</span><span class="m">21</span><span class="o">+⍳</span><span class="m">9</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -669,7 +835,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>To generate all binary combinations for <code class="docutils literal notranslate"><span class="pre">n</span></code> bits, we can use the following incantation (for n=3):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*</span><span class="m">3</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*</span><span class="m">3</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -687,8 +853,8 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>Given a Boolean vector, how do we turn that into the two corresponding sets of numbers? There are several ways you can try, for example compress:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍺</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">~</span><span class="bp">⍺</span><span class="p">)</span><span class="kt">}</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="c1">⍝ compress and compress ~</span>
-<span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">~</span><span class="nv">v</span><span class="p">)(</span><span class="nv">v</span><span class="kd">←</span><span class="bp">⍺</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span> <span class="c1">⍝ compress and set difference</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="bp">⍺</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">~</span><span class="bp">⍺</span><span class="p">)</span><span class="kt">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">⍝ compress and compress ~</span><span class="w"></span>
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">~</span><span class="nv">v</span><span class="p">)(</span><span class="nv">v</span><span class="kd">←</span><span class="bp">⍺</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">⍝ compress and set difference</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -704,7 +870,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>but we can exploit the fact that we’re really interested in the <em>sums</em> of the sets. The sum of the items corresponding to the set bits is really just the bit pattern times the input set, summed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">1</span> <span class="m">1</span> <span class="m">0</span><span class="o">×</span><span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">×</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -715,7 +881,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>which we by now hopefully should recognize as an inner product:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="o">+</span><span class="na">.</span><span class="o">×</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -726,8 +892,8 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>And of course, inner product can be applied to an array, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">patterns</span> <span class="kd">←</span> <span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*</span><span class="m">3</span>
-<span class="nv">patterns</span> <span class="o">+</span><span class="na">.</span><span class="o">×</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">patterns</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*</span><span class="m">3</span><span class="w"></span>
+<span class="nv">patterns</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -746,24 +912,24 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>This translates readily to APL:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">Balance</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">total</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span><span class="bp">⍵</span>
-    <span class="m">2</span><span class="o">|</span><span class="nv">total</span><span class="bp">:</span> <span class="no">⍬</span>             <span class="c1">⍝ Sum must be divisible by 2</span>
-    <span class="nv">psum</span> <span class="kd">←</span> <span class="nv">total</span><span class="o">÷</span><span class="m">2</span>         <span class="c1">⍝ Our target partition sum</span>
-    <span class="nv">bitp</span> <span class="kd">←</span> <span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*≢</span><span class="bp">⍵</span>    <span class="c1">⍝ All possible bit patterns up to ≢⍵</span>
-    <span class="nv">idx</span> <span class="kd">←</span> <span class="o">⍸&lt;</span><span class="na">\</span><span class="nv">psum</span><span class="o">=</span><span class="nv">bitp</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="bp">⍵</span> <span class="c1">⍝ First index of partition sum = target</span>
-    <span class="no">⍬</span><span class="o">≡</span><span class="nv">idx</span><span class="bp">:</span> <span class="no">⍬</span>               <span class="c1">⍝ If we have no 1s, there is no solution</span>
-    <span class="nv">part</span> <span class="kd">←</span> <span class="nv">idx</span><span class="o">⌷</span><span class="nv">bitp</span>        <span class="c1">⍝ Partition corresponding to solution index</span>
-    <span class="p">(</span><span class="nv">part</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">~</span><span class="nv">part</span><span class="p">)</span>     <span class="c1">⍝ Compress input by solution pattern and inverse</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">Balance</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">total</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="m">2</span><span class="o">|</span><span class="nv">total</span><span class="bp">:</span><span class="w"> </span><span class="no">⍬</span><span class="w">             </span><span class="c1">⍝ Sum must be divisible by 2</span><span class="w"></span>
+<span class="w">    </span><span class="nv">psum</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">total</span><span class="o">÷</span><span class="m">2</span><span class="w">         </span><span class="c1">⍝ Our target partition sum</span><span class="w"></span>
+<span class="w">    </span><span class="nv">bitp</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*≢</span><span class="bp">⍵</span><span class="w">    </span><span class="c1">⍝ All possible bit patterns up to ≢⍵</span><span class="w"></span>
+<span class="w">    </span><span class="nv">idx</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⍸&lt;</span><span class="na">\</span><span class="nv">psum</span><span class="o">=</span><span class="nv">bitp</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="bp">⍵</span><span class="w"> </span><span class="c1">⍝ First index of partition sum = target</span><span class="w"></span>
+<span class="w">    </span><span class="no">⍬</span><span class="o">≡</span><span class="nv">idx</span><span class="bp">:</span><span class="w"> </span><span class="no">⍬</span><span class="w">               </span><span class="c1">⍝ If we have no 1s, there is no solution</span><span class="w"></span>
+<span class="w">    </span><span class="nv">part</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">idx</span><span class="o">⌷</span><span class="nv">bitp</span><span class="w">        </span><span class="c1">⍝ Partition corresponding to solution index</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="nv">part</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">~</span><span class="nv">part</span><span class="p">)</span><span class="w">     </span><span class="c1">⍝ Compress input by solution pattern and inverse</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -776,7 +942,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>and on the full 20-bits:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span> <span class="m">10</span> <span class="m">81</span> <span class="m">98</span> <span class="m">27</span> <span class="m">28</span> <span class="m">5</span> <span class="m">1</span> <span class="m">46</span> <span class="m">63</span> <span class="m">99</span> <span class="m">25</span> <span class="m">39</span> <span class="m">84</span> <span class="m">87</span> <span class="m">76</span> <span class="m">85</span> <span class="m">78</span> <span class="m">64</span> <span class="m">41</span> <span class="m">93</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">81</span><span class="w"> </span><span class="m">98</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">39</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">76</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">78</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">93</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -790,7 +956,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>But the seemingly naive APL solution is quick, even though it will process 2-3 orders of magnitude more patterns than would a scalar solution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">runtime</span> <span class="s2">&quot;Balance 10 81 98 27 28 5 1 46 63 99 25 39 84 87 76 85 78 64 41 93&quot;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">runtime</span><span class="w"> </span><span class="s2">&quot;Balance 10 81 98 27 28 5 1 46 63 99 25 39 84 87 76 85 78 64 41 93&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -810,27 +976,27 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>For completeness, let’s see how a scalar solution would perform. We can, for example, take a tail-call Scheme-like approach:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">BalanceScalar</span> <span class="kd">←</span> <span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>     
-    <span class="nv">total</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span><span class="bp">⍵</span>
-    <span class="m">2</span><span class="o">|</span><span class="nv">total</span><span class="bp">:</span> <span class="no">⍬</span>             <span class="c1">⍝ Sum must be divisible by 2</span>
-    <span class="nv">psum</span> <span class="kd">←</span> <span class="nv">total</span><span class="o">÷</span><span class="m">2</span>         <span class="c1">⍝ Our target partition sum</span>
-    <span class="nv">data</span> <span class="kd">←</span> <span class="bp">⍵</span>
-    <span class="nv">bitp</span> <span class="kd">←</span> <span class="o">↓⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*≢</span><span class="bp">⍵</span>   <span class="c1">⍝ Pre-compute the bit patterns</span>
-    <span class="kt">{</span>                      <span class="c1">⍝ Try one sum after the other, halt on first solution</span>
-        <span class="m">0</span><span class="o">=</span><span class="bp">⍵:</span> <span class="no">⍬</span>
-        <span class="nv">patt</span> <span class="kd">←</span> <span class="bp">⍵</span><span class="o">⊃</span><span class="nv">bitp</span>
-        <span class="nv">psum</span><span class="o">=</span><span class="nv">patt</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="nv">data</span><span class="bp">:</span> <span class="p">(</span><span class="nv">patt</span><span class="na">/</span><span class="nv">data</span><span class="p">)(</span><span class="nv">data</span><span class="na">/⍨</span><span class="o">~</span><span class="nv">patt</span><span class="p">)</span> <span class="c1">⍝ Exit on first solution found</span>
-        <span class="bp">∇</span><span class="m">¯1</span><span class="o">+</span><span class="bp">⍵</span>
-    <span class="kt">}</span> <span class="m">¯1</span><span class="o">+≢</span><span class="nv">bitp</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">BalanceScalar</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span><span class="w">     </span>
+<span class="w">    </span><span class="nv">total</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="m">2</span><span class="o">|</span><span class="nv">total</span><span class="bp">:</span><span class="w"> </span><span class="no">⍬</span><span class="w">             </span><span class="c1">⍝ Sum must be divisible by 2</span><span class="w"></span>
+<span class="w">    </span><span class="nv">psum</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">total</span><span class="o">÷</span><span class="m">2</span><span class="w">         </span><span class="c1">⍝ Our target partition sum</span><span class="w"></span>
+<span class="w">    </span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="nv">bitp</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↓⍉</span><span class="m">2</span><span class="na">∘</span><span class="o">⊥</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⍳</span><span class="m">2</span><span class="o">*≢</span><span class="bp">⍵</span><span class="w">   </span><span class="c1">⍝ Pre-compute the bit patterns</span><span class="w"></span>
+<span class="w">    </span><span class="kt">{</span><span class="w">                      </span><span class="c1">⍝ Try one sum after the other, halt on first solution</span><span class="w"></span>
+<span class="w">        </span><span class="m">0</span><span class="o">=</span><span class="bp">⍵:</span><span class="w"> </span><span class="no">⍬</span><span class="w"></span>
+<span class="w">        </span><span class="nv">patt</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⊃</span><span class="nv">bitp</span><span class="w"></span>
+<span class="w">        </span><span class="nv">psum</span><span class="o">=</span><span class="nv">patt</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="nv">data</span><span class="bp">:</span><span class="w"> </span><span class="p">(</span><span class="nv">patt</span><span class="na">/</span><span class="nv">data</span><span class="p">)(</span><span class="nv">data</span><span class="na">/⍨</span><span class="o">~</span><span class="nv">patt</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Exit on first solution found</span><span class="w"></span>
+<span class="w">        </span><span class="bp">∇</span><span class="m">¯1</span><span class="o">+</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"> </span><span class="m">¯1</span><span class="o">+≢</span><span class="nv">bitp</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">BalanceScalar</span> <span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">BalanceScalar</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -843,15 +1009,15 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>Ok, let’s compare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">d</span><span class="kd">←</span><span class="m">10</span> <span class="m">81</span> <span class="m">98</span> <span class="m">27</span> <span class="m">28</span> <span class="m">5</span> <span class="m">1</span> <span class="m">46</span> <span class="m">63</span> <span class="m">99</span> <span class="m">25</span> <span class="m">39</span> <span class="m">84</span> <span class="m">87</span> <span class="m">76</span> <span class="m">85</span> <span class="m">78</span> <span class="m">64</span> <span class="m">41</span> <span class="m">93</span>
-<span class="nv">cmpx</span> <span class="s1">&#39;Balance d&#39;</span> <span class="s1">&#39;BalanceScalar d&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">d</span><span class="kd">←</span><span class="m">10</span><span class="w"> </span><span class="m">81</span><span class="w"> </span><span class="m">98</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">39</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">76</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">78</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">93</span><span class="w"></span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;Balance d&#39;</span><span class="w"> </span><span class="s1">&#39;BalanceScalar d&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -867,23 +1033,23 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>In short, the KK algorithm maintains a priority queue of the remaining numbers, and picks the two largest numbers in each iteration, replacing them with their difference until a single number remains – this represents the final difference between the two partitions. We can construct the corresponding partitions via backtracking. A thorough analysis of this algorithm can be found <a class="reference external" href="https://core.ac.uk/download/pdf/82710454.pdf">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">KarmarkarKarp</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">sort</span> <span class="kd">←</span> <span class="kt">{</span><span class="bp">⍵</span><span class="sr">[;</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">[</span><span class="m">0</span><span class="sr">;]]</span><span class="kt">}</span>
-    <span class="p">(</span><span class="nv">pairs</span> <span class="nv">last</span><span class="p">)</span> <span class="kd">←</span> <span class="no">⍬</span> <span class="kt">{</span>
-        <span class="m">2</span><span class="o">&gt;≢⍉</span><span class="bp">⍵:⍺</span> <span class="p">(</span><span class="m">1</span> <span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">i</span> <span class="nv">x</span><span class="p">)(</span><span class="nv">j</span> <span class="nv">y</span><span class="p">)</span> <span class="kd">←</span> <span class="o">↓⍉</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">0</span> <span class="m">1</span><span class="sr">]</span>
-        <span class="p">(</span><span class="bp">⍺</span><span class="o">,⊂</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span><span class="bp">∇</span><span class="nv">sort</span> <span class="p">(</span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="nv">i</span><span class="o">-</span><span class="nv">j</span><span class="p">)</span> <span class="nv">x</span>
-    <span class="kt">}</span> <span class="nv">sort</span> <span class="o">↑</span><span class="p">(</span><span class="o">-</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="p">)</span>
-        
-    <span class="nv">last</span> <span class="no">⍬</span> <span class="kt">{</span>
-        <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="kd">←</span> <span class="bp">⍺</span>
-        <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="bp">⍺</span>
-        <span class="nv">pair</span> <span class="kd">←</span> <span class="o">⊃</span><span class="m">¯1</span><span class="o">↑</span><span class="bp">⍵</span>
-        <span class="nv">a</span><span class="o">∊</span><span class="na">⍨</span><span class="o">⊃</span><span class="nv">pair</span><span class="bp">:</span> <span class="p">(</span><span class="nv">a</span> <span class="p">(</span><span class="nv">b</span><span class="o">,</span><span class="m">1</span><span class="o">⊃</span><span class="nv">pair</span><span class="p">))</span><span class="bp">∇</span><span class="m">¯1</span><span class="o">↓</span><span class="bp">⍵</span>
-        <span class="p">((</span><span class="nv">a</span><span class="o">,</span><span class="m">1</span><span class="o">⊃</span><span class="nv">pair</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span><span class="bp">∇</span><span class="m">¯1</span><span class="o">↓</span><span class="bp">⍵</span>
-    <span class="kt">}</span> <span class="nv">pairs</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">KarmarkarKarp</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">sort</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[;</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">[</span><span class="m">0</span><span class="sr">;]]</span><span class="kt">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="nv">pairs</span><span class="w"> </span><span class="nv">last</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="no">⍬</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="m">2</span><span class="o">&gt;≢⍉</span><span class="bp">⍵:⍺</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⌷</span><span class="bp">⍵</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="nv">i</span><span class="w"> </span><span class="nv">x</span><span class="p">)(</span><span class="nv">j</span><span class="w"> </span><span class="nv">y</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↓⍉</span><span class="bp">⍵</span><span class="sr">[;</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="sr">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="bp">⍺</span><span class="o">,⊂</span><span class="nv">x</span><span class="w"> </span><span class="nv">y</span><span class="p">)</span><span class="bp">∇</span><span class="nv">sort</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="nv">i</span><span class="o">-</span><span class="nv">j</span><span class="p">)</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"> </span><span class="nv">sort</span><span class="w"> </span><span class="o">↑</span><span class="p">(</span><span class="o">-</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span>
+<span class="w">    </span><span class="nv">last</span><span class="w"> </span><span class="no">⍬</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍺</span><span class="w"></span>
+<span class="w">        </span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span><span class="w"> </span><span class="bp">⍺</span><span class="w"></span>
+<span class="w">        </span><span class="nv">pair</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊃</span><span class="m">¯1</span><span class="o">↑</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">        </span><span class="nv">a</span><span class="o">∊</span><span class="na">⍨</span><span class="o">⊃</span><span class="nv">pair</span><span class="bp">:</span><span class="w"> </span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="p">(</span><span class="nv">b</span><span class="o">,</span><span class="m">1</span><span class="o">⊃</span><span class="nv">pair</span><span class="p">))</span><span class="bp">∇</span><span class="m">¯1</span><span class="o">↓</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">        </span><span class="p">((</span><span class="nv">a</span><span class="o">,</span><span class="m">1</span><span class="o">⊃</span><span class="nv">pair</span><span class="p">)</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="bp">∇</span><span class="m">¯1</span><span class="o">↓</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"> </span><span class="nv">pairs</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -891,7 +1057,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>In our test case, the KK does return an optimal solution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">KarmarkarKarp</span> <span class="m">10</span> <span class="m">81</span> <span class="m">98</span> <span class="m">27</span> <span class="m">28</span> <span class="m">5</span> <span class="m">1</span> <span class="m">46</span> <span class="m">63</span> <span class="m">99</span> <span class="m">25</span> <span class="m">39</span> <span class="m">84</span> <span class="m">87</span> <span class="m">76</span> <span class="m">85</span> <span class="m">78</span> <span class="m">64</span> <span class="m">41</span> <span class="m">93</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">KarmarkarKarp</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">81</span><span class="w"> </span><span class="m">98</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">39</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">76</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">78</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">93</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -903,7 +1069,7 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span> <span class="s1">&#39;Balance d&#39;</span> <span class="s1">&#39;KarmarkarKarp d&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;Balance d&#39;</span><span class="w"> </span><span class="s1">&#39;KarmarkarKarp d&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -915,8 +1081,8 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 <p>and, unsurprisingly, although completely scalar, it wins hands down. However, it’s still a heuristic:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span>
-<span class="nv">KarmarkarKarp</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Balance</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"></span>
+<span class="nv">KarmarkarKarp</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -930,19 +1096,19 @@ Sum:         7 9 9 4 7 6 9 7 7 2
 </span></div></div>
 </div>
 <p>A thing to note in the KK implementation above: it simply sorts the array at each iteration, instead of using a heap queue. As an exercise for the interested reader, try re-implementing it using a heap. However, and for similar reasons as we saw earlier, you will probably find that APL is likely faster at sorting a simple array than the complexity cost of maintaining a more nested data structure.</p>
-</div>
-<div class="section" id="merge">
-<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="merge">
+<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">#</a></h2>
 <p>Ok, we’re on a roll. Problem 6 from the same year was a spin on the old “mail merge” concept: given a template file, expand templates with values from a corresponding merge file. For example, given a template of</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hello @firstname@,
 You have been selected to test drive a new @carmake@!
 </pre></div>
 </div>
 <p>with a merge file of</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;firstname&quot;</span><span class="p">:</span> <span class="nt">&quot;Bob&quot;</span>
-    <span class="nt">&quot;carmake&quot;</span><span class="p">:</span> <span class="s2">&quot;Aston Martin&quot;</span>
-<span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;firstname&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;Bob&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;carmake&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Aston Martin&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>the final output should be</p>
@@ -955,8 +1121,8 @@ You have been selected to test drive a new Aston Martin!
 <p>Let’s look at the two data files first:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">template</span> <span class="kd">←</span> <span class="s1">&#39;/Users/stefan/template.txt&#39;</span>
-<span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="nv">template</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">template</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;/Users/stefan/template.txt&#39;</span><span class="w"></span>
+<span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="nv">template</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -971,8 +1137,8 @@ Your email address in our domain is @firstname@@@contest.com
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span> <span class="kd">←</span> <span class="s1">&#39;/Users/stefan/merge1.json&#39;</span>
-<span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="nv">merge</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;/Users/stefan/merge1.json&#39;</span><span class="w"></span>
+<span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="nv">merge</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -989,10 +1155,10 @@ Your email address in our domain is @firstname@@@contest.com
 <p>So our patterns are defined by the keys in the JSON, plus the <code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span></code> for literal <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> and any remaining templates that have no corresponding entry in the merge file, along the lines of <code class="docutils literal notranslate"><span class="pre">&#64;[^&#64;]+&#64;</span></code>. We’ll start with reading the JSON data into a namespace and pulling out the keys and values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="nv">merge</span>
-<span class="nv">keys</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span>
-<span class="nv">vals</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="c1">#.keys)</span>
-<span class="o">↑</span><span class="nv">keys</span> <span class="nv">vals</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="nv">merge</span><span class="w"></span>
+<span class="nv">keys</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="w"></span>
+<span class="nv">vals</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="c1">#.keys)</span><span class="w"></span>
+<span class="o">↑</span><span class="nv">keys</span><span class="w"> </span><span class="nv">vals</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1173,7 @@ Your email address in our domain is @firstname@@@contest.com
 <p>and our patterns and replacements then become:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="p">((</span><span class="kt">{</span><span class="s1">&#39;@&#39;</span><span class="o">,</span><span class="p">(</span><span class="o">⍕</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="kt">}</span><span class="na">¨</span><span class="nv">keys</span><span class="p">)</span><span class="o">,</span> <span class="p">(</span><span class="o">⊂</span><span class="s1">&#39;@@&#39;</span><span class="p">)</span><span class="o">,</span> <span class="o">⊂</span><span class="s1">&#39;@[^@]+@&#39;</span><span class="p">)</span> <span class="p">((</span><span class="o">⍕</span><span class="na">¨</span><span class="nv">vals</span><span class="p">)</span><span class="o">,</span> <span class="p">(</span><span class="o">⊂,</span><span class="s1">&#39;@&#39;</span><span class="p">)</span><span class="o">,</span> <span class="o">⊂</span><span class="s1">&#39;???&#39;</span><span class="p">)</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="p">((</span><span class="kt">{</span><span class="s1">&#39;@&#39;</span><span class="o">,</span><span class="p">(</span><span class="o">⍕</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="kt">}</span><span class="na">¨</span><span class="nv">keys</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="o">⊂</span><span class="s1">&#39;@@&#39;</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;@[^@]+@&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="o">⍕</span><span class="na">¨</span><span class="nv">vals</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="o">⊂,</span><span class="s1">&#39;@&#39;</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;???&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1022,21 +1188,21 @@ Your email address in our domain is @firstname@@@contest.com
 <p>Putting it all together we get:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">Merge</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="bp">⍺</span>
-    <span class="nv">keys</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span>
-    <span class="nv">vals</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="c1">#.keys)</span>
-    
-    <span class="p">((</span><span class="kt">{</span><span class="s1">&#39;@&#39;</span><span class="o">,</span><span class="p">(</span><span class="o">⍕</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="kt">}</span><span class="na">¨</span><span class="nv">keys</span><span class="p">)</span><span class="o">,</span> <span class="p">(</span><span class="o">⊂</span><span class="s1">&#39;@@&#39;</span><span class="p">)</span><span class="o">,</span> <span class="o">⊂</span><span class="s1">&#39;@[^@]+@&#39;</span><span class="p">)</span><span class="nf">⎕R</span><span class="p">((</span><span class="o">⍕</span><span class="na">¨</span><span class="nv">vals</span><span class="p">)</span><span class="o">,</span> <span class="p">(</span><span class="o">⊂,</span><span class="s1">&#39;@&#39;</span><span class="p">)</span><span class="o">,</span> <span class="o">⊂</span><span class="s1">&#39;???&#39;</span><span class="p">)</span><span class="o">⊢⊃</span><span class="nf">⎕NGET</span> <span class="bp">⍵</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">Merge</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="bp">⍺</span><span class="w"></span>
+<span class="w">    </span><span class="nv">keys</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="w"></span>
+<span class="w">    </span><span class="nv">vals</span><span class="kd">←</span><span class="nv">mrg</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="c1">#.keys)</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="p">((</span><span class="kt">{</span><span class="s1">&#39;@&#39;</span><span class="o">,</span><span class="p">(</span><span class="o">⍕</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="kt">}</span><span class="na">¨</span><span class="nv">keys</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="o">⊂</span><span class="s1">&#39;@@&#39;</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;@[^@]+@&#39;</span><span class="p">)</span><span class="nf">⎕R</span><span class="p">((</span><span class="o">⍕</span><span class="na">¨</span><span class="nv">vals</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="o">⊂,</span><span class="s1">&#39;@&#39;</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;???&#39;</span><span class="p">)</span><span class="o">⊢⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="bp">⍵</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span> <span class="nv">Merge</span> <span class="nv">template</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span><span class="w"> </span><span class="nv">Merge</span><span class="w"> </span><span class="nv">template</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1053,7 +1219,7 @@ Your email address in our domain is Drake@contest.com
 <p>If we partition the data such that each partition begins with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> we get this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;@&#39;</span> <span class="p">(</span><span class="o">=⊂⊢</span><span class="p">)</span> <span class="s1">&#39;aaaa @bbb@ ccc @@ @ddd@&#39;</span> <span class="c1">⍝ Partitions starting at @</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;@&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">=⊂⊢</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;aaaa @bbb@ ccc @@ @ddd@&#39;</span><span class="w"> </span><span class="c1">⍝ Partitions starting at @</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1066,7 +1232,7 @@ Your email address in our domain is Drake@contest.com
 <p>in fact, let’s drop the leading <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">tmpls</span><span class="kd">←</span><span class="s1">&#39;@&#39;</span><span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="na">¨</span><span class="o">=⊂⊢</span><span class="p">)</span><span class="s1">&#39;aaaa @bbb@ ccc @@ @ddd@&#39;</span> 
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">tmpls</span><span class="kd">←</span><span class="s1">&#39;@&#39;</span><span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="na">¨</span><span class="o">=⊂⊢</span><span class="p">)</span><span class="s1">&#39;aaaa @bbb@ ccc @@ @ddd@&#39;</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -1080,7 +1246,7 @@ Your email address in our domain is Drake@contest.com
 <p>Our replacement values will again come from a namespace</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="p">)</span><span class="na">.</span><span class="p">(</span><span class="nv">bbb</span> <span class="nv">ccc</span> <span class="nv">ddd</span><span class="p">)</span> <span class="kd">←</span> <span class="s1">&#39;bees&#39;</span> <span class="s1">&#39;cees&#39;</span> <span class="s1">&#39;dees&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">mrg</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span><span class="p">)</span><span class="na">.</span><span class="p">(</span><span class="nv">bbb</span><span class="w"> </span><span class="nv">ccc</span><span class="w"> </span><span class="nv">ddd</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;bees&#39;</span><span class="w"> </span><span class="s1">&#39;cees&#39;</span><span class="w"> </span><span class="s1">&#39;dees&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1088,19 +1254,19 @@ Your email address in our domain is Drake@contest.com
 <p>and we’ll make a little helper function to look up value by key, with the added functionality to return <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> for `` and <code class="docutils literal notranslate"><span class="pre">???</span></code> for non-present keys:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">val</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="o">,</span><span class="s1">&#39;@&#39;</span>
-    <span class="o">~</span><span class="p">(</span><span class="o">⊂</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∊</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="bp">:</span> <span class="s1">&#39;???&#39;</span>
-    <span class="o">⍕</span><span class="nv">mrg</span><span class="o">⍎</span><span class="bp">⍵</span>
-<span class="kt">}</span> 
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">val</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span><span class="w"> </span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="o">~</span><span class="p">(</span><span class="o">⊂</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∊</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="bp">:</span><span class="w"> </span><span class="s1">&#39;???&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="o">⍕</span><span class="nv">mrg</span><span class="o">⍎</span><span class="bp">⍵</span><span class="w"></span>
+<span class="kt">}</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">val</span><span class="na">¨</span><span class="s1">&#39;bbb&#39;</span> <span class="s1">&#39;ddd&#39;</span> <span class="s1">&#39;ccc&#39;</span> <span class="s1">&#39;&#39;</span> <span class="s1">&#39;hubba&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">val</span><span class="na">¨</span><span class="s1">&#39;bbb&#39;</span><span class="w"> </span><span class="s1">&#39;ddd&#39;</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;hubba&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1113,7 +1279,7 @@ Your email address in our domain is Drake@contest.com
 <p>We can use Dyalog’s handy <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator to  make the replacements. Recall that the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator can take a right operand function which must return a Boolean vector, which in our case should select every other element, starting with the first:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">val</span><span class="na">¨@</span><span class="kt">{</span><span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span><span class="kt">}</span><span class="o">⊢</span><span class="nv">tmpls</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">val</span><span class="na">¨@</span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="kt">}</span><span class="o">⊢</span><span class="nv">tmpls</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1126,27 +1292,27 @@ Your email address in our domain is Drake@contest.com
 <p>Finally, we’d need to tack on anything prior to the first <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> and enlist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">Merge</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">mrg</span> <span class="kd">←</span> <span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="bp">⍺</span>
-    <span class="nv">templ</span> <span class="kd">←</span> <span class="o">⊃</span><span class="nf">⎕NGET</span> <span class="bp">⍵</span>
-    <span class="nv">first</span> <span class="kd">←</span> <span class="nv">templ</span><span class="o">⍳</span><span class="s1">&#39;@&#39;</span>
-    <span class="nv">first</span><span class="o">&gt;≢</span><span class="nv">templ</span><span class="bp">:</span> <span class="nv">templ</span>    <span class="c1">⍝ No templates at all</span>
-    <span class="nv">prefix</span> <span class="kd">←</span> <span class="nv">first</span><span class="o">↑</span><span class="nv">templ</span>
-    <span class="nv">val</span> <span class="kd">←</span> <span class="kt">{</span>
-        <span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span> <span class="o">,</span><span class="s1">&#39;@&#39;</span>
-        <span class="o">~</span><span class="p">(</span><span class="o">⊂</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∊</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="bp">:</span> <span class="s1">&#39;???&#39;</span>
-        <span class="o">⍕</span><span class="nv">mrg</span><span class="o">⍎</span><span class="bp">⍵</span>
-    <span class="kt">}</span>
-    <span class="o">∊</span><span class="nv">prefix</span><span class="o">,</span><span class="nv">val</span><span class="na">¨@</span><span class="kt">{</span><span class="m">1</span> <span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;@&#39;</span><span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="na">¨</span><span class="o">=⊂⊢</span><span class="p">)</span><span class="nv">templ</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">Merge</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">mrg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nf">⎕JSON</span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="bp">⍺</span><span class="w"></span>
+<span class="w">    </span><span class="nv">templ</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="w"> </span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="nv">first</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">templ</span><span class="o">⍳</span><span class="s1">&#39;@&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nv">first</span><span class="o">&gt;≢</span><span class="nv">templ</span><span class="bp">:</span><span class="w"> </span><span class="nv">templ</span><span class="w">    </span><span class="c1">⍝ No templates at all</span><span class="w"></span>
+<span class="w">    </span><span class="nv">prefix</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">first</span><span class="o">↑</span><span class="nv">templ</span><span class="w"></span>
+<span class="w">    </span><span class="nv">val</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">        </span><span class="m">0</span><span class="o">=≢</span><span class="bp">⍵:</span><span class="w"> </span><span class="o">,</span><span class="s1">&#39;@&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="o">~</span><span class="p">(</span><span class="o">⊂</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∊</span><span class="nv">mrg</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="bp">:</span><span class="w"> </span><span class="s1">&#39;???&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="o">⍕</span><span class="nv">mrg</span><span class="o">⍎</span><span class="bp">⍵</span><span class="w"></span>
+<span class="w">    </span><span class="kt">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">∊</span><span class="nv">prefix</span><span class="o">,</span><span class="nv">val</span><span class="na">¨@</span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="o">≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;@&#39;</span><span class="p">(</span><span class="m">1</span><span class="o">↓</span><span class="na">¨</span><span class="o">=⊂⊢</span><span class="p">)</span><span class="nv">templ</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span> <span class="nv">Merge</span> <span class="nv">template</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span><span class="w"> </span><span class="nv">Merge</span><span class="w"> </span><span class="nv">template</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1159,9 +1325,9 @@ Your email address in our domain is Drake@contest.com
 
 </span></div></div>
 </div>
-</div>
-<div class="section" id="right-align-a-block-of-text">
-<h2>Right-align a block of text<a class="headerlink" href="#right-align-a-block-of-text" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="right-align-a-block-of-text">
+<h2>Right-align a block of text<a class="headerlink" href="#right-align-a-block-of-text" title="Permalink to this headline">#</a></h2>
 <p>Let’s work through a more comprehensive problem. Here’s a tweaked version of one of the Phase 1 tasks from the <a class="reference external" href="https://www.dyalog.com/student-competition.htm">Dyalog Problem Solving Competition</a>, 2021:</p>
 <p>Write a function that:</p>
 <ul class="simple">
@@ -1174,14 +1340,14 @@ Your email address in our domain is Drake@contest.com
 <p>We’re given a couple of examples of how the solution should behave for arrays of different ranks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ 6 Align &#39;⍒&#39;</span>
-<span class="s1">&#39;     ⍒&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ 6 Align &#39;⍒&#39;</span><span class="w"></span>
+<span class="s1">&#39;     ⍒&#39;</span><span class="w"></span>
 
-<span class="c1">⍝ 10 Align &#39;Parade&#39;</span>
-<span class="s1">&#39;    Parade&#39;</span>
+<span class="c1">⍝ 10 Align &#39;Parade&#39;</span><span class="w"></span>
+<span class="s1">&#39;    Parade&#39;</span><span class="w"></span>
 
-<span class="c1">⍝ 8 Align &#39;Longer Phrase&#39; &#39;APL&#39; &#39;Parade&#39;</span>
-<span class="m">3</span> <span class="m">8</span><span class="o">⍴</span><span class="s1">&#39;Longer P     APL  Parade&#39;</span>
+<span class="c1">⍝ 8 Align &#39;Longer Phrase&#39; &#39;APL&#39; &#39;Parade&#39;</span><span class="w"></span>
+<span class="m">3</span><span class="w"> </span><span class="m">8</span><span class="o">⍴</span><span class="s1">&#39;Longer P     APL  Parade&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1205,9 +1371,9 @@ Your email address in our domain is Drake@contest.com
 <p>We’re given the shape. In order for this to work for character scalars, a character vector, or vector of character vectors, we need to operate on the ravel of the right argument when finding the shape:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;⍋&#39;</span>
-<span class="m">10</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;Parade&#39;</span>
-<span class="m">8</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="s1">&#39;Longer Phrase&#39;</span> <span class="s1">&#39;APL&#39;</span> <span class="s1">&#39;Parade&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;⍋&#39;</span><span class="w"></span>
+<span class="m">10</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
+<span class="m">8</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;Longer Phrase&#39;</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1220,10 +1386,10 @@ Your email address in our domain is Drake@contest.com
 <p>To fit the data into that shape, we need to <em>Mix</em> the ravel (<code class="docutils literal notranslate"><span class="pre">↑,⍵</span></code>) to increase the rank and then <em>Take</em> <code class="docutils literal notranslate"><span class="pre">⍺</span></code> elements, rank 1 (along vectors), and then reshape. Let’s explore what this means:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="s1">&#39;Parade&#39;</span>
-<span class="o">⊢</span><span class="nv">sh</span> <span class="kd">←</span> <span class="m">10</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="nv">data</span> <span class="c1">⍝ Shape</span>
-<span class="o">↑,</span><span class="nv">data</span>                         <span class="c1">⍝ Mix ravel (no change for a char vector)</span>
-<span class="m">10</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="nv">data</span>                   <span class="c1">⍝ (over)take, rank-1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
+<span class="o">⊢</span><span class="nv">sh</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ Shape</span><span class="w"></span>
+<span class="o">↑,</span><span class="nv">data</span><span class="w">                         </span><span class="c1">⍝ Mix ravel (no change for a char vector)</span><span class="w"></span>
+<span class="m">10</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="nv">data</span><span class="w">                   </span><span class="c1">⍝ (over)take, rank-1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1236,10 +1402,10 @@ Your email address in our domain is Drake@contest.com
 <p>More interesting to consider is the nested vector case:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="s1">&#39;Longer Phrase&#39;</span> <span class="s1">&#39;APL&#39;</span> <span class="s1">&#39;Parade&#39;</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">sh</span> <span class="kd">←</span> <span class="m">8</span> <span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span> <span class="nv">data</span> <span class="c1">⍝ Shape</span>
-<span class="o">↑,</span><span class="nv">data</span>                           <span class="c1">⍝ Mix ravel</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">mat</span> <span class="kd">←</span> <span class="m">8</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="nv">data</span>            <span class="c1">⍝ (over)take, rank 1</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Longer Phrase&#39;</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">sh</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ Shape</span><span class="w"></span>
+<span class="o">↑,</span><span class="nv">data</span><span class="w">                           </span><span class="c1">⍝ Mix ravel</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">mat</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">8</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="nv">data</span><span class="w">            </span><span class="c1">⍝ (over)take, rank 1</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1256,7 +1422,7 @@ Parade
 <p>So far, so array-oriented! Now we need to find trailing spaces. The equal sign makes for an excellent search function! Where are the spaces?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1269,7 +1435,7 @@ Parade
 <p>All well and good, but we need the <em>trailing</em> spaces. A handy technique here is to <em>and-scan</em>, which is one of those APLisms that is so obvious (once someone pointed it out to you, you found it on APLCart, or you’re a genius). It keeps all 1s from the beginning, and zeros everything  after the first zero:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1280,7 +1446,7 @@ Parade
 <p>but that looks at <em>leading</em> not trailing spaces, so we need to flip, and-scan, flip back:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span>   <span class="c1">⍝ We&#39;re keeping on arraying</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span><span class="w">   </span><span class="c1">⍝ We&#39;re keeping on arraying</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1293,9 +1459,9 @@ Parade
 <p>Conceptually, we’ll add extra spaces at the beginning of each line, the same number as any trailing spaces. In practice, we’ll add a single space, and then use a replication vector to clone it the relevant number of times. Recall:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">data</span> <span class="kd">←</span> <span class="s1">&#39; ABCDEFGHIK&#39;</span>         <span class="c1">⍝ Note: leading space</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">repl</span> <span class="kd">←</span> <span class="m">5</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> <span class="c1">⍝ Five spaces, one of everything else</span>
-<span class="nv">repl</span><span class="na">/</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39; ABCDEFGHIK&#39;</span><span class="w">         </span><span class="c1">⍝ Note: leading space</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">repl</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">⍝ Five spaces, one of everything else</span><span class="w"></span>
+<span class="nv">repl</span><span class="na">/</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1307,11 +1473,11 @@ Parade
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trailing</span> <span class="kd">←</span> <span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span>     <span class="c1">⍝ Find trailing spaces, as per above</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">spaced</span> <span class="kd">←</span> <span class="s1">&#39; &#39;</span><span class="o">,</span><span class="nv">mat</span>       <span class="c1">⍝ Add a space as the first char of each row</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">keepers</span> <span class="kd">←</span> <span class="o">~</span><span class="nv">trailing</span>    <span class="c1">⍝ Everything not a trailing space</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">padding</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span><span class="nv">trailing</span>   <span class="c1">⍝ Amount of leading padding to be inserted per row</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">repl</span> <span class="kd">←</span> <span class="nv">padding</span><span class="o">,</span><span class="nv">keepers</span> <span class="c1">⍝ Number of replications per character</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trailing</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span><span class="w">     </span><span class="c1">⍝ Find trailing spaces, as per above</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">spaced</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="nv">mat</span><span class="w">       </span><span class="c1">⍝ Add a space as the first char of each row</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keepers</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">~</span><span class="nv">trailing</span><span class="w">    </span><span class="c1">⍝ Everything not a trailing space</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">padding</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">trailing</span><span class="w">   </span><span class="c1">⍝ Amount of leading padding to be inserted per row</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">repl</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">padding</span><span class="o">,</span><span class="nv">keepers</span><span class="w"> </span><span class="c1">⍝ Number of replications per character</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1497,7 @@ Parade
 <p>Now what remains is to do the replication and ensure that everything gets the shape it should have.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">repl</span><span class="na">/⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">spaced</span> <span class="c1">⍝ Replicate along vectors</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">repl</span><span class="na">/⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">spaced</span><span class="w"> </span><span class="c1">⍝ Replicate along vectors</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1344,27 +1510,27 @@ Parade
 <p>That’s it! Putting it all together, we get the following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
-<span class="nv">Align</span> <span class="kd">←</span> <span class="kt">{</span>
-    <span class="nv">shape</span> <span class="kd">←</span> <span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span>  <span class="c1">⍝ Shape, as specified</span>
-    <span class="nv">mat</span> <span class="kd">←</span> <span class="bp">⍺</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="bp">⍵</span>          <span class="c1">⍝ Truncate rank 1</span>
-    <span class="nv">trailing</span> <span class="kd">←</span> <span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span>  <span class="c1">⍝ Find trailing spaces</span>
-    <span class="nv">spaced</span> <span class="kd">←</span> <span class="s1">&#39; &#39;</span><span class="o">,</span><span class="nv">mat</span>        <span class="c1">⍝ Add a space as the first char of each row</span>
-    <span class="nv">keepers</span> <span class="kd">←</span> <span class="o">~</span><span class="nv">trailing</span>     <span class="c1">⍝ Everything not a trailing space</span>
-    <span class="nv">padding</span> <span class="kd">←</span> <span class="o">+</span><span class="na">/</span><span class="nv">trailing</span>    <span class="c1">⍝ Amount of leading padding to be inserted per row</span>
-    <span class="nv">repl</span> <span class="kd">←</span> <span class="nv">padding</span><span class="o">,</span><span class="nv">keepers</span>  <span class="c1">⍝ Number of replications per character</span>
-    <span class="nv">repl</span><span class="na">/⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">spaced</span>          <span class="c1">⍝ Replicate rank 1</span>
-<span class="kt">}</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span><span class="w"></span>
+<span class="nv">Align</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">shape</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍺</span><span class="o">,</span><span class="na">⍨</span><span class="p">(</span><span class="m">2</span><span class="o">=≡,</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="o">≢,</span><span class="bp">⍵</span><span class="w">  </span><span class="c1">⍝ Shape, as specified</span><span class="w"></span>
+<span class="w">    </span><span class="nv">mat</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍺</span><span class="o">↑</span><span class="na">⍤</span><span class="m">1</span><span class="o">⊢↑,</span><span class="bp">⍵</span><span class="w">          </span><span class="c1">⍝ Truncate rank 1</span><span class="w"></span>
+<span class="w">    </span><span class="nv">trailing</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">mat</span><span class="w">  </span><span class="c1">⍝ Find trailing spaces</span><span class="w"></span>
+<span class="w">    </span><span class="nv">spaced</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="nv">mat</span><span class="w">        </span><span class="c1">⍝ Add a space as the first char of each row</span><span class="w"></span>
+<span class="w">    </span><span class="nv">keepers</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">~</span><span class="nv">trailing</span><span class="w">     </span><span class="c1">⍝ Everything not a trailing space</span><span class="w"></span>
+<span class="w">    </span><span class="nv">padding</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">trailing</span><span class="w">    </span><span class="c1">⍝ Amount of leading padding to be inserted per row</span><span class="w"></span>
+<span class="w">    </span><span class="nv">repl</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">padding</span><span class="o">,</span><span class="nv">keepers</span><span class="w">  </span><span class="c1">⍝ Number of replications per character</span><span class="w"></span>
+<span class="w">    </span><span class="nv">repl</span><span class="na">/⍤</span><span class="m">1</span><span class="o">⊢</span><span class="nv">spaced</span><span class="w">          </span><span class="c1">⍝ Replicate rank 1</span><span class="w"></span>
+<span class="kt">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span> <span class="nv">Align</span> <span class="s1">&#39;⍋&#39;</span>
-<span class="m">10</span> <span class="nv">Align</span> <span class="s1">&#39;Parade&#39;</span>
-<span class="m">8</span> <span class="nv">Align</span> <span class="s1">&#39;Longer Phrase&#39;</span> <span class="s1">&#39;APL&#39;</span> <span class="s1">&#39;Parade&#39;</span>
-<span class="m">8</span> <span class="nv">Align</span> <span class="s1">&#39;K&#39;</span> <span class="s1">&#39;E&#39;</span> <span class="s1">&#39;Iverson&#39;</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="w"> </span><span class="nv">Align</span><span class="w"> </span><span class="s1">&#39;⍋&#39;</span><span class="w"></span>
+<span class="m">10</span><span class="w"> </span><span class="nv">Align</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
+<span class="m">8</span><span class="w"> </span><span class="nv">Align</span><span class="w"> </span><span class="s1">&#39;Longer Phrase&#39;</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span><span class="w"> </span><span class="s1">&#39;Parade&#39;</span><span class="w"></span>
+<span class="m">8</span><span class="w"> </span><span class="nv">Align</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="w"> </span><span class="s1">&#39;Iverson&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1381,9 +1547,9 @@ Parade
 </div>
 <p>Pretty cool, eh? As an exercise, now shrink that to a one-liner suitable for submitting as a competition entry.</p>
 <p>Shall we do one more?</p>
-</div>
-<div class="section" id="fizzbuzz">
-<h2>FizzBuzz<a class="headerlink" href="#fizzbuzz" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fizzbuzz">
+<h2>FizzBuzz<a class="headerlink" href="#fizzbuzz" title="Permalink to this headline">#</a></h2>
 <p>Adám Brudzewski used the classic FizzBuzz problem – the darling of technical interviewers everywhere – as an illustration in one of his Cultivation lessons, <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-39-array-programming-techniques">Lesson 39 - Array programming techniques</a>.</p>
 <p>Wikipedia has the following to say about <a class="reference external" href="https://en.wikipedia.org/wiki/Fizz_buzz">FizzBuzz</a>:</p>
 <blockquote>
@@ -1393,7 +1559,7 @@ Parade
 <p>Here’s a “loopy” version as an APL dfn, for context:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">∊</span><span class="p">(</span><span class="m">3</span><span class="o">↑</span><span class="p">(</span><span class="m">0</span><span class="o">=</span><span class="m">3</span> <span class="m">5</span><span class="o">|</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∪</span><span class="m">1</span><span class="p">)</span><span class="na">/</span><span class="s1">&#39;Fizz&#39;</span> <span class="s1">&#39;Buzz&#39;</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">16</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">∊</span><span class="p">(</span><span class="m">3</span><span class="o">↑</span><span class="p">(</span><span class="m">0</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="o">|</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∪</span><span class="m">1</span><span class="p">)</span><span class="na">/</span><span class="s1">&#39;Fizz&#39;</span><span class="w"> </span><span class="s1">&#39;Buzz&#39;</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="m">1</span><span class="o">+⍳</span><span class="m">16</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1407,8 +1573,8 @@ Parade
 <p>Let’s begin by creating a Boolean mask showing the positions of the numbers which are divisible by 3 (the “fizzes”) and those divisible by 5 (the “buzzes”). We can do that as an outer product:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span> <span class="kd">←</span> <span class="m">1</span><span class="o">+⍳</span><span class="m">16</span>
-<span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">fizzbuzz</span> <span class="kd">←</span> <span class="m">0</span><span class="o">=</span><span class="m">3</span> <span class="m">5</span><span class="na">∘.</span><span class="o">|</span><span class="nv">data</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="o">+⍳</span><span class="m">16</span><span class="w"></span>
+<span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">fizzbuzz</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="na">∘.</span><span class="o">|</span><span class="nv">data</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1420,7 +1586,7 @@ Parade
 <p>So the columns that have only zeros in them represent the “numbers” - the “non-fizzbuzzy” bits. Let’s add a new row to our matrix to make this clear:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span> <span class="kd">←</span> <span class="nv">mat</span> <span class="kd">←</span> <span class="p">(</span><span class="o">⍱</span><span class="na">⌿</span><span class="o">⍪⊢</span><span class="p">)</span><span class="nv">fizzbuzz</span>  <span class="c1">⍝ Tacit for {(⍱⌿⍵)⍪⍵} -- column-wise logical NOR as the new first row</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">mat</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⍱</span><span class="na">⌿</span><span class="o">⍪⊢</span><span class="p">)</span><span class="nv">fizzbuzz</span><span class="w">  </span><span class="c1">⍝ Tacit for {(⍱⌿⍵)⍪⍵} -- column-wise logical NOR as the new first row</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1433,8 +1599,8 @@ Parade
 <p>If we now multiply the first row by our input numbers, we have the numbers that aren’t “fizzbuzzy”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span><span class="o">×</span><span class="na">@</span><span class="m">0</span><span class="na">⍨</span><span class="kd">←</span><span class="nv">data</span> <span class="c1">⍝ Check that out! Modified assignment</span>
-<span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span><span class="o">×</span><span class="na">@</span><span class="m">0</span><span class="na">⍨</span><span class="kd">←</span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ Check that out! Modified assignment</span><span class="w"></span>
+<span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1447,9 +1613,9 @@ Parade
 <p>Now we substitute all 1s for “fizz” in the second row, and for “buzz” in the third row:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span><span class="sr">[</span><span class="o">↓</span><span class="m">1</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span> <span class="m">0</span><span class="o">⊢⍸</span><span class="m">1</span><span class="o">⌷</span><span class="nv">mat</span><span class="sr">]</span><span class="kd">←</span><span class="o">⊂</span><span class="s1">&#39;fizz&#39;</span>
-<span class="nv">mat</span><span class="sr">[</span><span class="o">↓</span><span class="m">2</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span> <span class="m">0</span><span class="o">⊢⍸</span><span class="m">2</span><span class="o">⌷</span><span class="nv">mat</span><span class="sr">]</span><span class="kd">←</span><span class="o">⊂</span><span class="s1">&#39;buzz&#39;</span>
-<span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">mat</span><span class="sr">[</span><span class="o">↓</span><span class="m">1</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="o">⊢⍸</span><span class="m">1</span><span class="o">⌷</span><span class="nv">mat</span><span class="sr">]</span><span class="kd">←</span><span class="o">⊂</span><span class="s1">&#39;fizz&#39;</span><span class="w"></span>
+<span class="nv">mat</span><span class="sr">[</span><span class="o">↓</span><span class="m">2</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="o">⊢⍸</span><span class="m">2</span><span class="o">⌷</span><span class="nv">mat</span><span class="sr">]</span><span class="kd">←</span><span class="o">⊂</span><span class="s1">&#39;buzz&#39;</span><span class="w"></span>
+<span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1466,7 +1632,7 @@ Parade
 <p>Merge columns, remove zeros:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">~</span><span class="na">⍨¨</span><span class="o">,</span><span class="na">⌿</span><span class="nv">mat</span>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">~</span><span class="na">⍨¨</span><span class="o">,</span><span class="na">⌿</span><span class="nv">mat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1477,8 +1643,8 @@ Parade
 </span></div></div>
 </div>
 <p>Nice. So in this case, is the longer array solution better than the clever loopy one we showed in the beginning? Well, the intention was to demonstrate how to approach solutions in a data-parallel way, but the problem was of a magnitude that probably made this unnecessary. But practice makes perfect.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1502,9 +1668,11 @@ Parade
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="errors.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1520,32 +1688,34 @@ Parade
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Stefan Kruger, Computational Array and Magic<br/>
-        
-          <div class="extra_footer">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Stefan Kruger, Computational Array and Magic<br/>
+  
+    <div class="extra_footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
 </a></p>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
