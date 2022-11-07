@@ -1135,7 +1135,7 @@ title="Print to PDF"
 └~───┘
 </span></div></div>
 </div>
-<p>A nifty feature is that if the right element isn’t found, the returned index is <code class="docutils literal notranslate"><span class="pre">1+≢⍺</span></code> – one more than the length of the left argument. This can be used to provide a default match for items not found:</p>
+<p>A nifty feature is that if the right element isn’t found, the returned index is <code class="docutils literal notranslate"><span class="pre">⎕IO+≢⍺</span></code> – the index origin (which in our case is 0) plus the length of the left argument. This can be used to provide a default match for items not found:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">staff</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Adam&#39;</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="w"> </span><span class="s1">&#39;Charlotte&#39;</span><span class="w"></span>
@@ -1252,7 +1252,7 @@ title="Print to PDF"
 
 </span></div></div>
 </div>
-<p>As we saw above, elements smaller than the first bin goes in the -1 bin, which is assumed to cover every number lower than the first bin. Similarly, elements greater than the last bin will end up with a bin number equal to the number of elements (note: not the number of bins) to the left:</p>
+<p>As we saw above, elements smaller than the first bin gets a bin number one less than the index origin (in our case the index origin is 0 so our “low bin” is <code class="docutils literal notranslate"><span class="pre">¯1</span></code>), which is assumed to cover every number lower than the first bin. Similarly, elements greater than the last bin will end up with a bin number equal to the index of the last element to the left:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span><span class="o">⍸</span><span class="m">0</span><span class="w"> </span><span class="m">100</span><span class="w"></span>
