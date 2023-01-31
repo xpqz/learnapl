@@ -572,7 +572,7 @@ title="Print to PDF"
 <p>Amazingly, we got all the way to here without once mentioning how to get data in (or out) with less than typing it in. Nor have we dealt with “real” data much. Real data is usually messy. Dyalog APL has a rich set of routines to deal with data, either as bytes on disk, or formatted as JSON or CSV (or XML, but let’s keep pretending that XML was never actually a thing), or fetching it from a database, or as an HTTP-request. Some of this stuff we won’t cover – if you need it, you’re probably capable enough as an APLer to figure it out yourself.</p>
 <p>Some other resources to consult:</p>
 <ul class="simple">
-<li><p>Docs on <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nget.htm">⎕NGET</a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/csv.htm">⎕CSV</a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/json.htm">⎕JSON</a> and (if you must) <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/xml.htm">⎕XML</a></p></li>
+<li><p>Docs on <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/nget.htm">⎕NGET</a>, <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/csv.htm">⎕CSV</a>, <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/json.htm">⎕JSON</a> and (if you must) <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/xml.htm">⎕XML</a></p></li>
 <li><p>Dyalog <a class="reference external" href="https://dyalog.tv/Webinar/?v=yDpRGaheEH4">webinar</a> on http, <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code> and <code class="docutils literal notranslate"><span class="pre">⎕XML</span></code></p></li>
 </ul>
 <div class="cell tag_hide-output docutils container">
@@ -584,13 +584,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <section id="reading-text-files-nget">
 <h2>Reading text files: <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code><a class="headerlink" href="#reading-text-files-nget" title="Permalink to this headline">#</a></h2>
-<p>The system function <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nget.htm">⎕NGET</a> reads text files from disk:</p>
+<p>The system function <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/nget.htm">⎕NGET</a> reads text files from disk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/Users/stefan/work/dyalog/file.txt&#39;</span><span class="m">1</span><span class="w"></span>
@@ -598,10 +598,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────────────┬───────────────┬───────────────┬───────────────┐
+<div class="output text_html"><pre class="language-APL">┌───────────────┬───────────────┬───────────────┬───────────────┐
 │1 8 6 9 5 9 5 9│6 3 4 2 8 1 8 2│8 0 7 5 5 1 2 3│6 5 2 9 8 2 6 1│
 └───────────────┴───────────────┴───────────────┴───────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can note two things from that:</p>
 <ol class="simple">
@@ -616,12 +616,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────────────────────────────────────────────────────────────────┬───────────┬──┐
+<div class="output text_html"><pre class="language-APL">┌─────────────────────────────────────────────────────────────────┬───────────┬──┐
 │┌───────────────┬───────────────┬───────────────┬───────────────┐│UTF-8-NOBOM│10│
 ││1 8 6 9 5 9 5 9│6 3 4 2 8 1 8 2│8 0 7 5 5 1 2 3│6 5 2 9 8 2 6 1││           │  │
 │└───────────────┴───────────────┴───────────────┴───────────────┘│           │  │
 └─────────────────────────────────────────────────────────────────┴───────────┴──┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can see that when we read a file with <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code> we get back a vector with several elements, the first is the data itself, and the second contains information about the file’s encoding. The last one is Dyalog’s opinion of what the file’s newline separator is. This will vary across operating systems.</p>
 <p>What happens if we leave out the <code class="docutils literal notranslate"><span class="pre">1</span></code> at the end?</p>
@@ -632,14 +632,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────────────┬───────────┬──┐
+<div class="output text_html"><pre class="language-APL">┌───────────────┬───────────┬──┐
 │1 8 6 9 5 9 5 9│UTF-8-NOBOM│10│
 │6 3 4 2 8 1 8 2│           │  │
 │8 0 7 5 5 1 2 3│           │  │
 │6 5 2 9 8 2 6 1│           │  │
 │               │           │  │
 └───────────────┴───────────┴──┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Leaving out the <code class="docutils literal notranslate"><span class="pre">1</span></code> (or indeed instead passing the default value of <code class="docutils literal notranslate"><span class="pre">0</span></code>) returns a single character vector containing the data:</p>
 <div class="cell docutils container">
@@ -649,8 +649,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">64
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">64
+</pre></div></div>
 </div>
 <p>This is probably not what you want in most cases when processing a text file. Note that we’ve read lines of <em>characters</em>. But we can convert them to numbers:</p>
 <div class="cell docutils container">
@@ -660,13 +660,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 8 6 9 5 9 5 9
+<div class="output text_html"><pre class="language-APL">1 8 6 9 5 9 5 9
 6 3 4 2 8 1 8 2
 8 0 7 5 5 1 2 3
 6 5 2 9 8 2 6 1
-</span></div></div>
+</pre></div></div>
 </div>
-<p>We mixed the vector into an array of rank 2, then applied the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Symbols/Execute%20Symbol.htm"><em>Hydrant</em></a>, <code class="docutils literal notranslate"><span class="pre">⍎</span></code> at rank 1 (vectors). <em>Hydrant</em> is a function called  <em>Execute</em>, and it takes a string and evaluates it as if it was a little APL program, similar to how <a class="reference external" href="https://docs.python.org/3/library/functions.html#eval">eval()</a> works in Python and Perl:</p>
+<p>We mixed the vector into an array of rank 2, then applied the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Symbols/Execute%20Symbol.htm"><em>Hydrant</em></a>, <code class="docutils literal notranslate"><span class="pre">⍎</span></code> at rank 1 (vectors). <em>Hydrant</em> is a function called  <em>Execute</em>, and it takes a string and evaluates it as if it was a little APL program, similar to how <a class="reference external" href="https://docs.python.org/3/library/functions.html#eval">eval()</a> works in Python and Perl:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍎</span><span class="w"> </span><span class="s1">&#39;1 8 6 7 5 9 5 9&#39;</span><span class="w"></span>
@@ -674,19 +674,19 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 8 6 7 5 9 5 9
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 8 6 7 5 9 5 9
+</pre></div></div>
 </div>
 <p>If you have ever seen code written in <a class="reference external" href="https://www.php.net/manual/en/intro-whatis.php">PHP</a>, you know why evaluating strings requires a degree of <a class="reference external" href="https://www.php.net/manual/en/security.database.sql-injection.php">caution</a> unless you’re certain of the provenance. Perl has a <a class="reference external" href="https://perldoc.perl.org/perlsec#Taint-mode">taint</a> mode to stop bleed-over from untrusted sources, and Python papers over the issue by decree, calling <code class="docutils literal notranslate"><span class="pre">eval()</span></code> un-Pythonic, and Guido-hated.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Dyalog provides more industry-strength mechanisms for converting strings to numbers in a safe manner, like <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/vfi.htm">verify-fix-input</a>, <code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code></p>
+<p>Dyalog provides more industry-strength mechanisms for converting strings to numbers in a safe manner, like <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/vfi.htm">verify-fix-input</a>, <code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code></p>
 </div>
 <p>Anyway, enough of the yak shaving already.</p>
 </section>
 <section id="reading-csv-csv">
 <h2>Reading CSV: <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code><a class="headerlink" href="#reading-csv-csv" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>, or <em>comma-separated values</em>, is a data format for tabular data. It’s <a class="reference external" href="http://thomasburette.com/blog/2014/05/25/so-you-want-to-write-your-own-CSV-code/">hairier than one might think</a> to write a correct CSV parser. Fortunately, Dyalog provides one for us as the system function <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/csv.htm">⎕CSV</a>. It can be used to convert data both to and from the CSV format. The <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> function has one extremely handy feature: it converts numbers for us, avoiding the hydrant-dance we resorted to above.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>, or <em>comma-separated values</em>, is a data format for tabular data. It’s <a class="reference external" href="http://thomasburette.com/blog/2014/05/25/so-you-want-to-write-your-own-CSV-code/">hairier than one might think</a> to write a correct CSV parser. Fortunately, Dyalog provides one for us as the system function <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/csv.htm">⎕CSV</a>. It can be used to convert data both to and from the CSV format. The <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> function has one extremely handy feature: it converts numbers for us, avoiding the hydrant-dance we resorted to above.</p>
 <p>Consider the following decidedly not-CSV-looking data. It’s a section from the data given in Day 2 in the <a class="reference external" href="https://adventofcode.com/2020/day/2">Advent of Code</a> competition from 2020. Let’s assume we’ve already read from disk using <code class="docutils literal notranslate"><span class="pre">⎕NGET</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -703,7 +703,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬──┬─┬───────────────────┐
+<div class="output text_html"><pre class="language-APL">┌──┬──┬─┬───────────────────┐
 │3 │6 │s│ssdsssss           │
 ├──┼──┼─┼───────────────────┤
 │17│19│f│cnffsfffzhfnsffttms│
@@ -716,7 +716,7 @@ title="Print to PDF"
 ├──┼──┼─┼───────────────────┤
 │4 │6 │l│pldnxv             │
 └──┴──┴─┴───────────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We called <code class="docutils literal notranslate"><span class="pre">⎕CSV</span></code> monadically, with an argument vector containing three items. The first, in our case, is obviously the data itself. The second is called the <em>data description</em>, which is used to specify the encoding where necessary. Dyalog’s docs tells us:</p>
 <blockquote>
@@ -730,11 +730,11 @@ title="Print to PDF"
 </section>
 <section id="reading-json-json">
 <h2>Reading JSON: <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code><a class="headerlink" href="#reading-json-json" title="Permalink to this headline">#</a></h2>
-<p>Dyalog also has a function for reading (and writing) JSON, appropriately enough called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/json.htm">⎕JSON</a>. The JSON data interchange format crops up everywhere: usually in REST-like APIs as the payload, as config files, as the document format in document-oriented databases. The name JSON is short for <em>JavaScript Object Notation</em>, and as one can expect, dealing with JSON in JavaScript is both trivial and convenient. Python’s native dictionary and list types - through luck, mostly - map pretty closely to JSON, too, making working with JSON in Python pretty simple.</p>
+<p>Dyalog also has a function for reading (and writing) JSON, appropriately enough called <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/json.htm">⎕JSON</a>. The JSON data interchange format crops up everywhere: usually in REST-like APIs as the payload, as config files, as the document format in document-oriented databases. The name JSON is short for <em>JavaScript Object Notation</em>, and as one can expect, dealing with JSON in JavaScript is both trivial and convenient. Python’s native dictionary and list types - through luck, mostly - map pretty closely to JSON, too, making working with JSON in Python pretty simple.</p>
 <p>In APL, we have a wealth of different data types: array. JSON doesn’t do arrays of rank &gt; 1. This makes a recursively defined format depending on dictionaries, like JSON, potentially more awkward to deal with. In the specific case of Dyalog APL, we do have the <em>namespace</em> which can be persuaded to act a bit like a dictionary.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Dyalog <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/json.htm">notes</a>:</p>
+<p>Dyalog <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/json.htm">notes</a>:</p>
 <p>JSON supports a limited number of data types and there is not a direct correspondence between JSON and APL data structures. In particular:</p>
 <ul class="simple">
 <li><p>JSON does not support arrays with rank &gt; 1.</p></li>
@@ -760,8 +760,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.[JSON object]
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">#.[JSON object]
+</pre></div></div>
 </div>
 <p>Ok, that went through without complaints, and we can see that Dyalog (correctly) thinks that the top level is “object”. We can now get at the innards of this by attribute names and indices:</p>
 <div class="cell docutils container">
@@ -773,15 +773,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬─┬─┬─────────────────────────────┬────────┐
-│1│2│3│#.[JSON object].[JSON object]│98 43 77│
-└─┴─┴─┴─────────────────────────────┴────────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">oblong
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1
+</pre></div><div class="output text_html"><pre class="language-APL">┌─┬─┬─┬───────────────────────────────┬────────┐
+│1│2│3│ #.[JSON object].[JSON object] │98 43 77│
+└─┴─┴─┴───────────────────────────────┴────────┘
+</pre></div><div class="output text_html"><pre class="language-APL">oblong
+</pre></div></div>
 </div>
 <p>Well, that looks perfectly smooth, right? But the unsmooth bit here is that in a JSON dict, the keys are <em>strings</em>, not object instance attributes which is what they end up as in our namespace. If we’re reading an unknown bit of JSON data where we don’t already know what the layout is, how do we, for example, process each key’s value in turn if the keys aren’t known to us?</p>
-<p>We can list all keys in a namespace using the following construct, where <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> is the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nl.htm"><em>Name list</em></a> and the <code class="docutils literal notranslate"><span class="pre">¯2</span></code> magic number means that we want a vector back:</p>
+<p>We can list all keys in a namespace using the following construct, where <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> is the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/nl.htm"><em>Name list</em></a> and the <code class="docutils literal notranslate"><span class="pre">¯2</span></code> magic number means that we want a vector back:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="na">.</span><span class="nf">⎕NL¯2</span><span class="w"></span>
@@ -789,10 +789,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬────┐
+<div class="output text_html"><pre class="language-APL">┌───┬────┐
 │key│list│
 └───┴────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>To get the corresponding values, we need to <em>evaluate</em> each such key:</p>
 <div class="cell docutils container">
@@ -802,12 +802,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────────────────────────────────────────────┐
-│1│┌─┬─┬─┬─────────────────────────────┬────────┐│
-│ ││1│2│3│#.[JSON object].[JSON object]│98 43 77││
-│ │└─┴─┴─┴─────────────────────────────┴────────┘│
-└─┴──────────────────────────────────────────────┘
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">┌─┬────────────────────────────────────────────────┐
+│1│┌─┬─┬─┬───────────────────────────────┬────────┐│
+│ ││1│2│3│ #.[JSON object].[JSON object] │98 43 77││
+│ │└─┴─┴─┴───────────────────────────────┴────────┘│
+└─┴────────────────────────────────────────────────┘
+</pre></div></div>
 </div>
 <p>Let’s say that we want to sum all numbers in the JSON. Here’s one way we can achieve that:</p>
 <div class="cell docutils container">
@@ -843,10 +843,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">230
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">230
+</pre></div></div>
 </div>
-<p>The bits to find the type of each field in <code class="docutils literal notranslate"><span class="pre">JSONSum</span></code> are all things you can just look up on APLCart: monadic <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Data%20Representation%20Monadic.htm">⎕DR</a> means <em>Data representation</em>, and you just need to feed it the right magic number.</p>
+<p>The bits to find the type of each field in <code class="docutils literal notranslate"><span class="pre">JSONSum</span></code> are all things you can just look up on APLCart: monadic <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/Data%20Representation%20Monadic.htm">⎕DR</a> means <em>Data representation</em>, and you just need to feed it the right magic number.</p>
 <p>There is a lot more to say about the <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code> function that we won’t go into here (we’ll see a bit more of it in the next <a class="reference internal" href="http.html"><span class="doc std std-doc">chapter</span></a>). It can also convert JSON to a pure array format instead of using namespaces, and it can also be used to convert APL arrays <em>to</em> JSON. The interested reader will have plenty to go at in the Dyalog docs, and Morten’s webinar signposted at the top of this chapter.</p>
 </section>
 </section>

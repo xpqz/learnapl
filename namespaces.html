@@ -558,7 +558,7 @@ title="Print to PDF"
 <blockquote>
 <div><p>The utility of a language as a tool of thought increases with the range of topics it can treat, but decreases with the amount of vocabulary and the complexity of grammatical rules which the user must keep in mind. Economy of notation is therefore important. –<em>Kenneth E. Iverson</em></p>
 </div></blockquote>
-<p>A <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Introduction/Namespaces/Namespaces.htm">namespace</a> is a way to group data and code into a hierarchy. Dyalog describes namespaces like so:</p>
+<p>A <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Introduction/Namespaces/Namespaces.htm">namespace</a> is a way to group data and code into a hierarchy. Dyalog describes namespaces like so:</p>
 <blockquote>
 <div><p>Namespace is a (class 9) object in Dyalog APL. Namespaces are analogous to nested workspaces.</p>
 </div></blockquote>
@@ -589,10 +589,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬──┬───────┐
+<div class="output text_html"><pre class="language-APL">┌──────┬──┬───────┐
 │widget│55│widg443│
 └──────┴──┴───────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Names inside a namespace can hold any value that names can hold <em>outside</em> a namespace, including functions:</p>
 <div class="cell docutils container">
@@ -609,8 +609,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">15
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">15
+</pre></div></div>
 </div>
 <p>There is a handy user command, <code class="docutils literal notranslate"><span class="pre">]map</span></code> that gives a tree outline of a namespace that’s worth adding to your repertoire:</p>
 <div class="cell docutils container">
@@ -620,10 +620,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.[Namespace]
+<div class="output text_html"><pre class="language-APL">#.[Namespace]
 ·   ~ cost id name
 ·   ∇ sum
-</span></div></div>
+</pre></div></div>
 </div>
 <section id="scripted-namespaces">
 <h2>Scripted namespaces<a class="headerlink" href="#scripted-namespaces" title="Permalink to this headline">#</a></h2>
@@ -659,15 +659,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────┬───────────┐
+<div class="output text_html"><pre class="language-APL">┌────────┬───────────┐
 │nodigits│abdDjashgdD│
 └────────┴───────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 <section id="wait-this-is-starting-to-look-like-a-dict">
 <h2>Wait, this is starting to look like a dict!<a class="headerlink" href="#wait-this-is-starting-to-look-like-a-dict" title="Permalink to this headline">#</a></h2>
-<p>We can get tantalisingly close to having a namespace function as a dict. In order to list the names of variables contained in a namespace, we have the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nl.htm">namelist</a>, <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code>, system function.</p>
+<p>We can get tantalisingly close to having a namespace function as a dict. In order to list the names of variables contained in a namespace, we have the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/nl.htm">namelist</a>, <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code>, system function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">obj</span><span class="na">.</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
@@ -675,10 +675,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">cost
+<div class="output text_html"><pre class="language-APL">cost
 id  
 name
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">2</span></code> there lets <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> know that we want an array back.</p>
 <div class="cell docutils container">
@@ -688,8 +688,8 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4
+</pre></div></div>
 </div>
 <p>If we feed it <code class="docutils literal notranslate"><span class="pre">¯2</span></code> instead we get a nested vector instead:</p>
 <div class="cell docutils container">
@@ -699,12 +699,12 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬──┬────┐
+<div class="output text_html"><pre class="language-APL">┌────┬──┬────┐
 │cost│id│name│
 └────┴──┴────┘
-</span></div></div>
+</pre></div></div>
 </div>
-<p>The right argument to <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> is a <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/nc.htm">name class</a>, allowing us to select based on what kind something contained in the namespace is. Many of the name classes are concerned with bits of Dyalog that are out of scope for this book.</p>
+<p>The right argument to <code class="docutils literal notranslate"><span class="pre">⎕NL</span></code> is a <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/nc.htm">name class</a>, allowing us to select based on what kind something contained in the namespace is. Many of the name classes are concerned with bits of Dyalog that are out of scope for this book.</p>
 <p>We can get the <em>values</em> of variables by evaluating their names:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -714,11 +714,11 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">55
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬───────┬──────┐
+<div class="output text_html"><pre class="language-APL">55
+</pre></div><div class="output text_html"><pre class="language-APL">┌──┬───────┬──────┐
 │55│widg443│widget│
 └──┴───────┴──────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Almost, but not quite, a dict:</p>
 <div class="cell docutils container">
@@ -746,14 +746,14 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">world
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬─────┬──┬────┐
+<div class="output text_html"><pre class="language-APL">world
+</pre></div><div class="output text_html"><pre class="language-APL">┌────┬─────┬──┬────┐
 │cost│hello│id│name│
 └────┴─────┴──┴────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬─────┬───────┬──────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌──┬─────┬───────┬──────┐
 │55│world│widg443│widget│
 └──┴─────┴───────┴──────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>but this approach won’t let you use anything but character vectors as keys, and the keys must also be valid APL names.  There are also some performance constraints if the number of items in a namespace grow large.</p>
 </section>
@@ -770,9 +770,9 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">99
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">hello
+</pre></div><div class="output text_html"><pre class="language-APL">99
+</pre></div></div>
 </div>
 <p>It also means that there is no need for modified assignment through a tack, <code class="docutils literal notranslate"><span class="pre">⊢←</span></code> if we want to set a value in a namespace not in our immediate scope. All of this is either very useful, or very dangerous, depending on your particular view point. The reality is that it’s both useful, but also increases the risk of foot-gun incidents.</p>
 </section>
@@ -797,8 +797,8 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">charlotte
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">charlotte
+</pre></div></div>
 </div>
 <p>and, as a consequence, pick a field from all array elements:</p>
 <div class="cell docutils container">
@@ -808,10 +808,10 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬───┬─────────┬────┬─────┬────┐
+<div class="output text_html"><pre class="language-APL">┌────┬───┬─────────┬────┬─────┬────┐
 │adam│bob│charlotte│dave│erica│fred│
 └────┴───┴─────────┴────┴─────┴────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can also execute functions on fields if we enclose in parentheses:</p>
 <div class="cell docutils container">
@@ -821,8 +821,8 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 2 3 6 2 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 2 3 6 2 1
+</pre></div></div>
 </div>
 <p>or pick multiple fields, too:</p>
 <div class="cell docutils container">
@@ -832,12 +832,12 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────┬───────┬──────────────┬─────────┬──────────┬────────┐
+<div class="output text_html"><pre class="language-APL">┌────────┬───────┬──────────────┬─────────┬──────────┬────────┐
 │┌────┬─┐│┌───┬─┐│┌─────────┬──┐│┌────┬──┐│┌─────┬──┐│┌────┬─┐│
 ││adam│3│││bob│7│││charlotte│87│││dave│32│││erica│32│││fred│9││
 │└────┴─┘│└───┴─┘│└─────────┴──┘│└────┴──┘│└─────┴──┘│└────┴─┘│
 └────────┴───────┴──────────────┴─────────┴──────────┴────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>If you were jealous of KDB+’s neat SQL integration, we can even knock up a simple query DSL for accessing data represented as arrays of namespaces, as <a class="reference external" href="https://chat.stackexchange.com/users/130368/adam">Adám</a> showed in a post in <a class="reference external" href="https://chat.stackexchange.com/transcript/message/58127218#58127218">APL Orchard</a>:</p>
 <div class="cell docutils container">
@@ -857,8 +857,8 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">32
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">32
+</pre></div></div>
 </div>
 <p>Who needs SQL now? We can select on the existence of a particular field using the <code class="docutils literal notranslate"><span class="pre">Has</span></code> helper:</p>
 <div class="cell docutils container">
@@ -875,10 +875,10 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────────┬────┐
+<div class="output text_html"><pre class="language-APL">┌─────────┬────┐
 │charlotte│fred│
 └─────────┴────┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 <section id="left-argument">
@@ -892,8 +892,8 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.a
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">#.a
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -909,10 +909,10 @@ name
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">#.top
+<div class="output text_html"><pre class="language-APL">#.top
 ·   middle
 ·   ·   bottom
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 </section>

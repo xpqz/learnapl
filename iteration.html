@@ -675,9 +675,9 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <section id="each-a-k-a-map">
 <h2>Each (a.k.a map): <code class="docutils literal notranslate"><span class="pre">¨</span></code><a class="headerlink" href="#each-a-k-a-map" title="Permalink to this headline">#</a></h2>
@@ -703,8 +703,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 9 16 25 36 49 64 81
+</pre></div></div>
 </div>
 <p>This wasn’t actually a great example, this is one of those cases where using a scalar function already does the job for us:</p>
 <div class="cell docutils container">
@@ -714,8 +714,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 9 16 25 36 49 64 81
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 9 16 25 36 49 64 81
+</pre></div></div>
 </div>
 <p>Scalar pervasion means that functions in certain cases already know how to penetrate arrays.</p>
 <p>Let’s try another. Given a nested vector, what are the lengths of the elements?</p>
@@ -727,11 +727,11 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬───┬─────────┬─┬─────────┐
+<div class="output text_html"><pre class="language-APL">┌───────┬───┬─────────┬─┬─────────┐
 │1 2 3 4│1 2│3 4 5 6 7│2│5 4 3 2 1│
 └───────┴───┴─────────┴─┴─────────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">4 2 5 1 5
-</span></div></div>
+</pre></div><div class="output text_html"><pre class="language-APL">4 2 5 1 5
+</pre></div></div>
 </div>
 <p>If you’re used to a different language, <em>Each</em> has a seductive quality, as it maps conceptually onto constructs you already know how to use. Beware though that in APL it’s often inefficient, and that there are usually better alternatives.</p>
 </section>
@@ -751,8 +751,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">45
+</pre></div></div>
 </div>
 <p>Simplifying a bit, we can think of <em>Reduce first</em> as an operator that injects its left operand function in the gaps between elements of the argument:</p>
 <div class="cell docutils container">
@@ -762,8 +762,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">45
+</pre></div></div>
 </div>
 <p>When using <em>Reduce</em> in APL, you need to take extra care to ensure that it works with its strict right to left evaluation order. A reduce is also called a <em>fold</em> in other languages (Lisp, Erlang etc), and APL’s <em>Reduce</em> is a so-called <em>foldr</em> – it reduces right to left, which makes sense for APL, but occasionally less sense for the programmer.</p>
 <p>Again, it can help writing it out in long-hand to see what’s going on:</p>
@@ -774,8 +774,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">5
+</pre></div></div>
 </div>
 <p>If that was the result you expected, you’re well on your way to mastery. Inject the operand between items:</p>
 <div class="cell docutils container">
@@ -785,8 +785,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">5
+</pre></div></div>
 </div>
 <p>Reduction is especially useful when working with higher-rank arrays. <em>Reduce first</em> is called so because it reduces along the <em>first</em> axis. So a sum-reduce-first of a rank 2 integer array will sum its columns to produce a <em>vector</em> (rank 1) of the columnar sums:</p>
 <div class="cell docutils container">
@@ -797,11 +797,11 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 0 5
+<div class="output text_html"><pre class="language-APL">3 0 5
 4 1 8
 6 7 2
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">13 8 15
-</span></div></div>
+</pre></div><div class="output text_html"><pre class="language-APL">13 8 15
+</pre></div></div>
 </div>
 <p>If we wanted to sum-reduce along the rows, we can either use <code class="docutils literal notranslate"><span class="pre">/</span></code> (which for historical reasons does just that):</p>
 <div class="cell docutils container">
@@ -811,8 +811,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">8 13 15
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">8 13 15
+</pre></div></div>
 </div>
 <p>or we can explicitly tell <code class="docutils literal notranslate"><span class="pre">⌿</span></code> to apply along a different axis, using bracket axis:</p>
 <div class="cell docutils container">
@@ -822,8 +822,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">8 13 15
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">8 13 15
+</pre></div></div>
 </div>
 <p>For consistency, it’s best to prefer operators and functions that default to applying to the leading axis where possible. The fact that APL, unlike J, has a mixture is an unhelpful side-effect of backwards compatibility.</p>
 </section>
@@ -838,8 +838,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 5 7 9 11 13 15 17
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 5 7 9 11 13 15 17
+</pre></div></div>
 </div>
 </section>
 <section id="scan">
@@ -854,9 +854,9 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 6 10 15 21 28 36 45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">45
+</pre></div><div class="output text_html"><pre class="language-APL">1 3 6 10 15 21 28 36 45
+</pre></div></div>
 </div>
 <p>One way we can think of scan is that it’s the amalgamation of all possible calls to <em>Reduce</em> with the same operand, taking in increasing lengths of the argument array. In the case above:</p>
 <div class="cell docutils container">
@@ -874,16 +874,16 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">6
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">10
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">15
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">21
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">28
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">36
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1
+</pre></div><div class="output text_html"><pre class="language-APL">3
+</pre></div><div class="output text_html"><pre class="language-APL">6
+</pre></div><div class="output text_html"><pre class="language-APL">10
+</pre></div><div class="output text_html"><pre class="language-APL">15
+</pre></div><div class="output text_html"><pre class="language-APL">21
+</pre></div><div class="output text_html"><pre class="language-APL">28
+</pre></div><div class="output text_html"><pre class="language-APL">36
+</pre></div><div class="output text_html"><pre class="language-APL">45
+</pre></div></div>
 </div>
 <p>As with <em>Reduce</em>, it’s worth re-emphasizing that <em>Scan</em> still is evaluated right-to-left, as with everything else APL, no matter how much you’d prefer it to run left to right instead. You can, of course, roll your own <a class="reference external" href="https://aplcart.info/?q=left%20scan">scan-left</a> if you really need it.</p>
 </section>
@@ -903,8 +903,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0
+</pre></div></div>
 </div>
 <p>Here the right operand function is <em>equals</em> <code class="docutils literal notranslate"><span class="pre">=</span></code>. This says: repeatedly apply the left operand (<code class="docutils literal notranslate"><span class="pre">2÷⍨</span></code>) until two subsequent applications return the same value.</p>
 <p>We can explicitly refer to the left and right arguments of the right operand function. The left argument, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>, refers to the result of the function application to the right argument, <code class="docutils literal notranslate"><span class="pre">⍵</span></code>.</p>
@@ -916,9 +916,9 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1991487931157990989988905581516
+<div class="output text_html"><pre class="language-APL">1991487931157990989988905581516
 6
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The <a class="reference external" href="https://help.dyalog.com/latest/#Language/System%20Functions/Character%20Input%20Output.htm"><em>Quad-quote-gets</em></a> (<code class="docutils literal notranslate"><span class="pre">⍞←</span></code>) combo prints values without newlines. The final result is also returned, the expected 6.</p>
 </section>
@@ -946,8 +946,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">45
+</pre></div></div>
 </div>
 <p>Yup, that seems to work; good.</p>
 <p>The glyph <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm"><em>Del</em></a> (<code class="docutils literal notranslate"><span class="pre">∇</span></code>) is a reference to the current innermost dfn. If your dfn has a name, you can substitute it for the actual function name. In our case, the last line could equally well have been written:</p>
@@ -987,8 +987,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 6 10 15 21 28 36 45
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 3 6 10 15 21 28 36 45
+</pre></div></div>
 </div>
 <p>No discourse on recursion is complete without mentioning the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci</a> sequence. You know which one I mean – every number is the sum of its two direct predecessors:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0 1 1 2 3 5 8 13 21 34 ⍝ etc, something about rabbits
@@ -1014,8 +1014,8 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 1 2 3 5 8 13 21 34
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 1 1 2 3 5 8 13 21 34
+</pre></div></div>
 </div>
 <p>The pattern is still the same: set a default for the accumulator, <code class="docutils literal notranslate"><span class="pre">⍺</span></code>. Terminate on some condition on <code class="docutils literal notranslate"><span class="pre">⍵</span></code>, returning a function of the accumulator. Modify the accumulator, given the head of the right argument, and recur on the tail.</p>
 <p>The guts of the function is the last line. To the right, we decrease the right argument – this is our loop counter if you like. To the left is our accumulator, which basically is a sliding window of size 2 over the Fib sequence. We append the sum of the two numbers, and drop the first, and recur over the tail.</p>
@@ -1040,9 +1040,9 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 10 4 15 9 11 0 7 6 14 13 5 2 19 18 12 8 1 17 16
+<div class="output text_html"><pre class="language-APL">3 10 4 15 9 11 0 7 6 14 13 5 2 19 18 12 8 1 17 16
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Another example is binary search: locate an element in an array that is known to be sorted. Here’s a function to do that:</p>
 <div class="cell docutils container">
@@ -1073,14 +1073,14 @@ Nor in Holland –<em>Edsger Dijkstra (as told by Alan Perlis)</em></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌⊖┐
+<div class="output text_html"><pre class="language-APL">3
+</pre></div><div class="output text_html"><pre class="language-APL">3
+</pre></div><div class="output text_html"><pre class="language-APL">1
+</pre></div><div class="output text_html"><pre class="language-APL">0
+</pre></div><div class="output text_html"><pre class="language-APL">┌⊖┐
 │0│
 └~┘
-</span></div></div>
+</pre></div></div>
 </div>
 <section id="performance-considerations">
 <h3>Performance considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this headline">#</a></h3>
@@ -1148,8 +1148,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
+</pre></div></div>
 </div>
 <p>So that’s two nested “loops”, both nicely tail recursive, and probably similar to how you’d construct it in Clojure or Racket. However, as the argument string grows, the performance tanks. We can illustrate this by tweaking it a tiny bit to avoid the reallocation of the argument to the recursive call in the outer loop:</p>
 <div class="cell docutils container">
@@ -1178,8 +1178,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 0 1 2 0 0 0 0 0 0 1 2 1 2 3 4 5 3 0 0
+</pre></div></div>
 </div>
 <p>To demonstrate the difference, let’s compare performance on a long string. Here’s one taken from Project Rosalind:</p>
 <div class="cell docutils container">
@@ -1190,8 +1190,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">99972
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">99972
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1207,9 +1207,9 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  prefix1 data → 1.0E0  |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-  prefix2 data → 2.4E¯1 | -76% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                              
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">  prefix1 data → 9.7E¯1 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  prefix2 data → 1.5E¯1 | -85% ⎕⎕⎕⎕⎕⎕                                  
+</pre></div></div>
 </div>
 <p>Quite a staggering difference for such an innocuous change, perhaps.</p>
 <p>The binary search implementation we concluded the previous section with already ‘does the right thing’ – it doesn’t cut off the data array on each iteration. So it should be fast, right? Searching for a number amongst a hundred thousand or so <em>must</em> be faster than the APL primitive function that examines every element looking for a match. Surely…? In <code class="docutils literal notranslate"><span class="pre">Algorithms</span> <span class="pre">101</span></code> they taught you that <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> always beats <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>!</p>
@@ -1222,9 +1222,9 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data ⍳ 17777       → 1.6E¯6 |    0% ⎕⎕⎕⎕                                    
-  17777 bsearch data → 1.6E¯5 | +926% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">  data ⍳ 17777       → 5.2E¯6 |    0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                     
+  17777 bsearch data → 1.1E¯5 | +112% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</pre></div></div>
 </div>
 <p>Ouch… a lesson for the APL neophyte here. Your intuition for what’s efficient and what isn’t is almost certainly wrong. But wait, we can do even better. Let’s have a randomised array for APL to go at:</p>
 <div class="cell docutils container">
@@ -1235,10 +1235,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  randInts⍳1     → 8.4E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-* randInts⍳19326 → 2.3E¯6 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
-* randInts⍳46729 → 6.6E¯7 | -93% ⎕⎕⎕                                     
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">  randInts⍳1     → 2.6E¯5 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* randInts⍳19326 → 7.0E¯6 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
+* randInts⍳46729 → 2.2E¯6 | -92% ⎕⎕⎕                                     
+</pre></div></div>
 </div>
 <p>We can make this even faster by pre-binding the array to the <em>Index Of</em> function:</p>
 <div class="cell docutils container">
@@ -1249,10 +1249,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  find 1     → 2.5E¯7 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-* find 19326 → 1.6E¯7 | -38% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕               
-* find 46729 → 1.7E¯7 | -35% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕              
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">  find 1     → 1.1E¯7 |  0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* find 19326 → 1.1E¯7 | -1% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* find 46729 → 1.1E¯7 | -1% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</pre></div></div>
 </div>
 <p>What’s happening there is that Dyalog takes the binding to mean that as the lookup array is now fixed, it can make a hashed index behind the scenes. You can see that the times taken don’t vary much with the argument.</p>
 <p>But there is more performance to squeeze out here. If our search array is ordered, we can use <em>Interval Index</em>, dyadic <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, as a binary search (which it is!):</p>
@@ -1263,10 +1263,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  data⍸1     → 1.3E¯7 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕    
-* data⍸19326 → 1.4E¯7 |  +8% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
-* data⍸46729 → 1.5E¯7 | +10% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">  data⍸1     → 1.2E¯4 |  0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* data⍸19326 → 1.2E¯4 |  0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+* data⍸46729 → 1.2E¯4 | -1% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</pre></div></div>
 </div>
 <p><em>Interval Index</em> is very optimised in the 18.0/1 versions of Dyalog. Sadly, this optimisation had to be dropped in 18.2.</p>
 <p>Key point: simple APL primitives on simple arrays are always faster than anything you can write in APL. Only ever iterate or recurse if there are no other alternatives.</p>
@@ -1275,7 +1275,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </section>
 <section id="scalar-pervasion">
 <h2>Scalar pervasion<a class="headerlink" href="#scalar-pervasion" title="Permalink to this headline">#</a></h2>
-<p>We touched briefly on <em>scalar pervasion</em> above, but it’s an important topic, so let’s dive in a little bit deeper. It’s worth reading what Dyalog has to say on the topic in the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Scalar%20Functions.htm">docs</a>.</p>
+<p>We touched briefly on <em>scalar pervasion</em> above, but it’s an important topic, so let’s dive in a little bit deeper. It’s worth reading what Dyalog has to say on the topic in the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Scalar%20Functions.htm">docs</a>.</p>
 <p>The idea is that a certain class of functions is <em>pervasive</em>. This means that a function that operates on a scalar will operate on scalars at any level of nesting if applied to an array. Recall that the level of nesting is <em>not</em> the same as the rank in APL.</p>
 <p>Consider a nested vector that contains both numbers and other vectors of numbers:</p>
 <div class="cell docutils container">
@@ -1285,12 +1285,12 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬─┬─┬─────────┬─┐
+<div class="output text_html"><pre class="language-APL">┌─┬─┬─┬─────────┬─┐
 │1│2│3│┌─┬─┬───┐│7│
 │ │ │ ││3│4│5 6││ │
 │ │ │ │└─┴─┴───┘│ │
 └─┴─┴─┴─────────┴─┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>As an obvious and simple example, let’s say we want to negate all the numbers:</p>
 <div class="cell docutils container">
@@ -1300,12 +1300,12 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬──┬──┬─────────────┬──┐
+<div class="output text_html"><pre class="language-APL">┌──┬──┬──┬─────────────┬──┐
 │¯1│¯2│¯3│┌──┬──┬─────┐│¯7│
 │  │  │  ││¯3│¯4│¯5 ¯6││  │
 │  │  │  │└──┴──┴─────┘│  │
 └──┴──┴──┴─────────────┴──┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Where it can be applied, scalar pervasion is an efficient operation in Dyalog APL. It works for dyads, too:</p>
 <div class="cell docutils container">
@@ -1316,13 +1316,13 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┐
+<div class="output text_html"><pre class="language-APL">┌───┬───┐
 │5 6│8 9│
 └───┴───┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬───┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌─┬───┐
 │4│3 2│
 └─┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 </section>

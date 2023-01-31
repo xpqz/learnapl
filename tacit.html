@@ -573,7 +573,7 @@ title="Print to PDF"
 <p>References for tacit programming:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">APL Wiki</a></p></li>
-<li><p><a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-23-transcribing-to-and-reading-trains">Cultivation</a></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Trains.html">Cultivation</a></p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=Enlh5qwwDuY%3Ft%3D440">Dyalog webinar</a></p></li>
 <li><p><a class="reference external" href="http://dfns.dyalog.com/n_tacit.htm">dfns</a> page on dfn to tacit translation</p></li>
 </ul>
@@ -589,9 +589,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min -trains=tree -fns=on
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON -style=min -trains=tree -fns=on
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <section id="the-tacit-rules-atop">
 <h2>The tacit rules: atop<a class="headerlink" href="#the-tacit-rules-atop" title="Permalink to this headline">#</a></h2>
@@ -609,16 +609,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 2
+<div class="output text_html"><pre class="language-APL">0 1 2
 3 4 5
 6 7 8
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> 0 ¯3 ¯6
+</pre></div><div class="output text_html"><pre class="language-APL"> 0 ¯3 ¯6
 ¯1 ¯4 ¯7
 ¯2 ¯5 ¯8
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace"> 0 ¯3 ¯6
+</pre></div><div class="output text_html"><pre class="language-APL"> 0 ¯3 ¯6
 ¯1 ¯4 ¯7
 ¯2 ¯5 ¯8
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Yes, it’s understandable if you’re scratching your head, wondering “what’s the point of that then?”. It pays to think of it as a means of creating a derived function. Doing</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">-⍉</span><span class="nv">Y</span><span class="w"></span>
@@ -644,8 +644,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">4
+</pre></div></div>
 </div>
 <p>There we can see the <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">X</span> <span class="pre">g</span> <span class="pre">Y</span></code> pattern. Let’s try the tacit version, a dyadic <em>atop</em>:</p>
 <div class="cell docutils container">
@@ -655,8 +655,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">4
+</pre></div></div>
 </div>
 <p>There’s also a monadic version of the atop rule:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(f g)Y → f g Y
@@ -687,10 +687,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">¯1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">¯1
+</pre></div><div class="output text_html"><pre class="language-APL">0
+</pre></div><div class="output text_html"><pre class="language-APL">1
+</pre></div></div>
 </div>
 <p>Let’s look at the rule application to see why it works:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(a &gt; b) - (a &lt; b) ⍝ using the fork rule: (X f Y) g (X h Y)
@@ -704,9 +704,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼─┐
+<div class="output text_html"><pre class="language-APL">┌─┼─┐
 &gt; - &lt;
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Very much a fork, or trident. As an aside, you can actually achieve the same thing with one symbol fewer:</p>
 <div class="cell docutils container">
@@ -731,10 +731,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────┬───────┬──┬──┬─────┬─┬──────┬────┬──────────┐
+<div class="output text_html"><pre class="language-APL">┌─┬──────┬───────┬──┬──┬─────┬─┬──────┬────┬──────────┐
 │A│common│problem│is│to│split│a│string│into│substrings│
 └─┴──────┴───────┴──┴──┴─────┴─┴──────┴────┴──────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Let’s rework that into a tacit formulation instead, taking it step by step. First, let’s flip that selfie and put in some parentheses for emphasis:</p>
 <div class="cell docutils container">
@@ -762,10 +762,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">5
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">2
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3
+</pre></div><div class="output text_html"><pre class="language-APL">5
+</pre></div><div class="output text_html"><pre class="language-APL">2
+</pre></div></div>
 </div>
 <p>They are very useful when writing tacit functions, as we’ve just seen. We now have a dfn body that matches the fork rule, and we can write it tacitly as:</p>
 <div class="cell docutils container">
@@ -782,10 +782,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬──────┬─────┬────┬───┬────┬───┐
+<div class="output text_html"><pre class="language-APL">┌──┬──────┬─────┬────┬───┬────┬───┐
 │It│should│still│work│the│same│way│
 └──┴──────┴─────┴────┴───┴────┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Ok, let’s try another one, this time going the other way. Here’s a fork that scales a vector of numbers such that its components sum to 1:</p>
 <div class="cell docutils container">
@@ -802,8 +802,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.047619 0.0952381 0.142857 0.190476 0.238095 0.285714
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0.04761904762 0.09523809524 0.1428571429 0.1904761905 0.2380952381 0.2857142857
+</pre></div></div>
 </div>
 <p>What is the corresponding explicit dfn?</p>
 <p>The complication here is that we now have an operator involved: a reduction. Recall that operators take one (or two) function(s) and return a <em>derived function</em> that can then be applied to arguments in turn. So let’s think of the sum-reduction as a single function. Using spaces to make this clearer we get:</p>
@@ -829,8 +829,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.047619 0.0952381 0.142857 0.190476 0.238095 0.285714
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0.04761904762 0.09523809524 0.1428571429 0.1904761905 0.2380952381 0.2857142857
+</pre></div></div>
 </div>
 <p>That last example – a monadic fork – can be formalised as:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(f g h)Y → (f Y) g (h Y)
@@ -884,7 +884,7 @@ title="Print to PDF"
 <h2>Forks atop forks<a class="headerlink" href="#forks-atop-forks" title="Permalink to this headline">#</a></h2>
 <p>This is where the real fun begins. We can string together longer tacit functions by combining forks and atops. Some consideration should be given to comprehensibility here. Long stretches of tacit code requires more effort to understand than the corresponding explicit formulation.</p>
 <p>As our tacit rules indicate, barring the presence of parentheses, a combination of three functions is a fork, and two functions is an atop. If we have <em>more</em> than three functions, we start reading from the right, making groups of threes and twos, and combine <em>those</em> using the fork and atop rules.</p>
-<p>From Dyalog’s <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Introduction/Trains.htm">docs</a>:</p>
+<p>From Dyalog’s <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Introduction/Trains.htm">docs</a>:</p>
 <blockquote>
 <div><p>…in the absence of parentheses, a sequence of an odd number of functions resolves to a 3-train (fork) and an even-numbered sequence resolves to a 2-train (atop)</p>
 </div></blockquote>
@@ -896,8 +896,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 <p>That’s 8 constituent functions. We’ll prise it apart in a bit, but looking at it, it’s pretty clear what the intention is: find the sum, difference, product and ratio of two numbers, and reverse the list.</p>
 <p>As always, let’s look at the parse:</p>
@@ -908,12 +908,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐
+<div class="output text_html"><pre class="language-APL">┌─┴─┐
 ⌽ ┌─┼───┐
   + , ┌─┼───┐
       - , ┌─┼─┐
           × , ÷
-</span></div></div>
+</pre></div></div>
 </div>
 <p>So reading right to left, down to up, we have three forks and an atop. Let’s resolve them from the right:</p>
 <div class="cell docutils container">
@@ -931,8 +931,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 <p>The next fork is now</p>
 <div class="cell docutils container">
@@ -949,8 +949,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 <p>and the final fork is more of the same:</p>
 <div class="cell docutils container">
@@ -967,8 +967,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 <p>And finally, the atop, which moves the left argument to between the functions and removes the brackets:</p>
 <div class="cell docutils container">
@@ -978,8 +978,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 <p>or, fully explicit:</p>
 <div class="cell docutils container">
@@ -989,8 +989,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 12 4 8
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 12 4 8
+</pre></div></div>
 </div>
 </section>
 <section id="complicating-factors">
@@ -1015,8 +1015,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 12
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 12
+</pre></div></div>
 </div>
 <p>This is a single fork:</p>
 <div class="cell docutils container">
@@ -1026,11 +1026,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  ┌─┼─┐
+<div class="output text_html"><pre class="language-APL">  ┌─┼─┐
   / , /
 ┌─┘ ┌─┘
 ⌊   ⌈
-</span></div></div>
+</pre></div></div>
 </div>
 <p>So we can see that we need to start by letting the reduces bind first to form the derived functions that make up the fork. Ok, that wasn’t too bad. What about this one?</p>
 <div class="cell docutils container">
@@ -1040,13 +1040,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐
+<div class="output text_html"><pre class="language-APL">┌─┼───┐
 ⊢ ∧ ┌─┴─┐
     ⍀ ┌─┼─┐
   ┌─┘ ⍀ = ⊢
   ∧ ┌─┘
     ∨
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Top marks if you can say what that even does. Before we get into that, we can see that the parenthesis have affected the “groups of three from the right” parse. We’re now looking at a fork-atop-fork, two operators and two tacks. All non-specific religious holidays came at once.</p>
 <p>This function preserves the first uninterrupted sequence of 1s in a vector:</p>
@@ -1057,8 +1057,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</pre></div></div>
 </div>
 <p>Let’s untangle the parse tree, bottom-up, right-left. The first fork is</p>
 <div class="cell docutils container">
@@ -1068,11 +1068,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  ┌─┼─┐
+<div class="output text_html"><pre class="language-APL">  ┌─┼─┐
   ⍀ = ⊢
 ┌─┘
 ∨
-</span></div></div>
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1082,8 +1082,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</pre></div></div>
 </div>
 <p>Now let’s tackle the atop, which is just applying the and-scan to the fork:</p>
 <div class="cell docutils container">
@@ -1093,12 +1093,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">  ┌─┴─┐
+<div class="output text_html"><pre class="language-APL">  ┌─┴─┐
   ⍀ ┌─┼─┐
 ┌─┘ ⍀ = ⊢
 ∧ ┌─┘
   ∨
-</span></div></div>
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1107,8 +1107,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</pre></div></div>
 </div>
 <p>and there we have a monadic fork:</p>
 <div class="cell docutils container">
@@ -1118,8 +1118,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</pre></div></div>
 </div>
 <p>We can now fully untangle it if we want:</p>
 <div class="cell docutils container">
@@ -1129,8 +1129,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 0 0 0 0 0 0 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 0 1 1 1 0 0 0 0 0 0 0 0 0
+</pre></div></div>
 </div>
 <p>So now we can compare the tacit and explicit forms of the same function:</p>
 <div class="cell docutils container">
@@ -1156,7 +1156,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┐
+<div class="output text_html"><pre class="language-APL">┌───┬───┬───┬───┬───┬───┬───┐
 │5 3│5 6│7 5│4 7│1 8│2 4│1 2│
 └───┴───┴───┴───┴───┴───┴───┘
 ┌───────┬─────┬─────┬───────┬─────┐
@@ -1164,7 +1164,7 @@ title="Print to PDF"
 ││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
 │└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
 └───────┴─────┴─────┴───────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Let’s look at the parse tree:</p>
 <div class="cell docutils container">
@@ -1174,14 +1174,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐
+<div class="output text_html"><pre class="language-APL">┌──┴──┐
 ↓ ┌───┼───┐
   ¨   ⌸   ¨
 ┌─┘ ┌─┘ ┌─┘
 ⊃   ∘   ⊢/
    ┌┴┐
    , ⊂
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Yikes… but actually, it looks worse than it is – it’s a single fork, with an atop. The sprinkling of operators make it look more complicated than it is. So, bit by bit as indicated by the tree, starting with the <em>Key</em> (<code class="docutils literal notranslate"><span class="pre">⌸</span></code>):</p>
 <div class="cell docutils container">
@@ -1191,12 +1191,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">   ⌸
+<div class="output text_html"><pre class="language-APL">   ⌸
  ┌─┘
  ∘
 ┌┴┐
 , ⊂
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Looks correct. If we substitute into the original definition, we get</p>
 <div class="cell docutils container">
@@ -1206,14 +1206,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐
+<div class="output text_html"><pre class="language-APL">┌──┴──┐
 ↓ ┌───┼───┐
   ¨   ⌸   ¨
 ┌─┘ ┌─┘ ┌─┘
 ⊃   ∘   ⊢/
    ┌┴┐
    , ⊂
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Yep. Still the same. Now for the left and right tines:</p>
 <div class="cell docutils container">
@@ -1225,14 +1225,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┴──┐
+<div class="output text_html"><pre class="language-APL">┌──┴──┐
 ↓ ┌───┼───┐
   ¨   ⌸   ¨
 ┌─┘ ┌─┘ ┌─┘
 ⊃   ∘   ⊢/
    ┌┴┐
    , ⊂
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can now translate to a dfn:</p>
 <div class="cell docutils container">
@@ -1242,12 +1242,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌───────┬─────┬─────┬───────┬─────┐
 │┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
 ││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
 │└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
 └───────┴─────┴─────┴───────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1256,12 +1256,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌───────┬─────┬─────┬───────┬─────┐
 │┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
 ││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
 │└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
 └───────┴─────┴─────┴───────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The operand to <em>Key</em> is a derived function. We could expand that, too, if we want to be purist:</p>
 <div class="cell docutils container">
@@ -1271,12 +1271,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬─────┬─────┬───────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌───────┬─────┬─────┬───────┬─────┐
 │┌─┬───┐│┌─┬─┐│┌─┬─┐│┌─┬───┐│┌─┬─┐│
 ││5│3 6│││7│5│││4│7│││1│8 2│││2│4││
 │└─┴───┘│└─┴─┘│└─┴─┘│└─┴───┘│└─┴─┘│
 └───────┴─────┴─────┴───────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Here’s another one. What does this even do?</p>
 <div class="cell docutils container">
@@ -1286,10 +1286,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────┬───┐
+<div class="output text_html"><pre class="language-APL">┌────┬───┐
 │daoe│ylg│
 └────┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Another thing we can do that may or may not be useful is to ask the interpreter to give us a parethesised expression instead of the parse tree.</p>
 <div class="cell docutils container">
@@ -1299,8 +1299,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=min -trains=tree -fns=on
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON -style=mid -trains=parens -fns=on
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1309,8 +1309,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">((|∘⍳)∘≢)((⊢∘⊂)⌸)⊢
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">((|∘⍳)∘≢)((⊢∘⊂)⌸)⊢
+</pre></div></div>
 </div>
 <p>Some say that’s an easier start than the tree. Take your pick. Following the steps above you should land on:</p>
 <div class="cell docutils container">
@@ -1320,10 +1320,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───┬───┐
+<div class="output text_html"><pre class="language-APL">┌→───┬───┐
 │daoe│ylg│
 └───→┴──→┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>This one draws a bar chart:</p>
 <div class="cell docutils container">
@@ -1333,7 +1333,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────┐
+<div class="output text_html"><pre class="language-APL">┌→────────┐
 ↓⎕⎕⎕      │
 │         │
 │⎕⎕⎕⎕⎕⎕⎕⎕⎕│
@@ -1342,7 +1342,7 @@ title="Print to PDF"
 │⎕⎕⎕⎕⎕⎕⎕  │
 │⎕⎕⎕⎕⎕⎕   │
 └─────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>which is just</p>
 <div class="cell docutils container">
@@ -1352,7 +1352,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────┐
+<div class="output text_html"><pre class="language-APL">┌→────────┐
 ↓⎕⎕⎕      │
 │         │
 │⎕⎕⎕⎕⎕⎕⎕⎕⎕│
@@ -1361,7 +1361,7 @@ title="Print to PDF"
 │⎕⎕⎕⎕⎕⎕⎕  │
 │⎕⎕⎕⎕⎕⎕   │
 └─────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Let’s try a couple of harder ones. This one removes leading, trailing and repeated stretches of <code class="docutils literal notranslate"><span class="pre">⍺</span></code> from <code class="docutils literal notranslate"><span class="pre">⍵</span></code>:</p>
 <div class="cell docutils container">
@@ -1372,8 +1372,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">hello world
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1382,8 +1382,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON -style=mid -trains=parens -fns=on
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON -style=mid -trains=tree -fns=on
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1392,16 +1392,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐
+<div class="output text_html"><pre class="language-APL">┌─┼───┐
 1 ↓ ┌─┼─────┐
     , ⍨ ┌───┼─────┐
     ┌─┘ 1 ┌─┼─┐ ┌─┼─┐
     ⍤     ⊢ ∨ ⌽ 0 , ≠
    ┌┴┐
    ⊢ /
-</span></div></div>
+</pre></div></div>
 </div>
-<p>No fewer than <em>five</em> forks! The other thing to note is the use of <code class="docutils literal notranslate"><span class="pre">⍤</span></code> here which in fact is <em>not</em> <em>Rank</em>. When <code class="docutils literal notranslate"><span class="pre">⍤</span></code> is used with a right <em>function</em> operand, it becomes <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Atop.htm"><em>Atop</em></a>, not <em>Rank</em> (which takes a right <em>array</em> operand).</p>
+<p>No fewer than <em>five</em> forks! The other thing to note is the use of <code class="docutils literal notranslate"><span class="pre">⍤</span></code> here which in fact is <em>not</em> <em>Rank</em>. When <code class="docutils literal notranslate"><span class="pre">⍤</span></code> is used with a right <em>function</em> operand, it becomes <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Atop.htm"><em>Atop</em></a>, not <em>Rank</em> (which takes a right <em>array</em> operand).</p>
 <p>The tacit phrase <code class="docutils literal notranslate"><span class="pre">⊢⍤f</span></code> is a trick to force <code class="docutils literal notranslate"><span class="pre">f</span></code> to be parsed as a function, rather than as an operator for glyphs that can be either. In our case, <code class="docutils literal notranslate"><span class="pre">⊢⍤/⍨</span></code> is just <code class="docutils literal notranslate"><span class="pre">{⍵/⍺}</span></code>. With that we may be able to skip a few intermediate steps:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1419,8 +1419,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">hello world
+</pre></div></div>
 </div>
 <p>Expanding that out we can make a few simplifications, arriving at the resaonably compact</p>
 <div class="cell docutils container">
@@ -1437,8 +1437,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">hello world
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">hello world
+</pre></div></div>
 </div>
 <p>How about going the other way? We’ve done some already. A pretty comprehensive guide to the mechanical process of translating a dfn to its tacit equivalent can be found in the <a class="reference external" href="http://dfns.dyalog.com/n_tacit.htm">docs</a> for the dfns workspace, mentioned at the top of this chapter.</p>
 <p>Here’s a noddy dfn that takes a string consisting of a leading letter and some digits, and returns a 2-element vector with the letter and the number:</p>
@@ -1449,8 +1449,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">X 1234
+</pre></div></div>
 </div>
 <p>There’s clearly a fork in there, but also an atop. This should pose little difficulty, right? Change the braces for parantheses, and omegas for right-tack, but we need to delineate the eval call:</p>
 <div class="cell docutils container">
@@ -1460,8 +1460,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">X 1234
+</pre></div></div>
 </div>
 <p>We can do more here. Both left and right tines of the fork share a <code class="docutils literal notranslate"><span class="pre">1</span></code>. We can make that a left argument, so in our case a <em>left</em> tack:</p>
 <div class="cell docutils container">
@@ -1471,8 +1471,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">X 1234
+</pre></div></div>
 </div>
 <p>but the pattern <code class="docutils literal notranslate"><span class="pre">⊣f⊢</span></code> is just <code class="docutils literal notranslate"><span class="pre">f</span></code>, which also lets us remove some parentheses:</p>
 <div class="cell docutils container">
@@ -1482,8 +1482,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">X 1234
+</pre></div></div>
 </div>
 <p>We can actually remove the inner parantheses, too, by a bit of sleight of hand:</p>
 <div class="cell docutils container">
@@ -1493,8 +1493,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">X 1234
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">X 1234
+</pre></div></div>
 </div>
 <p>but these two trains – whilst doing the same thing – parse differently:</p>
 <div class="cell docutils container">
@@ -1505,14 +1505,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼──┐
+<div class="output text_html"><pre class="language-APL">┌─┼──┐
 ↑ , ┌┴┐
     ⍎ ↓
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼─┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌─┼─┐
 ↑ ∘ ↓
  ┌┴┐
  , ⍎
-</span></div></div>
+</pre></div></div>
 </div>
 <p>In other words, we made a derived function with jot: <code class="docutils literal notranslate"><span class="pre">,∘⍎</span></code>. That turned out well: the tacit version is shorter than the explicit, and no less readable.</p>
 <p>A few more?</p>
@@ -1524,8 +1524,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4
+</pre></div></div>
 </div>
 <p>A fork, with both tines also being forks.</p>
 <div class="cell docutils container">
@@ -1537,8 +1537,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4
+</pre></div></div>
 </div>
 <p>We can convert the tine forks directly by swapping <code class="docutils literal notranslate"><span class="pre">⍵</span></code> for <code class="docutils literal notranslate"><span class="pre">⊢</span></code> and <code class="docutils literal notranslate"><span class="pre">{}</span></code> for <code class="docutils literal notranslate"><span class="pre">()</span></code>:</p>
 <div class="cell docutils container">
@@ -1548,8 +1548,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4
+</pre></div></div>
 </div>
 <p>This one shifts a vector of numbers the specified number of steps to the left, padding with zeros on the right:</p>
 <div class="cell docutils container">
@@ -1559,8 +1559,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4 5 6 7 8 9 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4 5 6 7 8 9 0 0 0
+</pre></div></div>
 </div>
 <p>Looks easy, right? Tempting to to jump to the conclusion that this is a fork on <em>Catenate</em>, <code class="docutils literal notranslate"><span class="pre">f,g</span></code> – it’s not.</p>
 <p>The complication is the take at the end, which has an array right argument which isn’t allowed in a train: we need to <em>Commute</em> that one. So starting from the right, we have a dyadic function as <code class="docutils literal notranslate"><span class="pre">⍺↑0</span></code>, preceded by <code class="docutils literal notranslate"><span class="pre">⍵,</span></code>. So that’s our first fork of the form <code class="docutils literal notranslate"><span class="pre">⊢,f</span></code>:</p>
@@ -1571,12 +1571,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐
+<div class="output text_html"><pre class="language-APL">┌─┼───┐
 ⊢ , ┌─┼─┐
     0 ⍨ ⊣
     ┌─┘
     ↑
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Before that we have <code class="docutils literal notranslate"><span class="pre">⍺↑</span></code> which together with what we already did also makes a fork, this time <code class="docutils literal notranslate"><span class="pre">⊣↑g</span></code>:</p>
 <div class="cell docutils container">
@@ -1586,13 +1586,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐
+<div class="output text_html"><pre class="language-APL">┌─┼───┐
 ⊣ ↓ ┌─┼───┐
     ⊢ , ┌─┼─┐
         0 ⍨ ⊣
         ┌─┘
         ↑
-</span></div></div>
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1601,8 +1601,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3 4 5 6 7 8 9 0 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3 4 5 6 7 8 9 0 0 0
+</pre></div></div>
 </div>
 <p>Note that again it’s tempting to say that <code class="docutils literal notranslate"><span class="pre">⊣f⊢</span></code> is just <code class="docutils literal notranslate"><span class="pre">f</span></code> like we did earlier, but that makes the same slip as we started with – they don’t belong to one fork:</p>
 <div class="cell docutils container">
@@ -1612,12 +1612,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┼───┐
+<div class="output text_html"><pre class="language-APL">┌─┼───┐
 ↓ , ┌─┼─┐
     0 ⍨ ⊣
     ┌─┘
     ↑
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 <section id="shuffle-the-array">
@@ -1636,8 +1636,8 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div></div>
 </div>
 <p>which is reshape to <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">n</span></code>, <em>Transpose</em>, <em>Ravel</em> – in fact, it’s kind of how we said it: “zip the first half with the second, and flatten”. However, that particular dfn doesn’t lend itself nicely to a tacit formulation. APL Orchard user <a class="reference external" href="https://chat.stackexchange.com/users/470812/rak1507">&#64;rak1507</a> proposed the following gem:</p>
 <div class="cell docutils container">
@@ -1647,8 +1647,8 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div></div>
 </div>
 <p>Remarkably clever, but kinda obvious (once you’ve seen it). This relies on <em>Catenate each</em> <code class="docutils literal notranslate"><span class="pre">,¨</span></code> as the (almost) “zip” instead of <code class="docutils literal notranslate"><span class="pre">,⍉</span></code>:</p>
 <div class="cell docutils container">
@@ -1658,10 +1658,10 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──┬───┬───┬───┐
+<div class="output text_html"><pre class="language-APL">┌→──┬───┬───┬───┐
 │1 4│2 3│3 2│4 1│
 └~─→┴~─→┴~─→┴~─→┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The actual formulation is the tacit version of</p>
 <div class="cell docutils container">
@@ -1671,8 +1671,8 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1681,12 +1681,12 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┴─┐
+<div class="output text_html"><pre class="language-APL">┌─┴─┐
 ∊ ┌─┼─┐
   ↑ ¨ ↓
   ┌─┘
   ,
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Nice. But wait, there’s more. <a class="reference external" href="https://aplwiki.com/wiki/Ad%C3%A1m_Brudzewsky">Adám’s</a> version takes a wholly different approach, and do note the way the function takes its arguments, which is key to how this works:</p>
 <div class="cell docutils container">
@@ -1696,8 +1696,8 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div></div>
 </div>
 <p>Not obvious how that works, right? Let’s look at the parse tree:</p>
 <div class="cell docutils container">
@@ -1707,12 +1707,12 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace"> ┌──┴──┐
+<div class="output text_html"><pre class="language-APL"> ┌──┴──┐
  ∘   ┌─┼─┐
 ┌┴┐  @ ⍴ ⊃
 , ⍉ ┌┴┐
     2 0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The interesting bit is the fork <code class="docutils literal notranslate"><span class="pre">2&#64;0⍴⊃</span></code>, so let’s look at that:</p>
 <div class="cell docutils container">
@@ -1722,11 +1722,11 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace"> ┌─┼─┐
+<div class="output text_html"><pre class="language-APL"> ┌─┼─┐
  @ ⍴ ⊃
 ┌┴┐
 2 0
-</span></div></div>
+</pre></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1735,9 +1735,9 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 3 4
+<div class="output text_html"><pre class="language-APL">1 2 3 4
 4 3 2 1
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Aha. Yes, there’s the “fold in half” – but how <em>does that work</em>? The middle tine is clearly the reshape, and the right tine picks the first element, which makes sense, but what of the left tine?</p>
 <div class="cell docutils container">
@@ -1747,8 +1747,8 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">2 4
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">2 4
+</pre></div></div>
 </div>
 <p>Wow. Did the penny drop? I think that qualifies as a code-golfer’s trick shot.</p>
 <p>Other suggestions were:</p>
@@ -1760,9 +1760,9 @@ Output: [1,4,2,3,3,2,4,1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 4 2 3 3 2 4 1
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div><div class="output text_html"><pre class="language-APL">1 4 2 3 3 2 4 1
+</pre></div></div>
 </div>
 <p>Feel free to untangle those at your leisure.</p>
 </section>

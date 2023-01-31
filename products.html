@@ -557,14 +557,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <p>We’ll talk about outer and inner products in APL, two powerful features. Other resources on these topics:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.dyalog.com/uploads/documents/MasteringDyalogAPL.pdf">Mastering Dyalog APL</a> has an excellent section on products, from around page 387.</p></li>
-<li><p>Dyalog docs on <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Outer%20Product.htm">outer product</a> and <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Inner%20Product.htm">inner product</a></p></li>
+<li><p>Dyalog docs on <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Outer%20Product.htm">outer product</a> and <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Inner%20Product.htm">inner product</a></p></li>
 <li><p>Marshall Lochbaum’s talk on <a class="reference external" href="https://mlochbaum.github.io/OuterProduct/">outer products</a></p></li>
 </ul>
 <section id="outer-product">
@@ -577,7 +577,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0  0  0  0  0  0  0  0  0
+<div class="output text_html"><pre class="language-APL">0 0  0  0  0  0  0  0  0  0
 0 1  2  3  4  5  6  7  8  9
 0 2  4  6  8 10 12 14 16 18
 0 3  6  9 12 15 18 21 24 27
@@ -587,7 +587,7 @@ title="Print to PDF"
 0 7 14 21 28 35 42 49 56 63
 0 8 16 24 32 40 48 56 64 72
 0 9 18 27 36 45 54 63 72 81
-</span></div></div>
+</pre></div></div>
 </div>
 <p>To all intents and purposes, that’s a nested for-loop which we could write out in Python along the lines of:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -605,7 +605,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 1 1 1 1 1 1 1 1
+<div class="output text_html"><pre class="language-APL">0 1 1 1 1 1 1 1 1 1
 0 0 1 1 1 1 1 1 1 1
 0 0 0 1 1 1 1 1 1 1
 0 0 0 0 1 1 1 1 1 1
@@ -615,7 +615,7 @@ title="Print to PDF"
 0 0 0 0 0 0 0 0 1 1
 0 0 0 0 0 0 0 0 0 1
 0 0 0 0 0 0 0 0 0 0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The eagle-eyed reader might interject that we can achieve the same thing with <a class="reference internal" href="rank.html"><span class="doc std std-doc"><em>Rank</em></span></a>:</p>
 <div class="cell docutils container">
@@ -625,7 +625,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 1 1 1 1 1 1 1 1
+<div class="output text_html"><pre class="language-APL">0 1 1 1 1 1 1 1 1 1
 0 0 1 1 1 1 1 1 1 1
 0 0 0 1 1 1 1 1 1 1
 0 0 0 0 1 1 1 1 1 1
@@ -635,7 +635,7 @@ title="Print to PDF"
 0 0 0 0 0 0 0 0 1 1
 0 0 0 0 0 0 0 0 0 1
 0 0 0 0 0 0 0 0 0 0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>If you realised that unprompted: well done – this is a deep insight.</p>
 <div class="admonition tip">
@@ -656,10 +656,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">                                                                    
-  x prod x → 5.0E¯4 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕               
-  x rank x → 7.7E¯4 | +55% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">                                                                    
+  x prod x → 8.1E¯4 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
+  x rank x → 6.5E¯4 | -21% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕         
+</pre></div></div>
 </div>
 <p>Here’s an expression using an outer product that picks out the prime numbers between 0 and 20. Can you figure out how it works?</p>
 <div class="cell docutils container">
@@ -669,8 +669,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">2 3 5 7 11 13 17 19
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">2 3 5 7 11 13 17 19
+</pre></div></div>
 </div>
 </section>
 <section id="inner-product">
@@ -685,23 +685,23 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────────┐
+<div class="output text_html"><pre class="language-APL">┌→────────┐
 ↓ 3 2 0  8│
 │11 7 5  1│
 │ 4 9 6 10│
 └~────────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌→──────┐
 ↓8 10 11│
 │2  4  6│
 │5  1  7│
 │9  3  0│
 └~──────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌→──────────┐
 ↓100  62  45│
 │136 146 198│
 │170 112 140│
 └~──────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>If you know how to multiply matrices, you’ll understand what the inner product operator does: consider the top left element of the result, 100. How did we get that? First we multiply each number in the first row of A with the corresponding element in the first col of B:</p>
 <div class="cell docutils container">
@@ -711,8 +711,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">24 4 0 72
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">24 4 0 72
+</pre></div></div>
 </div>
 <p>Then sum it:</p>
 <div class="cell docutils container">
@@ -722,8 +722,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">100
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">100
+</pre></div></div>
 </div>
 <p>Next element:</p>
 <div class="cell docutils container">
@@ -733,8 +733,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">62
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">62
+</pre></div></div>
 </div>
 <p>We can apply inner product to many common problems where the impulse is to “first apply one function, then reduce another over the result”. For example, given two strings of equal lengths, how many letters are the same? You might try first:</p>
 <div class="cell docutils container">
@@ -744,8 +744,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3
+</pre></div></div>
 </div>
 <p>but this fits the inner product pattern nicely:</p>
 <div class="cell docutils container">
@@ -755,8 +755,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">3
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">3
+</pre></div></div>
 </div>
 </section>
 <section id="calculating-expected-offspring">
@@ -796,8 +796,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">153703
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">153703
+</pre></div></div>
 </div>
 </section>
 <section id="explanation-operator">
@@ -820,20 +820,20 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→───────┐
+<div class="output text_html"><pre class="language-APL">┌→───────┐
 ↓ 3  2 19│
 │16 11  4│
 └~───────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌→────┐
 ↓18 17│
 │ 9  7│
 │ 3  1│
 └~────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌→──────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌→──────┐
 ↓129  84│
 │399 353│
 └~──────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can show how this was derived with <code class="docutils literal notranslate"><span class="pre">X</span></code>:</p>
 <div class="cell docutils container">
@@ -843,12 +843,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────────────────────────────┬────────────────────────────────────┐
+<div class="output text_html"><pre class="language-APL">┌────────────────────────────────────┬────────────────────────────────────┐
 │(( 3 × 18 )+(( 2 × 9 )+( 19 × 3 ))) │(( 3 × 17 )+(( 2 × 7 )+( 19 × 1 ))) │
 ├────────────────────────────────────┼────────────────────────────────────┤
 │(( 16 × 18 )+(( 11 × 9 )+( 4 × 3 )))│(( 16 × 17 )+(( 11 × 7 )+( 4 × 1 )))│
 └────────────────────────────────────┴────────────────────────────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 </section>

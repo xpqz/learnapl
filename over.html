@@ -481,7 +481,7 @@ title="Print to PDF"
 <blockquote>
 <div><p>Last week I was listening to a podcast on Hanselminutes, with Robert Martin talking about the SOLID principles… They all sounded to me like extremely bureaucratic programming that came from the mind of somebody that has not written a lot of code, frankly. –<em>Joel Spolsky</em></p>
 </div></blockquote>
-<p>If you thought <em>rank</em> looked startled, <code class="docutils literal notranslate"><span class="pre">⍤</span></code>, wait until you meet his big sister, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Symbols/Circle%20Dieresis.htm">over</a>: <code class="docutils literal notranslate"><span class="pre">⍥</span></code>, <em>nom de guerre</em> for <em>Circle Diaresis</em>. <code class="docutils literal notranslate"><span class="pre">Over</span></code> was introduced to Dyalog in version 18. Over is a function composition rule, similar to those that govern <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> programming. Once you “see” this pattern, you’ll see it everywhere. Let’s take a look.</p>
+<p>If you thought <em>rank</em> looked startled, <code class="docutils literal notranslate"><span class="pre">⍤</span></code>, wait until you meet his big sister, <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Symbols/Circle%20Dieresis.htm">over</a>: <code class="docutils literal notranslate"><span class="pre">⍥</span></code>, <em>nom de guerre</em> for <em>Circle Diaresis</em>. <code class="docutils literal notranslate"><span class="pre">Over</span></code> was introduced to Dyalog in version 18. Over is a function composition rule, similar to those that govern <a class="reference internal" href="tacit.html"><span class="doc std std-doc">tacit</span></a> programming. Once you “see” this pattern, you’ll see it everywhere. Let’s take a look.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Over</span></code> complements jot <code class="docutils literal notranslate"><span class="pre">∘</span></code> and the atop version of <code class="docutils literal notranslate"><span class="pre">⍤</span></code> in that it specifies how a set of functions should be applied to common arguments. If we compare <code class="docutils literal notranslate"><span class="pre">f∘g</span></code> and <code class="docutils literal notranslate"><span class="pre">f⍤g</span></code>, when given a left argument, <code class="docutils literal notranslate"><span class="pre">∘</span></code> gives it to the left-hand function and <code class="docutils literal notranslate"><span class="pre">⍤</span></code> gives it to the right-hand function. Other than that, they are the same. For the monadic case, these are all the same:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">f∘g</span> <span class="pre">Y</span></code></p></li>
@@ -507,11 +507,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">done
-
-Rebuilding user command cache... done
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0
+</pre></div></div>
 </div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">over</span></code> we can instead now write</p>
 <div class="cell docutils container">
@@ -521,8 +518,8 @@ Rebuilding user command cache... done
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0
+</pre></div></div>
 </div>
 <p>In words: first apply the right function to both arguments, then apply the left between the results. And of course, either side can be a user-defined function, too. Which vector have the most even numbers?</p>
 <div class="cell docutils container">
@@ -532,8 +529,8 @@ Rebuilding user command cache... done
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0
+</pre></div></div>
 </div>
 </section>
 

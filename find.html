@@ -648,7 +648,7 @@ title="Print to PDF"
 └~────────────────────────────────────────────────────────────────┘
 </span></div></div>
 </div>
-<p>That’s surely sufficiently <em>Zen</em> in the <em>Zen of Python</em> sense. Hands up every item that equals 2. We can find out the actual index, too, by using <em>Iota underbar</em>, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, which, as you may recall from an <a class="reference internal" href="manip.html"><span class="doc std std-doc">earlier chapter</span></a>, in its monadic form is appropriately enough called <a class="reference external" href="https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a>:</p>
+<p>That’s surely sufficiently <em>Zen</em> in the <em>Zen of Python</em> sense. Hands up every item that equals 2. We can find out the actual index, too, by using <em>Iota underbar</em>, <code class="docutils literal notranslate"><span class="pre">⍸</span></code>, which, as you may recall from an <a class="reference internal" href="manip.html"><span class="doc std std-doc">earlier chapter</span></a>, in its monadic form is appropriately enough called <a class="reference external" href="https://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Where.htm"><em>Where</em></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="m">2</span><span class="o">=</span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ Where is data = 2?</span><span class="w"></span>
@@ -687,7 +687,7 @@ title="Print to PDF"
 </section>
 <section id="match">
 <h2>Match <code class="docutils literal notranslate"><span class="pre">≡</span></code><a class="headerlink" href="#match" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm"><em>Match</em></a> we’ve already met. It is like equality but for non-scalar things. You can be forgiven to think that if you look for a particular vector in a vector-of-vectors, you should be able to use equality, but that doesn’t work:</p>
+<p><a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Where.htm"><em>Match</em></a> we’ve already met. It is like equality but for non-scalar things. You can be forgiven to think that if you look for a particular vector in a vector-of-vectors, you should be able to use equality, but that doesn’t work:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">strings</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;aaa&#39;</span><span class="w"> </span><span class="s1">&#39;bbb&#39;</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="w"> </span><span class="s1">&#39;ddd&#39;</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="w"> </span><span class="s1">&#39;aaa&#39;</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="w"> </span><span class="s1">&#39;bbb&#39;</span><span class="w"></span>
@@ -719,7 +719,7 @@ title="Print to PDF"
 </section>
 <section id="index-of-ab">
 <h2>Index of <code class="docutils literal notranslate"><span class="pre">A⍳B</span></code><a class="headerlink" href="#index-of-ab" title="Permalink to this headline">#</a></h2>
-<p>Another way we can find the index of things is via <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Of.htm"><em>Index of</em></a>, dyadic <code class="docutils literal notranslate"><span class="pre">⍳</span></code>, which we have actually met before:</p>
+<p>Another way we can find the index of things is via <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Index%20Of.htm"><em>Index of</em></a>, dyadic <code class="docutils literal notranslate"><span class="pre">⍳</span></code>, which we have actually met before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="o">⍳</span><span class="m">2</span><span class="w"></span>
@@ -787,7 +787,7 @@ title="Print to PDF"
 </section>
 <section id="find">
 <h2>Find <code class="docutils literal notranslate"><span class="pre">⍷</span></code><a class="headerlink" href="#find" title="Permalink to this headline">#</a></h2>
-<p>There is of course also a glyph that’s called <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Find.htm"><em>Find</em></a> (<code class="docutils literal notranslate"><span class="pre">⍷</span></code>) which locates the start-points of subsequences:</p>
+<p>There is of course also a glyph that’s called <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Find.htm"><em>Find</em></a> (<code class="docutils literal notranslate"><span class="pre">⍷</span></code>) which locates the start-points of subsequences:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;ana&#39;</span><span class="w"> </span><span class="o">⍷</span><span class="w"> </span><span class="s1">&#39;banana&#39;</span><span class="w"></span>
@@ -862,7 +862,7 @@ title="Print to PDF"
 </section>
 <section id="regular-expessions">
 <h2>Regular expessions<a class="headerlink" href="#regular-expessions" title="Permalink to this headline">#</a></h2>
-<p>Dyalog supports regular expressions through the most excellent <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Appendices/PCRE%20Regular%20Expression%20Details.htm">PCRE</a> engine. Dyalog’s docs on the topic can be found <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">here</a>, and an APL Orchard cultivation was dedicated to the <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-24-r-and-s">topic</a>, too. How regexes themselves work is beyond the scope of this book, but an exceptional reference that belongs on every programmer’s bookshelf is Jeffrey Friedl’s <a class="reference external" href="http://regex.info/book.html">Mastering Regular Expressions</a>.</p>
+<p>Dyalog supports regular expressions through the most excellent <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Appendices/PCRE%20Regular%20Expression%20Details.htm">PCRE</a> engine. Dyalog’s docs on the topic can be found <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/r.htm">here</a>, and an APL Orchard cultivation was dedicated to the <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-24-r-and-s">topic</a>, too. How regexes themselves work is beyond the scope of this book, but an exceptional reference that belongs on every programmer’s bookshelf is Jeffrey Friedl’s <a class="reference external" href="http://regex.info/book.html">Mastering Regular Expressions</a>.</p>
 <p>Let’s take a brief look at how regexes are integrated in Dyalog.</p>
 <p>Two system operators, <code class="docutils literal notranslate"><span class="pre">⎕S</span></code> and <code class="docutils literal notranslate"><span class="pre">⎕R</span></code>, implement regex search and replace respectively. They’re both dyadic operators, taking regular expression(s) to the left and transformation(s) to the right. The derived function can be applied to text data.</p>
 <p>Here’s a simple example. Using a transformation string of <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">⎕S</span></code> returns a vector of what was matched:</p>
@@ -918,7 +918,7 @@ title="Print to PDF"
 └───┴─────┴────┘
 </span></div></div>
 </div>
-<p>When using a function operand, we have the opportunity to apply the full might of APL to the matches. Let’s find stretches of 2 or longer of <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code>, and turn them to upper-case (using <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/c.htm"><em>Case convert</em>, <code class="docutils literal notranslate"><span class="pre">⎕C</span></code></a>):</p>
+<p>When using a function operand, we have the opportunity to apply the full might of APL to the matches. Let’s find stretches of 2 or longer of <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code>, and turn them to upper-case (using <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/c.htm"><em>Case convert</em>, <code class="docutils literal notranslate"><span class="pre">⎕C</span></code></a>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;(a{2,}|b{2,})&#39;</span><span class="nf">⎕S</span><span class="kt">{</span><span class="m">1</span><span class="nf">⎕C</span><span class="w"> </span><span class="bp">⍵</span><span class="na">.</span><span class="nv">Match</span><span class="kt">}</span><span class="s1">&#39;aaabababbbbbaaaa&#39;</span><span class="w"></span>
@@ -992,7 +992,7 @@ title="Print to PDF"
 </span></div></div>
 </div>
 <p>Zero-width lookaheads (and lookbehinds) work just like normal patterns, except that they don’t <em>consume</em> what they match.</p>
-<p>Option 2 is to tell the regex engine that we want to allow overlapping matches via a <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Variant.htm"><em>Variant</em></a> (<code class="docutils literal notranslate"><span class="pre">⍠</span></code>) setting to <code class="docutils literal notranslate"><span class="pre">⎕S</span></code>:</p>
+<p>Option 2 is to tell the regex engine that we want to allow overlapping matches via a <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Variant.htm"><em>Variant</em></a> (<code class="docutils literal notranslate"><span class="pre">⍠</span></code>) setting to <code class="docutils literal notranslate"><span class="pre">⎕S</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;a.&#39;</span><span class="nf">⎕S</span><span class="s1">&#39;&amp;&#39;</span><span class="na">⍠</span><span class="s1">&#39;OM&#39;</span><span class="m">1</span><span class="o">⊢</span><span class="s1">&#39;abaac&#39;</span><span class="w"> </span>
@@ -1005,7 +1005,7 @@ title="Print to PDF"
 └──┴──┴──┘
 </span></div></div>
 </div>
-<p>This is both elegant and clear: variant <code class="docutils literal notranslate"><span class="pre">OM</span></code> is <em>Overlapping Matches</em>. See the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">docs</a> for more details on the various options that can be enabled with <em>Variant</em>.</p>
+<p>This is both elegant and clear: variant <code class="docutils literal notranslate"><span class="pre">OM</span></code> is <em>Overlapping Matches</em>. See the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/System%20Functions/r.htm">docs</a> for more details on the various options that can be enabled with <em>Variant</em>.</p>
 </section>
 </section>
 </section>

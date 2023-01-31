@@ -535,9 +535,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <p><em>Game of Life</em> is a bit of an APL party trick, to the extent that it may be the only application of APL that people have heard of after seeing a <a class="reference external" href="https://www.youtube.com/watch?v=a9xAKttWgP4">famous video</a> of John Scholes’.</p>
 <p>Here’s the current champion, all 17 symbols of it:</p>
@@ -559,7 +559,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0
+<div class="output text_html"><pre class="language-APL">0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0
 0 0 0 0 0 1 0 0
@@ -567,7 +567,7 @@ title="Print to PDF"
 0 0 0 0 1 1 0 0
 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The glider pattern is called so because it glides across the dish. Here’s a full cycle:</p>
 <div class="cell docutils container">
@@ -577,7 +577,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────────────┬───────────────┬───────────────┬───────────────┐
+<div class="output text_html"><pre class="language-APL">┌───────────────┬───────────────┬───────────────┬───────────────┐
 │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
 │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
 │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
@@ -587,10 +587,10 @@ title="Print to PDF"
 │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 1 0 0│0 0 0 0 0 1 1 0│
 │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
 └───────────────┴───────────────┴───────────────┴───────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>If you’d like to have the above Game of Life implementation dissected in detail, head over to <a class="reference external" href="https://dyalog.tv/Webinar/?v=3FjYly2G_QI">dyalog.tv</a>.</p>
-<p>Anyway – this APL <em>Game of Life</em> implementation is primarily a demonstration of the power and versatility of the <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Stencil.htm"><em>Stencil</em></a> operator, <code class="docutils literal notranslate"><span class="pre">⌺</span></code>. In simple terms, the dyadic <em>Stencil</em> operator lets you specify a sliding window of a rank of your choice to the right and a function operating over this sliding window to the left. It makes it trivial to implement image processing filters or <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolution</a>. In essence, for the 2D case, it’s four nested for-loops, the outermost two moving the window, and the innermost two visiting every data point within the window.</p>
+<p>Anyway – this APL <em>Game of Life</em> implementation is primarily a demonstration of the power and versatility of the <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Stencil.htm"><em>Stencil</em></a> operator, <code class="docutils literal notranslate"><span class="pre">⌺</span></code>. In simple terms, the dyadic <em>Stencil</em> operator lets you specify a sliding window of a rank of your choice to the right and a function operating over this sliding window to the left. It makes it trivial to implement image processing filters or <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolution</a>. In essence, for the 2D case, it’s four nested for-loops, the outermost two moving the window, and the innermost two visiting every data point within the window.</p>
 <p>This is obviously a good fit for <em>Game of Life</em>: the rules are defined within a 3×3 neighbourhood, so all we need to do is count the 1s in the windows that <em>Stencil</em> delivers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,8 +599,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">5
+</pre></div></div>
 </div>
 <p>Let’s look at <em>Stencil</em> in a bit more detail. We can illustrate the sliding window using enclose as the left operand and a size 2 window over a vector:</p>
 <div class="cell docutils container">
@@ -610,10 +610,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+<div class="output text_html"><pre class="language-APL">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
 │0 1│1 2│2 3│3 4│4 5│5 6│6 7│7 8│8 9│
 └───┴───┴───┴───┴───┴───┴───┴───┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>But now look what happens if we increase the window size to 3:</p>
 <div class="cell docutils container">
@@ -623,10 +623,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 │0 0 1│0 1 2│1 2 3│2 3 4│3 4 5│4 5 6│5 6 7│6 7 8│7 8 9│8 9 0│
 └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>The first and last windows now “overhang” the edge, filling the overhang with zeros. The way to think of it is that each data point in the argument array must line up with the <em>centre</em> of the window.</p>
 <p><em>Stencil</em> has a few more tricks up its sleeve. The right operand can be an array, where the first row defines the shape of the window, and the second row defines the <em>step size</em>. Again, using the vector above, we can say that we want a size 3 window, but instead of moving it one step (the default), we want to shift it three steps each time:</p>
@@ -637,10 +637,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌─────┬─────┬─────┬─────┐
 │0 0 1│2 3 4│5 6 7│8 9 0│
 └─────┴─────┴─────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We still have an odd-size window, and the first is centered over the first item as before. The step size, 3, dictates how far the center of the window moves, so the next window is centered over item 3 etc.</p>
 <p>With an even size we can create non-overlapping windows that don’t overhang,</p>
@@ -651,10 +651,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬───┐
+<div class="output text_html"><pre class="language-APL">┌───┬───┬───┬───┬───┐
 │0 1│2 3│4 5│6 7│8 9│
 └───┴───┴───┴───┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>and, of course, even-sized, non-overlapping windows that <em>do</em> overhang, too, if that’s what we want:</p>
 <div class="cell docutils container">
@@ -664,10 +664,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───────┬───────┬───────┐
+<div class="output text_html"><pre class="language-APL">┌───────┬───────┬───────┐
 │0 0 1 2│3 4 5 6│7 8 9 0│
 └───────┴───────┴───────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <section id="the-left-argument">
 <h2>The left argument<a class="headerlink" href="#the-left-argument" title="Permalink to this headline">#</a></h2>
@@ -679,7 +679,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────────┬──────────┬──────────┬──────────┬───────────┐
+<div class="output text_html"><pre class="language-APL">┌──────────┬──────────┬──────────┬──────────┬───────────┐
 │┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌───┬───┐ │┌────┬───┐ │
 ││1 1│   │ ││1 0│   │ ││1 0│   │ ││1 0│   │ ││1 ¯1│   │ │
 ││   │ AB│ ││   │ABC│ ││   │BCD│ ││   │CDE│ ││    │DE │ │
@@ -698,7 +698,7 @@ title="Print to PDF"
 ││    │   │││    │   │││    │   │││    │   │││     │   ││
 │└────┴───┘│└────┴───┘│└────┴───┘│└────┴───┘│└─────┴───┘│
 └──────────┴──────────┴──────────┴──────────┴───────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Another way to think of it is as what you need to drop to get rid of all the fillers:</p>
 <div class="cell docutils container">
@@ -708,7 +708,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──┬───┬───┬───┬──┐
+<div class="output text_html"><pre class="language-APL">┌──┬───┬───┬───┬──┐
 │AB│ABC│BCD│CDE│DE│
 │FG│FGH│GHI│HIJ│IJ│
 ├──┼───┼───┼───┼──┤
@@ -719,7 +719,7 @@ title="Print to PDF"
 │FG│FGH│GHI│HIJ│IJ│
 │KL│KLM│LMN│MNO│NO│
 └──┴───┴───┴───┴──┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 </section>

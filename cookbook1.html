@@ -575,15 +575,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div></div>
 </div>
 <p>We often need to group or select items in an array based on some criterion – perhaps stretches of items that are equal, or perhaps we have a boolean mask indicating which stretches of elements should be joined up.</p>
 <p>Other resources:</p>
 <ul class="simple">
-<li><p>Dyalog docs <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partition.htm">Partition</a>, <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partitioned%20Enclose.htm">Partitioned enclose</a></p></li>
+<li><p>Dyalog docs <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Partition.htm">Partition</a>, <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Partitioned%20Enclose.htm">Partitioned enclose</a></p></li>
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Partition_representations">APLWiki</a></p></li>
-<li><p>Cultivations <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-7-apl-functions-">Lesson 7</a>, <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-49-extensions-in-18-0--1-json">Lesson 49</a></p></li>
+<li><p>Cultivations: <a class="reference external" href="https://xpqz.github.io/cultivations/Functions5.html#partitioned-enclose">partitioned enclose</a>, <a class="reference external" href="https://xpqz.github.io/cultivations/Functions5.html#partition">partition</a></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -600,11 +600,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬─┬────┬──┐
+<div class="output text_html"><pre class="language-APL">┌───┬─┬────┬──┐
 │1 2│4│9 10│12│
 └───┴─┴────┴──┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 4 9 10 12
-</span></div></div>
+</pre></div><div class="output text_html"><pre class="language-APL">1 2 4 9 10 12
+</pre></div></div>
 </div>
 <p>This can be supremely handy: apply some predicate to an array to give a boolean vector. Use enclose to get the matching elements, grouped. As we noted above, the left argument array doesn’t have to be Boolean, just integer. That gives us a bit more flexibility in our mapping.</p>
 </section>
@@ -618,10 +618,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬───┬───┬───┬────┐
+<div class="output text_html"><pre class="language-APL">┌───┬───┬───┬───┬────┐
 │1 2│3 4│5 6│7 8│9 10│
 └───┴───┴───┴───┴────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can use this to group stretches of elements which are equal:</p>
 <div class="cell docutils container">
@@ -631,10 +631,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────────┬───┬─┬───────┬───┬───┐
+<div class="output text_html"><pre class="language-APL">┌─────────┬───┬─┬───────┬───┬───┐
 │1 1 1 1 1│2 2│1│4 4 4 4│1 1│2 2│
 └─────────┴───┴─┴───────┴───┴───┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can apply the same technique to group based on sign:</p>
 <div class="cell docutils container">
@@ -644,10 +644,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬─────┬─┬────────┬───┬─────┐
+<div class="output text_html"><pre class="language-APL">┌───┬─────┬─┬────────┬───┬─────┐
 │0 0│1 2 3│0│¯1 ¯7 ¯8│0 0│1 2 3│
 └───┴─────┴─┴────────┴───┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>In the above two examples we generate the mask by a windowed reduction of size 2:</p>
 <div class="cell docutils container">
@@ -657,8 +657,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 0 0 1 1 0 0 1 0 1 0 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 1 0 0 1 1 0 0 1 0 1 0 0
+</pre></div></div>
 </div>
 <p>but we also need to prepend a 1, as we want the first partition to start at the beginning.</p>
 <p>Note that the left argument doesn’t have to be the same length as the right. If it’s shorter, it will be padded with zeros, allowing us a convenient way to chop a vector into a head and tail:</p>
@@ -669,10 +669,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬──────────────────┐
+<div class="output text_html"><pre class="language-APL">┌─┬──────────────────┐
 │1│2 3 4 5 6 7 8 9 10│
 └─┴──────────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 <section id="non-boolean-left">
@@ -685,10 +685,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬┬─────┬┬┬───┬──────────────────────────────────┐
+<div class="output text_html"><pre class="language-APL">┌─────┬┬─────┬┬┬───┬──────────────────────────────────┐
 │1 2 3││4 5 6│││7 8│9 10 11 12 13 14 15 16 17 18 19 20│
 └─────┴┴─────┴┴┴───┴──────────────────────────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We can think of each number as specifying how many partitions beyond its neighbor to the left it is. So 0 means same partition, 1 means new partition, 2 means “skip one”, 3 means “skip two” etc.</p>
 </section>

@@ -490,14 +490,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">Was ON
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Was OFF
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">Was ON
+</pre></div><div class="output text_html"><pre class="language-APL">Was OFF
+</pre></div></div>
 </div>
 <p>The monadic operator <em>Key</em> (<code class="docutils literal notranslate"><span class="pre">⌸</span></code>) groups things. It can, for example, be used to generate histograms, or if you are so inclined, you can think of it as similar to SQL’s <a class="reference external" href="https://en.wikipedia.org/wiki/Group_by_(SQL)">GROUP BY</a> clause.</p>
 <p>Other resources on <em>Key</em>:</p>
 <ul class="simple">
-<li><p>Dyalog <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Key.htm">docs</a></p></li>
+<li><p>Dyalog <a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Key.htm">docs</a></p></li>
 <li><p>APL Orchard <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-5-even-more-apl-operators--">cultivation</a> (also covering <em>Stencil</em>)</p></li>
 </ul>
 <p>The function derived by <em>Key</em> is ambivalent (can be called either monadically or dyadically). The operand function can be any dyadic function returning a value.</p>
@@ -509,7 +509,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌──────┬─────┐
 │┌────┐│0 2 4│
 ││bill││     │
 │└────┘│     │
@@ -526,7 +526,7 @@ title="Print to PDF"
 ││sue│ │     │
 │└───┘ │     │
 └──────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>In this case, the operator function is called with each unique element from the argument array in turn as the left argument, and a vector of indices where they occur. If we wanted this to be a histogram, all we need to to is:</p>
 <div class="cell docutils container">
@@ -536,7 +536,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─┐
+<div class="output text_html"><pre class="language-APL">┌──────┬─┐
 │┌────┐│3│
 ││bill││ │
 │└────┘│ │
@@ -553,7 +553,7 @@ title="Print to PDF"
 ││sue│ │ │
 │└───┘ │ │
 └──────┴─┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>In the dyadic form, <em>Key</em> takes each unique element to the left, and groups the corresponding elements from the right. In other words, the following two formulations do the same thing:</p>
 <div class="cell docutils container">
@@ -565,7 +565,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌──────┬─────┐
 │┌────┐│0 2 4│
 ││bill││     │
 │└────┘│     │
@@ -582,7 +582,7 @@ title="Print to PDF"
 ││sue│ │     │
 │└───┘ │     │
 └──────┴─────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────┬─────┐
+</pre></div><div class="output text_html"><pre class="language-APL">┌──────┬─────┐
 │┌────┐│0 2 4│
 ││bill││     │
 │└────┘│     │
@@ -599,7 +599,7 @@ title="Print to PDF"
 ││sue│ │     │
 │└───┘ │     │
 └──────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Let’s look at a slightly more involved example. Here are the Rugby Union Gallagher English Premiership results for Jan, 2021, home fixtures only. The 0-0 games were COVID cancellations.</p>
 <div class="cell docutils container">
@@ -627,14 +627,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────┬─────────────────┬─────────────┬──────────────────┬───────┬──────────────────┐
+<div class="output text_html"><pre class="language-APL">┌────────────┬─────────────────┬─────────────┬──────────────────┬───────┬──────────────────┐
 │London Irish│Wasps            │Gloucester   │Worcester Warriors│Bristol│Leicester Tigers  │
 ├────────────┼─────────────────┼─────────────┼──────────────────┼───────┼──────────────────┤
 │Harlequins  │Newcastle Falcons│Exeter Chiefs│Northampton Saints│Bath   │Sale              │
 ├────────────┼─────────────────┼─────────────┼──────────────────┼───────┼──────────────────┤
 │London Irish│Leicester Tigers │Wasps        │Gloucester        │Bristol│Worcester Warriors│
 └────────────┴─────────────────┴─────────────┴──────────────────┴───────┴──────────────────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>and</p>
 <div class="cell docutils container">
@@ -644,14 +644,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─────┬─────┬─────┬─────┬─────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌─────┬─────┬─────┬─────┬─────┬─────┐
 │31 22│17 49│26 31│17 21│48 3 │15 25│
 ├─────┼─────┼─────┼─────┼─────┼─────┤
 │27 27│22 10│7 20 │0 0  │44 52│20 13│
 ├─────┼─────┼─────┼─────┼─────┼─────┤
 │0 0  │36 31│34 5 │19 22│29 17│0 0  │
 └─────┴─────┴─────┴─────┴─────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>To illustrate the similarity with SQL’s <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, by using dyadic <em>Key</em>, we can group the scores under each team:</p>
 <div class="cell docutils container">
@@ -661,7 +661,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────────────────┬─────┐
+<div class="output text_html"><pre class="language-APL">┌────────────────────┬─────┐
 │┌────────────┐      │31 22│
 ││London Irish│      │ 0  0│
 │└────────────┘      │     │
@@ -710,7 +710,7 @@ title="Print to PDF"
 ││Sale│              │     │
 │└────┘              │     │
 └────────────────────┴─────┘
-</span></div></div>
+</pre></div></div>
 </div>
 <p>One more example. Given a vector, return the most frequent element, or if there are several, return all of those:</p>
 <div class="cell docutils container">
@@ -720,8 +720,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">is
+</pre></div></div>
 </div>
 <p>Ouch.</p>
 <p>A lot of stuff there we haven’t seen yet, and rather ‘golfy’. Let’s unpick it, and see how far we get. From the right we first have our <em>Key</em>:</p>
@@ -732,11 +732,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0  0
+<div class="output text_html"><pre class="language-APL">0 0 0  0
 1 4 7 10
 2 3 5  6
 8 9 0  0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>That’s just the indices of each unique element in turn, as if we’d written</p>
 <div class="cell docutils container">
@@ -746,11 +746,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0  0
+<div class="output text_html"><pre class="language-APL">0 0 0  0
 1 4 7 10
 2 3 5  6
 8 9 0  0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>We then prepend a 0 column</p>
 <div class="cell docutils container">
@@ -760,11 +760,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0  0
+<div class="output text_html"><pre class="language-APL">0 0 0 0  0
 0 1 4 7 10
 0 2 3 5  6
 0 8 9 0  0
-</span></div></div>
+</pre></div></div>
 </div>
 <p>Why is this? It doesn’t seem to be necessary?</p>
 <div class="cell docutils container">
@@ -774,8 +774,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">is
+</pre></div></div>
 </div>
 <p>This is just guarding against a special case – should the function be passed an empty argument, we don’t want to error:</p>
 <div class="cell docutils container">
@@ -800,8 +800,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">
+</pre></div></div>
 </div>
 <p>Anyway. After prepending a zero-col, we pick the <em>last</em> column:</p>
 <div class="cell docutils container">
@@ -811,8 +811,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 10 6 0
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">0 10 6 0
+</pre></div></div>
 </div>
 <p>This is how we can find the most frequent element(s) without any sorting – the vector(s) of indices of the most frequent elements will be the longest, and hence the non-zero elements in the last column will be corresponding to the last occurrence of the most frequent elements. We need to exclude the zeros first:</p>
 <div class="cell docutils container">
@@ -822,8 +822,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 6
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">10 6
+</pre></div></div>
 </div>
 <p>and then enclose and index:</p>
 <div class="cell docutils container">
@@ -833,8 +833,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">is
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">is
+</pre></div></div>
 </div>
 <p>Pretty cool, eh? But there is one gotcha here –</p>
 <div class="cell docutils container">
@@ -844,8 +844,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">bc
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">bc
+</pre></div></div>
 </div>
 <p>If the argument array contains only unique cells, we get the wrong result if we run under <code class="docutils literal notranslate"><span class="pre">⎕IO←0</span></code>. Set it to 1 and it works:</p>
 <div class="cell docutils container">
@@ -855,10 +855,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">abc
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">abc
+</pre></div></div>
 </div>
-<p>This is, of course, to do with the excluding of zeros from the last column. Unfortunately, as we rely on 0 being the <a class="reference external" href="help.dyalog.com/18.0/index.htm#Language/Introduction/Variables/Prototypes%20and%20Fill%20Items.htm">fill item</a> for the array, so sadly we can’t prepend, say, a negative number instead of 0 for ⎕IO-independence:</p>
+<p>This is, of course, to do with the excluding of zeros from the last column. Unfortunately, as we rely on 0 being the <a class="reference external" href="help.dyalog.com/latest/index.htm#Language/Introduction/Variables/Prototypes%20and%20Fill%20Items.htm">fill item</a> for the array, so sadly we can’t prepend, say, a negative number instead of 0 for ⎕IO-independence:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⌷</span><span class="na">⍨</span><span class="o">⊂</span><span class="m">¯1</span><span class="o">~</span><span class="na">⍨</span><span class="o">⊢</span><span class="na">/</span><span class="m">¯1</span><span class="o">,⊢</span><span class="na">⌸</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;abc&#39;</span><span class="w"> </span><span class="c1">⍝ Whilst this works....</span><span class="w"></span>
@@ -867,9 +867,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">abc
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">MisM
-</span></div></div>
+<div class="output text_html"><pre class="language-APL">abc
+</pre></div><div class="output text_html"><pre class="language-APL">MisM
+</pre></div></div>
 </div>
 <p>Here are some drills on <em>Key</em>, suggested by Roger Hui in his <a class="reference external" href="https://www.jsoftware.com/papers/APL_exercises/">APL Exercises</a>. Try to work out in your head what the answers are before you reveal:</p>
 <div class="cell tag_hide-output docutils container">
@@ -884,7 +884,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬───────────────────┐
+<div class="output text_html"><pre class="language-APL">┌─┬───────────────────┐
 │S│0                  │
 ├─┼───────────────────┤
 │u│1 32               │
@@ -917,7 +917,7 @@ title="Print to PDF"
 ├─┼───────────────────┤
 │o│28 31              │
 └─┴───────────────────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">S 1
+</pre></div><div class="output text_html"><pre class="language-APL">S 1
 u 2
 p 2
 e 2
@@ -933,9 +933,9 @@ t 1
 x 1
 d 1
 o 2
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 2 2 2 2 3 3 3 7 1 1 2 1 1 1 2
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">Supercalifgstxdo
-</span></div></div>
+</pre></div><div class="output text_html"><pre class="language-APL">1 2 2 2 2 3 3 3 7 1 1 2 1 1 1 2
+</pre></div><div class="output text_html"><pre class="language-APL">Supercalifgstxdo
+</pre></div></div>
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
@@ -953,7 +953,7 @@ o 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌─┬─────┐
+<div class="output text_html"><pre class="language-APL">┌─┬─────┐
 │a│10 11│
 ├─┼─────┤
 │b│12 13│
@@ -976,7 +976,7 @@ o 2
 ├─┼─────┤
 │k│30 31│
 └─┴─────┘
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 1
+</pre></div><div class="output text_html"><pre class="language-APL">a 1
 b 1
 c 1
 d 1
@@ -987,9 +987,9 @@ h 1
 i 1
 j 1
 k 1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1 1 1 1 1 1 1 1
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">abcdefghijk
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 21
+</pre></div><div class="output text_html"><pre class="language-APL">1 1 1 1 1 1 1 1 1 1 1
+</pre></div><div class="output text_html"><pre class="language-APL">abcdefghijk
+</pre></div><div class="output text_html"><pre class="language-APL">a 21
 b 25
 c 29
 d 33
@@ -1000,7 +1000,7 @@ h 49
 i 53
 j 57
 k 61
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 11
+</pre></div><div class="output text_html"><pre class="language-APL">a 11
 b 13
 c 15
 d 17
@@ -1011,7 +1011,7 @@ h 25
 i 27
 j 29
 k 31
-</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">a 10
+</pre></div><div class="output text_html"><pre class="language-APL">a 10
 b 12
 c 14
 d 16
@@ -1022,7 +1022,7 @@ h 24
 i 26
 j 28
 k 30
-</span></div></div>
+</pre></div></div>
 </div>
 </section>
 
