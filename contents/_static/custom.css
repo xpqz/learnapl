@@ -6,7 +6,7 @@
 
 /* Use the code font where relevant. */
  t, code, kbd, samp, pre, .output.text_html span {
-    font-family: codefont monospace !important
+    font-family: codefont, monospace !important
 }
 
 /* Reduce excessive line height in code outputs */
