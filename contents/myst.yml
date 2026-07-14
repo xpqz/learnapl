@@ -43,3 +43,4 @@ site:
   options:
     logo: logo2.png
     favicon: favicon.ico
+    style: ./custom.css
