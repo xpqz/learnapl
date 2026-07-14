@@ -1,0 +1,45 @@
+version: 1
+project:
+  title: Learning APL
+  authors:
+    - name: Stefan Kruger, Computational Array and Magic
+  github: xpqz/learnapl
+  license:
+    content: CC-BY-NC-SA-4.0
+  bibliography:
+    - references.bib
+  # Explicit TOC: reproduces JB1 `only_build_toc_files: true` (only listed
+  # files build) and pins chapter order. First entry is the landing page.
+  toc:
+    - file: intro.ipynb
+    - file: array.ipynb
+    - file: indexing.ipynb
+    - file: manip.ipynb
+    - file: functions.ipynb
+    - file: iteration.ipynb
+    - file: key.ipynb
+    - file: at.ipynb
+    - file: rank.ipynb
+    - file: stencil.ipynb
+    - file: over.ipynb
+    - file: dyadictrn.ipynb
+    - file: decode.ipynb
+    - file: products.ipynb
+    - file: tacit.ipynb
+    - file: find.ipynb
+    - file: cookbook1.ipynb
+    - file: errors.ipynb
+    - file: aplway.ipynb
+    - file: namespaces.ipynb
+    - file: io.ipynb
+    - file: http.ipynb
+    - file: dfnsws.ipynb
+    - file: testing.ipynb
+    - file: workflow.ipynb
+    - file: next.ipynb
+    - file: tldr.ipynb
+site:
+  template: book-theme
+  options:
+    logo: logo2.png
+    favicon: favicon.ico
