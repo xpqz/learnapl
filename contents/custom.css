@@ -101,6 +101,53 @@
   display: inline-block;
 }
 
+/* ---- Kernel result blocks: frame like the code input cells ---- */
+
+/* The book renders outputs with thebe, which injects a full JupyterLab
+   OutputArea (jp-OutputArea > jp-OutputArea-child > jp-RenderedHTMLCommon > pre)
+   inside MyST's [data-name="outputs-container"] (a live/kernel build uses
+   "active-outputs-container"). Frame that wrapper like the input cell
+   (.myst-code): same border + shadow, but a green left rule so a result reads as
+   distinct from the blue input. overflow-x:auto makes the frame itself the one
+   scroll box for wide arrays (see the scrollbar rule below). */
+.article.content [data-name="outputs-container"],
+.article.content [data-name="active-outputs-container"] {
+  margin: 1.25rem 0;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #e5e7eb;                    /* gray-200, as the input cell */
+  border-left: 4px solid #34d399;               /* emerald-400: signals "result" */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  overflow-x: auto;
+}
+.dark .article.content [data-name="outputs-container"],
+.dark .article.content [data-name="active-outputs-container"] {
+  border-color: #1f2937;                        /* gray-800 */
+  border-left-color: #34d399;
+}
+
+/* Flatten JupyterLab's wrapper spacing: .jp-RenderedHTMLCommon>pre ships
+   margin:1.5em 2em and its last child adds another 0.5em, which pile several
+   results from one cell into large gaps. Zero them so results sit tight inside
+   the one frame. */
+.article.content [data-name="outputs-container"] pre,
+.article.content [data-name="active-outputs-container"] pre,
+.article.content [data-name="outputs-container"] .jp-RenderedHTMLCommon > *:last-child,
+.article.content [data-name="active-outputs-container"] .jp-RenderedHTMLCommon > *:last-child {
+  margin: 0 !important;
+}
+
+/* JupyterLab sets overflow:auto on every output widget, so macOS renders a stray
+   per-output scrollbar on hover (a lone row's worth of horizontal bar). Let the
+   framed container above be the only scroll box. */
+.article.content [data-name="outputs-container"] .jp-OutputArea-child > .lm-Widget,
+.article.content [data-name="outputs-container"] .jp-OutputArea,
+.article.content [data-name="outputs-container"] .thebe-output,
+.article.content [data-name="active-outputs-container"] .jp-OutputArea-child > .lm-Widget,
+.article.content [data-name="active-outputs-container"] .jp-OutputArea,
+.article.content [data-name="active-outputs-container"] .thebe-output {
+  overflow: visible !important;
+}
+
 /* ---- Headings: calmer weight + APL symbols as inline code ---- */
 
 /* The theme sets headings very heavy (h1 800 / h2 700 / h3 600) — "shouty".
