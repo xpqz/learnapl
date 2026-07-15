@@ -37,6 +37,7 @@ project:
     - file: workflow.ipynb
     - file: next.ipynb
     - file: tldr.ipynb
+    - file: colophon.md
 site:
   template: book-theme
   options:
