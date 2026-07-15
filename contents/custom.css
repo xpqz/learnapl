@@ -92,6 +92,15 @@
   font-size: 0.95rem;
 }
 
+/* The box-drawing output is an INLINE <span>; an inline element's line boxes
+   can't shrink below the containing block's line-height (our body 1.6), so a
+   bare line-height:1 on it was floored at 1.6 — that's why the box rows kept
+   gapping. Giving it its own block context makes line-height:1 authoritative,
+   so │ ┌ └ finally connect. */
+.article.content [style*="monospace"] {
+  display: inline-block;
+}
+
 /* ---- Headings: calmer weight + APL symbols as inline code ---- */
 
 /* The theme sets headings very heavy (h1 800 / h2 700 / h3 600) — "shouty".
@@ -115,4 +124,12 @@
 .article.content h4 code {
   color: var(--tw-prose-code);
   font-weight: inherit;
+  /* Scale with the heading rather than shrinking to the body-code size — the
+     0.95rem code rule above was leaking in and making heading code tiny. */
+  font-size: 0.9em;
+}
+
+/* ---- Remove the "Made with MyST" sidebar branding ---- */
+.myst-primary-sidebar-footer {
+  display: none;
 }

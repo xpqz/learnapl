@@ -2,10 +2,9 @@ version: 1
 project:
   title: Learning APL
   authors:
-    - name: Stefan Kruger, Computational Array and Magic
+    - name: Stefan Kruger
+      affiliation: Computational Array and Magic
   github: xpqz/learnapl
-  license:
-    content: CC-BY-NC-SA-4.0
   bibliography:
     - references.bib
   # Explicit TOC: reproduces JB1 `only_build_toc_files: true` (only listed
@@ -44,3 +43,7 @@ site:
     logo: logo2.png
     favicon: favicon.ico
     style: ./custom.css
+    hide_authors: true
+  parts:
+    footer: |
+      Stefan Kruger, Computational Array and Magic · This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence](https://creativecommons.org/licenses/by-nc-sa/4.0/).
