@@ -207,3 +207,9 @@
 
 /* shrink the big arrow to a chevron-sized glyph */
 .myst-footer-link-icon { width: 1rem !important; height: 1rem !important; }
+
+/* ---- Scale down the oversized codon diagram (dyadic transpose) ---- */
+.article.content img[alt="codons"] {
+  max-width: 65%;
+  height: auto;
+}
