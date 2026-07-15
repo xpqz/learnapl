@@ -1,10 +1,10 @@
 # Python dependencies for the Learning APL book (Jupyter Book 2 / MyST).
 # Frozen with: uv pip freeze  (Python 3.12, see build-notes.md).
+# Includes jupyterlab + notebook for interactive editing (VS Code / Jupyter).
 #
 # NOT listed here (installed separately, see build-notes.md):
-#   - dyalog-jupyter-kernel: editable install from source
-#       github.com/Dyalog/dyalog-jupyter-kernel @ 16d0b89 (master)
-#   - Node.js >= 20 (MyST engine runtime; auto-provisioned via nodeenv if absent)
+#   - dyalog-jupyter-kernel: editable install from source (github.com/Dyalog/dyalog-jupyter-kernel)
+#   - Node.js >= 20 (MyST engine runtime)
 #
 anyio==4.14.2
 appnope==0.1.4
@@ -12,17 +12,26 @@ argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 arrow==1.4.0
 asttokens==3.0.2
+async-lru==2.3.0
 attrs==26.1.0
+babel==2.18.0
 beautifulsoup4==4.15.0
 bleach==6.4.0
+brotli==1.2.0
+certifi==2026.6.17
 cffi==2.1.0
+charset-normalizer==3.4.9
 comm==0.2.3
 debugpy==1.8.21
 decorator==5.3.1
 defusedxml==0.7.1
 executing==2.2.1
 fastjsonschema==2.21.2
+fonttools==4.63.0
 fqdn==1.5.1
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
 idna==3.18
 ipykernel==7.3.0
 ipython==9.15.0
@@ -30,16 +39,21 @@ ipython-pygments-lexers==1.1.1
 isoduration==20.11.0
 jedi==0.20.0
 jinja2==3.1.6
+json5==0.15.0
 jsonpointer==3.1.1
 jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 jupyter-book==2.1.6
+jupyter-builder==1.1.0
 jupyter-client==8.9.1
 jupyter-core==5.9.1
 jupyter-events==0.12.1
+jupyter-lsp==2.3.1
 jupyter-server==2.20.0
 jupyter-server-terminals==0.5.4
+jupyterlab==4.6.1
 jupyterlab-pygments==0.3.0
+jupyterlab-server==2.28.0
 lark==1.3.1
 markupsafe==3.0.3
 matplotlib-inline==0.2.2
@@ -49,6 +63,8 @@ nbconvert==7.17.1
 nbformat==5.10.4
 nest-asyncio2==1.7.2
 nodeenv==1.10.0
+notebook==7.6.0
+notebook-shim==0.2.4
 packaging==26.2
 pandocfilters==1.5.1
 parso==0.8.7
@@ -66,6 +82,7 @@ python-json-logger==4.1.0
 pyyaml==6.0.3
 pyzmq==27.1.0
 referencing==0.37.0
+requests==2.34.2
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 rfc3987-syntax==1.1.0
@@ -81,6 +98,7 @@ traitlets==5.15.1
 typing-extensions==4.16.0
 tzdata==2026.3
 uri-template==1.3.0
+urllib3==2.7.0
 wcwidth==0.8.2
 webcolors==25.10.0
 webencodings==0.5.1
