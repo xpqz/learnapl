@@ -133,3 +133,77 @@
 .myst-primary-sidebar-footer {
   display: none;
 }
+
+/* ---- Folded (hidden) output boxes ---- */
+/* MyST renders deliberately-hidden cell output as a .myst-dropdown ("Output"
+   disclosure). The theme styles it as a bold grey shadowed bar, which shouts;
+   these outputs are hidden precisely because they don't matter. Make the
+   toggle quiet: no box, small light label, dimmed until hover. (No content
+   {dropdown} directives exist in the book, so every .myst-dropdown is output.) */
+.article.content .myst-dropdown {
+  box-shadow: none !important;
+  background: transparent !important;
+  margin: 0.3rem 0 !important;
+}
+.article.content .myst-dropdown-header {
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  min-height: 0 !important;
+  padding: 0.1rem 0 !important;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+.article.content .myst-dropdown-header:hover {
+  opacity: 0.85;
+  box-shadow: none !important;
+}
+.article.content .myst-dropdown-header-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+  padding-left: 0 !important;
+}
+
+/* ---- Next / previous footer links: JB1 plain-text style ---- */
+/* JB2 renders these as bordered cards with a "Learning APL" eyebrow and a big
+   arrow. Restyle to the old look: a thin top rule, small grey Previous/Next
+   labels, blue link titles pushed to the outer edges, and a small chevron.
+   prev vs next is distinguished by the inner .text-right (prev) class. */
+.myst-footer-links {
+  border-top: 1px solid #e5e7eb !important;
+  padding-top: 1.25rem !important;
+  margin-top: 1.5rem !important;
+}
+.dark .myst-footer-links { border-top-color: #374151 !important; }
+
+.myst-footer-link {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  color: #2563eb !important;
+  font-weight: 600 !important;
+}
+.dark .myst-footer-link { color: #60a5fa !important; }
+.myst-footer-link:hover { text-decoration: underline; }
+
+/* eyebrow: hide "Learning APL", inject small grey Previous / Next */
+.myst-footer-link-group {
+  font-size: 0 !important;
+  font-weight: 400 !important;
+  color: #6b7280 !important;
+  margin-bottom: 0.1rem;
+}
+.dark .myst-footer-link-group { color: #9ca3af !important; }
+.myst-footer-link .flex-grow.text-right .myst-footer-link-group::before {
+  content: "Previous"; font-size: 0.8rem;
+}
+.myst-footer-link .flex-grow:not(.text-right) .myst-footer-link-group::before {
+  content: "Next"; font-size: 0.8rem;
+}
+
+/* alignment: prev content to the left edge, next to the right edge */
+.myst-footer-link .flex-grow.text-right { text-align: left !important; }
+.myst-footer-link .flex-grow:not(.text-right) { text-align: right !important; }
+
+/* shrink the big arrow to a chevron-sized glyph */
+.myst-footer-link-icon { width: 1rem !important; height: 1rem !important; }
