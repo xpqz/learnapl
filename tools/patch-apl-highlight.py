@@ -38,16 +38,20 @@ from pathlib import Path
 # theme ships (e.g. ada-*.js). highlight.js has no APL grammar upstream, so this
 # is authored here; it covers the tokens the JB1/Pygments edition coloured.
 GRAMMAR = r"""export default function(hljs){
+  var NAME = /[A-Za-z_∆⍙][A-Za-z0-9_∆⍙]*/;
+  var PRIMITIVE = /[-+×÷*⍟⌹○!?⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~,⍪⍴⌽⊖⍉→←¨⍨⍣⍠⍤⍥∘.⌸⌺⍢⌶⋄@|⍎⍕\/\\⌿⍀{}()\[\];]/;
   return {
     name: "APL",
     case_insensitive: false,
     contains: [
       hljs.COMMENT(/⍝/, /$/),
       { className: "string", begin: /'/, end: /'/, contains: [{ begin: /''/ }] },
-      { className: "meta", begin: /^\s*[\]\)][A-Za-z][\w-]*/ },
+      { className: "meta", begin: /^\s*[\]\)]/, end: /$/ },
       { className: "built_in", begin: /[⎕⍞][A-Za-z]*/ },
-      { className: "variable.language", begin: /[⍺⍵⍶⍹∇]/ },
-      { className: "number", begin: /¯?(?:\d+\.?\d*|\.\d+)(?:[eE]¯?\d+)?(?:[jJ]¯?(?:\d+\.?\d*|\.\d+))?/ }
+      { className: "variable", begin: /[⍺⍵⍶⍹∇]/ },
+      { className: "number", begin: /¯?(?:\d+\.?\d*|\.\d+)(?:[eE]¯?\d+)?(?:[jJ]¯?(?:\d+\.?\d*|\.\d+))?/ },
+      { className: "title", begin: NAME },
+      { className: "keyword", begin: PRIMITIVE }
     ]
   };
 }

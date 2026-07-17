@@ -106,6 +106,22 @@
   display: inline-block;
 }
 
+/* ---- APL input-cell syntax highlighting ---- */
+
+/* highlight.js ships no APL grammar, so tools/patch-apl-highlight.py injects a
+   local one into the theme bundle. Pin the token palette here (matching the JB1
+   edition: names teal, primitive glyphs purple, numbers blue, comments green)
+   so it does not depend on the theme's default hljs stylesheet. Scoped to input
+   cells; kernel output is box-drawing, not tokenised. */
+.article.content .myst-code-body .hljs-comment  { color: #22863a; font-style: italic; } /* ⍝ comments   */
+.article.content .myst-code-body .hljs-string   { color: #b31d28; }                     /* 'strings'    */
+.article.content .myst-code-body .hljs-number   { color: #005cc5; }                     /* numbers      */
+.article.content .myst-code-body .hljs-title    { color: #0e7490; }                     /* names        */
+.article.content .myst-code-body .hljs-keyword  { color: #6f42c1; }                     /* primitives   */
+.article.content .myst-code-body .hljs-built_in { color: #6f42c1; }                     /* ⎕ ⍞ names    */
+.article.content .myst-code-body .hljs-variable { color: #6f42c1; }                     /* ⍺ ⍵ ∇ args   */
+.article.content .myst-code-body .hljs-meta     { color: #a626a4; }                     /* ] ) commands */
+
 /* ---- Kernel result blocks: frame like the code input cells ---- */
 
 /* The book renders outputs with thebe, which injects a full JupyterLab
