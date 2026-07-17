@@ -46,7 +46,7 @@ GRAMMAR = r"""export default function(hljs){
     contains: [
       hljs.COMMENT(/⍝/, /$/),
       { className: "string", begin: /'/, end: /'/, contains: [{ begin: /''/ }] },
-      { className: "meta", begin: /^\s*[\]\)]/, end: /$/ },
+      { className: "meta", begin: /^\s*[\]\)]/, end: /$/, contains: [hljs.COMMENT(/⍝/, /$/)] },
       { className: "built_in", begin: /[⎕⍞][A-Za-z]*/ },
       { className: "variable", begin: /[⍺⍵⍶⍹∇]/ },
       { className: "number", begin: /¯?(?:\d+\.?\d*|\.\d+)(?:[eE]¯?\d+)?(?:[jJ]¯?(?:\d+\.?\d*|\.\d+))?/ },

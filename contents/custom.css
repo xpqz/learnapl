@@ -121,6 +121,8 @@
 .article.content .myst-code-body .hljs-built_in { color: #6f42c1; }                     /* ⎕ ⍞ names    */
 .article.content .myst-code-body .hljs-variable { color: #6f42c1; }                     /* ⍺ ⍵ ∇ args   */
 .article.content .myst-code-body .hljs-meta     { color: #a626a4; }                     /* ] ) commands */
+/* A ⍝ comment on a ] command line nests as hljs-meta+hljs-comment; keep it green. */
+.article.content .myst-code-body .hljs-meta.hljs-comment { color: #22863a; }
 
 /* ---- Kernel result blocks: frame like the code input cells ---- */
 
