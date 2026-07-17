@@ -90,6 +90,11 @@
   font-family: "APL385", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
   line-height: 1 !important;
   font-size: 0.95rem;
+  /* JupyterLab's .jp-RenderedHTMLCommon pre forces white-space:pre-wrap, which
+     wraps wide box-drawing output and shreds the boxes. Keep APL output on its
+     own lines (as Dyalog's ]rows on intends); the framed container scrolls
+     horizontally for anything too wide. */
+  white-space: pre !important;
 }
 
 /* The box-drawing output is an INLINE <span>; an inline element's line boxes
@@ -123,6 +128,15 @@
 .dark .article.content [data-name="active-outputs-container"] {
   border-color: #1f2937;                        /* gray-800 */
   border-left-color: #34d399;
+}
+
+/* A cell with no result (a shy assignment like ⎕IO←0) still emits an empty
+   output container; without this the frame above would draw it as a blank box.
+   Real results and folded-output dropdowns always have child nodes, so :empty
+   uniquely targets the no-output case. */
+.article.content [data-name="outputs-container"]:empty,
+.article.content [data-name="active-outputs-container"]:empty {
+  display: none;
 }
 
 /* Flatten JupyterLab's wrapper spacing: .jp-RenderedHTMLCommon>pre ships
