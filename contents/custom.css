@@ -71,10 +71,24 @@
 
 /* ---- Code sizing & results-box leading ---- */
 
-/* Inline code + input cells: slightly larger than the theme's text-sm. */
-.article.content code,
-.article.content .myst-code-body {
-  font-size: 0.95rem;
+/* Inline code: integer px, matching the input cells. */
+.article.content code {
+  font-size: 15px;
+}
+
+/* Input code cells: force an INTEGER px font-size AND an integer px line box on
+   the block, its <pre> and its <code>. react-syntax-highlighter renders the
+   code as <pre>(13px)/<code> carrying their own unitless ~1.31 leading, which
+   inherits as a number and re-multiplies per font-size -- so a plain
+   line-height:1 on the outer div never reaches the lines. Pinning 15px/15px
+   here (with !important to beat rsh's inline styles) makes the box-drawing in
+   2D comments (│ ┌ └ ┴, drawn with aplcomment) tile on whole device pixels;
+   a fractional size sub-pixel-gaps the strokes. Matches the output boxes below. */
+.article.content .myst-code-body,
+.article.content .myst-code-body pre,
+.article.content .myst-code-body code {
+  font-size: 15px !important;
+  line-height: 15px !important;
 }
 
 /* Kernel OUTPUT. Dyalog emits box-drawing arrays as
@@ -89,7 +103,7 @@
 .article.content .language-APL {
   font-family: "APL385", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
   line-height: 1 !important;
-  font-size: 0.95rem;
+  font-size: 15px;
   /* JupyterLab's .jp-RenderedHTMLCommon pre forces white-space:pre-wrap, which
      wraps wide box-drawing output and shreds the boxes. Keep APL output on its
      own lines (as Dyalog's ]rows on intends); the framed container scrolls
@@ -113,7 +127,7 @@
    edition: names teal, primitive glyphs purple, numbers blue, comments green)
    so it does not depend on the theme's default hljs stylesheet. Scoped to input
    cells; kernel output is box-drawing, not tokenised. */
-.article.content .myst-code-body .hljs-comment  { color: #22863a; font-style: italic; } /* ⍝ comments   */
+.article.content .myst-code-body .hljs-comment  { color: #22863a; font-style: normal; } /* ⍝ comments (upright: keeps aplcomment box-drawing aligned) */
 .article.content .myst-code-body .hljs-string   { color: #b31d28; }                     /* 'strings'    */
 .article.content .myst-code-body .hljs-number   { color: #005cc5; }                     /* numbers      */
 .article.content .myst-code-body .hljs-title    { color: #0e7490; }                     /* names        */
@@ -293,5 +307,60 @@
   height: auto;
 }
 
+/* ---- Float a figure to the right so section prose wraps around it ---- */
+.article.content .fig-float-right {
+  float: right;
+  margin: 0.2rem 0 0.8rem 1.4rem;
+  max-width: 45%;
+}
+/* Code/literal blocks are block boxes, so a plain one slides its full-width
+   background under a right float. Give them their own block formatting context
+   so the box shrinks beside the float instead of bleeding into it. */
+.article.content .myst-code {
+  display: flow-root;
+}
+
 /* ---- Remove the dark-mode switcher (for now) ---- */
 .myst-theme-button { display: none !important; }
+
+/* ---- Widen the body text column on wide screens ---- */
+/* The book-theme caps content ("body") at 6 × minmax(8ch,10ch) = 60ch, which
+   leaves a lot of empty space at desktop widths. Bump the six middle tracks to
+   12ch (→ 72ch measure) while keeping EVERY named grid line, so the right
+   Contents panel and any margin content still resolve to their columns; the
+   extra width just eats the far-right 1fr slack. Scoped to ≥1280px (wide
+   screens); narrower layouts keep the theme's tighter margins. */
+@media (min-width: 1280px) {
+  .article-grid {
+    grid-template-columns:
+      [screen-start] .25rem
+      [screen-inset-start] 1fr
+      [page-start] 3rem
+      [page-inset-start] minmax(4rem, 9rem)
+      [body-outset-start] 3rem
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, 12ch)
+      [middle-start] minmax(8ch, 12ch)
+      [gutter-left-end] minmax(8ch, 12ch)
+      minmax(8ch, 12ch)
+      [gutter-right-start] minmax(8ch, 12ch)
+      [middle-end] minmax(8ch, 12ch)
+      [body-inset-end] 1rem
+      [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(4rem, 9rem)
+      [page-inset-end] 3rem
+      [page-end] 1fr
+      [screen-inset-end] .25rem
+      [screen-end];
+  }
+}
+
+/* ---- Left ToC: tighter type + leading, closer to the JB1 sidebar ---- */
+/* Theme default is 16px / 24px line-height / 8px padding per link, which reads
+   large and airy. Pull it in. Scoped to the primary (left) sidebar only. */
+.myst-primary-sidebar-toc a {
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

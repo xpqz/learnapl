@@ -12,6 +12,7 @@ project:
   toc:
     - file: intro.ipynb
     - file: array.ipynb
+    - file: aplan.ipynb
     - file: indexing.ipynb
     - file: manip.ipynb
     - file: functions.ipynb
@@ -21,6 +22,7 @@ project:
     - file: rank.ipynb
     - file: stencil.ipynb
     - file: over.ipynb
+    - file: behind.ipynb
     - file: dyadictrn.ipynb
     - file: decode.ipynb
     - file: products.ipynb
