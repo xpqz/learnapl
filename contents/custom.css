@@ -334,7 +334,10 @@
   .article-grid {
     grid-template-columns:
       [screen-start] .25rem
-      [screen-inset-start] 1fr
+      /* Floor the left margin so the widened content can never slide under the
+         overlaid left sidebar (~20rem from screen edge, incl. its scrollbar).
+         Only the RIGHT 1fr collapses to absorb the widening. */
+      [screen-inset-start] minmax(12rem, 1fr)
       [page-start] 3rem
       [page-inset-start] minmax(4rem, 9rem)
       [body-outset-start] 3rem
