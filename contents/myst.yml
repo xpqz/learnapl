@@ -14,7 +14,7 @@ project:
     - file: array.ipynb
     - file: aplan.ipynb
     - file: indexing.ipynb
-    - file: manip.ipynb
+    - file: glyphiary.ipynb
     - file: functions.ipynb
     - file: iteration.ipynb
     - file: key.ipynb
