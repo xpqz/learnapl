@@ -45,6 +45,103 @@ jupyter book build --html --execute        # HTML site into contents/_build/html
 `--execute` runs the notebooks (cached in `_build/execute/`); omit it to build from the
 outputs already in the `.ipynb` files.
 
+Note: notebook execution is cached and keyed on the **code cells** of each notebook —
+edits that only touch markdown cells (prose, admonitions, images) reuse the cache and
+show "Adding cached notebook outputs". `jupyter book build -d` (debug) forces execution.
+
+## PDF export (standalone tool)
+
+`tools/build-pdf.sh` is the one-shot recipe: execute → PDF → HTML → highlight patch.
+It produces `contents/exports/book.pdf` (git-ignored) and bundles it into the site, where
+every page's download panel links it (config: `project.exports` id `book-pdf` + the
+`project.downloads` entry in `myst.yml`).
+
+```sh
+tools/build-pdf.sh
+```
+
+System prerequisites (on top of the venv/Node ones above):
+
+```sh
+brew install typst imagemagick
+```
+
+Plus the **APL387 font** (https://dyalog.github.io/APL387/APL387.ttf), installed where
+typst finds it (e.g. `~/Library/Fonts/`); check with `typst fonts | grep -i apl`. It is
+used for all code and output in the PDF, mirroring the site (`custom.css` forces APL387 on
+code and output). Verify it's embedded: `pdffonts contents/exports/book.pdf | grep -i apl`.
+
+- The export is **Typst**, not LaTeX: `format: typst` with a **local fork** of the
+  `plain_typst_book` template at `contents/_templates/plain_typst_book` (git-tracked),
+  built via `jupyter book build --typst`. The `--pdf` flag routes to LaTeX and cannot
+  fetch typst templates; the machine's TeX install lacks `latexmk`, and pdflatex would
+  choke on APL glyphs anyway — don't go down that path.
+- The template fork (`style.typ`) does the PDF-specific layout: all raw/code and output
+  in **APL387** (`show raw: set text(font: "APL387")`); code cells and their output as
+  blue/green **panels** like the site; tighter output line pitch so box-drawn tables
+  render without gaps; **block quotes** as italic with a gray left rule; and a **footer**
+  (book title left, page number right) — enabled by `show_pagenumber: true`. It also
+  softens page breaks (`pagebreak(weak: true)`) so chapters starting exactly at a page
+  bottom don't leave blank pages.
+- **Vendored wrap-it:** typst 0.15.1 has no native float/text-wrapping, so the
+  float-right composition diagrams (atop, fork, over, behind, cos — `fig-float-right`
+  on the site) are placed with the vendored `wrap-it.typ` (Unlicense, kept in the
+  template dir and listed in `template.yml`'s `files:` so fresh exports copy it).
+- **Bundled-exporter patches** (`tools/patch-mystmd-outputs.py`,
+  `tools/patch-typst-keyboard.py`, `tools/patch-typst-links.py`) rewrite the installed
+  `jupyter_book/dist/jupyter-book.cjs` bundle before the typst export runs — there's no
+  config knob for these, so `build-pdf.sh` patches the exporter's own JS in place.
+  Idempotent (each checks whether it's already applied) and each refuses rather than
+  guessing if the bundle no longer matches (version drift). They fix, respectively:
+  `hide-output`-tagged cells losing their outputs in the typst path, `<kbd>` keystrokes
+  vanishing silently, and — the one that matters for correctness — link *destinations*
+  getting corrupted: the exporter's `linkHandler` ran hrefs through the same
+  markup-escaper used for displayed text, so any URL containing `_ * # $ &` etc. (every
+  Wikipedia and aplwiki.com link, since MediaWiki paths use underscores for spaces) came
+  out with a stray backslash baked into the actual link target, breaking it. Fixed by
+  only escaping the destination for Typst string-literal syntax (backslash, quote), not
+  markup.
+- **`tools/patch-typst.py`** post-processes the generated `.typ` files and recompiles
+  `exports/book.pdf` with the `typst` CLI (the build script runs it right after the
+  export). Its jobs, in order:
+  1. **Glyph unmangling** — the exporter rewrites a handful of Unicode characters in
+     prose and html-derived output text into symbol names (`→`→`arrow.r`, `←`→`arrow.l`,
+     `×`→`$times$`, `≠`→`$eq.not$`, `∼`→`$tilde$`, `∞`→`$infty$`); inside raw/code
+     blocks the characters survive intact. Reversed here.
+  2. **Output panels** — retags bare fenced blocks following ```apl input cells as
+     ```output so the template's panel rules can colour them green, like the site.
+  3. **Weak pagebreaks** — `#pagebreak()` → `#pagebreak(weak: true)`.
+  4. **Float-right diagrams** — rewrites the diagram `#image(...)` calls as
+     `wrap-content` blocks so the following paragraph wraps beside the image, like the
+     site's CSS.
+  5. **Illustration sizing** — clamps every markdown image to
+     `min(90%, 60%, native pixel width)`, so small diagrams aren't blown up and
+     pixelated (the exporter emits everything at `width: 90%`). Widths are read from
+     the PNG/JPEG/GIF headers directly.
+  6. **Glued blocks** — the exporter sometimes emits a heading/image directly after
+     another element's closing `]` with no newline; typst only recognises headings at
+     line starts, so a blank line is inserted before the following block.
+- Template edits (`style.typ`, `wrap-it.typ`) take effect on the next export — the
+  exporter copies the template dir's `files:` list into the temp build dir; the patch
+  script then works on the newest `_build/temp/myst*` dir.
+- The export uses the **project TOC order**, but a project-level export skips the landing
+  page — the export therefore lists `articles:` explicitly (intro.ipynb first). Keep that
+  list in sync with `toc` when adding/removing chapters.
+- **Kernel outputs must be `<pre class="language-APL">`-wrapped html, not
+  `<span style="white-space:pre; font-family: monospace">`.** The span form is emitted by
+  the export as a mangled single-line paragraph instead of a raw block (see above), while
+  the pre form becomes a proper raw block. All stored outputs were normalized to the pre
+  form — keep it that way (the site CSS styles both identically).
+- The export pipeline is stricter than the site renderer. Content patterns that silently
+  drop content from the PDF (already purged from the book, keep it that way):
+  - kind-less `:::{admonition} Title` blocks — use `:::{note} Title` (with
+    `:class: resources` if you want the site's resources-panel styling).
+  - a `(from [Link](url))` paragraph after a blockquote — use a `\--[Link](url)`
+    attribution line instead.
+  - raw `<kbd>` HTML — use inline code `` `key` ``.
+  - animated webp/gif images — typst (via `dwebp`) can't decode them; export a static
+    frame instead (imagemagick is installed for this).
+
 ## APL syntax highlighting (local theme patch)
 
 The book-theme highlights code with `react-syntax-highlighter` (highlight.js), which has

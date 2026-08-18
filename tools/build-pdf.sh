@@ -39,6 +39,10 @@ python "$root/tools/patch-mystmd-outputs.py"
 # typst renderer has no `keyboard` handler; see the script).
 python "$root/tools/patch-typst-keyboard.py"
 
+# ...and so link destinations containing `_ * # $ &` etc. (every Wikipedia/
+# aplwiki link) aren't corrupted with a stray backslash (see the script).
+python "$root/tools/patch-typst-links.py"
+
 cd "$root/contents"
 
 jupyter book build --execute --html
