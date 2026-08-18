@@ -88,19 +88,23 @@ code and output). Verify it's embedded: `pdffonts contents/exports/book.pdf | gr
   on the site) are placed with the vendored `wrap-it.typ` (Unlicense, kept in the
   template dir and listed in `template.yml`'s `files:` so fresh exports copy it).
 - **Bundled-exporter patches** (`tools/patch-mystmd-outputs.py`,
-  `tools/patch-typst-keyboard.py`, `tools/patch-typst-links.py`) rewrite the installed
-  `jupyter_book/dist/jupyter-book.cjs` bundle before the typst export runs — there's no
-  config knob for these, so `build-pdf.sh` patches the exporter's own JS in place.
-  Idempotent (each checks whether it's already applied) and each refuses rather than
-  guessing if the bundle no longer matches (version drift). They fix, respectively:
-  `hide-output`-tagged cells losing their outputs in the typst path, `<kbd>` keystrokes
-  vanishing silently, and — the one that matters for correctness — link *destinations*
-  getting corrupted: the exporter's `linkHandler` ran hrefs through the same
-  markup-escaper used for displayed text, so any URL containing `_ * # $ &` etc. (every
-  Wikipedia and aplwiki.com link, since MediaWiki paths use underscores for spaces) came
-  out with a stray backslash baked into the actual link target, breaking it. Fixed by
-  only escaping the destination for Typst string-literal syntax (backslash, quote), not
-  markup.
+  `tools/patch-typst-keyboard.py`, `tools/patch-typst-links.py`,
+  `tools/patch-typst-iframe.py`) rewrite the installed `jupyter_book/dist/jupyter-book.cjs`
+  bundle before the typst export runs — there's no config knob for these, so
+  `build-pdf.sh` patches the exporter's own JS in place. Idempotent (each checks whether
+  it's already applied) and each refuses rather than guessing if the bundle no longer
+  matches (version drift). They fix, respectively: `hide-output`-tagged cells losing
+  their outputs in the typst path, `<kbd>` keystrokes vanishing silently, link
+  *destinations* getting corrupted (the exporter's `linkHandler` ran hrefs through the
+  same markup-escaper used for displayed text, so any URL containing `_ * # $ &` etc. —
+  every Wikipedia and aplwiki.com link, since MediaWiki paths use underscores for spaces —
+  came out with a stray backslash baked into the actual link target, breaking it; fixed
+  by only escaping the destination for Typst string-literal syntax, not markup), and
+  `:::{iframe}` embeds (the ride.ipynb YouTube walkthroughs) rendering their
+  `:placeholder:` still image as a bare, unlinked `#image(...)` — the handler read the
+  placeholder's own path but never `node3.src` (the actual video URL), so the PDF reader
+  got a static frame with no way to reach the video; fixed by wrapping the placeholder in
+  a link to `node3.src`.
 - **`tools/patch-typst.py`** post-processes the generated `.typ` files and recompiles
   `exports/book.pdf` with the `typst` CLI (the build script runs it right after the
   export). Its jobs, in order:

@@ -43,6 +43,10 @@ python "$root/tools/patch-typst-keyboard.py"
 # aplwiki link) aren't corrupted with a stray backslash (see the script).
 python "$root/tools/patch-typst-links.py"
 
+# ...and so iframe embeds (the ride.ipynb YouTube walkthroughs) link their
+# static placeholder image through to the actual video (see the script).
+python "$root/tools/patch-typst-iframe.py"
+
 cd "$root/contents"
 
 jupyter book build --execute --html
