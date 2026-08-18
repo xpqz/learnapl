@@ -127,6 +127,12 @@ code and output). Verify it's embedded: `pdffonts contents/exports/book.pdf | gr
   6. **Glued blocks** — the exporter sometimes emits a heading/image directly after
      another element's closing `]` with no newline; typst only recognises headings at
      line starts, so a blank line is inserted before the following block.
+  7. **Image centering** — a bare markdown image renders as a plain `#image(...)`
+     call, which typst left-aligns like any other block; wrap those in
+     `#align(center, ...)`. Float-right diagrams (item 4) no longer look like a bare
+     `#image(...)` line by this point, and figure-captioned images (e.g. the ride.ipynb
+     video placeholders) are already centered by typst's own figure default, so neither
+     is touched.
 - Template edits (`style.typ`, `wrap-it.typ`) take effect on the next export — the
   exporter copies the template dir's `files:` list into the temp build dir; the patch
   script then works on the newest `_build/temp/myst*` dir.

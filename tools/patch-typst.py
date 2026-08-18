@@ -37,6 +37,13 @@ Two fixes on top of MyST's Typst export (see build-notes.md):
    recognises headings at the start of a line, so such text renders literally.
    Split the pair with a blank line.
 
+7. Image centering — the exporter emits a plain markdown image as a bare
+   #image(...) call, which Typst left-aligns like any other block. Center
+   those. Float-right diagrams (item 4) and figure-captioned images (already
+   centered by Typst's own figure default, e.g. the ride.ipynb video
+   placeholders) are left alone — the former no longer look like a bare
+   #image(...) line by this point, and the latter don't need it.
+
 Run from the repository root after `jupyter book build --typst`; the compiled
 PDF overwrites exports/book.pdf.
 """
@@ -173,6 +180,16 @@ def split_glued_blocks(text: str) -> tuple[str, int]:
     return re.subn(GLUE_RE, "]\n\n", text)
 
 
+IMAGE_LINE_RE = re.compile(r'^#image\("files/[^"]+", width: [\d.]+%\)$', re.MULTILINE)
+
+
+def center_images(text: str) -> tuple[str, int]:
+    """Center bare (non-floated, non-figure) images (see docstring, item 7)."""
+    # Inside align(...)'s argument list we're already in code mode, so the
+    # nested call is `image(...)`, not markup-mode's `#image(...)`.
+    return IMAGE_LINE_RE.subn(lambda m: f"#align(center, {m.group(0)[1:]})", text)
+
+
 def wrap_float_images(text: str) -> tuple[str, int]:
     """Float right-aligned diagrams and wrap their first paragraph beside them."""
     lines = text.split("\n")
@@ -223,6 +240,7 @@ def main() -> None:
     total_wrapped = 0
     total_glued = 0
     total_clamped = 0
+    total_centered = 0
     for path in sorted(glob.glob(os.path.join(temp, "*.typ"))):
         if os.path.basename(path) in ("style.typ", "aside_style.typ"):
             continue
@@ -239,13 +257,16 @@ def main() -> None:
         total_glued += glued
         text, clamped = clamp_image_widths(text, files_dir)
         total_clamped += clamped
+        text, centered = center_images(text)
+        total_centered += centered
         if text != orig:
             open(path, "w", encoding="utf-8").write(text)
-            print(f"patched {os.path.basename(path)} (tagged {tagged} outputs, wrapped {wrapped} diagrams, split {glued} glued blocks, clamped {clamped} images)")
+            print(f"patched {os.path.basename(path)} (tagged {tagged} outputs, wrapped {wrapped} diagrams, split {glued} glued blocks, clamped {clamped} images, centered {centered} images)")
     print(f"tagged {total_tagged} output blocks")
     print(f"wrapped {total_wrapped} float-right diagrams")
     print(f"split {total_glued} glued blocks")
     print(f"clamped {total_clamped} illustration widths")
+    print(f"centered {total_centered} images")
 
     out = os.path.join(ROOT, "contents", "exports", "book.pdf")
     subprocess.run(
