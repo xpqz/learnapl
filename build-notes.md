@@ -104,7 +104,9 @@ code and output). Verify it's embedded: `pdffonts contents/exports/book.pdf | gr
   `:placeholder:` still image as a bare, unlinked `#image(...)` — the handler read the
   placeholder's own path but never `node3.src` (the actual video URL), so the PDF reader
   got a static frame with no way to reach the video; fixed by wrapping the placeholder in
-  a link to `node3.src`.
+  a link to `node3.src` — rewritten from the iframe's `/embed/<id>` form (needs a
+  parent-page/JS context to play, so it doesn't work opened on its own) to the standard
+  `/watch?v=<id>` URL used everywhere else in the book.
 - **`tools/patch-typst.py`** post-processes the generated `.typ` files and recompiles
   `exports/book.pdf` with the `typst` CLI (the build script runs it right after the
   export). Its jobs, in order:

@@ -16,6 +16,13 @@ still frame in the PDF is clickable through to the actual video, escaped for
 Typst string-literal syntax (backslash, quote) the same way link destinations
 are handled elsewhere.
 
+`node3.src` for a YouTube embed is the `/embed/<id>` form required inside an
+`<iframe>` -- it needs a parent-page/JS context to actually play, so opened
+directly (as a PDF reader would) it doesn't behave like a normal watch page.
+The patch rewrites that specific form to the standard `/watch?v=<id>` URL,
+which is what every other YouTube link in the book already uses, and leaves
+any non-YouTube iframe source untouched.
+
 There is no config option for this, so we patch the exporter bundle in the
 venv, alongside `patch-mystmd-outputs.py`, `patch-typst-keyboard.py` and
 `patch-typst-links.py`.
@@ -54,7 +61,19 @@ GOOD = """  iframe(node3, state) {
     const { width: nodeWidth, url: nodeSrc, align: align2 } = image6;
     const src = nodeSrc;
     const width = getLatexImageWidth2(nodeWidth);
-    const dest = node3.src ? node3.src.replace(/\\\\/g, "\\\\\\\\").replace(/"/g, '\\\\"') : null;
+    let dest = node3.src || null;
+    if (dest) {
+      const marker = "youtube.com/embed/";
+      const idx = dest.indexOf(marker);
+      if (idx >= 0) {
+        const rest = dest.slice(idx + marker.length);
+        const qpos = rest.indexOf("?");
+        const vid = qpos >= 0 ? rest.slice(0, qpos) : rest;
+        const extra = qpos >= 0 ? "&" + rest.slice(qpos + 1) : "";
+        dest = dest.slice(0, idx) + "youtube.com/watch?v=" + vid + extra;
+      }
+      dest = dest.replace(/\\\\/g, "\\\\\\\\").replace(/"/g, '\\\\"');
+    }
     if (dest) {
       state.write(`#link("${dest}")[`);
     }
