@@ -307,6 +307,17 @@
   height: auto;
 }
 
+/* ---- Video embeds: correct the theme's aspect-ratio box ----
+   The book-theme sizes an {iframe} with a hardcoded `padding-bottom: 60%` box
+   (5:3), so a 16:9 screen recording gets letterboxed inside it. Tag the
+   directive with `:class: video-16x9` and the box matches the footage instead.
+   The class lands on the enclosing <figure>, and the padded box is a
+   grandchild: figure.video-16x9 > div.leading-[0] > div. The theme sets the
+   60% inline, so !important is needed to win. */
+.article.content .video-16x9 > div > div {
+  padding-bottom: 56.25% !important;
+}
+
 /* ---- Float a figure to the right so section prose wraps around it ---- */
 .article.content .fig-float-right {
   float: right;

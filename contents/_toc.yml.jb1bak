@@ -16,7 +16,7 @@ sections:
 - file: products
 - file: tacit
 - file: find
-- file: cookbook1
+- file: partitions
 - file: errors
 - file: aplway
 - file: namespaces

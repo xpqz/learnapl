@@ -7,6 +7,59 @@ project:
   github: xpqz/learnapl
   bibliography:
     - references.bib
+  # Standalone PDF export (Typst). Project-level export with no `articles`
+  # picks up the project TOC below, in order. Build with `jupyter book
+  # build --typst` BEFORE `--html` so the site bundles the PDF for download.
+  exports:
+    - id: book-pdf
+      format: typst
+      # Local fork of plain_typst_book (contents/_templates/) with APL387
+      # applied to all raw/code text in style.typ.
+      template: ./_templates/plain_typst_book
+      output: exports/book.pdf
+      # Explicit list: a project-level export without `articles` skips the
+      # landing page (intro.ipynb), which is a full chapter and must appear
+      # in the book. Keep in sync with `toc` below.
+      articles:
+        - intro.ipynb
+        - array.ipynb
+        - aplan.ipynb
+        - indexing.ipynb
+        - glyphiary.ipynb
+        - functions.ipynb
+        - iteration.ipynb
+        - key.ipynb
+        - at.ipynb
+        - rank.ipynb
+        - stencil.ipynb
+        - over.ipynb
+        - behind.ipynb
+        - dyadictrn.ipynb
+        - decode.ipynb
+        - products.ipynb
+        - tacit.ipynb
+        - find.ipynb
+        - partitions.ipynb
+        - errors.ipynb
+        - aplway.ipynb
+        - namespaces.ipynb
+        - io.ipynb
+        - http.ipynb
+        - dfnsws.ipynb
+        - testing.ipynb
+        - workflow.ipynb
+        - ride.ipynb
+        - next.ipynb
+        - tldr.ipynb
+        - colophon.md
+      options:
+        cover: IMG/cover.jpg
+        ToC_depth: 1
+        fontsize: 10
+  # Download panel entry: links the exported PDF on every page of the site.
+  downloads:
+    - id: book-pdf
+      title: Download book as PDF
   # Explicit TOC: reproduces JB1 `only_build_toc_files: true` (only listed
   # files build) and pins chapter order. First entry is the landing page.
   toc:
@@ -28,7 +81,7 @@ project:
     - file: products.ipynb
     - file: tacit.ipynb
     - file: find.ipynb
-    - file: cookbook1.ipynb
+    - file: partitions.ipynb
     - file: errors.ipynb
     - file: aplway.ipynb
     - file: namespaces.ipynb
@@ -37,13 +90,14 @@ project:
     - file: dfnsws.ipynb
     - file: testing.ipynb
     - file: workflow.ipynb
+    - file: ride.ipynb
     - file: next.ipynb
     - file: tldr.ipynb
     - file: colophon.md
 site:
   template: book-theme
   options:
-    logo: logo2.png
+    logo: IMG/logo2.png
     favicon: favicon.ico
     style: ./custom.css
     hide_authors: true

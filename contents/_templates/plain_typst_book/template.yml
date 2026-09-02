@@ -1,0 +1,121 @@
+jtex: v1
+kind: typst
+title: Plain Typst Book
+description: Easily create beautiful books in Typst
+template: template.typ
+
+files:
+  - template.typ
+  - style.typ
+  - aside_style.typ
+  - wrap-it.typ
+  - LICENSE
+  
+authors:
+  - name: Freek Pols
+    github: FreekPols
+    affiliations:
+      - Delft University of Technology
+  - name: Luuk Fröling
+    github: luukfroling
+    affiliations:
+      - Delft University of Technology
+version: 0.1.0
+license: MIT
+tags:
+  - book
+# thumbnail: ./examples/pixels/files/screenshot.png
+github: https://github.com/myst-templates/plain_typst_book
+doc:
+  - id: title
+    required: true
+  - id: authors
+    required: true
+  - id: subtitle
+  - id: short_title
+  - id: open_access
+  - id: keywords
+  - id: doi
+  - id: venue
+
+options:
+  - id: kind
+    type: string
+    description: The "kind" of the content, e.g. "Original Research" - shown as the title of the margin content on the first page
+
+
+# Include a figure at the cover page
+  - id: cover
+    type: file
+    description: An image path that is shown in the front page
+  - id: coverposition
+    type: number
+    description: Sets the vertical position of the cover 
+  - id: cover_width
+    type: number
+    description: Sets the width of the coverfigure
+
+
+# ToC
+  - id: ToC_depth
+    type: number
+    description: number to set the depth of ToC
+  - id: show_ToC
+    type: boolean
+    description: show ToC (default 1)
+
+# Page settings
+  - id: logo
+    type: file
+    description: An image path that is shown in the top right of the page
+  - id: logo_width
+    type: number
+    description: sets width of logo
+  - id: papersize
+    type: string
+    description: sets papersize
+  - id: show_pagenumber
+    type: boolean
+    description: shows page number (default 1)
+
+
+  # font
+  - id: fontstyle
+    type: string
+    description: sets the font
+  - id: fontsize
+    type: number
+    description: sets the fontsize
+  - id: margin_left
+    type: number
+    description: sets margin left (as percentage)
+  - id: margin_right
+    type: number
+    description: sets margin right (as percentage)
+  - id: margin_top
+    type: number
+    description: sets margin top (in cm)
+  - id: margin_bottom
+    type: number
+    description: sets  margin bottom (in cm)
+  - id: linespacing
+    type: number
+    description: sets the linespancing (default 0.5 (em))
+  - id: justification
+    type: boolean
+    description: sets the justifcation 
+
+ # theme style
+  - id: colortheme
+    type: string
+    description: theme color 
+  - id: colorheadings
+    type: string
+    description: color of the headings
+
+# preface
+  - id: preface
+    type: string
+    description: a preface which is not included online
+
+parts: []
