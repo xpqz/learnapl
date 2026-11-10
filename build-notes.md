@@ -180,7 +180,19 @@ To adjust the token palette, override the `.hljs-comment` / `.hljs-string` /
 
 ## Publish (GitHub Pages)
 
-JB2 publishes via a GitHub Action, not `ghp-import`. Scaffold it once with
-`jupyter book init --gh-pages` (sets `BASE_URL=/learnapl`), then Settings → Pages →
-Source = GitHub Actions. CI must also install the Dyalog kernel and pass `--execute`, or
-commit pre-executed outputs.
+The build stays local (it needs the Dyalog kernel, typst and the APL387 font); nothing is
+built in CI. One command builds and publishes:
+
+```sh
+tools/publish.sh             # build, show what changed, ask, push
+tools/publish.sh --dry-run   # build and prepare the commit, but don't push
+```
+
+It runs `tools/build-pdf.sh` with `BASE_URL=/learnapl` (the site is served from a
+subdirectory; a plain local build would publish broken links), then adds the contents of
+`contents/_build/html` as one new commit on the `gh-pages` branch, which GitHub Pages
+serves (Settings → Pages → Source = "Deploy from a branch", `gh-pages` / root). Merging
+to `main` does not publish anything.
+
+After a publish, `contents/_build/html` has the `/learnapl` prefix baked in; rebuild
+without `BASE_URL` (or use `jupyter book start`) for local viewing.

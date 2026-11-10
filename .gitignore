@@ -149,3 +149,4 @@ dmypy.json
 
 # OSX
 .DS_Store
+contents/exports/
