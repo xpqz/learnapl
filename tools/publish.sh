@@ -58,6 +58,37 @@ git clone --quiet --depth 1 --branch "$branch" "$url" "$work"
 git -C "$work" rm -r --quiet --ignore-unmatch .
 cp -R "$html/." "$work/"
 touch "$work/.nojekyll"          # serve _-prefixed dirs as-is
+
+# The previous (Jupyter Book 1) edition served pages as <chapter>.html, with
+# intro.html as the landing page that index.html redirected to. Leave redirect
+# stubs at those addresses so bookmarks, search results, inbound links and
+# browser-cached redirects reach the new <chapter>/ pages instead of a 404.
+redirect() {  # redirect <stub file> <relative target>
+    cat > "$work/$1" <<EOF
+<!doctype html>
+<meta charset="utf-8">
+<title>Learning APL</title>
+<link rel="canonical" href="https://xpqz.github.io$base_url/$2">
+<meta http-equiv="refresh" content="0; url=$2">
+<script>location.replace("$2" + location.hash)</script>
+<p>This page has moved <a href="$2">here</a>.</p>
+EOF
+}
+for dir in "$work"/*/; do
+    page="$(basename "$dir")"
+    [ -f "$dir/index.html" ] && redirect "$page.html" "$page/"
+done
+# Landing page, and pages of the old edition that no longer exist.
+for gone in intro cookbook1 manip genindex search; do
+    [ -e "$work/$gone.html" ] || redirect "$gone.html" ""
+done
+cat > "$work/404.html" <<EOF
+<!doctype html>
+<meta charset="utf-8">
+<title>Page not found - Learning APL</title>
+<p>There is no page at this address. Go to the
+<a href="$base_url/">start of Learning APL</a>.</p>
+EOF
 git -C "$work" add --all
 
 if git -C "$work" diff --cached --quiet; then
