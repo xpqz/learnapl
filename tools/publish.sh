@@ -68,7 +68,7 @@ redirect() {  # redirect <stub file> <relative target>
 <!doctype html>
 <meta charset="utf-8">
 <title>Learning APL</title>
-<link rel="canonical" href="https://xpqz.github.io$base_url/$2">
+<link rel="canonical" href="https://xpqz.github.io$base_url/${2#./}">
 <meta http-equiv="refresh" content="0; url=$2">
 <script>location.replace("$2" + location.hash)</script>
 <p>This page has moved <a href="$2">here</a>.</p>
@@ -80,7 +80,7 @@ for dir in "$work"/*/; do
 done
 # Landing page, and pages of the old edition that no longer exist.
 for gone in intro cookbook1 manip genindex search; do
-    [ -e "$work/$gone.html" ] || redirect "$gone.html" ""
+    [ -e "$work/$gone.html" ] || redirect "$gone.html" "./"
 done
 cat > "$work/404.html" <<EOF
 <!doctype html>
