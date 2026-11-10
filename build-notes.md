@@ -194,5 +194,17 @@ subdirectory; a plain local build would publish broken links), then adds the con
 serves (Settings → Pages → Source = "Deploy from a branch", `gh-pages` / root). Merging
 to `main` does not publish anything.
 
+The script also writes redirect stubs for the old (Jupyter Book 1) edition's
+`<chapter>.html` addresses, and a `404.html`.
+
+**Known cost, deliberately not fixed:** every publish adds a commit to `gh-pages`, so
+each one leaves another ~20 MB PDF (its content hash changes on every build) plus the
+changed site assets in that branch's history for good. Publishes are rare, so this is
+accepted for now. If the repo size becomes a nuisance, change `publish.sh` to push a
+single parentless commit with `--force` (start the temp repo with `git init` instead of
+cloning `gh-pages`), so the branch only ever holds the current site. That discards the
+existing `gh-pages` history, and rolling the live site back then means rebuilding from an
+older `main` commit.
+
 After a publish, `contents/_build/html` has the `/learnapl` prefix baked in; rebuild
 without `BASE_URL` (or use `jupyter book start`) for local viewing.
