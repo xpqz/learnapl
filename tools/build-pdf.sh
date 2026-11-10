@@ -55,6 +55,11 @@ jupyter book build --typst
 # Patch the mangled glyphs in the generated typst and recompile exports/book.pdf.
 (cd "$root" && python tools/patch-typst.py)
 
+# Every PDF ever exported lingers in the site's asset cache under a
+# content-hashed name, and the HTML build copies them all into the site
+# (hundreds of MB of dead files). Drop them so only the fresh one is bundled.
+rm -f _build/site/public/book-*.pdf
+
 jupyter book build --html
 
 # Re-apply the local APL syntax highlighting patch to the built theme

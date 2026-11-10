@@ -43,6 +43,13 @@ BASE_URL="$base_url" "$here/build-pdf.sh"
 grep -q "$base_url/" "$html/index.html" \
     || { echo "error: build does not reference $base_url/ — BASE_URL not applied?" >&2; exit 1; }
 
+# Exactly one PDF should be bundled, and it should be the one just exported.
+pdfs=("$html"/build/book-*.pdf)
+[ "${#pdfs[@]}" = 1 ] && cmp -s "${pdfs[0]}" "$root/contents/exports/book.pdf" \
+    || { echo "error: expected exactly one bundled PDF matching exports/book.pdf, found: ${pdfs[*]}" >&2; exit 1; }
+grep -q "$(basename "${pdfs[0]}")" "$html/index.html" \
+    || { echo "error: site does not link the bundled PDF" >&2; exit 1; }
+
 # Fresh shallow checkout of the published branch; swap its contents wholesale.
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
